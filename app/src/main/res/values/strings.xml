@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WeTalk</string>
+
+    <!-- 首页标签 -->
+    <string name="tab_home_popular">热门</string>
+    <string name="tab_home_requirement">需求</string>
+    <string name="tab_home_article">文章</string>
+    <string name="tab_home_ranklist">排行榜</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
