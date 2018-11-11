@@ -2,10 +2,15 @@
     <string name="app_name">WeTalk</string>
 
     <!-- 首页标签 -->
-    <string name="tab_home_popular">热门</string>
+    <string name="tab_home_suggest">推荐</string>
     <string name="tab_home_requirement">需求</string>
     <string name="tab_home_article">文章</string>
     <string name="tab_home_ranklist">排行榜</string>
+
+    <!-- 发现页标签 -->
+    <string name="tab_discover_happen">动态</string>
+    <string name="tab_discover_topic">话题</string>
+    <string name="tab_discover_book">书籍</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

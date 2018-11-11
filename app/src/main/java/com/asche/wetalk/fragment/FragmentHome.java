@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
@@ -15,13 +14,9 @@ import android.view.ViewGroup;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.asche.wetalk.R;
-import com.asche.wetalk.adapter.HomeViewPagerAdapter;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentHome extends Fragment {
 
@@ -30,8 +25,6 @@ public class FragmentHome extends Fragment {
 
     private SmartTabLayout tabLayout;
     private ViewPager viewPager;
-    private HomeViewPagerAdapter homeViewPagerAdapter;
-    private List<Fragment> fragmentList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -49,25 +42,16 @@ public class FragmentHome extends Fragment {
         tabLayout = getView().findViewById(R.id.tab_home);
         viewPager = getView().findViewById(R.id.viewpager_home);
 
-        FragmentHomePopular fragmentHomePopular = new FragmentHomePopular();
-        FragmentHomeArticle fragmentHomeArticle = new FragmentHomeArticle();
-        FragmentHomeRanklist fragmentHomeRanklist = new FragmentHomeRanklist();
 
-        fragmentList.add(fragmentHomePopular);
-        fragmentList.add(fragmentHomeArticle);
-        fragmentList.add(fragmentHomeRanklist);
-
-        homeViewPagerAdapter = new HomeViewPagerAdapter(getFragmentManager(), fragmentList);
-
-        FragmentPagerItemAdapter pagerItemAdapter = new FragmentPagerItemAdapter(
-                getFragmentManager(), FragmentPagerItems.with(getActivity())
-                .add(R.string.tab_home_popular, FragmentHomePopular.class)
+        FragmentPagerItemAdapter fragmentPagerItemAdapter = new FragmentPagerItemAdapter(
+                getChildFragmentManager(), FragmentPagerItems.with(getActivity())
+                .add(R.string.tab_home_suggest, FragmentHomeSuggest.class)
                 .add(R.string.tab_home_requirement, FragmentHomeRequirement.class)
                 .add(R.string.tab_home_article, FragmentHomeArticle.class)
                 .add(R.string.tab_home_ranklist, FragmentHomeRanklist.class)
                 .create());
 
-        viewPager.setAdapter(pagerItemAdapter);
+        viewPager.setAdapter(fragmentPagerItemAdapter);
         tabLayout.setViewPager(viewPager);
 
 
