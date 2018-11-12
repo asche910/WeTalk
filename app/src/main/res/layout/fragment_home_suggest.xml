@@ -2,18 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout_event"
+        android:id="@+id/refreshLayout_home_suggest"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.header.PhoenixHeader
+            android:id="@+id/header_home_suggest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:phPrimaryColor="@color/blueLight"
+            app:phAccentColor="@color/white"
+            />
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Popular" />
+
+        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+            android:id="@+id/footer_home_suggest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAnimatingColor="@color/blueLight"
+            />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

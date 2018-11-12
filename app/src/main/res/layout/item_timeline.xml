@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:text="今天16:42"
+        />
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.flyco.roundview.RoundFrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:rv_strokeColor="#cccccc"
+            app:rv_strokeWidth="1dp"
+            app:rv_cornerRadius="30dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nav_user_pressed"
+                />
+
+        </com.flyco.roundview.RoundFrameLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#cccccc"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+
+    <com.flyco.roundview.RoundLinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical"
+        app:rv_strokeColor="#cccccc"
+        app:rv_strokeWidth="1dp"
+        app:rv_cornerRadius="6dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/img_avatar"
+            android:scaleType="centerCrop"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:text="Hello, World!"
+            android:textSize="16sp"/>
+
+    </com.flyco.roundview.RoundLinearLayout>
+</LinearLayout>
