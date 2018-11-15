@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.asche.wetalk">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name="com.asche.wetalk.MyApplication"
         android:allowBackup="true"
@@ -23,6 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.UserHomeActivity"/>
+        <activity android:name=".activity.UserModifyActivity"/>
+        <activity android:name=".activity.UserTwoCodeActivity"/>
     </application>
 
 </manifest>

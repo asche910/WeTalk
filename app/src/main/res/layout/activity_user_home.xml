@@ -1,61 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#efefef"
+    android:orientation="vertical"> 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout_user_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <com.asche.wetalk.other.MyScrollView
+            android:id="@+id/scroll_user_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/img_avatar"
-                    android:scaleType="centerCrop"/>
-
-                <com.flyco.roundview.RoundLinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    app:rv_strokeColor="#cccccc"
-                    app:rv_strokeWidth="1dp"
-                    app:rv_cornerRadius="6dp">
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_user_home_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_avatar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50dp"
+                        android:text="Asche"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="40dp"
                         android:gravity="center"
-                        android:text="Hello, World!"
-                        android:textSize="15sp" />
+                        android:text="What Doesn't Kill You Makes You Stronger" />
 
-                </com.flyco.roundview.RoundLinearLayout>
+                    <!--
+ userName; nickName; gender; imgAvatar;imgBg;
+ signature; tel; address; profession descriptio -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <include layout="@layout/item_timeline" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
 
-                <include layout="@layout/item_timeline" />
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:src="@drawable/ic_profession" />
 
-                <include layout="@layout/item_timeline" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="计算机IT"
+                                android:textColor="#535353" />
 
-                <include layout="@layout/item_timeline" />
+                        </LinearLayout>
 
-                <include layout="@layout/item_timeline" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="#20454545" />
 
-            </LinearLayout>
-        </ScrollView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp">
 
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:src="@drawable/ic_location" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:text="美国-加利福尼亚"
+                                android:textColor="#535353" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="#20454545" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/ic_tag" />
+
+                            <com.zhy.view.flowlayout.TagFlowLayout
+                                android:id="@+id/tagflow_user"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10dp"
+                                app:max_select="3"
+                                >
+
+                            </com.zhy.view.flowlayout.TagFlowLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#20454545" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.andexert.library.RippleView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            rv_centered="true"
+                            app:rv_rippleDuration="200"
+                            >
+
+                            <Button
+                                android:id="@+id/btn_user_home_modify_tag"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bg_btn_blue"
+                                android:text="修改标签"
+                                android:textColor="@color/white" />
+                        </com.andexert.library.RippleView>
+
+                        <com.andexert.library.RippleView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            rv_centered="true"
+                            app:rv_rippleDuration="200"
+                            >
+
+                            <Button
+                                android:id="@+id/btn_user_home_modify"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:background="@drawable/bg_btn_green"
+                                android:text="修改资料"
+                                android:textColor="@color/white" />
+                        </com.andexert.library.RippleView>
+
+
+                    </LinearLayout>
+
+
+                    <com.flyco.roundview.RoundLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical"
+                        app:rv_cornerRadius="6dp"
+                        app:rv_strokeColor="#cccccc"
+                        app:rv_strokeWidth="1dp">
+
+                        <com.andexert.library.RippleView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            rv_centered="true">
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:text="Hello, World!"
+                                android:textSize="15sp"
+                                android:background="@color/greenLight"
+                                />
+
+                        </com.andexert.library.RippleView>
+
+                    </com.flyco.roundview.RoundLinearLayout>
+
+                    <include layout="@layout/item_timeline" />
+
+                    <include layout="@layout/item_timeline" />
+
+                    <include layout="@layout/item_timeline" />
+
+                    <include layout="@layout/item_timeline" />
+
+                    <include layout="@layout/item_timeline" />
+
+                    <include layout="@layout/item_timeline_end" />
+
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="150dp"
+                    android:background="@drawable/img_avatar_default"
+                    android:src="@drawable/img_avatar"
+                    android:transitionName="user_avatar"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="2dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="158dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/bg_user_fans"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_watch_light" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="粉丝 6k"
+                            android:textColor="@color/grayLight" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注 6"
+                            android:textColor="@color/grayLight" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </com.asche.wetalk.other.MyScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <include layout="@layout/toolbar_user_home" />
 
 </RelativeLayout>

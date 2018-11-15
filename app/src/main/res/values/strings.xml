@@ -10,8 +10,14 @@
     <!-- 发现页标签 -->
     <string name="tab_discover_happen">动态</string>
     <string name="tab_discover_topic">话题</string>
-    <string name="tab_discover_book">书籍</string>
+    <string name="tab_discover_live">直播</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="topic_reply">我朋友的故事，背景是她很黑。。。
+我们一起去英国Kaplan
+第一天去人生地不熟，两个人坐在角落抠脚（端着咖啡看五湖四海的人social）
+一个明显东南亚的小哥比较兴奋的跑过来问我朋友：
+“are you thai people？”
+我的朋友似乎也意识到了这个问题隐含的深意，她的脸更黑了
+我看到她别过脸，小小的说了一句Thai nmb</string>
+
 </resources>

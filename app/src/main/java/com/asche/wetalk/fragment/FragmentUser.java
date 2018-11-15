@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 
 import android.transition.Explode;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.asche.wetalk.R;
@@ -24,6 +26,7 @@ public class FragmentUser extends Fragment {
 
     private RefreshLayout refreshLayout;
     private LinearLayout userInfoLayout;
+    private ImageView imgAvatar;
 
     private final String TAG = "FragmentUser";
 
@@ -40,6 +43,7 @@ public class FragmentUser extends Fragment {
 
         refreshLayout = getView().findViewById(R.id.refreshLayout_user);
         userInfoLayout = getView().findViewById(R.id.layout_user_info);
+        imgAvatar = getView().findViewById(R.id.img_user_avatar);
 
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
@@ -67,7 +71,7 @@ public class FragmentUser extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), UserHomeActivity.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions compat = ActivityOptions.makeSceneTransitionAnimation(getActivity());
+                    ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), imgAvatar, "user_avatar");
                     startActivity(intent, compat.toBundle());
                 }
 
