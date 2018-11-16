@@ -54,7 +54,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:text="@string/topic_reply"
-                android:textColor="#5e5e5e"
+                android:textColor="#484747"
                 android:maxLines="3"
                 android:ellipsize="end" />
 

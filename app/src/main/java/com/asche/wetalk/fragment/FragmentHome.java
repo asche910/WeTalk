@@ -18,6 +18,8 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
+import static com.asche.wetalk.fragment.FragmentHomeSuggest.videoPlayer;
+
 public class FragmentHome extends Fragment {
 
     private final String TAG = "FragmentHome";
@@ -70,4 +72,13 @@ public class FragmentHome extends Fragment {
         Log.e(TAG, "onActivityCreated: " );
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden){
+            if (videoPlayer != null && videoPlayer.isInPlayingState()) {
+                 videoPlayer.onVideoPause();
+            }
+        }
+    }
 }

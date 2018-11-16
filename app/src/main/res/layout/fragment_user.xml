@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--  钱包  -->
+    <!--  钱包、书架、成就、收藏、签到  -->
+
+    <!--  我的咨询、我的提问（回答）、近期好友   -->
 
     <include layout="@layout/toolbar_user" />
 
@@ -103,6 +105,13 @@
                     android:background="@drawable/bg_user_tool"
                     android:elevation="4dp"
                     android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_user_tool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+
 
                 </LinearLayout>
 

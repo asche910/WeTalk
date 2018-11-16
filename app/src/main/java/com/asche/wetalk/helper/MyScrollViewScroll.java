@@ -2,9 +2,12 @@ package com.asche.wetalk.helper;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.ScrollView;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * 大致的思路是要求子View不处理滑动事件，交由自己处理，这样就不会出现事件冲突
@@ -46,4 +49,8 @@ public class MyScrollViewScroll extends ScrollView {
         return super.onInterceptTouchEvent(e);
     }
 
+    @Override
+    protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {
+        super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
+    }
 }

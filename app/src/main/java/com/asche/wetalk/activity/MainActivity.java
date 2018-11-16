@@ -30,9 +30,12 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.scwang.smartrefresh.layout.footer.FalsifyFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.asche.wetalk.fragment.FragmentHomeRequirement.orientationUtils;
 
 /**
  * @author Asche
@@ -68,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             View decorView = getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            |  View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.parseColor("#22000000"));
         }
 
@@ -108,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onTabSelected: " + position);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 Fragment fragment = null;
-                if (fragmentList.get(position) == null){
-                    switch (position){
+                if (fragmentList.get(position) == null) {
+                    switch (position) {
                         case 3:
                             fragmentUser = new FragmentUser();
                             fragment = fragmentUser;
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                     transaction.add(R.id.frame_main, fragment);
-                }else {
+                } else {
                     fragment = fragmentList.get(position);
                 }
                 hideAllFragment(transaction);
@@ -142,23 +144,31 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(int position) {
-                Log.e(TAG, "onTabReselected: " + position );
+                Log.e(TAG, "onTabReselected: " + position);
             }
         });
 
     }
 
-    private void hideAllFragment(FragmentTransaction transaction){
-        if (fragmentHome != null){
+    @Override
+    public void onBackPressed() {
+        if (GSYVideoManager.backFromWindowFull(this)) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    private void hideAllFragment(FragmentTransaction transaction) {
+        if (fragmentHome != null) {
             transaction.hide(fragmentHome);
         }
-        if (fragmentDiscover != null){
+        if (fragmentDiscover != null) {
             transaction.hide(fragmentDiscover);
         }
-        if(fragmentNotification != null){
+        if (fragmentNotification != null) {
             transaction.hide(fragmentNotification);
         }
-        if(fragmentUser != null){
+        if (fragmentUser != null) {
             transaction.hide(fragmentUser);
         }
     }

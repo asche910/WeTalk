@@ -8,24 +8,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.asche.wetalk.R;
+import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.shuyu.gsyvideoplayer.utils.GSYVideoHelper;
+import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
+import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 
 public class FragmentHomeRequirement extends Fragment {
 
     private RefreshLayout refreshLayout;
     private final String TAG = "FragmentHomeRequirement";
 
-    private VideoView videoView;
+    private StandardGSYVideoPlayer videoPlayer;
+    public static OrientationUtils orientationUtils;
 
     @Nullable
     @Override
@@ -39,8 +46,7 @@ public class FragmentHomeRequirement extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         refreshLayout = getView().findViewById(R.id.refreshLayout_home_requirement);
-        videoView = getView().findViewById(R.id.video_item_main);
-
+        videoPlayer = getView().findViewById(R.id.video_item_main);
 
 
         refreshLayout.setOnLoadMoreListener(new OnRefreshLoadMoreListener() {
@@ -57,16 +63,33 @@ public class FragmentHomeRequirement extends Fragment {
             }
         });
 
-        String path = Environment.getExternalStorageDirectory().getPath()+"/video.mp4";
-        Uri uri = Uri.parse(path);//将路径转换成uri
-        videoView.setVideoURI(uri);
-//        video.setMediaController(new MediaController(Main2Activity.this));//显示控制栏
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        String videoSrc = "http://f10.v1.cn/site/15542573.mp4.f40.mp4";
+        String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-11-14/201811140932452264.jpg";
+
+        ImageView imageView = new ImageView(getActivity());
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        Glide.with(getActivity())
+                .load(imgSrc)
+                .into(imageView);
+
+        orientationUtils = new OrientationUtils(getActivity(), videoPlayer);
+        orientationUtils.setEnable(true);
+
+        videoPlayer.setUp(videoSrc, false, "美女诈骗9男友200万 感谢被抓：收不住");
+        videoPlayer.setThumbImageView(imageView);
+        videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
+        videoPlayer.getBackButton().setVisibility(View.VISIBLE);
+        videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPrepared(MediaPlayer mp) {
-                videoView.start();
+            public void onClick(View v) {
+                videoPlayer.startWindowFullscreen(getContext(), false, true);
             }
         });
 
+        videoPlayer.setIsTouchWiget(true);
+//        videoPlayer.startPlayLogic();
+
     }
+
 }

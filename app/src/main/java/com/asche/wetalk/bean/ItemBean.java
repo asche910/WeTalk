@@ -1,5 +1,11 @@
 package com.asche.wetalk.bean;
 
+import com.asche.wetalk.util.StringUtils;
+
+import java.lang.reflect.InvocationTargetException;
+
+import androidx.annotation.NonNull;
+
 public class ItemBean {
     private int type;
     private String title;
@@ -7,14 +13,16 @@ public class ItemBean {
     private int likeNum;
     private int commentNum;
     private String imgUrl;
+    private String videoUrl;
 
-    public ItemBean(int type, String title, String content, int likeNum, int commentNum, String imgUrl) {
+    public ItemBean(int type, String title, String content, int likeNum, int commentNum, String imgUrl, String videoUrl) {
         this.type = type;
         this.title = title;
         this.content = content;
         this.likeNum = likeNum;
         this.commentNum = commentNum;
         this.imgUrl = imgUrl;
+        this.videoUrl = videoUrl;
     }
 
     public ItemBean() {
@@ -66,5 +74,28 @@ public class ItemBean {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        try {
+            return StringUtils.objToString(this);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
