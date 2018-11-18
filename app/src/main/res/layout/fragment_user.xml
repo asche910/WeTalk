@@ -6,8 +6,9 @@
 
     <!--  钱包、书架、成就、收藏、签到  -->
 
-    <!--  我的咨询、我的提问（回答）、近期好友   -->
-
+    <!--  草稿箱、我的咨询、我的提问（回答）、评价管理、近期好友、待办事项   -->
+ 
+    <!--  订阅  -->
     <include layout="@layout/toolbar_user" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -108,10 +109,8 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycle_user_tool"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        />
-
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
 
@@ -120,6 +119,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/layout_user_tool"
                     android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycle_user_panel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/bg_item"
+                        android:elevation="2dp"
+                        />
+
 
                     <TextView
                         android:layout_width="match_parent"

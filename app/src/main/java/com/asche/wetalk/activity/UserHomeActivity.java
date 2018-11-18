@@ -100,7 +100,6 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
 
         Log.e("sa", "onCreate: " + userBean.toString() );
 
-
 /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Explode explode = new Explode();

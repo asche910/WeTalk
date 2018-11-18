@@ -20,6 +20,7 @@ public class UserToolRVAdapter extends RecyclerView.Adapter<UserToolRVAdapter.Vi
 
     private List<ImageTextBean> list;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
@@ -46,13 +47,20 @@ public class UserToolRVAdapter extends RecyclerView.Adapter<UserToolRVAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ImageTextBean bean = list.get(position);
         holder.textView.setText(bean.getText());
 
         Glide.with(context)
                 .load(Integer.parseInt(bean.getImgUrl()))
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -60,4 +68,11 @@ public class UserToolRVAdapter extends RecyclerView.Adapter<UserToolRVAdapter.Vi
         return list.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener{
+        public void onItemClick(int position);
+    }
 }

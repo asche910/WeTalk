@@ -2,11 +2,16 @@ package com.asche.wetalk.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class IDUtils {
 
+    private static String words = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static Random random = new Random();
+
+
     //    生成14位文章ID
-    public long genArticleId(){
+    public static long genArticleId(){
         SimpleDateFormat format = new SimpleDateFormat("yyMMddHHmmss");
         String time = format.format(new Date());
 
