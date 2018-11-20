@@ -39,7 +39,7 @@ public class DataUtils {
     public static UserBean getUser(){
         UserBean userBean = new UserBean();
         int id = random.nextInt(999_999_999) +  100_000;
-        userBean.setId(id);
+        userBean.setId(id + "");
         userBean.setUserName("User_" + id);
         return userBean;
     }

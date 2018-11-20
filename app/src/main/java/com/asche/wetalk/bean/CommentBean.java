@@ -7,16 +7,16 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class CommentBean {
-    private int id;
-    private int parentId; // 是否是某个comment下的回复， 否则置0
-    private int bodyId; // 文章、话题、动态  -> 之一的id
-    private int authorId;
-    private int type; // 话题、文章、说说、
+    private String id;
+    private String parentId; // 是否是某个comment下的回复， 否则置0
+    private String bodyId; // 文章、需求、话题回复、动态  -> 之一的id
+    private String authorId;
+    private int type; // 话题、需求、文章、说说、
     private String content;
     private String time;
     private int likeNum;
 
-    public CommentBean(int id, int parentId, int bodyId, int authorId, int type, String content, String time, int likeNum) {
+    public CommentBean(String id, String parentId, String bodyId, String authorId, int type, String content, String time, int likeNum) {
         this.id = id;
         this.parentId = parentId;
         this.bodyId = bodyId;
@@ -30,35 +30,35 @@ public class CommentBean {
     public CommentBean() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(int parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
-    public int getBodyId() {
+    public String getBodyId() {
         return bodyId;
     }
 
-    public void setBodyId(int bodyId) {
+    public void setBodyId(String bodyId) {
         this.bodyId = bodyId;
     }
 
-    public int getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
 

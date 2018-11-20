@@ -7,16 +7,16 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class HappenBean {
-    private int id;
-    private int authorNum;
+    private String id;
+    private String authorId;
     private String content;
     private String time;
     private int likeNum;
     private int commentNum;
 
-    public HappenBean(int id, int authorNum, String content, String time, int likeNum, int commentNum) {
+    public HappenBean(String id, String authorId, String content, String time, int likeNum, int commentNum) {
         this.id = id;
-        this.authorNum = authorNum;
+        this.authorId = authorId;
         this.content = content;
         this.time = time;
         this.likeNum = likeNum;
@@ -26,20 +26,20 @@ public class HappenBean {
     public HappenBean() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getAuthorNum() {
-        return authorNum;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthorNum(int authorNum) {
-        this.authorNum = authorNum;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public String getContent() {

@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class UserBean {
-    private int id;
+    private String id;
     private String userName;
     private String password;
     private String nickName;
@@ -19,13 +19,15 @@ public class UserBean {
     private String address;
     private String profession; // 职业
     private String description; // 个人描述
+    private int followNum; // 关注数量
+    private int followerNum; // 粉丝数量
 
     private int moneyVirtual;
     private int money;
 
-    public UserBean(int id, String userName, String password, String nickName, String gender, String imgAvatar,
+    public UserBean(String id, String userName, String password, String nickName, String gender, String imgAvatar,
                     String imgBg, String signature, String tel, String address, String profession, String description,
-                    int moneyVirtual, int money) {
+                    int followNum, int followerNum, int moneyVirtual, int money) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -38,6 +40,8 @@ public class UserBean {
         this.address = address;
         this.profession = profession;
         this.description = description;
+        this.followNum = followNum;
+        this.followerNum = followerNum;
         this.moneyVirtual = moneyVirtual;
         this.money = money;
     }
@@ -45,11 +49,11 @@ public class UserBean {
     public UserBean() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -155,6 +159,22 @@ public class UserBean {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getFollowNum() {
+        return followNum;
+    }
+
+    public void setFollowNum(int followNum) {
+        this.followNum = followNum;
+    }
+
+    public int getFollowerNum() {
+        return followerNum;
+    }
+
+    public void setFollowerNum(int followerNum) {
+        this.followerNum = followerNum;
     }
 
     @NonNull

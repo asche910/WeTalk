@@ -7,15 +7,15 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class TopicReplyBean {
-    private int id;
-    private int topicId;
-    private int authorNum;
+    private String id;
+    private String topicId;
+    private String authorNum;
     private String content;
     private String time;
     private int likeNum;
     private int commentNum;
 
-    public TopicReplyBean(int id, int topicId, int authorNum, String content, String time, int likeNum, int commentNum) {
+    public TopicReplyBean(String id, String topicId, String authorNum, String content, String time, int likeNum, int commentNum) {
         this.id = id;
         this.topicId = topicId;
         this.authorNum = authorNum;
@@ -28,27 +28,28 @@ public class TopicReplyBean {
     public TopicReplyBean() {
     }
 
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getTopicId() {
+    public String getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(int topicId) {
+    public void setTopicId(String topicId) {
         this.topicId = topicId;
     }
 
-    public int getAuthorNum() {
+    public String getAuthorNum() {
         return authorNum;
     }
 
-    public void setAuthorNum(int authorNum) {
+    public void setAuthorNum(String authorNum) {
         this.authorNum = authorNum;
     }
 

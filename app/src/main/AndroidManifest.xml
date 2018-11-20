@@ -29,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.asche.wetalk.other.CustomGlideModule"
+            android:value="GlideModule"/>
+
         <activity android:name=".activity.UserHomeActivity"/>
         <activity android:name=".activity.UserModifyActivity"/>
         <activity android:name=".activity.UserTwoCodeActivity"/>

@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class TopicBean {
-    private int id;
+    private String id;
     private String name; //  问题
     private String content; // 问题描述
     private String time;
@@ -15,7 +15,7 @@ public class TopicBean {
     private int replyNum;
     private int authorId;
 
-    public TopicBean(int id, String name, String content, String time, int followerNum, int replyNum, int authorId) {
+    public TopicBean(String id, String name, String content, String time, int followerNum, int replyNum, int authorId) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -28,11 +28,11 @@ public class TopicBean {
     public TopicBean() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

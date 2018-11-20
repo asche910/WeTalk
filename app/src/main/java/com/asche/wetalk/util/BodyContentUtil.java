@@ -34,6 +34,7 @@ public class BodyContentUtil {
             }
         }
         Log.e(TAG, "parseHtml: " + tempList.size() );
+        // bodyContentBeanList.add(new BodyContentBean(2, null, "http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg", "http://f10.v1.cn/site/15538790.mp4.f40.mp4"));
 
         Iterator<BodyContentBean> iterator = tempList.iterator();
         for (String str: strs){
