@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#efeded">
+    android:background="#f2f2f2">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout_home_suggest"
@@ -19,11 +19,10 @@
             app:phAccentColor="@color/white"
             />
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_home_suggest"
                     android:layout_width="match_parent"

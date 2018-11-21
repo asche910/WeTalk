@@ -4,9 +4,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@drawable/bg_item"
-    android:elevation="2dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="3dp"
+    android:background="@color/white"
+    android:elevation="1dp"
+    >
 
     <com.andexert.library.RippleView
         android:layout_width="match_parent"
@@ -16,6 +18,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/layout_item_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -58,9 +61,10 @@
                 <TextView
                     android:id="@+id/text_item_main_content"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
+                    android:gravity="center"
                     android:text="@string/topic_reply"
                     android:textColor="#484747"
                     android:maxLines="3"
@@ -75,46 +79,105 @@
                     />
             </LinearLayout>
 
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="6dp">
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#20454545" />
 
-                <ImageView
-                    android:id="@+id/img_item_main_like"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_like" />
-
-                <TextView
-                    android:id="@+id/text_item_main_likenum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:text="808" />
-
-                <ImageView
-                    android:id="@+id/img_item_main_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_comment" />
-
-                <TextView
-                    android:id="@+id/text_item_main_commentnum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:text="808" />
-
-            </LinearLayout>
         </LinearLayout>
     </com.andexert.library.RippleView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/layout_item_main_like"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+
+            <ImageView
+                android:id="@+id/img_item_main_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_like" />
+
+            <TextView
+                android:id="@+id/text_item_main_likenum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="808" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_item_main_comment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+
+            <ImageView
+                android:id="@+id/img_item_main_comment"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_comment" />
+
+            <TextView
+                android:id="@+id/text_item_main_commentnum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="808" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_item_main_forward"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+            <ImageView
+                android:id="@+id/img_item_main_forward"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_forward" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="转发" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

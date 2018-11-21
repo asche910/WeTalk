@@ -1,24 +1,28 @@
 package com.asche.wetalk.bean;
 
+import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
+import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
-public class TopicReplyBean {
+public class TopicReplyBean implements HomeItem{
     private String id;
     private String topicId;
-    private String authorNum;
+    private String authorId;
     private String content;
     private String time;
+    private String imgUrl;
+    private String videoUrl;
     private int likeNum;
     private int commentNum;
 
-    public TopicReplyBean(String id, String topicId, String authorNum, String content, String time, int likeNum, int commentNum) {
+    public TopicReplyBean(String id, String topicId, String authorId, String content, String time, int likeNum, int commentNum) {
         this.id = id;
         this.topicId = topicId;
-        this.authorNum = authorNum;
+        this.authorId = authorId;
         this.content = content;
         this.time = time;
         this.likeNum = likeNum;
@@ -27,7 +31,6 @@ public class TopicReplyBean {
 
     public TopicReplyBean() {
     }
-
 
     public String getId() {
         return id;
@@ -45,12 +48,12 @@ public class TopicReplyBean {
         this.topicId = topicId;
     }
 
-    public String getAuthorNum() {
-        return authorNum;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthorNum(String authorNum) {
-        this.authorNum = authorNum;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public String getContent() {
@@ -69,6 +72,41 @@ public class TopicReplyBean {
         this.time = time;
     }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    @Override
+    public int getItemType() {
+        return TYPE_TOPIC;
+    }
+
+    @Override
+    public int getItemBodyType() {
+        if (getVideoUrl() != null){
+            return HomeSuggestRVAdapter.TYPE_VIDEO;
+        }else if (getImgUrl() != null){
+            return HomeSuggestRVAdapter.TYPE_IMAGE;
+        }
+        return 0;
+    }
+
+    @Override
+    public String getTitle() {
+        // TODO implement getTitle();
+        return DataUtils.getTitle(getId());
+    }
+
+    @Override
+    public String getBrief() {
+        return content;
+    }
+
+    @Override
     public int getLikeNum() {
         return likeNum;
     }
@@ -77,8 +115,19 @@ public class TopicReplyBean {
         this.likeNum = likeNum;
     }
 
+    @Override
     public int getCommentNum() {
         return commentNum;
+    }
+
+    @Override
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    @Override
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
     public void setCommentNum(int commentNum) {

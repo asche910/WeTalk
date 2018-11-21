@@ -11,6 +11,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.bean.ArticleBean;
+import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.UserBean;
 
 import java.io.BufferedInputStream;
@@ -44,11 +46,59 @@ public class DataUtils {
         return userBean;
     }
 
-    public static String getArticle(){
-        // Uri uri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.article);
+    public static String getArticleStr(){
+        return getContent(R.raw.article_1);
+    }
+
+    public static TopicReplyBean getTopicReply(){
+        TopicReplyBean bean = new TopicReplyBean();
+        int n = random.nextInt(2);
+        switch (n){
+            case 1:
+                bean.setId(222 + "");
+                bean.setContent(getContent(R.raw.topic_2));
+                bean.setImgUrl("https://pic1.zhimg.com/v2-d54e01339bc69e3c80c760479b941ebc_b.jpg");
+                break;
+            case 0:
+                bean.setId(111 + "");
+                bean.setContent(getContent(R.raw.topic_1));
+                bean.setImgUrl("https://pic1.zhimg.com/v2-91e5d2f6c85c151f235b09e4cf229509_b.jpg");
+                break;
+        }
+        bean.setTopicId(444 + "");
+        bean.setAuthorId(4 + "");
+        bean.setTime("2018-08-09");
+        bean.setLikeNum(78);
+        bean.setCommentNum(89);
+        return bean;
+    }
+
+    public static ArticleBean getArticle(){
+        ArticleBean bean = new ArticleBean();
+        bean.setTitle("读大学前后对比照");
+        bean.setBrief("言语已无法形容我此时的惊讶之情！来感受下：只有经历了军训的黝黑 才能享受洗礼过后的美颜  我也来！14vs31岁");
+        bean.setLikeNum(23);
+        bean.setCommentNum(45);
+        bean.setImgUrl("http://upload-images.jianshu.io/upload_images/10289013-75155d935b219002");
+        return bean;
+    }
+
+    public static String getTitle(String idStr){
+        switch (idStr){
+            case "222":
+                return "最让程序猿自豪的事情是什么？";
+            case "111":
+                return "你在大学有过哪些「骚操作」？";
+            default:
+                return "Hello, World!";
+        }
+    }
+
+    private static String getContent(Integer resourceId){
+        // Uri uri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.article_2);
         try {
             StringBuilder stringBuilder = new StringBuilder();
-            InputStream inputStream = getContext().getResources().openRawResource(R.raw.article_1);
+            InputStream inputStream = getContext().getResources().openRawResource(resourceId);
             //  InputStream inputStream = new FileInputStream(new File(getPath(getContext(), uri)));
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 

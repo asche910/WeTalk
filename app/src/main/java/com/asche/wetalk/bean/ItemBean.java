@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 public class ItemBean {
     private int type;
+    private int bodyType;
     private String title;
     private String content;
     private int likeNum;
@@ -15,8 +16,9 @@ public class ItemBean {
     private String imgUrl;
     private String videoUrl;
 
-    public ItemBean(int type, String title, String content, int likeNum, int commentNum, String imgUrl, String videoUrl) {
+    public ItemBean(int type, int bodyType, String title, String content, int likeNum, int commentNum, String imgUrl, String videoUrl) {
         this.type = type;
+        this.bodyType = bodyType;
         this.title = title;
         this.content = content;
         this.likeNum = likeNum;
@@ -34,6 +36,14 @@ public class ItemBean {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public int getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(int bodyType) {
+        this.bodyType = bodyType;
     }
 
     public String getTitle() {

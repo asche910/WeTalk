@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.andexert.library.RippleView;
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.HomeItemAdapter;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.ItemBean;
+import com.asche.wetalk.util.DataUtils;
 import com.scwang.smartrefresh.header.PhoenixHeader;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -60,23 +63,24 @@ public class FragmentHomeSuggest extends Fragment {
         String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg";
         String imgSrc_ = "http://img.mms.v1.cn/static/mms/images//201607201445331953.jpg";
 
+        itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
+        itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
+        itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getArticle()));
 
-        itemBeanList.add(new ItemBean(0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, null, null));
-        itemBeanList.add(new ItemBean(1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
-        itemBeanList.add(new ItemBean(2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, imgSrc, videoSrc));
-        itemBeanList.add(new ItemBean(1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
+        itemBeanList.add(new ItemBean(2, 0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, null, null));
+        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
+        itemBeanList.add(new ItemBean(2, 2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, imgSrc, videoSrc));
+        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
 
-        itemBeanList.add(new ItemBean(2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, imgSrc_, videoSrc_));
-        itemBeanList.add(new ItemBean(1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
-        itemBeanList.add(new ItemBean(0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, null, null));
-        itemBeanList.add(new ItemBean(1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
-
+        itemBeanList.add(new ItemBean(2, 2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, imgSrc_, videoSrc_));
+        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
+        itemBeanList.add(new ItemBean(2, 0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, null, null));
+        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         adapter = new HomeSuggestRVAdapter(itemBeanList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
 
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

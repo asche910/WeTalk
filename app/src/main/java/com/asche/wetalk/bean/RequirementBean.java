@@ -1,5 +1,6 @@
 package com.asche.wetalk.bean;
 
+import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -7,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 // 这里在ArticleBean的基础上加了个type
-public class RequirementBean {
+public class RequirementBean implements HomeItem{
     private String id;
     private int type; // 招技术or卖技术;
     private String authorId;
@@ -15,6 +16,8 @@ public class RequirementBean {
     private String brief;
     private String content;
     private String time;
+    private String imgUrl;
+    private String videoUrl;
     private int likeNum;
     private int commentNum;
 
@@ -57,6 +60,7 @@ public class RequirementBean {
         this.authorId = authorId;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
@@ -65,6 +69,7 @@ public class RequirementBean {
         this.title = title;
     }
 
+    @Override
     public String getBrief() {
         return brief;
     }
@@ -89,6 +94,31 @@ public class RequirementBean {
         this.time = time;
     }
 
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    @Override
+    public int getItemType() {
+        return TYPE_REQUIREMENT;
+    }
+
+    @Override
+    public int getItemBodyType() {
+        if (getVideoUrl() != null){
+            return HomeSuggestRVAdapter.TYPE_VIDEO;
+        }else if (getImgUrl() != null){
+            return HomeSuggestRVAdapter.TYPE_IMAGE;
+        }
+        return 0;
+    }
+
+    @Override
     public int getLikeNum() {
         return likeNum;
     }
@@ -97,8 +127,20 @@ public class RequirementBean {
         this.likeNum = likeNum;
     }
 
+    @Override
     public int getCommentNum() {
         return commentNum;
+    }
+
+
+    @Override
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    @Override
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
     public void setCommentNum(int commentNum) {
