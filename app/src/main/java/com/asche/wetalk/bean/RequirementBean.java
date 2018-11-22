@@ -3,12 +3,13 @@ package com.asche.wetalk.bean;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.util.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
 // 这里在ArticleBean的基础上加了个type
-public class RequirementBean implements HomeItem{
+public class RequirementBean implements HomeItem, Serializable {
     private String id;
     private int type; // 招技术or卖技术;
     private String authorId;

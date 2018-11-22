@@ -48,6 +48,7 @@
         <activity android:name=".activity.ClientActivity" />
         <activity android:name=".activity.ArticleActivity" />
         <activity android:name=".activity.TopicActivity" />
+        <activity android:name=".activity.ChatActivity" />
     </application>
 
 </manifest>

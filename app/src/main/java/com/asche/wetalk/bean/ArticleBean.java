@@ -3,11 +3,12 @@ package com.asche.wetalk.bean;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.util.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
-public class ArticleBean implements HomeItem{
+public class ArticleBean implements HomeItem, Serializable {
     private String id;
     private String authorId;
     private String title;

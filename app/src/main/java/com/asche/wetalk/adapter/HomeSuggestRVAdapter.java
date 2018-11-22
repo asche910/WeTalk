@@ -16,6 +16,7 @@ import com.asche.wetalk.activity.ArticleActivity;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
+import com.asche.wetalk.util.DataUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
@@ -191,7 +192,10 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE){
-                        nextActivity(ArticleActivity.class);
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", DataUtils.getArticle());
+                        context.startActivity(intent);
+                        // nextActivity(ArticleActivity.class);
                     }else if (bean.getType() == HomeItem.TYPE_TOPIC){
                         nextActivity(TopicActivity.class);
                     }

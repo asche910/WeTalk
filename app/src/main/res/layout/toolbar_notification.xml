@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="通知"
+        android:text="消息"
         android:textColor="@color/grayLight"
         android:textSize="20sp"/>
 

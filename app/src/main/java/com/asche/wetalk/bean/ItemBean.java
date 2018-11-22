@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
+// 首页item
 public class ItemBean {
     private int type;
     private int bodyType;

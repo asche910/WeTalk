@@ -3,19 +3,26 @@ package com.asche.wetalk.activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ClientActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView textTitle;
+
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +42,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
         textTitle.setText("我的客户");
         imgBack.setOnClickListener(this);
+
+
+/*        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.item_main_img);
+        bottomSheetDialog.show();*/
+
     }
 
     @Override

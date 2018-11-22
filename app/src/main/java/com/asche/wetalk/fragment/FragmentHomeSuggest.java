@@ -30,7 +30,6 @@ import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 public class FragmentHomeSuggest extends Fragment {
 
-    private PhoenixHeader header;
     private BallPulseFooter footer;
 
     private RecyclerView recyclerView;
@@ -54,7 +53,6 @@ public class FragmentHomeSuggest extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        header = getView().findViewById(R.id.header_home_suggest);
         footer = getView().findViewById(R.id.footer_home_suggest);
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
@@ -65,6 +63,7 @@ public class FragmentHomeSuggest extends Fragment {
 
         itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
         itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
+        itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getArticle()));
         itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getArticle()));
 
         itemBeanList.add(new ItemBean(2, 0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, null, null));

@@ -17,6 +17,14 @@
         android:layout_height="match_parent"
         android:layout_marginTop="74dp">
 
+        <com.scwang.smartrefresh.header.PhoenixHeader
+            android:id="@+id/header_home_suggest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:phPrimaryColor="@color/blueLight"
+            app:phAccentColor="@color/white"
+            />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

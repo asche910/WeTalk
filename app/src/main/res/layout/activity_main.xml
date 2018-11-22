@@ -13,8 +13,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-
-
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/nav_bottom_home"
         android:layout_width="match_parent"

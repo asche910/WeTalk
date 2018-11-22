@@ -20,11 +20,42 @@
 
         <include layout="@layout/toolbar_notification" />
 
-        <TextView
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout_user_home"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Hello World!" />
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.header.WaveSwipeHeader
+                android:id="@+id/refreshLayout_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/scroll_user_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Hello World!" />
+
+            </LinearLayout>
+
+            <com.scwang.smartrefresh.layout.footer.FalsifyFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     </LinearLayout>
 </RelativeLayout>

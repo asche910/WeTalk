@@ -21,6 +21,7 @@ import com.asche.wetalk.fragment.FragmentUser;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.scwang.smartrefresh.header.PhoenixHeader;
+import com.scwang.smartrefresh.header.WaveSwipeHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.blueLight, android.R.color.white);//全局设置主题颜色
-                return new PhoenixHeader(context);
+                layout.setPrimaryColorsId(R.color.blueLight, R.color.grayLight);//全局设置主题颜色
+                return new WaveSwipeHeader(context);
             }
         });
         SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_nav_home_default, "首页").setInActiveColor("#818080"));
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_nav_discover_default, "发现").setInActiveColor("#818080"));
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_nav_notification_default, "通知").setInActiveColor("#818080"));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_nav_notification_default, "消息").setInActiveColor("#818080"));
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_nav_user_default, "用户").setInActiveColor("#818080"));
 
         bottomNavigationBar.setFirstSelectedPosition(0);

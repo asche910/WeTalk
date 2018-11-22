@@ -43,6 +43,9 @@ public class DataUtils {
         int id = random.nextInt(999_999_999) +  100_000;
         userBean.setId(id + "");
         userBean.setUserName("User_" + id);
+        userBean.setImgAvatar(R.drawable.img_avatar + "");
+        userBean.setFollowerNum(6_000);
+        userBean.setFollowNum(6);
         return userBean;
     }
 
@@ -75,11 +78,23 @@ public class DataUtils {
 
     public static ArticleBean getArticle(){
         ArticleBean bean = new ArticleBean();
-        bean.setTitle("读大学前后对比照");
-        bean.setBrief("言语已无法形容我此时的惊讶之情！来感受下：只有经历了军训的黝黑 才能享受洗礼过后的美颜  我也来！14vs31岁");
+        int n = random.nextInt(2);
+        switch (n){
+            case 1:
+                bean.setTitle("读大学前后对比照");
+                bean.setBrief("言语已无法形容我此时的惊讶之情！来感受下：只有经历了军训的黝黑 才能享受洗礼过后的美颜  我也来！14vs31岁");
+                bean.setContent(getArticleStr());
+                bean.setImgUrl("http://upload-images.jianshu.io/upload_images/10289013-75155d935b219002");
+                break;
+            case 0:
+                bean.setTitle("爱是勇敢行四方");
+                bean.setBrief("小雪人一出生就在冰天雪地里，或者阳光永远也照射不到的地方。因为每一个制造雪人的人都很明白，雪人怕热，怕太阳，雪人得到温暖的时候，生命也就结束了。");
+                bean.setContent(getContent(R.raw.article_2));
+                bean.setImgUrl("http://upload-images.jianshu.io/upload_images/12118808-731cedddfc5f5a60.jpg");
+                break;
+        }
         bean.setLikeNum(23);
         bean.setCommentNum(45);
-        bean.setImgUrl("http://upload-images.jianshu.io/upload_images/10289013-75155d935b219002");
         return bean;
     }
 
