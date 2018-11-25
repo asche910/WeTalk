@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ChatItemBean;
+import com.asche.wetalk.util.EmoticonUtils;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -25,23 +26,26 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
     class FriendViewHolder extends RecyclerView.ViewHolder {
         private TextView textContent;
-        private ImageView imgAvatar;
+        private ImageView imgAvatar, imgContent;
 
         public FriendViewHolder(@NonNull View itemView) {
             super(itemView);
             textContent = itemView.findViewById(R.id.text_item_chat_content);
             imgAvatar = itemView.findViewById(R.id.img_item_chat_avatar);
+            imgContent = itemView.findViewById(R.id.img_item_chat_imgcontent);
         }
     }
 
     class MeViewHolder extends RecyclerView.ViewHolder {
         private TextView textContent;
-        private ImageView imgAvatar;
+        private ImageView imgAvatar, imgContent;
 
         public MeViewHolder(@NonNull View itemView) {
             super(itemView);
             textContent = itemView.findViewById(R.id.text_item_chat_content);
             imgAvatar = itemView.findViewById(R.id.img_item_chat_avatar);
+            imgContent = itemView.findViewById(R.id.img_item_chat_imgcontent);
+
         }
     }
 
@@ -72,7 +76,16 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
         ChatItemBean bean = list.get(position);
         if (bean.getType() == TYPE_CHAT_ME){
             MeViewHolder meViewHolder = (MeViewHolder) holder;
-            meViewHolder.textContent.setText(bean.getContent());
+
+            if (bean.getImgUrl() != null){
+                Glide.with(context)
+                        .load(bean.getImgUrl())
+                        .into(meViewHolder.imgContent);
+                meViewHolder.imgContent.setVisibility(View.VISIBLE);
+                meViewHolder.textContent.setVisibility(View.GONE);
+            }else {
+                meViewHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
+            }
 
             try {
                 Glide.with(context)
@@ -87,7 +100,16 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
         }else if (bean.getType() == TYPE_CHAT_FRIEND){
             FriendViewHolder friendViewHolder = (FriendViewHolder) holder;
-            friendViewHolder.textContent.setText(bean.getContent());
+
+            if (bean.getImgUrl() != null){
+                Glide.with(context)
+                        .load(bean.getImgUrl())
+                        .into(friendViewHolder.imgContent);
+                friendViewHolder.imgContent.setVisibility(View.VISIBLE);
+                friendViewHolder.textContent.setVisibility(View.GONE);
+            }else {
+                friendViewHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
+            }
 
             try {
                 Glide.with(context)
@@ -99,7 +121,19 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                         .load(bean.getImgAvatar())
                         .into(friendViewHolder.imgAvatar);
             }
+        }
+    }
 
+    @Override
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+
+        if (holder instanceof  FriendViewHolder){
+            ((FriendViewHolder) holder).imgContent.setVisibility(View.GONE);
+            ((FriendViewHolder) holder).textContent.setVisibility(View.VISIBLE);
+        }else if (holder instanceof MeViewHolder){
+            ((MeViewHolder) holder).imgContent.setVisibility(View.GONE);
+            ((MeViewHolder) holder).textContent.setVisibility(View.VISIBLE);
         }
     }
 

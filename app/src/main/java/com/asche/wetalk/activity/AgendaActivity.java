@@ -5,18 +5,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AgendaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView textTitle;
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class AgendaActivity extends AppCompatActivity implements View.OnClickLis
 
         imgBack = findViewById(R.id.img_toolbar_back);
         textTitle = findViewById(R.id.text_toolbar_title);
+        recyclerView = findViewById(R.id.recycler_agenda);
 
         textTitle.setText("待办事项");
         imgBack.setOnClickListener(this);

@@ -44,9 +44,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         imgBack.setOnClickListener(this);
 
 
-/*        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.item_main_img);
-        bottomSheetDialog.show();*/
+        bottomSheetDialog.show();
 
     }
 
