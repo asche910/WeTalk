@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.helper.DropZoomScrollView;
 import com.asche.wetalk.other.MyScrollView;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -31,7 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UserHomeActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private MyScrollView myScrollView;
+    private DropZoomScrollView dropZoomScrollView;
     private RelativeLayout toolbarLayout;
 
     public static TextView textTitle;
@@ -57,7 +58,6 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
             getWindow().setStatusBarColor(Color.parseColor("#22000000"));
         }
 
-        myScrollView = findViewById(R.id.scroll_user_home);
         toolbarLayout = findViewById(R.id.toolbar_user_home);
         textTitle = findViewById(R.id.text_user_home_title);
         imgBack = findViewById(R.id.img_toolbar_back);
@@ -66,8 +66,11 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         btnModifyTag = findViewById(R.id.btn_user_home_modify_tag);
         btnModify = findViewById(R.id.btn_user_home_modify);
         tagFlowLayout = findViewById(R.id.tagflow_user);
+        dropZoomScrollView = findViewById(R.id.scroll_user_home);
 
-        myScrollView.setupTitleView(toolbarLayout);
+        dropZoomScrollView.setDropView(imgBg);
+        dropZoomScrollView.setupTitleView(toolbarLayout);
+
         imgBack.setOnClickListener(this);
         imgTwocode.setOnClickListener(this);
         imgBg.setOnClickListener(this);

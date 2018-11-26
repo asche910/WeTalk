@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/verification-view" />
+            <option value="$PROJECT_DIR$/waveswiperefreshlayout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

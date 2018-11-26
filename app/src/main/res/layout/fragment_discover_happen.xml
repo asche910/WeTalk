@@ -5,21 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout_home_article"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Happen"/>
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_happen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/anim_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:lottie_fileName="anim_test.json"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
-        />
-
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

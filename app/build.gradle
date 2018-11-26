@@ -47,14 +47,10 @@ dependencies {
     implementation 'com.github.SherlockGougou:BigImageViewPager:v4_2.1.4'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
     implementation 'com.android.support:design:28.1.0'
-
-
-
-
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation project(':verification-view')
-
+    implementation project(':waveswiperefreshlayout')
 }
