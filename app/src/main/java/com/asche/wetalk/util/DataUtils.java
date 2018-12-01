@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
+import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.UserBean;
 
@@ -95,6 +96,50 @@ public class DataUtils {
         }
         bean.setLikeNum(23);
         bean.setCommentNum(45);
+        return bean;
+    }
+
+    /**
+     * 0 -> normal；
+     * 1 -> simple;
+     * @param type
+     * @return
+     */
+    public static CommentItemBean getComment(int type){
+        CommentItemBean bean = new CommentItemBean();
+        bean.setType(type);
+        switch (random.nextInt(4)){
+            case 3:
+                bean.setAvatarUrl("https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg");
+                bean.setContent("退一万步讲，就算收费了，其实对我们影响也不大，反正在天朝，盗版是一种习惯。");
+                bean.setName("John Smith");
+                bean.setTime("12:24");
+                bean.setLikeNum(6);
+                break;
+            case 2:
+                bean.setAvatarUrl("https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg");
+                bean.setContent("我们现在总归也开始用正版了嘛（严肃脸）～");
+                bean.setName("防弹纸尿裤");
+                bean.setTime("刚刚");
+
+                break;
+            case 1:
+                bean.setAvatarUrl(R.drawable.img_avatar + "");
+                bean.setContent("欧盟罚款借口是谷歌强行在安卓绑定自家应用，阻碍了欧洲市场的创新。所以谷歌说那我不绑定了，但是你要用我的软件就得交钱。谷歌旗下app在欧洲市场占据统治力，欧洲没有与之抗衡的，所以谷歌有自信");
+                bean.setName("Ethereal");
+                bean.setTime("14:36");
+                bean.setLikeNum(789);
+
+                break;
+            case 0:
+                bean.setAvatarUrl(R.drawable.img_avatar_default + "");
+                bean.setContent("Android收费，和我安卓有什么关系（手动狗头）");
+                bean.setName("Albert Zhang");
+                bean.setTime("昨天17:25");
+
+                break;
+            default:
+        }
         return bean;
     }
 

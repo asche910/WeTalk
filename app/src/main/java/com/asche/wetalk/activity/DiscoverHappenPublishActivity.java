@@ -21,11 +21,13 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.GridImgPublishRVAdapter;
 import com.asche.wetalk.adapter.OnItemClickListener;
 import com.asche.wetalk.adapter.OnSizeChangedListener;
+import com.asche.wetalk.bean.HappenItemBean;
 import com.asche.wetalk.fragment.FragmentEmoticon;
 import com.asche.wetalk.helper.Glide4Engine;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
+import com.asche.wetalk.util.StringUtils;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
@@ -42,6 +44,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.activity.ChatActivity.inputMethodManager;
 import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
+import static com.asche.wetalk.fragment.FragmentDiscoverHappen.happenItemBeanList;
+import static com.asche.wetalk.fragment.FragmentDiscoverHappen.isPublishNewOne;
 import static com.asche.wetalk.storage.ChatStorage.storeChatRecord;
 
 public class DiscoverHappenPublishActivity extends AppCompatActivity implements View.OnClickListener, KeyboardHeightObserver {
@@ -88,7 +92,7 @@ public class DiscoverHappenPublishActivity extends AppCompatActivity implements 
         layoutBottom = findViewById(R.id.layout_bottom);
         emoticonLayout = findViewById(R.id.frame_emoticon);
 
-        textTitle.setText("发表动态");
+        textTitle.setText("记录点滴");
         imgMore.setBackgroundResource(R.drawable.ic_save);
 
         imgUrlList.add("http://upload-images.jianshu.io/upload_images/1202579-b291e1de4d4bccd1");
@@ -182,6 +186,14 @@ public class DiscoverHappenPublishActivity extends AppCompatActivity implements 
             case R.id.img_toolbar_more:
                 Toast.makeText(this, "发表成功！", Toast.LENGTH_SHORT).show();
                 String inputStr = editText.getText().toString();
+
+                if (StringUtils.isEmpty(inputStr)){
+                    Toast.makeText(this, "内容不能为空！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                happenItemBeanList.add(0, new HappenItemBean(R.drawable.img_avatar+"", "Asche", inputStr, "2018-12-1", imgUrlList.subList(0, imgUrlList.size()-1)));
+                isPublishNewOne = true;
                 finish();
                 break;
             case R.id.img_toolbar_back:

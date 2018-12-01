@@ -27,7 +27,8 @@
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:background="@null"
-                android:minHeight="200dp"/>
+                android:minHeight="200dp"
+                android:hint="每个灵感都来自于生活的点滴哦..."/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_happen_publish"

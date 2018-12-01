@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.HappenItemBean;
+import com.asche.wetalk.util.EmoticonUtils;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -44,17 +45,17 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
 
         try {
             Glide.with(context)
-                    .load(Integer.parseInt(bean.getUserHead()))
+                    .load(Integer.parseInt(bean.getUserAvatar()))
                     .into(holder.imgAvatar);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             Glide.with(context)
-                    .load((bean.getUserHead()))
+                    .load((bean.getUserAvatar()))
                     .into(holder.imgAvatar);
         }
 
         holder.userName.setText(bean.getUserName());
-        holder.content.setText(bean.getContent());
+        holder.content.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
         holder.time.setText(bean.getTime());
 
         if (bean.getUrlList() != null){

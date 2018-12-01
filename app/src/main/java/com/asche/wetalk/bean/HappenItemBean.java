@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 public class HappenItemBean {
 
-    private String userHead;
+    private String userAvatar;
     private String userName;
     private String content;
     private String time;
@@ -14,19 +14,19 @@ public class HappenItemBean {
     private List<String> urlList;
 
     public HappenItemBean(String userHead, String userName, String content, String time, List<String> urlList) {
-        this.userHead = userHead;
+        this.userAvatar = userHead;
         this.userName = userName;
         this.content = content;
         this.time = time;
         this.urlList = urlList;
     }
 
-    public String getUserHead() {
-        return userHead;
+    public String getUserAvatar() {
+        return userAvatar;
     }
 
-    public void setUserHead(String userHead) {
-        this.userHead = userHead;
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
     }
 
     public String getUserName() {

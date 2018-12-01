@@ -2,6 +2,7 @@ package com.asche.wetalk.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
+import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
+
 public class FragmentDiscoverHappen extends Fragment {
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
@@ -33,6 +36,9 @@ public class FragmentDiscoverHappen extends Fragment {
     private HappenItemRVAdapter happenItemRVAdapter;
 
     private FloatingActionButton btnPublish;
+
+    // 判断是否使用者发表了新动态
+    public static boolean isPublishNewOne;
 
     String str_1 = "早起的鸟儿有虫吃， 首先做到23：50前躺下，6：30早起打卡！充满元气的一天！！！";
     String str_2 = "2016年10月28日 - 这篇文章主要为大家详细介绍了Android RefreshLayout实现下拉刷新布局,具有一定的参考价值,感兴趣的小伙伴们可以参考一下项目中需要下拉刷新的功能,但...";
@@ -101,4 +107,16 @@ public class FragmentDiscoverHappen extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: " );
+        if (isPublishNewOne) {
+            happenItemRVAdapter.notifyItemInserted(0);
+            recycHappen.scrollToPosition(0);
+            isPublishNewOne = false;
+        }
+    }
+
 }

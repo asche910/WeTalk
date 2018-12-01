@@ -89,7 +89,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
             try {
                 Glide.with(context)
-                        .load(Integer.parseInt(bean.getImgAvatar()))
+                        .load(R.drawable.img_avatar)
                         .into(meViewHolder.imgAvatar);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -113,7 +113,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
             try {
                 Glide.with(context)
-                        .load(Integer.parseInt(bean.getImgAvatar()))
+                        .load(R.drawable.img_avatar_default)
                         .into(friendViewHolder.imgAvatar);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
