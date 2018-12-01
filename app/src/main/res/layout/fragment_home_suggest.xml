@@ -6,30 +6,16 @@
     android:orientation="vertical"
     android:background="#f2f2f2">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout_home_suggest"
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+        android:id="@+id/header_home_suggest"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycle_home_suggest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </RelativeLayout>
 
-
-        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
-            android:id="@+id/footer_home_suggest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srlAnimatingColor="@color/blueLight"
-            />
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 </LinearLayout>

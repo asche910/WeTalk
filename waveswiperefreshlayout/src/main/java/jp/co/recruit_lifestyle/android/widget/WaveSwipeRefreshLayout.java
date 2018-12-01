@@ -730,7 +730,7 @@ public class WaveSwipeRefreshLayout extends ViewGroup
    *
    * @author jmatsu
    */
-  private class ProgressAnimationImageView extends AnimationImageView {
+  public class ProgressAnimationImageView extends AnimationImageView {
     private final MaterialProgressDrawable mProgress;
 
     /**

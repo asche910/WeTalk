@@ -24,12 +24,14 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 
 public class FragmentHomeRequirement extends Fragment {
 
-    private RefreshLayout refreshLayout;
     private final String TAG = "FragmentHomeRequirement";
+
+    private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private StandardGSYVideoPlayer videoPlayer;
     public static OrientationUtils orientationUtils;
@@ -45,23 +47,9 @@ public class FragmentHomeRequirement extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        refreshLayout = getView().findViewById(R.id.refreshLayout_home_requirement);
+        swipeRefreshLayout = getView().findViewById(R.id.header_home_requirement);
         videoPlayer = getView().findViewById(R.id.video_item_main);
 
-
-        refreshLayout.setOnLoadMoreListener(new OnRefreshLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onLoadMore: " );
-                refreshLayout.finishLoadMore(2000);
-            }
-
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onRefresh: " );
-                refreshLayout.finishRefresh(2000);
-            }
-        });
 
         String videoSrc = "http://f10.v1.cn/site/15542573.mp4.f40.mp4";
         String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-11-14/201811140932452264.jpg";
@@ -89,6 +77,23 @@ public class FragmentHomeRequirement extends Fragment {
 
         videoPlayer.setIsTouchWiget(true);
 //        videoPlayer.startPlayLogic();
+
+        swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }).start();
+            }
+        });
 
     }
 

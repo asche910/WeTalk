@@ -50,6 +50,7 @@
         <activity android:name=".activity.TopicActivity" />
         <activity android:name=".activity.ChatActivity" />
         <activity android:name=".activity.AgendaModifyActivity" />
+        <activity android:name=".activity.DiscoverHappenPublishActivity" />
     </application>
 
 </manifest>

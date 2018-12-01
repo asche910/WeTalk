@@ -38,6 +38,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.storage.ChatStorage.storeChatRecord;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener, KeyboardHeightObserver, HttpCallBack {
@@ -54,11 +55,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     public static List<ChatItemBean> chatItemBeanList = new ArrayList<>();
 
     private KeyboardHeightProvider keyboardHeightProvider;
-    public static InputMethodManager inputMethodManager;
+    public static InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
     private LinearLayout layoutBottom;
 
     // 默认278dp，若可以则更新为系统输入法高度
-    private int keyboardHeight = 278;
+    public static int keyboardHeight = 278;
     private boolean isEmoticonPressed;
     private boolean isInputMethodShow;
     private final String TAG = "ChatActivity";
@@ -93,6 +94,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         if (chatItemBeanList == null || chatItemBeanList.isEmpty()) {
             chatItemBeanList = new ArrayList<>();
 
+            //  每次可能会变， 则导致两次相同资源文件的id对应不同文件
             chatItemBeanList.add(new ChatItemBean(0, "Hi, Robot!", R.drawable.img_avatar + ""));
             chatItemBeanList.add(new ChatItemBean(1, "Hello, Asche!", R.drawable.img_avatar_default + ""));
             chatItemBeanList.add(new ChatItemBean(0, "How old are you ? Robot?", R.drawable.img_avatar + ""));
@@ -114,10 +116,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         imgMore.setOnClickListener(this);
         imgEmoticon.setOnClickListener(this);
         btnSend.setOnClickListener(this);
-        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 
-        keyboardHeightProvider = new KeyboardHeightProvider(this);
+        keyboardHeightProvider = new KeyboardHeightProvider(this, R.layout.activity_chat);
         new Handler().post(new Runnable() {
             @Override
             public void run() {
@@ -242,7 +243,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onKeyboardHeightChanged(int height, int orientation) {
-        Log.e(TAG, "onKeyboardHeightChanged: " + (height / 4) + orientation);
+        Log.e(TAG, "onKeyboardHeightChanged: " + (height / 4) + "-" + orientation);
         isInputMethodShow = height != 0;
 
         try {
@@ -285,8 +286,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private void emoticonRising() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_chat, new FragmentEmoticon(), "emoticon");
+        FragmentEmoticon fragmentEmoticon = new FragmentEmoticon();
+        fragmentEmoticon.setEditText(editChatInput);
+        transaction.add(R.id.frame_chat, fragmentEmoticon, "emoticon");
         transaction.commit();
+
 
         inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }

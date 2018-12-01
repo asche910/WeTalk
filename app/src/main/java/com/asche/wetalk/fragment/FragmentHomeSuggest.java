@@ -25,12 +25,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 public class FragmentHomeSuggest extends Fragment {
 
-    private BallPulseFooter footer;
+    private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -53,7 +54,7 @@ public class FragmentHomeSuggest extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        footer = getView().findViewById(R.id.footer_home_suggest);
+        swipeRefreshLayout = getView().findViewById(R.id.header_home_suggest);
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
         final String videoSrc = "http://f10.v1.cn/site/15538790.mp4.f40.mp4";
@@ -80,6 +81,23 @@ public class FragmentHomeSuggest extends Fragment {
         adapter = new HomeSuggestRVAdapter(itemBeanList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }).start();
+            }
+        });
 
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

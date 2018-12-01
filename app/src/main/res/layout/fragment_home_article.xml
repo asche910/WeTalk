@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout_home_article"
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+        android:id="@+id/header_home_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,5 +15,5 @@
             android:gravity="center"
             android:text="Article" />
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 </LinearLayout>

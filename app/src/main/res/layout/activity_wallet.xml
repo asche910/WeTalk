@@ -6,10 +6,53 @@
 
     <include layout="@layout/toolbar_universe"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Wallet"/>
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_wallet"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"
+            android:text="我的余额"
+            android:textColor="#666"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal"
+            android:text="¥80.00"
+            android:textColor="#222"
+            android:textSize="18sp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="7dp"
+        android:text="充 值"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_btn_green"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="7dp"
+        android:text="提 现"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_btn_blue"/>
 
 </LinearLayout>

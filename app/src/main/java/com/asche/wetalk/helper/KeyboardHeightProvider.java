@@ -45,13 +45,14 @@ public class KeyboardHeightProvider extends PopupWindow {
      * Construct a new KeyboardHeightProvider
      *
      * @param activity The parent activity
+     * @param layoutId   R.layout.*
      */
-    public KeyboardHeightProvider(Activity activity) {
+    public KeyboardHeightProvider(Activity activity, int layoutId) {
         super(activity);
         this.activity = activity;
 
         LayoutInflater inflator = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        this.popupView = inflator.inflate(R.layout.activity_chat, null, false);
+        this.popupView = inflator.inflate(layoutId, null, false);
         setContentView(popupView);
 
         setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);

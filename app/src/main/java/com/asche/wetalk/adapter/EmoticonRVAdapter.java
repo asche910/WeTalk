@@ -2,10 +2,12 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.asche.wetalk.R;
@@ -24,8 +26,15 @@ public class EmoticonRVAdapter extends RecyclerView.Adapter<EmoticonRVAdapter.Vi
     private List<Bitmap> list;
     private Context context;
 
+    // 表情的输出框
+    private EditText editText;
+
     public EmoticonRVAdapter(List<Bitmap> list) {
         this.list = list;
+    }
+
+    public void setEditText(EditText editText) {
+        this.editText = editText;
     }
 
     @NonNull
@@ -50,7 +59,7 @@ public class EmoticonRVAdapter extends RecyclerView.Adapter<EmoticonRVAdapter.Vi
             @Override
             public void onClick(View v) {
                 SpannableString spannableString = EmoticonUtils.parseEmoticon("[emoji-" + position + "]");
-                editChatInput.append(spannableString);
+                editText.append(spannableString);
             }
         });
     }

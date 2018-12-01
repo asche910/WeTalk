@@ -30,7 +30,6 @@ public class FragmentDiscover extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         tabLayoutDiscover = getView().findViewById(R.id.tab_discover);
         viewPagerDiscover = getView().findViewById(R.id.viewpager_discover);
 

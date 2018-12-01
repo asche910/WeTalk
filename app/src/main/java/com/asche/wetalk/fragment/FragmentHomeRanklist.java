@@ -13,12 +13,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 public class FragmentHomeRanklist extends Fragment {
 
-    private RefreshLayout refreshLayout;
+
+    private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -31,19 +33,22 @@ public class FragmentHomeRanklist extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        refreshLayout = getView().findViewById(R.id.refreshLayout_home_ranklist);
+        swipeRefreshLayout = getView().findViewById(R.id.header_home_ranklist);
 
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+        swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onLoadMore: " );
-                refreshLayout.finishLoadMore(2000);
-            }
-
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onRefresh: " );
-                refreshLayout.finishRefresh(2000);
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }).start();
             }
         });
     }

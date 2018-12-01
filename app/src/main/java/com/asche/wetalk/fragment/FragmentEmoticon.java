@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
@@ -30,6 +31,9 @@ public class FragmentEmoticon extends Fragment {
     private EmoticonRVAdapter emoticonRVAdapter;
     private GridLayoutManager layoutManager;
     public static List<Bitmap> emoticonList = new ArrayList<>();
+
+    // 表情目标输出框
+    private EditText editText;
 
     static {
         for (int i = 1; i <= 100; i++) {
@@ -59,9 +63,14 @@ public class FragmentEmoticon extends Fragment {
 
 
         emoticonRVAdapter = new EmoticonRVAdapter(emoticonList);
+        emoticonRVAdapter.setEditText(editText);
         layoutManager = new GridLayoutManager(getContext(), 7);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(emoticonRVAdapter);
 
+    }
+
+    public void setEditText(EditText editText) {
+        this.editText = editText;
     }
 }
