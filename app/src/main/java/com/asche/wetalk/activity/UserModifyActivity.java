@@ -15,7 +15,7 @@ import com.asche.wetalk.bean.AgendaItemBean;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserModifyActivity extends AppCompatActivity implements View.OnClickListener{
+public class UserModifyActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack, imgMore;
     private TextView textTitle;

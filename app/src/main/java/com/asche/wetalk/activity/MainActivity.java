@@ -42,7 +42,7 @@ import static com.asche.wetalk.fragment.FragmentHomeRequirement.orientationUtils
  * @author Asche
  * @date 2018-11-9 17:9:53
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private BottomNavigationBar bottomNavigationBar;
 
@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onTabReselected: " + position);
             }
         });
+
     }
 
     @Override

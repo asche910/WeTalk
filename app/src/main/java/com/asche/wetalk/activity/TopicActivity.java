@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TopicActivity extends AppCompatActivity {
+public class TopicActivity extends BaseActivity {
     private TextView textTitle;
 
     private RecyclerView recyclerView;

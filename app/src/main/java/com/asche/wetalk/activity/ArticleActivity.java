@@ -35,7 +35,7 @@ import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
-public class ArticleActivity extends AppCompatActivity implements View.OnClickListener {
+public class ArticleActivity extends BaseActivity implements View.OnClickListener {
 
     // <editor-fold desc="属性变量">
     private WaveSwipeRefreshLayout swipeRefreshLayout;

@@ -12,7 +12,7 @@ import com.asche.wetalk.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DraftActivity extends AppCompatActivity implements View.OnClickListener{
+public class DraftActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack;
     private TextView textTitle;

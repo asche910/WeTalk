@@ -1,6 +1,7 @@
 package com.asche.wetalk.fragment;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -155,6 +156,12 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
         /*   解决输入法弹出后导致标题栏也上移的问题       */
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        keyboardHeightProvider.close();
     }
 
     @Override

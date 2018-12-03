@@ -12,7 +12,7 @@ import com.asche.wetalk.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ClockInActivity extends AppCompatActivity implements View.OnClickListener{
+public class ClockInActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack;
     private TextView textTitle;

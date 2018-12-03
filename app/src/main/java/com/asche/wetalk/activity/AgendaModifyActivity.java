@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.asche.wetalk.activity.AgendaActivity.agendaList;
 
-public class AgendaModifyActivity extends AppCompatActivity implements View.OnClickListener{
+public class AgendaModifyActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView imgBack, imgMore;
     private TextView textTitle;

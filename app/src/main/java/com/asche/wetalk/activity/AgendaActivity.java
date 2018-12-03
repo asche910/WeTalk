@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AgendaActivity extends AppCompatActivity implements View.OnClickListener {
+public class AgendaActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView textTitle;

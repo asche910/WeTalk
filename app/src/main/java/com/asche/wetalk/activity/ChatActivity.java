@@ -41,7 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.storage.ChatStorage.storeChatRecord;
 
-public class ChatActivity extends AppCompatActivity implements View.OnClickListener, KeyboardHeightObserver, HttpCallBack {
+public class ChatActivity extends BaseActivity implements View.OnClickListener, KeyboardHeightObserver, HttpCallBack {
 
     private ImageView imgBack, imgMore, imgEmoticon;
     private TextView textTitle;

@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ClientActivity extends AppCompatActivity implements View.OnClickListener {
+public class ClientActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView textTitle;

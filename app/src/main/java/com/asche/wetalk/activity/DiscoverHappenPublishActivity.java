@@ -48,7 +48,7 @@ import static com.asche.wetalk.fragment.FragmentDiscoverHappen.happenItemBeanLis
 import static com.asche.wetalk.fragment.FragmentDiscoverHappen.isPublishNewOne;
 import static com.asche.wetalk.storage.ChatStorage.storeChatRecord;
 
-public class DiscoverHappenPublishActivity extends AppCompatActivity implements View.OnClickListener, KeyboardHeightObserver {
+public class DiscoverHappenPublishActivity extends BaseActivity implements View.OnClickListener, KeyboardHeightObserver {
 
     private ImageView imgBack, imgMore;
     private TextView textTitle;

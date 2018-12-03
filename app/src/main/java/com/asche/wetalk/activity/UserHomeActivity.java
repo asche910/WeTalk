@@ -30,7 +30,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class UserHomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class UserHomeActivity extends BaseActivity implements View.OnClickListener{
 
     private DropZoomScrollView dropZoomScrollView;
     private RelativeLayout toolbarLayout;

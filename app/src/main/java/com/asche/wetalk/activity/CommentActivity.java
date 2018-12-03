@@ -13,7 +13,7 @@ import com.asche.wetalk.R;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CommentActivity extends AppCompatActivity implements View.OnClickListener {
+public class CommentActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView imgBack;
     private TextView textTitle;
