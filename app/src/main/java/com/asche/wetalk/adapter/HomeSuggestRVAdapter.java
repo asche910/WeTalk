@@ -17,6 +17,7 @@ import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
@@ -150,6 +151,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     textHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    textHolder.textLike.setText(StringUtils.addOne(textHolder.textLike.getText().toString()));
+
                 }
             });
             textHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
@@ -186,6 +189,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     imgHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    imgHolder.textLike.setText(StringUtils.addOne(imgHolder.textLike.getText().toString()));
                 }
             });
             imgHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
@@ -234,6 +238,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     videoHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    videoHolder.textLike.setText(StringUtils.addOne(videoHolder.textLike.getText().toString()));
                 }
             });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {

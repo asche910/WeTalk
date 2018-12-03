@@ -16,9 +16,11 @@ import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.UserBean;
-import com.asche.wetalk.fragment.FullSheetDialogFragment;
+import com.asche.wetalk.fragment.FragmentDialogComment;
+import com.asche.wetalk.fragment.FragmentDialogCommentDetail;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -31,10 +33,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
-import static com.asche.wetalk.fragment.FullSheetDialogFragment.commentNormalList;
+import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
 public class ArticleActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // <editor-fold desc="属性变量">
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private TextView textTitle, textAuthorName, textAuthorFollowerNum, textAuthorFollowNum;
@@ -49,15 +52,20 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
     private RecyclerView recyclerComment;
     private LinearLayoutManager layoutManagerComment;
     private CommentRVAdapter commentRVAdapter;
-    public List<CommentItemBean> commentSimpleList = new ArrayList<>();
+    public static List<CommentItemBean> commentSimpleList = new ArrayList<>();
+
+    private TextView textMoreComment;
+
+    private LinearLayout layoutLike, layoutComment, layoutForward;
+    private ImageView imgLike;
+    private TextView textLikeNum, textCommentNum;
 
     public ArticleBean articleBean;
     public UserBean author;
 
-    private LinearLayout layoutLike, layoutComment, layoutForward;
-
-
     private final String TAG = "Article";
+
+    // </editor-fold>
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +92,10 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         layoutLike = findViewById(R.id.layout_item_main_like);
         layoutComment = findViewById(R.id.layout_item_main_comment);
         layoutForward = findViewById(R.id.layout_item_main_forward);
+        imgLike = findViewById(R.id.img_item_main_like);
+        textLikeNum = findViewById(R.id.text_item_main_likenum);
+        textCommentNum = findViewById(R.id.text_item_main_commentnum);
+        textMoreComment = findViewById(R.id.text_article_morecomment);
 
         articleBean = (ArticleBean) getIntent().getSerializableExtra("article");
 
@@ -115,27 +127,30 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setAdapter(bodyContentRVAdapter);
         recyclerView.setItemViewCacheSize(Integer.MAX_VALUE);
 
-        commentSimpleList.add(DataUtils.getComment(1));
-        commentSimpleList.add(DataUtils.getComment(1));
-//        commentSimpleList.add(DataUtils.getComment());
-//        commentSimpleList.add(DataUtils.getComment());
+        if (commentSimpleList.isEmpty()) {
+            commentSimpleList.add(DataUtils.getComment(1));
+            commentSimpleList.add(DataUtils.getComment(1));
+        }
 
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
-        commentNormalList.add(DataUtils.getComment(0));
+        if (commentNormalList.isEmpty()) {
+            for(int i = 0; i < 8; i++){
+                CommentItemBean bean = DataUtils.getComment(0);
+                if (i == 4)
+                    bean.setSubList(commentSimpleList);
+                commentNormalList.add(bean);
+            }
+        }
 
         commentRVAdapter = new CommentRVAdapter(commentSimpleList);
         layoutManagerComment = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerComment.setLayoutManager(layoutManagerComment);
         recyclerComment.setAdapter(commentRVAdapter);
 
+
+        textMoreComment.setOnClickListener(this);
+        layoutLike.setOnClickListener(this);
         layoutComment.setOnClickListener(this);
+        layoutForward.setOnClickListener(this);
 
         swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -160,14 +175,18 @@ public class ArticleActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.layout_item_main_forward:
                 break;
+            case R.id.text_article_morecomment:
             case R.id.layout_item_main_comment:
                 Log.e(TAG, "onClick: --------->" );
-                BottomSheetDialogFragment fragment = new FullSheetDialogFragment();
+                BottomSheetDialogFragment fragment = new FragmentDialogComment();
                 fragment.show(getSupportFragmentManager(), "commentFragment");
 
                 break;
             case R.id.layout_item_main_like:
+                imgLike.setImageResource(R.drawable.ic_like_pressed);
+                textLikeNum.setText(StringUtils.addOne(textLikeNum.getText().toString()));
                 break;
         }
     }
+
 }

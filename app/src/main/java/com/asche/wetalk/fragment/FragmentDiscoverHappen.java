@@ -111,7 +111,6 @@ public class FragmentDiscoverHappen extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e(TAG, "onResume: " );
         if (isPublishNewOne) {
             happenItemRVAdapter.notifyItemInserted(0);
             recycHappen.scrollToPosition(0);

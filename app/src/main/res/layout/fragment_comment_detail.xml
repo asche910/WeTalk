@@ -20,16 +20,16 @@
                 android:id="@+id/img_fragment_comment_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_delete" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="全部评论"
+                android:text="评论详情"
                 android:textSize="18sp" />
         </RelativeLayout>
 
@@ -38,18 +38,19 @@
             android:layout_height="1dp"
             android:background="#66bbbbbb" />
 
-
-        <LinearLayout
+        <com.asche.wetalk.helper.MyScrollViewScroll
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_dialog_comment"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/item_comment" />
+
+            </LinearLayout>
+        </com.asche.wetalk.helper.MyScrollViewScroll>
 
         <LinearLayout
             android:id="@+id/layout_bottom"
@@ -59,10 +60,7 @@
                 layout="@layout/layout_comment_reply"
                 />
         </LinearLayout>
-
     </LinearLayout>
-
-
 
     <FrameLayout
         android:id="@+id/frame_emoticon"
@@ -72,5 +70,4 @@
         android:visibility="gone"
         >
     </FrameLayout>
-
 </RelativeLayout>

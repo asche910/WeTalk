@@ -23,7 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:background="@drawable/bg_item_comment"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground">
 
             <TextView
                 android:id="@+id/text_item_comment_name"

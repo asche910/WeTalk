@@ -3,6 +3,7 @@ package com.asche.wetalk.bean;
 import com.asche.wetalk.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 
@@ -18,9 +19,20 @@ public class CommentItemBean {
     private String time;
     private int likeNum;
 
+    private List<CommentItemBean> subList;
+
     public CommentItemBean() {
     }
 
+    // for simple
+    public CommentItemBean(String avatarUrl, String name, String content) {
+        this.type = 1;
+        this.avatarUrl = avatarUrl;
+        this.name = name;
+        this.content = content;
+    }
+
+    // All except subList
     public CommentItemBean(int type, String id, String parentId, String avatarUrl, String name, String content, String time, int likeNum) {
         this.type = type;
         this.id = id;
@@ -30,6 +42,19 @@ public class CommentItemBean {
         this.content = content;
         this.time = time;
         this.likeNum = likeNum;
+    }
+
+    // All
+    public CommentItemBean(int type, String id, String parentId, String avatarUrl, String name, String content, String time, int likeNum, List<CommentItemBean> subList) {
+        this.type = type;
+        this.id = id;
+        this.parentId = parentId;
+        this.avatarUrl = avatarUrl;
+        this.name = name;
+        this.content = content;
+        this.time = time;
+        this.likeNum = likeNum;
+        this.subList = subList;
     }
 
     public int getType() {
@@ -96,9 +121,18 @@ public class CommentItemBean {
         this.likeNum = likeNum;
     }
 
+    public List<CommentItemBean> getSubList() {
+        return subList;
+    }
+
+    public void setSubList(List<CommentItemBean> subList) {
+        this.subList = subList;
+    }
+
     @NonNull
     @Override
     public String toString() {
+        // TODO list serial
         try {
             return StringUtils.objToString(this);
         } catch (NoSuchMethodException e) {

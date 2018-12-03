@@ -16,6 +16,16 @@ public class StringUtils {
         return str == null || str.trim().equals("");
     }
 
+    public static String addOne(String value){
+        int n = 0;
+        try {
+            n = Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return Integer.toString(n + 1);
+    }
+
     /**
      * 对象序列化
      * @param object

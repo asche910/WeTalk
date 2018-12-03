@@ -146,21 +146,16 @@ public class BodyContentRVAdapter extends RecyclerView.Adapter {
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
 
-                            Log.e(TAG, "onResourceReady: imageView--------->" + position + ": " + imageHolder.imageView.getWidth() + "*" + imageHolder.imageView.getHeight() );
-
                             int originW = resource.getIntrinsicWidth();
                             int originH = resource.getIntrinsicHeight();
 
                             Rect rect = handleProportion(originW, originH);
-
-                            Log.e(TAG, "onResourceReady: resource: " + position + ":  " + originW + "*" + originH );
 
                             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)imageHolder.imageView.getLayoutParams();
                             params.width = rect.width();
                             params.height = rect.height();
                             imageHolder.imageView.setLayoutParams(params);
                             imageHolder.imageView.setImageDrawable(resource);
-
 
                            /* if (imgSizeMap != null){
                                 Map values = imgSizeMap.get(position);
@@ -237,7 +232,7 @@ public class BodyContentRVAdapter extends RecyclerView.Adapter {
         int screenW = dm.widthPixels;
         float density = dm.density;
 
-        // 大于次宽的压缩至此宽显示；小于则原尺寸显示
+        // 大于此宽的压缩至此宽显示；小于则原尺寸显示
         int standW = (int)(screenW - 20 * density);
         if(width > standW){
             rect.bottom = standW * (height / width);
