@@ -1,10 +1,14 @@
 package com.asche.wetalk.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +19,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.asche.wetalk.MyApplication;
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.adapter.CommentRVAdapter;
 import com.asche.wetalk.adapter.OnItemClickListener;
+import com.asche.wetalk.adapter.OnItemMoreClickListener;
 import com.asche.wetalk.bean.CommentItemBean;
+import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
+import com.asche.wetalk.util.StringUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
@@ -37,6 +46,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static com.asche.wetalk.activity.ChatActivity.inputMethodManager;
 import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
+import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_DETAIL;
+import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_IMG_COMMENT;
+import static com.asche.wetalk.adapter.CommentRVAdapter.TYPE_NORMAL;
+import static com.asche.wetalk.adapter.CommentRVAdapter.TYPE_SIMPLE;
+import static com.asche.wetalk.util.TimeUtils.getCurrentTime;
 import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class FragmentDialogComment extends BaseDialogFragment implements KeyboardHeightObserver, View.OnClickListener {
@@ -52,6 +66,9 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
     private EditText editText;
     private LinearLayout layoutBottom;
     private FrameLayout emoticonLayout;
+
+    // 回复的某个评论的位置，-1代表发布新评论
+    private int replyPosition = -1;
 
     private boolean isEmoticonPressed;
     private boolean isInputMethodShow;
@@ -69,9 +86,12 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
     @Override
     public void onStart() {
         super.onStart();
+        getDialog().getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         init();
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         recyclerComment = getView().findViewById(R.id.recycler_dialog_comment);
         imgClose = getView().findViewById(R.id.img_fragment_comment_close);
@@ -83,14 +103,22 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
         emoticonLayout = getView().findViewById(R.id.frame_emoticon);
 
 
-        commentRVAdapter = new CommentRVAdapter(commentNormalList);
+        commentRVAdapter = new CommentRVAdapter(commentNormalList, CLICK_DETAIL);
         layoutManagerComment = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerComment.setLayoutManager(layoutManagerComment);
         recyclerComment.setAdapter(commentRVAdapter);
 
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            replyPosition = bundle.getInt("replyUserPosition");
+            editText.setText("@" + commentNormalList.get(replyPosition).getName() + ":");
+        }
+
         imgClose.setOnClickListener(this);
         imgEmoticon.setOnClickListener(this);
         imgAt.setOnClickListener(this);
+        imgSend.setOnClickListener(this);
 
         commentRVAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -102,6 +130,27 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
                 commentDetail.setArguments(bundle);
                 commentDetail.show(getFragmentManager(), "commentDetail");
 
+            }
+        });
+
+        commentRVAdapter.setOnItemMoreClickListener(new OnItemMoreClickListener() {
+            @Override
+            public void onItemMoreClick(int position, int args) {
+                if (args == CLICK_DETAIL) {
+                    BottomSheetDialogFragment commentDetail = new FragmentDialogCommentDetail();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", position);
+                    commentDetail.setArguments(bundle);
+                    commentDetail.show(getFragmentManager(), "commentDetail");
+                }else if (args == CLICK_IMG_COMMENT){
+                    editText.requestFocus();
+                    editText.setText("@" + commentNormalList.get(position).getName() + ":");
+                    editText.setSelection(editText.length());
+
+                    replyPosition = position;
+                    inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                }
             }
         });
 
@@ -122,7 +171,56 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
+            case R.id.img_comment_reply_send:
+                String inputStr = editText.getText().toString();
+                if (StringUtils.isEmpty(inputStr)) {
+                    Toast.makeText(getContext(), "内容不能为空哦！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!inputStr.matches("@.+:.*")) {
+                    replyPosition = -1;
+                }
+
+                // 先关闭输入法，以防影响后面recyclerview的滑动
+                editText.clearFocus();
+                inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                UserBean user = BaseActivity.getCurUser();
+                CommentItemBean newBean = new CommentItemBean(user.getImgAvatar(), user.getUserName(), inputStr);
+                newBean.setTime(getCurrentTime());
+
+                if (replyPosition == -1) {
+                    newBean.setType(TYPE_NORMAL);
+                    commentNormalList.add(newBean);
+                    commentRVAdapter.notifyItemInserted(commentNormalList.size() - 1);
+                    recyclerComment.scrollToPosition(commentNormalList.size() - 1);
+                } else {
+                    newBean.setType(TYPE_SIMPLE);
+                    CommentItemBean originBean = commentNormalList.get(replyPosition);
+                    List<CommentItemBean> subList = originBean.getSubList();
+                    if (subList == null) {
+                        subList = new ArrayList<>();
+                    }
+                    subList.add(newBean);
+                    originBean.setSubList(subList);
+                    commentRVAdapter.notifyItemChanged(replyPosition);
+                    // 大于2则跳转至详情页
+                    if (subList.size() > 2){
+                        BottomSheetDialogFragment commentDetail = new FragmentDialogCommentDetail();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("position", replyPosition);
+                        commentDetail.setArguments(bundle);
+                        commentDetail.show(getFragmentManager(), "commentDetail");
+                    }else {
+                        recyclerComment.scrollToPosition(replyPosition);
+                    }
+                }
+                Toast.makeText(getContext(), "评论成功！", Toast.LENGTH_SHORT).show();
+                editText.setText("");
+                 commentRVAdapter.notifyItemRangeChanged(0, replyPosition);
+                break;
             case R.id.img_comment_reply_at:
                 break;
             case R.id.img_comment_reply_emoticon:
@@ -130,8 +228,8 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
                     isEmoticonPressed = true;
                     imgEmoticon.setImageResource(R.drawable.ic_emoticon_pressed);
 
-                     emoticonRising();
-                     beginRising();
+                    emoticonRising();
+                    beginRising();
 
                 } else {
                     isEmoticonPressed = false;
@@ -155,7 +253,7 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
 
     @Override
     public void onKeyboardHeightChanged(int height, int orientation) {
-        Log.e(TAG, "onKeyboardHeightChanged: " + height );
+        Log.e(TAG, "onKeyboardHeightChanged: " + height);
         if (height > 0) {
             if (isEmoticonPressed) {
                 emoticonfalling();
@@ -179,6 +277,7 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
         layoutBottom.setLayoutParams(params);
 
         recyclerComment.scrollBy(0, height);
+//        recyclerComment.scrollBy(0, height);
     }
 
     private void beginFalling() {
@@ -187,6 +286,7 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
         layoutBottom.setLayoutParams(params);
 
         recyclerComment.scrollBy(0, -MyScrollView.dip2px(MyApplication.getContext(), keyboardHeight));
+//        recyclerComment.scrollBy(0, -MyScrollView.dip2px(MyApplication.getContext(), keyboardHeight));
     }
 
     private void emoticonRising() {

@@ -8,6 +8,9 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.asche.wetalk.R;
+import com.asche.wetalk.bean.UserBean;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -17,6 +20,42 @@ import static com.asche.wetalk.MyApplication.getContext;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    /**
+     * 当前登陆的用户
+     */
+    private static UserBean curUser;
+
+    static {
+        UserBean userBean = new UserBean();
+        userBean.setId(String.valueOf(100_000));
+        userBean.setUserName("Asche");
+
+        userBean.setImgAvatar(String.valueOf(R.drawable.img_avatar));
+        userBean.setFollowerNum(6_000);
+        userBean.setFollowNum(12);
+
+        curUser = userBean;
+    }
+
+    /**
+     * 检测是否登陆
+     * @return 登陆返回true，反之false
+     */
+    public boolean checkIfLogin(){
+        return curUser != null;
+    }
+
+    public static UserBean getCurUser() {
+        return curUser;
+    }
+
+    public static void setCurUser(UserBean curUser) {
+        BaseActivity.curUser = curUser;
+    }
+
+    /**
+     * 跳转至当前应用的设置详情页
+     */
     public void goToAppSettingsPage() {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.parse("package:" + getPackageName()));
@@ -32,7 +71,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE
             }, 0);
-
         }
     }
 
@@ -52,6 +90,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 for(int result: grantResults){
                     Log.e("", "onRequestPermissionsResult: " + result );
                     if(result != 0){
+                        //  TODO 当用户点击不再询问时，引导用户手动授权
+                        //  boolean b = shouldShowRequestPermissionRationale(permissions[0]);
+
                         Toast.makeText(this, "获取权限失败， 软件可能无法正常工作！", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(this, "授权成功！", Toast.LENGTH_SHORT).show();

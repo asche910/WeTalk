@@ -19,7 +19,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.asche.wetalk.activity.ChatActivity.editChatInput;
 
 public class EmoticonRVAdapter extends RecyclerView.Adapter<EmoticonRVAdapter.ViewHolder> {
 

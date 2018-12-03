@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.BodyContentRVAdapter;
 import com.asche.wetalk.adapter.CommentRVAdapter;
+import com.asche.wetalk.adapter.OnItemMoreClickListener;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
@@ -33,6 +34,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
+import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_BOTTOM;
 import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
 public class ArticleActivity extends BaseActivity implements View.OnClickListener {
@@ -141,7 +143,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             }
         }
 
-        commentRVAdapter = new CommentRVAdapter(commentSimpleList);
+        commentRVAdapter = new CommentRVAdapter(commentSimpleList, CLICK_BOTTOM);
         layoutManagerComment = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerComment.setLayoutManager(layoutManagerComment);
         recyclerComment.setAdapter(commentRVAdapter);
@@ -166,6 +168,20 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 }).start();
+            }
+        });
+
+        commentRVAdapter.setOnItemMoreClickListener(new OnItemMoreClickListener() {
+            @Override
+            public void onItemMoreClick(int position, int args) {
+                if (args == CLICK_BOTTOM) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("replyUserPosition", position);
+
+                    BottomSheetDialogFragment fragment = new FragmentDialogComment();
+                    fragment.setArguments(bundle);
+                    fragment.show(getSupportFragmentManager(), "commentFragment");
+                }
             }
         });
     }

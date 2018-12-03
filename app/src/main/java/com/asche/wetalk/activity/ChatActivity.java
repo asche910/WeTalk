@@ -45,7 +45,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
 
     private ImageView imgBack, imgMore, imgEmoticon;
     private TextView textTitle;
-    public static EditText editChatInput;
+    private EditText editChatInput;
     private Button btnSend;
 
 

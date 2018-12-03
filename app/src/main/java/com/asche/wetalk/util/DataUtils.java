@@ -39,16 +39,23 @@ public class DataUtils {
 
     private static Random random = new Random();
 
+    private static String imgUrl_1 = "https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg";
+    private static String imgUrl_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg";
+
     public static UserBean getUser(){
         UserBean userBean = new UserBean();
         int id = random.nextInt(999_999_999) +  100_000;
         userBean.setId(id + "");
         userBean.setUserName("User_" + id);
-        userBean.setImgAvatar(R.drawable.img_avatar + "");
+
+        userBean.setImgAvatar(random.nextBoolean() ? imgUrl_1: imgUrl_2);
+
         userBean.setFollowerNum(6_000);
         userBean.setFollowNum(6);
         return userBean;
     }
+
+
 
     public static String getArticleStr(){
         return getContent(R.raw.article_1);
@@ -110,14 +117,14 @@ public class DataUtils {
         bean.setType(type);
         switch (random.nextInt(4)){
             case 3:
-                bean.setAvatarUrl("https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg");
+                bean.setAvatarUrl(imgUrl_1);
                 bean.setContent("退一万步讲，就算收费了，其实对我们影响也不大，反正在天朝，盗版是一种习惯。");
                 bean.setName("John Smith");
                 bean.setTime("12:24");
                 bean.setLikeNum(6);
                 break;
             case 2:
-                bean.setAvatarUrl("https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg");
+                bean.setAvatarUrl(imgUrl_2);
                 bean.setContent("我们现在总归也开始用正版了嘛（严肃脸）～");
                 bean.setName("防弹纸尿裤");
                 bean.setTime("刚刚");
