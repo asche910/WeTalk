@@ -35,6 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_setting"
+            android:background="?selectableItemBackgroundBorderless"
             />
     </RelativeLayout>
 

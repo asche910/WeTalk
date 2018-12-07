@@ -28,7 +28,7 @@ import static android.content.ContentValues.TAG;
 /**
  * 评论的RecyclerView超级适配器
  */
-public class CommentRVAdapter extends RecyclerView.Adapter{
+public class CommentRVAdapter extends RecyclerView.Adapter {
 
     private List<CommentItemBean> list;
     private Context context;
@@ -78,7 +78,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
         if (viewType == TYPE_NORMAL) {
             View view = LayoutInflater.from(context).inflate(R.layout.item_comment, parent, false);
             return new NormalHolder(view);
-        }else if(viewType == TYPE_SIMPLE){
+        } else if (viewType == TYPE_SIMPLE) {
             View view = LayoutInflater.from(context).inflate(R.layout.item_comment_simple, parent, false);
             return new SimpleHolder(view);
         }
@@ -89,8 +89,8 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         CommentItemBean bean = list.get(position);
 
-        if (bean.getType() == TYPE_NORMAL){
-            final NormalHolder normalHolder = (NormalHolder)holder;
+        if (bean.getType() == TYPE_NORMAL) {
+            final NormalHolder normalHolder = (NormalHolder) holder;
             try {
                 Glide.with(context)
                         .load(Integer.parseInt(bean.getAvatarUrl()))
@@ -119,14 +119,9 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
             normalHolder.imgLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    normalHolder.imgLike.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            normalHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
-                            normalHolder.textLikeNum.setText(StringUtils.addOne(normalHolder.textLikeNum.getText().toString()));
+                    normalHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    normalHolder.textLikeNum.setText(StringUtils.addOne(normalHolder.textLikeNum.getText().toString()));
 
-                        }
-                    });
                 }
             });
 
@@ -139,7 +134,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
 
             List<CommentItemBean> subList = bean.getSubList();
             final int pos = position;
-            if (subList != null){
+            if (subList != null) {
                 CommentRVAdapter subAdapter = new CommentRVAdapter(subList, CLICK_DETAIL);
                 normalHolder.recyclerViewSub.setVisibility(View.VISIBLE);
                 normalHolder.recyclerViewSub.setAdapter(subAdapter);
@@ -161,8 +156,8 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
                     }
                 });
             }
-        }else if (bean.getType() == TYPE_SIMPLE){
-            SimpleHolder simpleHolder = (SimpleHolder)holder;
+        } else if (bean.getType() == TYPE_SIMPLE) {
+            SimpleHolder simpleHolder = (SimpleHolder) holder;
             try {
                 Glide.with(context)
                         .load(Integer.parseInt(bean.getAvatarUrl()))
@@ -176,7 +171,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
 
             simpleHolder.textName.setText(bean.getName());
 
-            if (clickType == CLICK_COMMENT){
+            if (clickType == CLICK_COMMENT) {
                 simpleHolder.textContent.setMaxLines(Integer.MAX_VALUE);
             }
             simpleHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
@@ -184,7 +179,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
             simpleHolder.textContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e(TAG, "onClick: " + (onItemMoreClickListener == null) );
+                    Log.e(TAG, "onClick: " + (onItemMoreClickListener == null));
                     onItemMoreClickListener.onItemMoreClick(position, clickType);
                 }
             });
@@ -194,7 +189,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
         int type = list.get(position).getType();
-        switch (type){
+        switch (type) {
             case TYPE_SIMPLE:
                 return TYPE_SIMPLE;
             case TYPE_NORMAL:
@@ -220,7 +215,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
     @Override
     public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewRecycled(holder);
-        if (holder instanceof NormalHolder){
+        if (holder instanceof NormalHolder) {
             ((NormalHolder) holder).textMore.setVisibility(View.GONE);
             ((NormalHolder) holder).recyclerViewSub.setVisibility(View.GONE);
         }
@@ -230,6 +225,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
         private ImageView imgAvatar, imgLike, imgComment;
         private TextView textName, textContent, textTime, textLikeNum, textMore;
         private RecyclerView recyclerViewSub;
+
         public NormalHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar = itemView.findViewById(R.id.img_item_comment_avatar);
@@ -246,9 +242,10 @@ public class CommentRVAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public class SimpleHolder extends RecyclerView.ViewHolder{
+    public class SimpleHolder extends RecyclerView.ViewHolder {
         private ImageView imgAvatar;
         private TextView textName, textContent;
+
         public SimpleHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar = itemView.findViewById(R.id.img_item_comment_avatar);

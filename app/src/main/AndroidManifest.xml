@@ -51,6 +51,7 @@
         <activity android:name=".activity.ChatActivity" />
         <activity android:name=".activity.AgendaModifyActivity" />
         <activity android:name=".activity.DiscoverHappenPublishActivity" />
+        <activity android:name=".activity.TopicInfoActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_suggest_share"
+        android:title="分享"/>
+
+    <item
+        android:id="@+id/menu_suggest_0"
+        android:title="不感兴趣"
+        />
+
+    <item
+        android:id="@+id/menu_suggest_2"
+        android:title="举报"/>
+
+</menu>

@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteDarker"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_universe"/>
+    <include layout="@layout/toolbar_article"/>
 
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:id="@+id/header_article"
@@ -28,8 +28,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     android:text="Hello, World!"
                     android:textColor="#000"
                     android:textSize="20sp" />
@@ -48,8 +49,9 @@
                         android:src="@drawable/img_avatar" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -58,7 +60,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:text="Asche"
-                            android:textColor="#444"
+                            android:textColor="#222"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -67,24 +69,30 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/text_article_author_followernum"
+                                android:id="@+id/text_article_author_signature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
-                                android:text="粉丝 10"
+                                android:text="IT专业的一只菜鸟"
                                 android:textSize="14sp" />
 
-                            <TextView
-                                android:id="@+id/text_article_author_follownum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:text="关注 0"
-                                android:textSize="14sp" />
 
                         </LinearLayout>
                     </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_follow"/>
+
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eee" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -157,7 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/whiteDarker"
+        android:background="@color/white"
         >
 
         <LinearLayout

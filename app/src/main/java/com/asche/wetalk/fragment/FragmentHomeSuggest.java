@@ -11,6 +11,7 @@ import com.andexert.library.RippleView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeItemAdapter;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
+import com.asche.wetalk.adapter.OnItemClickListener;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.util.DataUtils;
 import com.scwang.smartrefresh.header.PhoenixHeader;
@@ -128,8 +129,18 @@ public class FragmentHomeSuggest extends Fragment {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            recyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                }
+            });
+        }
+
 
     }
 

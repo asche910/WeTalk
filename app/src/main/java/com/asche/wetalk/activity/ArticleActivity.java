@@ -1,9 +1,9 @@
 package com.asche.wetalk.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,7 +18,6 @@ import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.fragment.FragmentDialogComment;
-import com.asche.wetalk.fragment.FragmentDialogCommentDetail;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
@@ -42,7 +40,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     // <editor-fold desc="属性变量">
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
-    private TextView textTitle, textAuthorName, textAuthorFollowerNum, textAuthorFollowNum;
+    private TextView textTitle, textAuthorName, textAuthorSignature, textAuthorFollowNum;
     private ImageView imgAuthorAvatar;
 
     private RecyclerView recyclerView;
@@ -74,12 +72,9 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.parseColor("#22000000"));
+        String action = getIntent().getStringExtra("action");
+        if ("OPEN_COMMENT".equals(action)){
+            openComment();
         }
 
         swipeRefreshLayout = findViewById(R.id.header_article);
@@ -87,8 +82,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         recyclerComment = findViewById(R.id.recycler_article_comment);
         textTitle = findViewById(R.id.text_article_title);
         textAuthorName = findViewById(R.id.text_article_author_name);
-        textAuthorFollowerNum = findViewById(R.id.text_article_author_followernum);
-        textAuthorFollowNum = findViewById(R.id.text_article_author_follownum);
+        textAuthorSignature = findViewById(R.id.text_article_author_signature);
         imgAuthorAvatar = findViewById(R.id.img_article_author);
 
         layoutLike = findViewById(R.id.layout_item_main_like);
@@ -101,12 +95,11 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
         articleBean = (ArticleBean) getIntent().getSerializableExtra("article");
 
-        if (articleBean != null){
+        if (articleBean != null) {
             author = DataUtils.getUser();
             textTitle.setText(articleBean.getTitle());
             // TODO Author暂时使用测试数据
-            textAuthorFollowerNum.setText("粉丝 " + author.getFollowerNum());
-            textAuthorFollowNum.setText("关注 " + author.getFollowNum());
+//            textAuthorSignature.setText("粉丝 " + author.getFollowerNum());
             try {
                 Glide.with(getApplicationContext())
                         .load(Integer.parseInt(articleBean.getImgUrl()))
@@ -119,7 +112,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             }
             bodyContentBeanList = BodyContentUtil.parseHtml(articleBean.getContent());
 
-        }else {
+        } else {
             bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getArticleStr());
         }
 
@@ -135,7 +128,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         }
 
         if (commentNormalList.isEmpty()) {
-            for(int i = 0; i < 8; i++){
+            for (int i = 0; i < 8; i++) {
                 CommentItemBean bean = DataUtils.getComment(0);
                 if (i == 4)
                     bean.setSubList(commentSimpleList);
@@ -188,15 +181,14 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.layout_item_main_forward:
+                Intent intent = new Intent(this, TopicInfoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.text_article_morecomment:
             case R.id.layout_item_main_comment:
-                Log.e(TAG, "onClick: --------->" );
-                BottomSheetDialogFragment fragment = new FragmentDialogComment();
-                fragment.show(getSupportFragmentManager(), "commentFragment");
-
+                openComment();
                 break;
             case R.id.layout_item_main_like:
                 imgLike.setImageResource(R.drawable.ic_like_pressed);
@@ -205,4 +197,8 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    private void openComment() {
+        BottomSheetDialogFragment fragment = new FragmentDialogComment();
+        fragment.show(getSupportFragmentManager(), "commentFragment");
+    }
 }

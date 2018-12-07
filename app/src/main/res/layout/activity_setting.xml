@@ -12,4 +12,24 @@
         android:gravity="center"
         android:text="Setting"/>
 
+    <ImageView
+        android:id="@+id/btn_1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:clickable="true"
+        android:src="@drawable/ic_comment"
+        android:background="?selectableItemBackgroundBorderless"/>
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_comment"/>
+
+    <ImageButton
+        android:id="@+id/btn_3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_comment"/>
+
 </LinearLayout>

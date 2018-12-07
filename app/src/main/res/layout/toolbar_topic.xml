@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/toolbar_user_home"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="74dp"
-    >
+    android:paddingTop="24dp"
+    android:background="@color/blueLight">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp">
+        >
 
         <ImageView
             android:id="@+id/img_toolbar_back"
@@ -22,29 +22,28 @@
             />
 
         <TextView
-            android:id="@+id/text_user_home_title"
+            android:id="@+id/text_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:text="我的主页"
+            android:text="Hello, World!"
             android:textColor="@color/grayLight"
             android:textSize="20sp"
-            android:visibility="invisible"/>
+            />
 
         <ImageView
-            android:id="@+id/img_toolbar_twocode"
+            android:id="@+id/img_toolbar_more"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_twocode_light"
+            android:src="@drawable/ic_more_light"
             android:background="?selectableItemBackgroundBorderless"
             />
 
     </RelativeLayout>
 
-
-</RelativeLayout>
+</LinearLayout>

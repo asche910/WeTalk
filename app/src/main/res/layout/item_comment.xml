@@ -46,6 +46,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/ic_more"
+                    android:background="?selectableItemBackgroundBorderless"
                     />
             </RelativeLayout>
 
@@ -94,7 +95,9 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="94dp"
-                    android:src="@drawable/ic_like" />
+                    android:src="@drawable/ic_like"
+                    android:background="?selectableItemBackgroundBorderless"
+                    />
 
                 <TextView
                     android:id="@+id/text_item_comment_likenum"
@@ -114,7 +117,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_comment" />
+                    android:src="@drawable/ic_comment"
+                    android:background="?selectableItemBackgroundBorderless"
+                    />
 
             </RelativeLayout>
 

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -95,6 +97,7 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
     @Override
     public void onStart() {
         super.onStart();
+        // 设置背景透明，从而显示顶部圆角
         getDialog().getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         imgBack = getView().findViewById(R.id.img_fragment_comment_close);

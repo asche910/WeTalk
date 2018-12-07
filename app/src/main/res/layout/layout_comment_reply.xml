@@ -23,7 +23,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_emoticon" />
+            android:src="@drawable/ic_emoticon"
+            android:background="?selectableItemBackgroundBorderless"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +60,9 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="6dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ic_at"/>
+                android:src="@drawable/ic_at"
+                android:background="?selectableItemBackgroundBorderless"
+                />
 
             <ImageView
                 android:id="@+id/img_comment_reply_send"
@@ -68,7 +72,9 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_gravity="bottom"
-                android:src="@drawable/ic_send_color"/>
+                android:src="@drawable/ic_send_color"
+                android:background="?selectableItemBackgroundBorderless"
+                />
 
         </LinearLayout>
 

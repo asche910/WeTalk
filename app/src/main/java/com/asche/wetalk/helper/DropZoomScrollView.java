@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.other.MyScrollView;
 
+import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 import static com.asche.wetalk.activity.UserHomeActivity.textTitle;
 import static com.asche.wetalk.other.MyScrollView.dip2px;
 
@@ -99,6 +100,7 @@ public class DropZoomScrollView extends ScrollView implements View.OnTouchListen
         super.onOverScrolled(scrollX, scrollY, clampedX, clampedY);
         int px = dip2px(getContext(), 200 - 74);
 
+        Log.e(TAG, "onOverScrolled: " + scrollY + "- -" + clampedY );
         if (scrollY >= px) {
             textTitle.setVisibility(View.VISIBLE);
         } else {

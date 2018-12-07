@@ -50,14 +50,6 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 //        init();
         setContentView(R.layout.activity_user_home);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            |  View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.parseColor("#22000000"));
-        }
-
         toolbarLayout = findViewById(R.id.toolbar_user_home);
         textTitle = findViewById(R.id.text_user_home_title);
         imgBack = findViewById(R.id.img_toolbar_back);

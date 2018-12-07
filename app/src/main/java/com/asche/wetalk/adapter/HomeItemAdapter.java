@@ -3,6 +3,9 @@ package com.asche.wetalk.adapter;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 
+/**
+ * HomeItemBean数据的适配器
+ */
 public class HomeItemAdapter {
 
     public static ItemBean adapt (HomeItem homeItem) {

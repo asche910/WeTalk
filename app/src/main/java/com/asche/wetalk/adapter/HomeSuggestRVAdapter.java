@@ -2,14 +2,18 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ArticleActivity;
@@ -24,12 +28,13 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 
-public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
+public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  PopupMenu.OnMenuItemClickListener {
 
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
@@ -38,15 +43,25 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     private List<ItemBean> list;
     private Context context;
 
+    private int curPosition = -1;
+
+    // 此处用作comment的点击事件
+    private OnItemClickListener onItemClickListener;
+
     public HomeSuggestRVAdapter(List<ItemBean> list) {
         this.list = list;
     }
 
-    private class TextHolder extends RecyclerView.ViewHolder{
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private class TextHolder extends RecyclerView.ViewHolder {
         private TextView textTitlt, textContent;
         private TextView textLike, textComment;
-        private ImageView imgLike;
+        private ImageView imgLike, imgMore;
         private LinearLayout layoutLike, layoutComment, layoutForward, layoutMain;
+
         public TextHolder(@NonNull View itemView) {
             super(itemView);
             textTitlt = itemView.findViewById(R.id.text_item_main_title);
@@ -54,6 +69,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
             textLike = itemView.findViewById(R.id.text_item_main_likenum);
             textComment = itemView.findViewById(R.id.text_item_main_commentnum);
             imgLike = itemView.findViewById(R.id.img_item_main_like);
+            imgMore = itemView.findViewById(R.id.img_item_main_more);
             layoutLike = itemView.findViewById(R.id.layout_item_main_like);
             layoutComment = itemView.findViewById(R.id.layout_item_main_comment);
             layoutForward = itemView.findViewById(R.id.layout_item_main_forward);
@@ -61,11 +77,12 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public class ImageHolder extends RecyclerView.ViewHolder{
+    public class ImageHolder extends RecyclerView.ViewHolder {
         private TextView textTitlt, textContent;
         public TextView textLike, textComment;
-        public ImageView img, imgLike;
+        public ImageView img, imgLike, imgMore;
         private LinearLayout layoutLike, layoutComment, layoutForward, layoutMain;
+
         public ImageHolder(@NonNull View itemView) {
             super(itemView);
             textTitlt = itemView.findViewById(R.id.text_item_main_title);
@@ -74,6 +91,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
             textComment = itemView.findViewById(R.id.text_item_main_commentnum);
             img = itemView.findViewById(R.id.img_item_main);
             imgLike = itemView.findViewById(R.id.img_item_main_like);
+            imgMore = itemView.findViewById(R.id.img_item_main_more);
             layoutLike = itemView.findViewById(R.id.layout_item_main_like);
             layoutComment = itemView.findViewById(R.id.layout_item_main_comment);
             layoutForward = itemView.findViewById(R.id.layout_item_main_forward);
@@ -81,12 +99,13 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public class VideoHolder extends RecyclerView.ViewHolder{
+    public class VideoHolder extends RecyclerView.ViewHolder {
         private TextView textTitlt, textContent;
         private TextView textLike, textComment;
         public StandardGSYVideoPlayer videoPlayer;
-        private ImageView imgLike;
+        private ImageView imgLike, imgMore;
         private LinearLayout layoutLike, layoutComment, layoutForward, layoutMain;
+
         public VideoHolder(@NonNull View itemView) {
             super(itemView);
             textTitlt = itemView.findViewById(R.id.text_item_main_title);
@@ -95,6 +114,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
             textComment = itemView.findViewById(R.id.text_item_main_commentnum);
             videoPlayer = itemView.findViewById(R.id.video_item_main);
             imgLike = itemView.findViewById(R.id.img_item_main_like);
+            imgMore = itemView.findViewById(R.id.img_item_main_more);
             layoutLike = itemView.findViewById(R.id.layout_item_main_like);
             layoutComment = itemView.findViewById(R.id.layout_item_main_comment);
             layoutForward = itemView.findViewById(R.id.layout_item_main_forward);
@@ -105,11 +125,12 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
         ItemBean itemBean = list.get(position);
-        if (itemBean.getBodyType() == TYPE_TEXT){
+        if (itemBean.getBodyType() == TYPE_TEXT) {
             return TYPE_TEXT;
-        }else if(itemBean.getBodyType() == TYPE_IMAGE){
+        } else if (itemBean.getBodyType() == TYPE_IMAGE) {
             return TYPE_IMAGE;
-        }if (itemBean.getBodyType() == TYPE_VIDEO){
+        }
+        if (itemBean.getBodyType() == TYPE_VIDEO) {
             return TYPE_VIDEO;
         }
         return super.getItemViewType(position);
@@ -120,16 +141,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view;
-        if (context == null){
+        if (context == null) {
             context = parent.getContext();
         }
-        if (viewType == TYPE_TEXT){
+        if (viewType == TYPE_TEXT) {
             view = inflater.inflate(R.layout.item_main_text, parent, false);
             return new TextHolder(view);
-        }else if(viewType == TYPE_IMAGE){
+        } else if (viewType == TYPE_IMAGE) {
             view = inflater.inflate(R.layout.item_main_img, parent, false);
             return new ImageHolder(view);
-        }else if(viewType == TYPE_VIDEO){
+        } else if (viewType == TYPE_VIDEO) {
             view = inflater.inflate(R.layout.item_main_video, parent, false);
             return new VideoHolder(view);
         }
@@ -137,15 +158,27 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         final ItemBean bean = list.get(position);
-        if (bean.getBodyType() == TYPE_TEXT){
+        if (bean.getBodyType() == TYPE_TEXT) {
             final TextHolder textHolder = (TextHolder) holder;
             textHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
             textHolder.textContent.setText(sequence);
             textHolder.textLike.setText(bean.getLikeNum() + "");
             textHolder.textComment.setText(bean.getCommentNum() + "");
+
+            textHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    curPosition = position;
+                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    MenuInflater menuInflater = popupMenu.getMenuInflater();
+                    menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    popupMenu.show();
+                    popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
+                }
+            });
 
             textHolder.layoutLike.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -155,17 +188,30 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
 
                 }
             });
+            textHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // onItemClickListener.onItemClick(position);
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
+                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                    }
+                }
+            });
             textHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (bean.getType() == HomeItem.TYPE_ARTICLE){
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         nextActivity(ArticleActivity.class);
-                    }else if (bean.getType() == HomeItem.TYPE_TOPIC){
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
                     }
                 }
             });
-        }else if (bean.getBodyType() == TYPE_IMAGE){
+
+
+        } else if (bean.getBodyType() == TYPE_IMAGE) {
             final ImageHolder imgHolder = (ImageHolder) holder;
             imgHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
@@ -185,6 +231,18 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                         .into(imgHolder.img);
             }
 
+            imgHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    curPosition = position;
+                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    MenuInflater menuInflater = popupMenu.getMenuInflater();
+                    menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    popupMenu.show();
+                    popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
+                }
+            });
+
             imgHolder.layoutLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -192,20 +250,30 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                     imgHolder.textLike.setText(StringUtils.addOne(imgHolder.textLike.getText().toString()));
                 }
             });
+            imgHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
+                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                    }
+                }
+            });
             imgHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (bean.getType() == HomeItem.TYPE_ARTICLE){
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
                         intent.putExtra("article", DataUtils.getArticle());
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
-                    }else if (bean.getType() == HomeItem.TYPE_TOPIC){
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
                     }
                 }
             });
-        }else if(bean.getBodyType() == TYPE_VIDEO){
+        } else if (bean.getBodyType() == TYPE_VIDEO) {
             final VideoHolder videoHolder = (VideoHolder) holder;
             videoHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
@@ -234,6 +302,19 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
             });
             videoPlayer.setShowFullAnimation(true);
 
+
+            videoHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    curPosition = position;
+                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    MenuInflater menuInflater = popupMenu.getMenuInflater();
+                    menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    popupMenu.show();
+                    popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
+                }
+            });
+
             videoHolder.layoutLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -241,12 +322,18 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
                     videoHolder.textLike.setText(StringUtils.addOne(videoHolder.textLike.getText().toString()));
                 }
             });
+            videoHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    onItemClickListener.onItemClick(position);
+                }
+            });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (bean.getType() == HomeItem.TYPE_ARTICLE){
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         nextActivity(ArticleActivity.class);
-                    }else if (bean.getType() == HomeItem.TYPE_TOPIC){
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
                     }
                 }
@@ -260,11 +347,28 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     }
 
     @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Log.e(TAG, "onMenuItemClick: " + curPosition );
+        switch (item.getItemId()){
+            case R.id.menu_suggest_2:
+                Toast.makeText(context, "举报", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_suggest_0:
+                Toast.makeText(context, "不感兴趣此话题", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_suggest_share:
+                Toast.makeText(context, "分享成功！", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return false;
+    }
+
+    @Override
     public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        Log.e(TAG, "onViewDetachedFromWindow: " );
-        if (holder instanceof HomeSuggestRVAdapter.VideoHolder){
-            HomeSuggestRVAdapter.VideoHolder viewHolder = (HomeSuggestRVAdapter.VideoHolder)holder;
+//        Log.e(TAG, "onViewDetachedFromWindow: " );
+        if (holder instanceof HomeSuggestRVAdapter.VideoHolder) {
+            HomeSuggestRVAdapter.VideoHolder viewHolder = (HomeSuggestRVAdapter.VideoHolder) holder;
             if (viewHolder.videoPlayer.isInPlayingState()) {
                 viewHolder.videoPlayer.onVideoPause();
             }
@@ -274,9 +378,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
     @Override
     public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-        Log.e(TAG, "onViewAttachedToWindow: 2" );
-        if (holder instanceof HomeSuggestRVAdapter.VideoHolder){
-            HomeSuggestRVAdapter.VideoHolder viewHolder = (HomeSuggestRVAdapter.VideoHolder)holder;
+//        Log.e(TAG, "onViewAttachedToWindow: 2" );
+        if (holder instanceof HomeSuggestRVAdapter.VideoHolder) {
+            HomeSuggestRVAdapter.VideoHolder viewHolder = (HomeSuggestRVAdapter.VideoHolder) holder;
 
             if (viewHolder.videoPlayer.isInPlayingState()) {
                 viewHolder.videoPlayer.onVideoResume();
@@ -284,8 +388,14 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter{
         }
     }
 
-    private void nextActivity(Class<?> cls){
+    private void nextActivity(Class<?> cls) {
         Intent intent = new Intent(context, cls);
+        context.startActivity(intent);
+    }
+
+    private void nextActivity(Class<?> cls, String action) {
+        Intent intent = new Intent(context, cls);
+        intent.putExtra("action", action);
         context.startActivity(intent);
     }
 

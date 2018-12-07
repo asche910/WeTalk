@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.asche.wetalk.R;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -27,7 +28,14 @@ public abstract class BaseDialogFragment extends BottomSheetDialogFragment {
         return view;
     }
 
-/*    @Override
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        getDialog().getWindow().setWindowAnimations(R.style.BottomDialogAnimation);
+    }
+
+    /*    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int layoutId = savedInstanceState.getInt("layoutId");
         View view = View.inflate(getContext(), layoutId, null);
