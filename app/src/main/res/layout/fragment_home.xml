@@ -27,13 +27,11 @@
                 android:fillViewport="true"
                 android:orientation="vertical">
 
-
                 <com.ogaclejapan.smarttablayout.SmartTabLayout
                     android:id="@+id/tab_home"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="84dp"
-
                     app:stl_clickable="true"
                     app:stl_defaultTabBackground="?attr/selectableItemBackground"
                     app:stl_defaultTabTextAllCaps="true"
@@ -64,7 +62,6 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
             </LinearLayout>
-
 
             <com.arlib.floatingsearchview.FloatingSearchView
                 android:id="@+id/floating_search_view"

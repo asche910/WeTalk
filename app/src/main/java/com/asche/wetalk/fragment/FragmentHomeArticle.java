@@ -1,22 +1,16 @@
 package com.asche.wetalk.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.asche.wetalk.R;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
-
-import static android.content.ContentValues.TAG;
 
 public class FragmentHomeArticle extends Fragment {
 

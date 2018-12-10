@@ -80,13 +80,15 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                    <Button
+                        android:id="@+id/btn_follow"
+                        android:layout_width="60dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/ic_follow"/>
-
+                        android:text="关注"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_btn_green"/>
                 </LinearLayout>
 
                 <View

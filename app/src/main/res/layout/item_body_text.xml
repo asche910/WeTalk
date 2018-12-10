@@ -13,7 +13,6 @@
         android:text="@string/topic_reply"
         android:textSize="@dimen/fontStandSize"
         android:textColor="#393939"
-        android:textIsSelectable="true"
         />
 
 </LinearLayout>

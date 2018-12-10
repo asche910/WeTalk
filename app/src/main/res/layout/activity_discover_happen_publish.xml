@@ -38,12 +38,16 @@
         </LinearLayout>
     </com.asche.wetalk.helper.MyScrollViewScroll>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eee"/>
 
     <LinearLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eee"
+        android:background="#fff"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 

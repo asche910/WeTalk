@@ -14,6 +14,7 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.TopicReplyBean;
+import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.bean.UserBean;
 
 import java.io.BufferedInputStream;
@@ -27,6 +28,9 @@ import java.net.URI;
 import java.util.Random;
 
 import static com.asche.wetalk.MyApplication.getContext;
+import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_IMAGE;
+import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_TEXT;
+import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_VIDEO;
 import static com.zhihu.matisse.internal.utils.PathUtils.getDataColumn;
 import static com.zhihu.matisse.internal.utils.PathUtils.isDownloadsDocument;
 import static com.zhihu.matisse.internal.utils.PathUtils.isExternalStorageDocument;
@@ -146,6 +150,35 @@ public class DataUtils {
 
                 break;
             default:
+        }
+        return bean;
+    }
+
+    public static TopicReplyItemBean getTopicReplyItem(){
+        TopicReplyItemBean bean = new TopicReplyItemBean();
+        bean.setAuthorName("Asche");
+        bean.setAuthorSignature("It专业的一只菜鸟");
+        bean.setAuthorAvatar(R.drawable.img_avatar + "");
+
+        bean.setContent(getContext().getResources().getString(R.string.topic_reply));
+        bean.setLikeNum(456);
+        bean.setCommentNum(82);
+        bean.setTime("10-24");
+
+        int n = random.nextInt(3);
+        switch (n){
+            case 2:
+                bean.setBodyType(TYPE_VIDEO);
+                bean.setVideoUrl("http://f10.v1.cn/site/15538790.mp4.f40.mp4");
+                bean.setImgUrl("http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg");
+                break;
+            case 1:
+                bean.setBodyType(TYPE_IMAGE);
+                bean.setImgUrl(R.drawable.img_avatar + "");
+                break;
+            default:
+                bean.setBodyType(TYPE_TEXT);
+                break;
         }
         return bean;
     }

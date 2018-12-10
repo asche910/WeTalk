@@ -7,152 +7,132 @@
     <!--  钱包、书架、成就、收藏、签到  -->
 
     <!--  草稿箱、我的咨询、我的提问（回答）、评价管理、近期好友、待办事项   -->
- 
+
     <!--  订阅  -->
     <include layout="@layout/toolbar_user" />
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout_user"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="74dp">
 
-        <com.scwang.smartrefresh.header.PhoenixHeader
-            android:id="@+id/header_home_suggest"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:phPrimaryColor="@color/blueLight"
-            app:phAccentColor="@color/white"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="130dp"
+                android:background="@color/blueLight" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:background="@color/blueLight" />
+            <LinearLayout
+                android:id="@+id/layout_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="15dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_user_avatar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/img_avatar_default"
+                    android:src="@drawable/img_avatar" />
 
                 <LinearLayout
-                    android:id="@+id/layout_user_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/img_user_avatar"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/img_avatar_default"
-                        android:src="@drawable/img_avatar" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Asche"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="Asche"
-                            android:textColor="@color/white"
-                            android:textSize="20sp" />
+                            android:text="粉丝 10"
+                            android:textColor="@color/grayLight"
+                            android:textSize="14sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:text="粉丝 10"
-                                android:textColor="@color/grayLight"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="center_vertical"
-                                android:text="关注 0"
-                                android:textColor="@color/grayLight"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center_vertical"
+                            android:text="关注 0"
+                            android:textColor="@color/grayLight"
+                            android:textSize="14sp" />
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/ic_nav_home_pressed" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/layout_user_tool"
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_nav_home_pressed" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_user_tool"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/layout_user_info"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_user_tool"
+                android:elevation="4dp"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_user_tool"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_below="@id/layout_user_info"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/bg_user_tool"
-                    android:elevation="4dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_user_tool"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+            </LinearLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_user_tool"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_user_panel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/layout_user_tool"
-                    android:orientation="vertical">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycle_user_panel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/bg_item"
-                        android:elevation="2dp"
-                        />
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_item"
+                    android:elevation="2dp" />
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="500dp"
-                        android:gravity="center"
-                        android:text="Hello, World!" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:gravity="center"
+                    android:text="Hello, World!" />
 
-                </LinearLayout>
+            </LinearLayout>
 
-            </RelativeLayout>
-        </ScrollView>
+        </RelativeLayout>
+    </ScrollView>
 
-        <com.scwang.smartrefresh.layout.footer.FalsifyFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </RelativeLayout>

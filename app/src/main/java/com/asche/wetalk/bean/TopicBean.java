@@ -15,6 +15,14 @@ public class TopicBean {
     private int replyNum;
     private int authorId;
 
+    public TopicBean(String name, String content, String time, int followerNum, int replyNum) {
+        this.name = name;
+        this.content = content;
+        this.time = time;
+        this.followerNum = followerNum;
+        this.replyNum = replyNum;
+    }
+
     public TopicBean(String id, String name, String content, String time, int followerNum, int replyNum, int authorId) {
         this.id = id;
         this.name = name;

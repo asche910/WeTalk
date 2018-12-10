@@ -1,17 +1,7 @@
 package com.asche.wetalk.activity;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.fragment.FragmentDiscover;
@@ -20,23 +10,13 @@ import com.asche.wetalk.fragment.FragmentNotification;
 import com.asche.wetalk.fragment.FragmentUser;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.scwang.smartrefresh.header.PhoenixHeader;
-import com.scwang.smartrefresh.header.WaveSwipeHeader;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.scwang.smartrefresh.layout.footer.FalsifyFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.asche.wetalk.fragment.FragmentHomeRequirement.orientationUtils;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * @author Asche
@@ -53,23 +33,6 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     private final String TAG = "MainActivity";
-
-    static {
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.blueLight, R.color.grayLight);//全局设置主题颜色
-                return new WaveSwipeHeader(context);
-            }
-        });
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-            @Override
-            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.blueLight, android.R.color.white);
-                return new BallPulseFooter(context);
-            }
-        });
-    }
 
 
     @Override

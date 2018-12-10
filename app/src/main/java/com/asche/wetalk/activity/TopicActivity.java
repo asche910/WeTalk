@@ -1,5 +1,6 @@
 package com.asche.wetalk.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,9 +42,11 @@ import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
  * 话题回复的答案页， 展示单个回复
  */
 public class TopicActivity extends BaseActivity implements View.OnClickListener{
-    private TextView textTitle;
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
+
+    private TextView textTitle, textAllReply;
+
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -69,8 +72,15 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
 
+        String action = getIntent().getStringExtra("action");
+        if ("OPEN_COMMENT".equals(action)){
+            openComment();
+        }
+
         swipeRefreshLayout = findViewById(R.id.header_topic);
         textTitle = findViewById(R.id.text_topic_title);
+        textAllReply = findViewById(R.id.text_topic_allreply);
+//        btnFollow = findViewById(R.id.btn_follow);
         recyclerView = findViewById(R.id.recycler_topic);
         recyclerComment = findViewById(R.id.recycler_topic_comment);
         textMoreComment = findViewById(R.id.text_topic_morecomment);
@@ -109,6 +119,8 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         recyclerComment.setAdapter(commentRVAdapter);
 
 
+        textTitle.setOnClickListener(this);
+        textAllReply.setOnClickListener(this);
         textMoreComment.setOnClickListener(this);
         layoutLike.setOnClickListener(this);
         layoutComment.setOnClickListener(this);
@@ -151,36 +163,13 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.text_topic_title:
+            case R.id.text_topic_allreply:
+                Intent intent = new Intent(this, TopicInfoActivity.class);
+                startActivity(intent);
+                break;
             case R.id.layout_item_main_forward:
-                PopupMenu popupMenu = new PopupMenu(this, v);
-                MenuInflater menuInflater = popupMenu.getMenuInflater();
-                menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
-
-       /*         Menu menu = popupMenu.getMenu();
-                menu.add(1, 0, 0, "不感兴趣");
-                menu.add(1, 1, 1, "屏蔽");
-                menu.add(1, 2, 2, "举报");
-*/
-                popupMenu.show();
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.menu_suggest_2:
-                                Toast.makeText(TopicActivity.this, "举报", Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.menu_suggest_0:
-                                Toast.makeText(TopicActivity.this, "不感兴趣此话题", Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.menu_suggest_share:
-                                Toast.makeText(TopicActivity.this, "分享成功！", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                        return false;
-                    }
-                });
-
+                Toast.makeText(this, "you forward this topic reply!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.text_topic_morecomment:
             case R.id.layout_item_main_comment:

@@ -6,15 +6,11 @@
 
     <include layout="@layout/toolbar_universe" />
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:id="@+id/refreshLayout_user_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.scwang.smartrefresh.header.WaveSwipeHeader
-            android:id="@+id/refreshLayout_client"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:id="@+id/scroll_user_home"
@@ -28,6 +24,6 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
 </LinearLayout>

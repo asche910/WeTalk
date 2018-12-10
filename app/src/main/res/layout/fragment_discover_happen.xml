@@ -15,9 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <com.asche.wetalk.helper.smartrefresh.BallPulseFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 

@@ -1,22 +1,9 @@
 package com.asche.wetalk.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import cc.shinichi.library.ImagePreview;
-import cc.shinichi.library.bean.ImageInfo;
-
 import android.transition.Explode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,15 +26,20 @@ import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.activity.WalletActivity;
 import com.asche.wetalk.adapter.UserToolRVAdapter;
 import com.asche.wetalk.bean.ImageTextBean;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 public class FragmentUser extends Fragment implements View.OnClickListener {
 
-    private RefreshLayout refreshLayout;
     private LinearLayout userInfoLayout;
     private ImageView imgAvatar;
 
@@ -81,26 +73,13 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
             getActivity().getWindow().setExitTransition(explode);
         }
 
-        refreshLayout = getView().findViewById(R.id.refreshLayout_user);
         userInfoLayout = getView().findViewById(R.id.layout_user_info);
         imgAvatar = getView().findViewById(R.id.img_user_avatar);
         imgSetting = getView().findViewById(R.id.img_toolbar_setting);
         recyclerView = getView().findViewById(R.id.recycle_user_tool);
         recyclerViewPanel = getView().findViewById(R.id.recycle_user_panel);
 
-        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onLoadMore: ");
-                refreshLayout.finishLoadMore(2000);
-            }
 
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                Log.e(TAG, "onRefresh: ");
-                refreshLayout.finishRefresh(2000);
-            }
-        });
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_wallet + "", "钱包"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_book + "", "书架"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_achievement + "", "成就"));

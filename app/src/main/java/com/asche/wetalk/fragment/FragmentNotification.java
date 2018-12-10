@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentNotification extends Fragment {
+
+
+    private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -37,6 +41,7 @@ public class FragmentNotification extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        swipeRefreshLayout = getView().findViewById(R.id.header_notification);
         recyclerView = getView().findViewById(R.id.recycler_notification);
 
         notiBeanList.add(new NotificationItemBean(0, "Asche", "11.13 15:43", "Hello, World!", R.drawable.img_avatar + ""));
@@ -53,6 +58,23 @@ public class FragmentNotification extends Fragment {
             @Override
             public void onItemClick(int position) {
                 startActivity(new Intent(getContext(), ChatActivity.class));
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }).start();
             }
         });
     }

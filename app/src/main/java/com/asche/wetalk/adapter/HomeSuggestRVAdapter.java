@@ -2,6 +2,8 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.asche.wetalk.activity.ArticleActivity;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
+import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
@@ -43,7 +46,12 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     private List<ItemBean> list;
     private Context context;
 
+    // 是否开启背景圆角和悬浮效果
+    private boolean enableRadiusAndEle;
+
     private int curPosition = -1;
+
+    private int count;
 
     // 此处用作comment的点击事件
     private OnItemClickListener onItemClickListener;
@@ -54,6 +62,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+
+    public void setEnableRadiusAndEle(boolean enableRadiusAndEle) {
+        this.enableRadiusAndEle = enableRadiusAndEle;
     }
 
     private class TextHolder extends RecyclerView.ViewHolder {
@@ -159,9 +172,15 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+        Log.e(TAG, "onBindViewHolder: " + (count ++) );
         final ItemBean bean = list.get(position);
         if (bean.getBodyType() == TYPE_TEXT) {
             final TextHolder textHolder = (TextHolder) holder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && enableRadiusAndEle) {
+                textHolder.itemView.setBackground(context.getDrawable(R.drawable.bg_item));
+                textHolder.itemView.setElevation(MyScrollView.dip2px(context, 2));
+            }
+
             textHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
             textHolder.textContent.setText(sequence);
@@ -213,6 +232,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
         } else if (bean.getBodyType() == TYPE_IMAGE) {
             final ImageHolder imgHolder = (ImageHolder) holder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && enableRadiusAndEle) {
+                imgHolder.itemView.setBackground(context.getDrawable(R.drawable.bg_item));
+                imgHolder.itemView.setElevation(MyScrollView.dip2px(context, 2));
+            }
+
             imgHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
 
@@ -275,6 +299,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             });
         } else if (bean.getBodyType() == TYPE_VIDEO) {
             final VideoHolder videoHolder = (VideoHolder) holder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && enableRadiusAndEle) {
+                videoHolder.itemView.setBackground(context.getDrawable(R.drawable.bg_item));
+                videoHolder.itemView.setElevation(MyScrollView.dip2px(context, 2));
+            }
+
             videoHolder.textTitlt.setText(bean.getTitle());
             CharSequence sequence = Html.fromHtml(bean.getContent());
 

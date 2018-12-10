@@ -5,7 +5,11 @@
 <div class="image-view" data-width="531" data-height="820"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-3d546d6cf50ce2c0" data-original-width="531" data-original-height="820" data-original-format="image/jpeg" data-original-filesize="62651" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-3d546d6cf50ce2c0?imageMogr2/auto-orient/strip%7CimageView2/2/w/531/format/webp"></div>
 </div>
 <div class="image-caption"></div>
-</div><p>只有经历了军训的黝黑</p><p>才能享受洗礼过后的美颜</p><div class="image-package">
+</div>
+
+<video autoplay="autoplay" src="http://f10.v1.cn/site/15538790.mp4.f40.mp4" cover-src="http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg" width="100%" x-webkit-airplay="allow" />
+
+<p>只有经历了军训的黝黑</p><p>才能享受洗礼过后的美颜</p><div class="image-package">
 <div class="image-container" style="max-width: 586px; max-height: 1333px; background-color: transparent;">
 <div class="image-container-fill" style="padding-bottom: 190.44%;"></div>
 <div class="image-view" data-width="586" data-height="1116"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-74d77dd0091f4dcb" data-original-width="586" data-original-height="1116" data-original-format="image/jpeg" data-original-filesize="97647" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-74d77dd0091f4dcb?imageMogr2/auto-orient/strip%7CimageView2/2/w/586/format/webp"></div>

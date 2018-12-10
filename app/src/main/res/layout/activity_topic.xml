@@ -52,6 +52,7 @@
                         android:textColor="#1184ab" />
 
                     <TextView
+                        android:id="@+id/text_topic_allreply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -112,20 +113,29 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+
+                    <Button
+                        android:id="@+id/btn_follow"
+                        android:layout_width="60dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/ic_follow"/>
+                        android:text="关注"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_btn_green"/>
 
                 </LinearLayout>
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_topic"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_topic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
 
 
                 <View

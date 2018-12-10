@@ -14,23 +14,41 @@ import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 public class BodyContentUtil {
 
+    /**
+     *  图片格式 <img src="..." />
+     *  视频格式 <video src="..." cover-src="..." /> 封面可选;
+     * @param html
+     * @return
+     */
     public static List<BodyContentBean> parseHtml(String html){
         List<BodyContentBean> contentBeanList = new ArrayList<>();
         List<BodyContentBean> tempList = new ArrayList<>();
-        String[] strs = html.split("<img .+>");
+        String[] strs = html.split("<img .+>|<video .+>");
         Log.e(TAG, "parseHtml: " + strs.length );
 
-        Matcher matcher = Pattern.compile("<img .+>").matcher(html);
+        Matcher matcher = Pattern.compile("<img .+>|<video .+>").matcher(html);
         while (matcher.find()){
             String content = matcher.group();
 
-            Matcher mat = Pattern.compile("src=\"(.+?)\"").matcher(content);
-            while (mat.find()){
-                String url = mat.group(1);
-                Log.e(TAG, "parseHtml: " + url );
+            if (!content.contains("video")) {
+                Matcher mat = Pattern.compile("src=\"(.+?)\"").matcher(content);
+                while (mat.find()){
+                    String url = mat.group(1);
+                    Log.e(TAG, "parseHtml: " + url );
 
-                tempList.add(new BodyContentBean(1, null, handleUrl(url), null));
-                break;
+                    tempList.add(new BodyContentBean(1, null, handleUrl(url), null));
+                    break;
+                }
+            }else {
+                Matcher mat = Pattern.compile("src=\"(.+?)\".*cover-src=\"(.+?)\"").matcher(content);
+                while (mat.find()){
+                    String url = mat.group(1);
+                    String coverUrl = mat.group(2);
+                    Log.e(TAG, "parseHtml: ------> " + url  + "-----> " + coverUrl);
+
+                    tempList.add(new BodyContentBean(2, null, handleUrl(coverUrl), handleUrl(url)));
+                    break;
+                }
             }
         }
         Log.e(TAG, "parseHtml: " + tempList.size() );

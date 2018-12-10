@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical">
 
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:id="@+id/header_discover_topic"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
 
-            <TextView
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_discover_topic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Topic" />
+                android:layout_height="wrap_content" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/anim_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:lottie_fileName="anim_test.json"
-                app:lottie_loop="true"
-                app:lottie_autoPlay="true" />
-        </LinearLayout>
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

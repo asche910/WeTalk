@@ -27,6 +27,21 @@ public class StringUtils {
     }
 
     /**
+     * 返回n+1倍的字符串
+     */
+    public static String expandLength(int n, String str){
+        if (isEmpty(str))
+            return null;
+        if (n < 1)
+            return str;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < n; i++){
+            stringBuilder.append(str);
+        }
+        return stringBuilder.toString();
+    }
+
+    /**
      * 对象序列化
      * @param object
      * @return

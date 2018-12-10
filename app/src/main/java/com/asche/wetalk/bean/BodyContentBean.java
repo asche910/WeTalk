@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class BodyContentBean {
-    private int type;
+    private int type;// 0：文本；1：图片；2：视频
     private String text;
     private String imgUrl;
     private String videoUrl;

@@ -7,15 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.andexert.library.RippleView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeItemAdapter;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
-import com.asche.wetalk.adapter.OnItemClickListener;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.util.DataUtils;
-import com.scwang.smartrefresh.header.PhoenixHeader;
-import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.ArrayList;
@@ -44,6 +40,11 @@ public class FragmentHomeSuggest extends Fragment {
 
     public static StandardGSYVideoPlayer videoPlayer;
 
+    public static String videoSrc = "http://f10.v1.cn/site/15538790.mp4.f40.mp4";
+    public static String videoSrc_ = "http://f04.v1.cn/transcode/14353624MOBILET2.mp4";
+    public static String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg";
+    public static String imgSrc_ = "http://img.mms.v1.cn/static/mms/images//201607201445331953.jpg";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,10 +59,6 @@ public class FragmentHomeSuggest extends Fragment {
         swipeRefreshLayout = getView().findViewById(R.id.header_home_suggest);
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
-        final String videoSrc = "http://f10.v1.cn/site/15538790.mp4.f40.mp4";
-        String videoSrc_ = "http://f04.v1.cn/transcode/14353624MOBILET2.mp4";
-        String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg";
-        String imgSrc_ = "http://img.mms.v1.cn/static/mms/images//201607201445331953.jpg";
 
         itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
         itemBeanList.add(HomeItemAdapter.adapt(DataUtils.getTopicReply()));
@@ -156,6 +153,14 @@ public class FragmentHomeSuggest extends Fragment {
             if (videoPlayer != null && videoPlayer.isInPlayingState()) {
                 videoPlayer.onVideoPause();
             }
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (videoPlayer != null && videoPlayer.isInPlayingState()) {
+            videoPlayer.onVideoPause();
         }
     }
 }
