@@ -49,7 +49,9 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
-
+    implementation 'jp.wasabeef:richeditor-android:1.2.2'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'org.jsoup:jsoup:1.11.3'
 
 
 

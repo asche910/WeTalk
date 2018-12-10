@@ -52,6 +52,8 @@
         <activity android:name=".activity.AgendaModifyActivity" />
         <activity android:name=".activity.DiscoverHappenPublishActivity" />
         <activity android:name=".activity.TopicInfoActivity" />
+        <activity android:name=".activity.ArticlePublishActivity" />
+        <activity android:name=".activity.ArticlePublishPreviewActivity" />
     </application>
 
 </manifest>

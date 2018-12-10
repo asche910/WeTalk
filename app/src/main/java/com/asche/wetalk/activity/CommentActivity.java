@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import jp.wasabeef.richeditor.RichEditor;
 
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.fragment.FragmentHomeSuggest.imgSrc;

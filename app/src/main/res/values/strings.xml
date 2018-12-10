@@ -12,6 +12,22 @@
     <string name="tab_discover_topic">话题</string>
     <string name="tab_discover_live">直播</string>
 
+    <array name="color_items">
+        <item>红</item>
+        <item>黄</item>
+        <item>蓝</item>
+        <item>绿</item>
+        <item>黑</item>
+    </array>
+    <array name="text_back_color_items">
+        <item>红</item>
+        <item>黄</item>
+        <item>蓝</item>
+        <item>绿</item>
+        <item>黑</item>
+        <item>透明</item>
+    </array>
+
     <string name="topic_reply">我朋友的故事，背景是她很黑。。。
 我们一起去英国Kaplan
 第一天去人生地不熟，两个人坐在角落抠脚（端着咖啡看五湖四海的人social）

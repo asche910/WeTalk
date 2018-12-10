@@ -15,6 +15,7 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.activity.AchievementActivity;
 import com.asche.wetalk.activity.AgendaActivity;
 import com.asche.wetalk.activity.ArticleActivity;
+import com.asche.wetalk.activity.ArticlePublishActivity;
 import com.asche.wetalk.activity.BookActivity;
 import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
@@ -38,6 +39,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class FragmentUser extends Fragment implements View.OnClickListener {
 
     private LinearLayout userInfoLayout;
@@ -46,12 +48,10 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     private ImageView imgSetting;
 
     private RecyclerView recyclerView;
-    LinearLayoutManager layoutManager;
     private UserToolRVAdapter userToolRVAdapter;
     private List<ImageTextBean> imageTextBeans = new ArrayList<>();
 
     private RecyclerView recyclerViewPanel;
-    LinearLayoutManager layoutManagerPanel;
     private UserToolRVAdapter userToolRVAdapterPanel;
     private List<ImageTextBean> imageTextBeansPanel = new ArrayList<>();
 
@@ -109,8 +109,9 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
             public void onItemClick(int position) {
                 switch (position) {
                     case 4:
-                        nextActivity(ClockInActivity.class);
-                        Toast.makeText(getActivity(), "签到", Toast.LENGTH_SHORT).show();
+                        nextActivity(ArticlePublishActivity.class);
+//                        nextActivity(ClockInActivity.class);
+//                        Toast.makeText(getActivity(), "签到", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         nextActivity(CollectActivity.class);

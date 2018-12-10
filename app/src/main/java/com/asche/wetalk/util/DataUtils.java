@@ -31,6 +31,7 @@ import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_IMAGE;
 import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_TEXT;
 import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_VIDEO;
+import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 import static com.zhihu.matisse.internal.utils.PathUtils.getDataColumn;
 import static com.zhihu.matisse.internal.utils.PathUtils.isDownloadsDocument;
 import static com.zhihu.matisse.internal.utils.PathUtils.isExternalStorageDocument;
@@ -219,6 +220,7 @@ public class DataUtils {
     // 待测试
     @SuppressLint("NewApi")
     public static String getPath(final Context context, final Uri uri) {
+        Log.e(TAG, "getPath: " + uri.toString() );
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
         // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
