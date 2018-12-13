@@ -54,6 +54,7 @@
         <activity android:name=".activity.TopicInfoActivity" />
         <activity android:name=".activity.ArticlePublishActivity" />
         <activity android:name=".activity.ArticlePublishPreviewActivity" />
+        <activity android:name=".activity.WorkActivity" />
     </application>
 
 </manifest>

@@ -26,6 +26,16 @@ public class StringUtils {
         return Integer.toString(n + 1);
     }
 
+    public static String addInteger(String value, int num){
+        int n = 0;
+        try {
+            n = Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return Integer.toString(n + num);
+    }
+
     /**
      * 返回n+1倍的字符串
      */

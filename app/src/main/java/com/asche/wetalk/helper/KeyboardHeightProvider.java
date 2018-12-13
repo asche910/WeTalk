@@ -12,8 +12,6 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
-import com.asche.wetalk.R;
-
 /**
  * The keyboard height provider, this class uses a PopupWindow
  * to calculate the window height when the floating keyboard is opened and closed.
@@ -61,11 +59,9 @@ public class KeyboardHeightProvider extends PopupWindow {
         parentView = activity.findViewById(android.R.id.content);
 
         setWidth(0);
-        // TODO ??
         setHeight(WindowManager.LayoutParams.MATCH_PARENT);
 
         popupView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-
             @Override
             public void onGlobalLayout() {
                 if (popupView != null) {

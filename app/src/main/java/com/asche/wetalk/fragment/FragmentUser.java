@@ -25,6 +25,7 @@ import com.asche.wetalk.activity.DraftActivity;
 import com.asche.wetalk.activity.SettingActivity;
 import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.activity.WalletActivity;
+import com.asche.wetalk.activity.WorkActivity;
 import com.asche.wetalk.adapter.UserToolRVAdapter;
 import com.asche.wetalk.bean.ImageTextBean;
 
@@ -88,7 +89,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_draft_color + "", "草稿"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_query_color + "", "咨询"));
-        imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_answer_color + "", "回答"));
+        imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_answer_color + "", "作品"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_comment_color + "", "评价管理"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_client_color + "", "客户"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_agendum_color + "", "待办事项"));
@@ -109,12 +110,12 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
             public void onItemClick(int position) {
                 switch (position) {
                     case 4:
-                        nextActivity(ArticlePublishActivity.class);
-//                        nextActivity(ClockInActivity.class);
-//                        Toast.makeText(getActivity(), "签到", Toast.LENGTH_SHORT).show();
+                        nextActivity(ClockInActivity.class);
+                        Toast.makeText(getActivity(), "签到", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        nextActivity(CollectActivity.class);
+                        nextActivity(ArticlePublishActivity.class);
+//                        nextActivity(CollectActivity.class);
                         Toast.makeText(getActivity(), "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
@@ -149,8 +150,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "评价管理", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        nextActivity(ArticleActivity.class);
-                        Toast.makeText(getActivity(), "回答", Toast.LENGTH_SHORT).show();
+                        nextActivity(WorkActivity.class);
+                        Toast.makeText(getActivity(), "作品", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         Toast.makeText(getActivity(), "咨询", Toast.LENGTH_SHORT).show();
