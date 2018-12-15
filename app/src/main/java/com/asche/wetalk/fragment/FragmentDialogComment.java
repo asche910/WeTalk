@@ -3,6 +3,7 @@ package com.asche.wetalk.fragment;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.asche.wetalk.MyApplication;
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.AtActivity;
 import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.adapter.CommentRVAdapter;
 import com.asche.wetalk.adapter.OnItemClickListener;
@@ -222,6 +224,7 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
                  commentRVAdapter.notifyItemRangeChanged(0, replyPosition);
                 break;
             case R.id.img_comment_reply_at:
+                startActivityForResult(new Intent(getContext(), AtActivity.class), 10);
                 break;
             case R.id.img_comment_reply_emoticon:
                 if (!isEmoticonPressed) {

@@ -1,17 +1,19 @@
 package com.asche.wetalk.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
-import com.asche.wetalk.fragment.FragmentHomeArticle;
-import com.asche.wetalk.fragment.FragmentHomeRanklist;
-import com.asche.wetalk.fragment.FragmentHomeRequirement;
-import com.asche.wetalk.fragment.FragmentHomeSuggest;
+import com.asche.wetalk.fragment.FragmentWorkArticle;
+import com.asche.wetalk.fragment.FragmentWorkRequirement;
+import com.asche.wetalk.fragment.FragmentWorkTopic;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -19,14 +21,20 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_ARTICLE;
+import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_REQUIREMENT;
+import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_TOPIC;
+
 public class WorkActivity extends BaseActivity implements View.OnClickListener{
 
     private LinearLayout layoutToolbar;
-    private ImageView imgBack;
+    private ImageView imgBack, imgMore;
     private TextView textTitle;
 
     private SmartTabLayout tabLayout;
     private ViewPager viewPager;
+
+    private FloatingActionButton fabRequirement, fabArticle, fabTopic;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,22 +43,31 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
 
         layoutToolbar = findViewById(R.id.layout_toolbar_universe);
         imgBack = findViewById(R.id.img_toolbar_back);
+        imgMore = findViewById(R.id.img_toolbar_more);
         textTitle = findViewById(R.id.text_toolbar_title);
         tabLayout = findViewById(R.id.tab_work);
         viewPager = findViewById(R.id.viewpager_work);
+        fabRequirement = findViewById(R.id.fab_requirement);
+        fabArticle = findViewById(R.id.fab_article);
+        fabTopic = findViewById(R.id.fab_topic);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
         }
         textTitle.setText("我的作品");
+        imgMore.setImageResource(R.drawable.ic_draft);
         imgBack.setOnClickListener(this);
+        imgMore.setOnClickListener(this);
+        fabRequirement.setOnClickListener(this);
+        fabArticle.setOnClickListener(this);
+        fabTopic.setOnClickListener(this);
 
         FragmentPagerItemAdapter fragmentPagerItemAdapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(getApplicationContext())
-                .add(R.string.tab_home_suggest, FragmentHomeSuggest.class)
-                .add(R.string.tab_home_requirement, FragmentHomeRequirement.class)
-                .add(R.string.tab_home_article, FragmentHomeArticle.class)
-                .add(R.string.tab_home_ranklist, FragmentHomeRanklist.class)
+                .add("需求", FragmentWorkRequirement.class)
+                .add("文章", FragmentWorkArticle.class)
+                .add("话题", FragmentWorkTopic.class)
                 .create());
 
         viewPager.setAdapter(fragmentPagerItemAdapter);
@@ -61,9 +78,27 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.fab_topic:
+                nextActivity(TopicReplyActivity.class, TYPE_TOPIC);
+                break;
+            case R.id.fab_article:
+                nextActivity(ArticlePublishActivity.class, TYPE_ARTICLE);
+                break;
+            case R.id.fab_requirement:
+                nextActivity(ArticlePublishActivity.class, TYPE_REQUIREMENT);
+                break;
+            case R.id.img_toolbar_more:
+                startActivity(new Intent(this, DraftActivity.class));
+                break;
             case R.id.img_toolbar_back:
                 finish();
                 break;
         }
+    }
+
+    private void nextActivity(Class<?> cls, int type){
+        Intent intent = new Intent(this, cls);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 }

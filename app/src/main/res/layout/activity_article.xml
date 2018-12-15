@@ -7,153 +7,159 @@
 
     <include layout="@layout/toolbar_article"/>
 
-    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
-        android:id="@+id/header_article"
+    <ezy.ui.layout.LoadingLayout
+        android:id="@+id/loading_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="74dp">
+        android:layout_marginTop="74dp"
+        >
 
-        <com.asche.wetalk.helper.MyScrollViewScroll
-            android:id="@+id/scroll_user_home"
+        <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+            android:id="@+id/header_article"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
-            <LinearLayout
+            <com.asche.wetalk.helper.MyScrollViewScroll
+                android:id="@+id/scroll_user_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/text_article_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="Hello, World!"
-                    android:textColor="#000"
-                    android:textSize="20sp" />
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
+                    android:orientation="vertical">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/img_article_author"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                    <TextView
+                        android:id="@+id/text_article_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/img_avatar" />
+                        android:layout_marginBottom="15dp"
+                        android:text="Hello, World!"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
 
-                        <TextView
-                            android:id="@+id/text_article_author_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="Asche"
-                            android:textColor="#222"
-                            android:textSize="16sp" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_article_author"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/img_avatar" />
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/text_article_author_signature"
+                                android:id="@+id/text_article_author_name"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical"
-                                android:text="IT专业的一只菜鸟"
-                                android:textSize="14sp" />
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:text="Asche"
+                                android:textColor="#222"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/text_article_author_signature"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:text="IT专业的一只菜鸟"
+                                    android:textSize="14sp" />
 
 
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/img_follow"
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_follow_color"
+                            android:background="?selectableItemBackgroundBorderless"
+                            />
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btn_follow"
-                        android:layout_width="60dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:text="关注"
-                        android:textColor="@color/white"
-                        android:background="@drawable/bg_btn_green"/>
-                </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#eee" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#eee" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_article"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#44cccccc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="-- 热门评论 --"
+                        android:textColor="#444"
+                        android:textSize="18sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_article"
+                        android:id="@+id/recycler_article_comment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
 
+                    <TextView
+                        android:id="@+id/text_article_morecomment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="end"
+                        android:text="查看全部评论"
+                        android:textColor="#555" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#44cccccc" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="40dp"
+                        android:gravity="center"
+                        android:text="--- 到底啦！---"
+                        android:background="#44cccccc" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="-- 热门评论 --"
-                    android:textColor="#444"
-                    android:textSize="18sp"/>
+            </com.asche.wetalk.helper.MyScrollViewScroll>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_article_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:id="@+id/text_article_morecomment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="end"
-                    android:text="查看全部评论"
-                    android:textColor="#555"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="40dp"
-                    android:gravity="center"
-                    android:text="--- 到底啦！---"
-                    android:background="#44cccccc" />
-            </LinearLayout>
-
-        </com.asche.wetalk.helper.MyScrollViewScroll>
-
-    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+        </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+    </ezy.ui.layout.LoadingLayout>
 
 
     <View
@@ -252,7 +258,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

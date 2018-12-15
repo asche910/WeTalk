@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.BodyContentRVAdapter;
 import com.asche.wetalk.adapter.CommentRVAdapter;
@@ -20,6 +22,8 @@ import com.asche.wetalk.adapter.OnItemMoreClickListener;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.fragment.FragmentDialogComment;
+import com.asche.wetalk.service.AudioUtils;
+import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
@@ -28,6 +32,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
@@ -46,6 +51,8 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private TextView textTitle, textAllReply;
+    private ImageView imgFollow;
+    private boolean isFollow;
 
 
     private RecyclerView recyclerView;
@@ -80,7 +87,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         swipeRefreshLayout = findViewById(R.id.header_topic);
         textTitle = findViewById(R.id.text_topic_title);
         textAllReply = findViewById(R.id.text_topic_allreply);
-//        btnFollow = findViewById(R.id.btn_follow);
+        imgFollow = findViewById(R.id.img_follow);
         recyclerView = findViewById(R.id.recycler_topic);
         recyclerComment = findViewById(R.id.recycler_topic_comment);
         textMoreComment = findViewById(R.id.text_topic_morecomment);
@@ -121,6 +128,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
         textTitle.setOnClickListener(this);
         textAllReply.setOnClickListener(this);
+        imgFollow.setOnClickListener(this);
         textMoreComment.setOnClickListener(this);
         layoutLike.setOnClickListener(this);
         layoutComment.setOnClickListener(this);
@@ -163,6 +171,26 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_follow:
+                if (!isFollow) {
+                    Toast.makeText(this, "关注成功！", Toast.LENGTH_SHORT).show();
+                    imgFollow.setImageResource(R.drawable.ic_follow_light);
+                    isFollow = true;
+                }else {
+                    new MaterialDialog.Builder(this)
+                            .content("您确定不再关注此用户吗？")
+                            .positiveText("确定")
+                            .negativeText("取消")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    imgFollow.setImageResource(R.drawable.ic_follow_color);
+                                    isFollow = false;
+                                }
+                            })
+                            .show();
+                }
+                break;
             case R.id.text_topic_title:
             case R.id.text_topic_allreply:
                 Intent intent = new Intent(this, TopicInfoActivity.class);
@@ -177,7 +205,11 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
                 break;
             case R.id.layout_item_main_like:
                 imgLike.setImageResource(R.drawable.ic_like_pressed);
+                imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_like));
                 textLikeNum.setText(StringUtils.addOne(textLikeNum.getText().toString()));
+
+                VibrateUtils.vibrateLike();
+                AudioUtils.playLike();
                 break;
         }
     }

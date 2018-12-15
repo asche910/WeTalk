@@ -20,6 +20,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
+import com.asche.wetalk.bean.ArticleBean;
+import com.asche.wetalk.bean.DraftItemBean;
+import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
@@ -32,6 +35,8 @@ import jp.wasabeef.richeditor.RichEditor;
 
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
+import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_REQUIREMENT;
+import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_TOPIC;
 
 @SuppressWarnings("DanglingJavadoc")
 public class ArticlePublishActivity extends BaseActivity implements KeyboardHeightObserver {
@@ -42,6 +47,13 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
     private EditText editTitle;
     private RichEditor mEditor;
     private HorizontalScrollView layoutBottom;
+
+
+
+    private ArticleBean articleBean;
+    private RequirementBean requirementBean;
+    private DraftItemBean draftItemBean;
+    private int type = 0; // 文章、需求、话题回复
 
     // 插入链接对话框的EditText
     EditText editLink = null, editText = null;
@@ -99,6 +111,45 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
         mEditor.setPlaceholder("Insert text here...");
         //设置编辑器是否可用
         mEditor.setInputEnabled(true);
+
+
+        Intent intent = getIntent();
+        if (intent != null){
+            // 必传
+            type = intent.getIntExtra("type", 0);
+            boolean isOld = intent.hasExtra("object");
+
+            if (type == TYPE_REQUIREMENT) {
+                textTitle.setText("编辑需求");
+            }else if (type == TYPE_TOPIC){
+                textTitle.setText("话题回复");
+            }
+
+            if (isOld){
+                draftItemBean = (DraftItemBean) intent.getSerializableExtra("object");
+                if (type != TYPE_TOPIC) {
+                    editTitle.setText(draftItemBean.getTitle());
+                }else {
+                    editTitle.setEnabled(false);
+                    editTitle.setHint("回答：#" + draftItemBean.getTitle());
+                }
+                mEditor.setHtml(draftItemBean.getContent());
+            }
+        }
+
+        keyboardHeightProvider = new KeyboardHeightProvider(this, R.layout.activity_article_publish);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                keyboardHeightProvider.start();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         /**
          * 撤销当前标签状态下所有内容
@@ -446,21 +497,16 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
         findViewById(R.id.tv_showhtml).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (StringUtils.isEmpty(mEditor.getHtml())){
+                    Toast.makeText(ArticlePublishActivity.this, "再写点内容吧！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(v.getContext(), ArticlePublishPreviewActivity.class);
                 intent.putExtra("contextURL", mEditor.getHtml());
                 startActivity(intent);
             }
         });
-
-        keyboardHeightProvider = new KeyboardHeightProvider(this, R.layout.activity_article_publish);
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                keyboardHeightProvider.start();
-            }
-        });
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

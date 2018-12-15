@@ -18,6 +18,8 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
+import com.asche.wetalk.service.AudioUtils;
+import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -201,8 +203,11 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
                 @Override
                 public void onClick(View v) {
                     textHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    textHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     textHolder.textLike.setText(StringUtils.addOne(textHolder.textLike.getText().toString()));
 
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
 
@@ -262,7 +267,11 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
                 @Override
                 public void onClick(View v) {
                     imgHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    imgHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     imgHolder.textLike.setText(StringUtils.addOne(imgHolder.textLike.getText().toString()));
+
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
 
@@ -335,7 +344,11 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
                 @Override
                 public void onClick(View v) {
                     videoHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    videoHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     videoHolder.textLike.setText(StringUtils.addOne(videoHolder.textLike.getText().toString()));
+
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
 

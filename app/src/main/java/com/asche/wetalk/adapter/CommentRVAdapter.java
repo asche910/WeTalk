@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.fragment.FragmentDialogCommentDetail;
+import com.asche.wetalk.service.AudioUtils;
+import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
@@ -120,8 +122,11 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     normalHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    normalHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     normalHolder.textLikeNum.setText(StringUtils.addOne(normalHolder.textLikeNum.getText().toString()));
 
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
 

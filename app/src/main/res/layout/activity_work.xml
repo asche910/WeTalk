@@ -1,63 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar_universe" />
-
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.truly.mytoolbar.MainActivity">
+        android:orientation="vertical"
+        >
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <include layout="@layout/toolbar_universe" />
 
-            <com.ogaclejapan.smarttablayout.SmartTabLayout
-                android:id="@+id/tab_work"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/darkGreenLight"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:stl_clickable="true"
-                app:stl_defaultTabBackground="?attr/selectableItemBackground"
-                app:stl_defaultTabTextAllCaps="true"
-                app:stl_defaultTabTextColor="#fcedecec"
-                app:stl_defaultTabTextHorizontalPadding="16dp"
-                app:stl_defaultTabTextMinWidth="0dp"
-                app:stl_defaultTabTextSize="15sp"
-                app:stl_distributeEvenly="true"
-                app:stl_dividerColor="#4D000000"
-                app:stl_dividerThickness="0dp"
-                app:stl_drawDecorationAfterTab="false"
-                app:stl_indicatorAlwaysInCenter="false"
-                app:stl_indicatorColor="#cccccc"
-                app:stl_indicatorCornerRadius="2dp"
-                app:stl_indicatorGravity="bottom"
-                app:stl_indicatorInFront="false"
-                app:stl_indicatorInterpolation="smart"
-                app:stl_indicatorThickness="4dp"
-                app:stl_indicatorWidth="auto"
-                app:stl_indicatorWithoutPadding="false"
-                app:stl_titleOffset="24dp"
-                app:stl_underlineColor="#4D000000"
-                app:stl_underlineThickness="0dp" />
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager_work"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            tools:context="com.truly.mytoolbar.MainActivity">
 
-</LinearLayout>
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.ogaclejapan.smarttablayout.SmartTabLayout
+                    android:id="@+id/tab_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/darkGreenLight"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:stl_clickable="true"
+                    app:stl_defaultTabBackground="?attr/selectableItemBackground"
+                    app:stl_defaultTabTextAllCaps="true"
+                    app:stl_defaultTabTextColor="#fcedecec"
+                    app:stl_defaultTabTextHorizontalPadding="16dp"
+                    app:stl_defaultTabTextMinWidth="0dp"
+                    app:stl_defaultTabTextSize="15sp"
+                    app:stl_distributeEvenly="true"
+                    app:stl_dividerColor="#4D000000"
+                    app:stl_dividerThickness="0dp"
+                    app:stl_drawDecorationAfterTab="false"
+                    app:stl_indicatorAlwaysInCenter="false"
+                    app:stl_indicatorColor="#cccccc"
+                    app:stl_indicatorCornerRadius="2dp"
+                    app:stl_indicatorGravity="bottom"
+                    app:stl_indicatorInFront="false"
+                    app:stl_indicatorInterpolation="smart"
+                    app:stl_indicatorThickness="4dp"
+                    app:stl_indicatorWidth="auto"
+                    app:stl_indicatorWithoutPadding="false"
+                    app:stl_titleOffset="24dp"
+                    app:stl_underlineColor="#4D000000"
+                    app:stl_underlineThickness="0dp" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_work"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/btn_work_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:fab_addButtonColorNormal="@android:color/holo_green_light"
+        app:fab_addButtonColorPressed="@android:color/holo_green_dark"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_requirement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#03c6bc"
+            app:fab_colorPressed="#1ca378"
+            app:fab_icon="@drawable/ic_requirement"
+            app:fab_size="mini"
+            app:fab_title="发布需求" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_article"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@android:color/holo_purple"
+            app:fab_colorPressed="#9f10ac"
+            app:fab_icon="@drawable/ic_article"
+            app:fab_size="mini"
+            app:fab_title="发表文章" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@android:color/holo_orange_light"
+            app:fab_colorPressed="@android:color/holo_orange_dark"
+            app:fab_icon="@drawable/ic_topic"
+            app:fab_size="mini"
+            app:fab_title="回答问题" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</RelativeLayout>

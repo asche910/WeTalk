@@ -23,9 +23,12 @@ import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.other.MyScrollView;
+import com.asche.wetalk.service.AudioUtils;
+import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
+import com.google.android.material.animation.AnimationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.List;
@@ -203,8 +206,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
                     textHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    textHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     textHolder.textLike.setText(StringUtils.addOne(textHolder.textLike.getText().toString()));
 
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
             textHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
@@ -271,7 +277,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
                     imgHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    imgHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     imgHolder.textLike.setText(StringUtils.addOne(imgHolder.textLike.getText().toString()));
+
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
             imgHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
@@ -348,7 +358,10 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
                     videoHolder.imgLike.setImageResource(R.drawable.ic_like_pressed);
+                    videoHolder.imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
                     videoHolder.textLike.setText(StringUtils.addOne(videoHolder.textLike.getText().toString()));
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             });
             videoHolder.layoutComment.setOnClickListener(new View.OnClickListener() {
