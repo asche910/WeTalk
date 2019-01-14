@@ -30,7 +30,7 @@
 </div><p>▼</p><p>打扰了，高二vs大二</p><div class="image-package">
 <div class="image-container" style="max-width: 700px; max-height: 628px; background-color: transparent;">
 <div class="image-container-fill" style="padding-bottom: 89.79%;"></div>
-<div class="image-view" data-width="960" data-height="862"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a" data-original-width="960" data-original-height="862" data-original-format="image/jpeg" data-original-filesize="72148" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"></div>
+<div class="image-view" data-width="960" data-height="862"><img data-original-src="http://upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a" data-original-width="960" data-original-height="862" data-original-format="image/jpeg" data-original-filesize="72148" class="" style="cursor: zoom-in;" src="http://upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"></div>
 </div>
 <div class="image-caption"></div>
 </div><p>▼</p><p>图一图二是高二</p><p>图三图四是大二</p><div class="image-package">

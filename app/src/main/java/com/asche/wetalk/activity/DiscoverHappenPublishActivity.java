@@ -275,7 +275,11 @@ public class DiscoverHappenPublishActivity extends BaseActivity implements View.
         fragmentEmoticon.setEditText(editText);
         transaction.add(R.id.frame_emoticon, fragmentEmoticon, "emoticon");
         transaction.commit();
-        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+        View curView = this.getCurrentFocus();
+        if (curView == null)
+            return;
+        inputMethodManager.hideSoftInputFromWindow(curView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void emoticonfalling() {

@@ -16,6 +16,7 @@ import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 
 import java.util.List;
 
