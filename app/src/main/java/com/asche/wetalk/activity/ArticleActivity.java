@@ -172,6 +172,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         recyclerComment.setAdapter(commentRVAdapter);
 
 
+        imgFollow.setOnClickListener(this);
         textMoreComment.setOnClickListener(this);
         layoutLike.setOnClickListener(this);
         layoutComment.setOnClickListener(this);

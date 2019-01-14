@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.HappenItemBean;
+import com.asche.wetalk.service.AudioUtils;
+import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
+import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -67,6 +70,10 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     holder.btnLike.setBackground(context.getDrawable(R.drawable.ic_item_like_press));
+                    holder.btnLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
+
+                    VibrateUtils.vibrateLike();
+                    AudioUtils.playLike();
                 }
             }
         });
