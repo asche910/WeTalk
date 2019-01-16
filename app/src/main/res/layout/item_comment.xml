@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,9 +72,6 @@
                     android:textSize="14sp"
                     android:textColor="#444"
                     android:background="@drawable/bg_item_comment"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
                     />
 
             </LinearLayout>

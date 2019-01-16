@@ -14,6 +14,8 @@ import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 public class BodyContentUtil {
 
+    private static String playUrl;
+
     /**
      *  图片格式 <img src="..." />
      *  视频格式 <video src="..." cover-src="..." /> 封面可选;
@@ -42,11 +44,27 @@ public class BodyContentUtil {
             }else {
                 Matcher mat = Pattern.compile("src=\"(.+?)\".*cover-src=\"(.+?)\"").matcher(content);
                 while (mat.find()){
-                    String url = mat.group(1);
+                    playUrl = mat.group(1);
                     String coverUrl = mat.group(2);
-                    Log.e(TAG, "parseHtml: ------> " + url  + "-----> " + coverUrl);
+                    Log.e(TAG, "parseHtml: ------> " + playUrl  + "  ----->  " + coverUrl);
 
-                    tempList.add(new BodyContentBean(2, null, handleUrl(coverUrl), handleUrl(url)));
+                    if (playUrl.contains("zhihu")){
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                playUrl = ZhihuUtils.getVideoSrc(playUrl);
+                            }
+                        });
+
+                        thread.start();
+                        try {
+                            thread.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    tempList.add(new BodyContentBean(2, null, handleUrl(coverUrl), handleUrl(playUrl)));
                     break;
                 }
             }

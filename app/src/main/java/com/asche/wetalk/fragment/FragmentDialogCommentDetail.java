@@ -1,20 +1,16 @@
 package com.asche.wetalk.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -46,16 +42,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import cc.shinichi.sherlockutillibrary.utility.ui.ToastUtil;
 
 import static com.asche.wetalk.activity.ChatActivity.inputMethodManager;
 import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
 import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_COMMENT;
-import static com.asche.wetalk.adapter.CommentRVAdapter.TYPE_NORMAL;
 import static com.asche.wetalk.adapter.CommentRVAdapter.TYPE_SIMPLE;
 import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 import static com.asche.wetalk.util.TimeUtils.getCurrentTime;
-import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 
 public class FragmentDialogCommentDetail extends BaseDialogFragment implements View.OnClickListener, KeyboardHeightObserver {
@@ -225,6 +218,10 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
                 Toast.makeText(getContext(), "评论成功！", Toast.LENGTH_SHORT).show();
                 editText.setText("");
                 editText.clearFocus();
+
+                View curView = getDialog().getCurrentFocus();
+                if (curView == null)
+                    break;
                 inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 subAdapter.notifyItemRangeChanged(0, subList.size() - 1);
 

@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.CommentItemBean;
@@ -118,6 +120,14 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
                 }
             });
 
+
+            normalHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Item Menu!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             normalHolder.imgLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -184,7 +194,6 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
             simpleHolder.textContent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e(TAG, "onClick: " + (onItemMoreClickListener == null));
                     onItemMoreClickListener.onItemMoreClick(position, clickType);
                 }
             });
@@ -227,7 +236,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
     }
 
     public class NormalHolder extends RecyclerView.ViewHolder {
-        private ImageView imgAvatar, imgLike, imgComment;
+        private ImageView imgAvatar, imgLike, imgComment, imgMore;
         private TextView textName, textContent, textTime, textLikeNum, textMore;
         private RecyclerView recyclerViewSub;
 
@@ -236,6 +245,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
             imgAvatar = itemView.findViewById(R.id.img_item_comment_avatar);
             imgLike = itemView.findViewById(R.id.img_item_comment_like);
             imgComment = itemView.findViewById(R.id.img_item_comment_comment);
+            imgMore = itemView.findViewById(R.id.img_item_comment_more);
             textContent = itemView.findViewById(R.id.text_item_comment_content);
             textName = itemView.findViewById(R.id.text_item_comment_name);
             textTime = itemView.findViewById(R.id.text_item_comment_time);

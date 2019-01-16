@@ -186,7 +186,9 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
 
                 // 先关闭输入法，以防影响后面recyclerview的滑动
                 editText.clearFocus();
-                inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                View curView = getDialog().getCurrentFocus();
+                if (curView != null)
+                    inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 UserBean user = BaseActivity.getCurUser();
                 CommentItemBean newBean = new CommentItemBean(user.getImgAvatar(), user.getUserName(), inputStr);
@@ -301,6 +303,9 @@ public class FragmentDialogComment extends BaseDialogFragment implements Keyboar
         transaction.add(R.id.frame_emoticon, fragmentEmoticon, "emoticon");
         transaction.commit();
 
+        View curView = getDialog().getCurrentFocus();
+        if (curView == null)
+            return;
         inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 

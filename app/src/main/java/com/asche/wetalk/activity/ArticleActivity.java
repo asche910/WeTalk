@@ -16,16 +16,21 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.BodyContentRVAdapter;
 import com.asche.wetalk.adapter.CommentRVAdapter;
 import com.asche.wetalk.adapter.OnItemMoreClickListener;
+import com.asche.wetalk.adapter.TopicChipRVAdapter;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.TechTags;
 import com.asche.wetalk.fragment.FragmentDialogComment;
+import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
+import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
+import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -39,24 +44,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import ezy.ui.layout.LoadingLayout;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
+import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_BOTTOM;
 import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
 public class ArticleActivity extends BaseActivity implements View.OnClickListener {
 
     // <editor-fold desc="属性变量">
+
+    // toolbar
+    private ImageView imgBack, imgMore;
+    private TextView toolbarTitle;
+
     private WaveSwipeRefreshLayout swipeRefreshLayout;
+
+
+    private RecyclerView recyclerTags;
 
     private TextView textTitle, textAuthorName, textAuthorSignature, textAuthorFollowNum;
     private ImageView imgAuthorAvatar, imgFollow;
     private boolean isFollow;
 
+    // 文章内容
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private BodyContentRVAdapter bodyContentRVAdapter;
     public List<BodyContentBean> bodyContentBeanList = new ArrayList<>();
 
 
+    // 文章评论
     private RecyclerView recyclerComment;
     private LinearLayoutManager layoutManagerComment;
     private CommentRVAdapter commentRVAdapter;
@@ -106,6 +122,13 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             }
         }).start();
 
+
+        imgBack = findViewById(R.id.img_toolbar_back);
+        imgMore = findViewById(R.id.img_toolbar_more);
+        toolbarTitle = findViewById(R.id.text_toolbar_title);
+
+        recyclerTags = findViewById(R.id.recycler_article_tags);
+
         swipeRefreshLayout = findViewById(R.id.header_article);
         recyclerView = findViewById(R.id.recycler_article);
         recyclerComment = findViewById(R.id.recycler_article_comment);
@@ -145,6 +168,22 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         } else {
             bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getArticleStr());
         }
+
+        toolbarTitle.setText("文章");
+        imgBack.setOnClickListener(this);
+        imgMore.setOnClickListener(this);
+
+
+        ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(getApplicationContext())
+                .setScrollingEnabled(false)
+                .setRowStrategy(ChipsLayoutManager.STRATEGY_CENTER)
+                .withLastRow(true)
+                .build();
+        recyclerTags.setLayoutManager(chipsLayoutManager);
+
+        TopicChipRVAdapter tagsRVAdapter = new TopicChipRVAdapter(TechTags.getTagsList().subList(0, 1));
+        recyclerTags.addItemDecoration(new SpacingItemDecoration(MyScrollView.dip2px(getContext(), 4), MyScrollView.dip2px(getContext(), 6)));
+        recyclerTags.setAdapter(tagsRVAdapter);
 
         bodyContentRVAdapter = new BodyContentRVAdapter(bodyContentBeanList);
         layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
@@ -248,6 +287,12 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
                 VibrateUtils.vibrateLike();
                 AudioUtils.playLike();
+                break;
+            case R.id.img_toolbar_more:
+                Toast.makeText(this, "More Clicked!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.img_toolbar_back:
+                finish();
                 break;
         }
     }

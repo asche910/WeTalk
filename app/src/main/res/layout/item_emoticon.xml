@@ -12,6 +12,7 @@
         android:layout_margin="6dp"
         android:focusable="true"
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"/>
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
 </LinearLayout>

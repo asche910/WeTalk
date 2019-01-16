@@ -10,7 +10,7 @@
     <!-- 发现页标签 -->
     <string name="tab_discover_happen">动态</string>
     <string name="tab_discover_topic">话题</string>
-    <string name="tab_discover_live">直播</string>
+    <string name="tab_discover_course">课程</string>
 
     <array name="color_items">
         <item>红</item>

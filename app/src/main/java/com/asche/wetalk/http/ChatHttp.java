@@ -20,10 +20,14 @@ import okhttp3.Response;
 
 import static com.asche.wetalk.activity.ChatActivity.chatItemBeanList;
 
+/**
+ * 图灵机器人请求工具类
+ */
 public class ChatHttp extends AsyncTask<Void, Void, String> {
 
     final String url = "http://openapi.tuling123.com/openapi/api/v2";
 
+    // 用户消息
     private String text;
 
     private HttpCallBack httpCallBack;
@@ -99,7 +103,7 @@ public class ChatHttp extends AsyncTask<Void, Void, String> {
 
             httpCallBack.callBack("update");
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

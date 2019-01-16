@@ -12,14 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
-public class FragmentDiscoverLive extends Fragment {
+public class FragmentDiscoverCourse extends Fragment {
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_discover_live, container, false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_discover_course, container, false);
         return view;
     }
 

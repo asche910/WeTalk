@@ -48,6 +48,9 @@ import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
  */
 public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
+    private ImageView imgBack, imgMore;
+    private TextView toolbarTitle;
+
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
     private TextView textTitle, textAllReply;
@@ -84,6 +87,9 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
             openComment();
         }
 
+        imgBack = findViewById(R.id.img_toolbar_back);
+        imgMore = findViewById(R.id.img_toolbar_more);
+        toolbarTitle = findViewById(R.id.text_toolbar_title);
         swipeRefreshLayout = findViewById(R.id.header_topic);
         textTitle = findViewById(R.id.text_topic_title);
         textAllReply = findViewById(R.id.text_topic_allreply);
@@ -99,7 +105,10 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         textCommentNum = findViewById(R.id.text_item_main_commentnum);
 
 
-        bodyContentBeanList = BodyContentUtil.parseHtml(getResources().getString(R.string.topic_reply));
+        toolbarTitle.setText("话题");
+
+        bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.topic_2));
+//        bodyContentBeanList = BodyContentUtil.parseHtml(getResources().getString(R.string.topic_reply));
         layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         bodyContentRVAdapter = new BodyContentRVAdapter(bodyContentBeanList);
         recyclerView.setLayoutManager(layoutManager);
@@ -125,7 +134,8 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         recyclerComment.setLayoutManager(layoutManagerComment);
         recyclerComment.setAdapter(commentRVAdapter);
 
-
+        imgBack.setOnClickListener(this);
+        imgMore.setOnClickListener(this);
         textTitle.setOnClickListener(this);
         textAllReply.setOnClickListener(this);
         imgFollow.setOnClickListener(this);
@@ -210,6 +220,12 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
                 VibrateUtils.vibrateLike();
                 AudioUtils.playLike();
+                break;
+            case R.id.img_toolbar_more:
+                Toast.makeText(this, "More Clicked!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.img_toolbar_back:
+                finish();
                 break;
         }
     }

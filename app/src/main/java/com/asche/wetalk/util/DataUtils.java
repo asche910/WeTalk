@@ -63,7 +63,7 @@ public class DataUtils {
 
 
     public static String getArticleStr(){
-        return getContent(R.raw.article_1);
+        return getContent(R.raw.article_2);
     }
 
     public static TopicReplyBean getTopicReply(){
@@ -195,7 +195,7 @@ public class DataUtils {
         }
     }
 
-    private static String getContent(Integer resourceId){
+    public static String getContent(Integer resourceId){
         // Uri uri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.article_2);
         try {
             StringBuilder stringBuilder = new StringBuilder();

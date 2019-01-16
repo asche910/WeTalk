@@ -21,46 +21,63 @@
                 android:layout_height="133dp"
                 android:background="@color/blueLight" />
 
+            <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="87dp"
+                tools:context="com.truly.mytoolbar.MainActivity">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.ogaclejapan.smarttablayout.SmartTabLayout
+                        android:id="@+id/tab_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:stl_clickable="true"
+                        app:stl_defaultTabBackground="?attr/selectableItemBackground"
+                        app:stl_defaultTabTextAllCaps="true"
+                        app:stl_defaultTabTextColor="#fcedecec"
+                        app:stl_defaultTabTextHorizontalPadding="16dp"
+                        app:stl_defaultTabTextMinWidth="0dp"
+                        app:stl_defaultTabTextSize="15sp"
+                        app:stl_distributeEvenly="true"
+                        app:stl_dividerColor="#4D000000"
+                        app:stl_dividerThickness="0dp"
+                        app:stl_drawDecorationAfterTab="false"
+                        app:stl_indicatorAlwaysInCenter="false"
+                        app:stl_indicatorColor="#40C4FF"
+                        app:stl_indicatorCornerRadius="2dp"
+                        app:stl_indicatorGravity="bottom"
+                        app:stl_indicatorInFront="false"
+                        app:stl_indicatorInterpolation="smart"
+                        app:stl_indicatorThickness="4dp"
+                        app:stl_indicatorWidth="auto"
+                        app:stl_indicatorWithoutPadding="false"
+                        app:stl_titleOffset="24dp"
+                        app:stl_underlineColor="#4D000000"
+                        app:stl_underlineThickness="0dp" />
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fillViewport="true"
                 android:orientation="vertical">
 
-                <com.ogaclejapan.smarttablayout.SmartTabLayout
-                    android:id="@+id/tab_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="84dp"
-                    app:stl_clickable="true"
-                    app:stl_defaultTabBackground="?attr/selectableItemBackground"
-                    app:stl_defaultTabTextAllCaps="true"
-                    app:stl_defaultTabTextColor="#fcedecec"
-                    app:stl_defaultTabTextHorizontalPadding="16dp"
-                    app:stl_defaultTabTextMinWidth="0dp"
-                    app:stl_defaultTabTextSize="15sp"
-                    app:stl_distributeEvenly="true"
-                    app:stl_dividerColor="#4D000000"
-                    app:stl_dividerThickness="0dp"
-                    app:stl_drawDecorationAfterTab="false"
-                    app:stl_indicatorAlwaysInCenter="false"
-                    app:stl_indicatorColor="#40C4FF"
-                    app:stl_indicatorCornerRadius="2dp"
-                    app:stl_indicatorGravity="bottom"
-                    app:stl_indicatorInFront="false"
-                    app:stl_indicatorInterpolation="smart"
-                    app:stl_indicatorThickness="4dp"
-                    app:stl_indicatorWidth="auto"
-                    app:stl_indicatorWithoutPadding="false"
-                    app:stl_titleOffset="24dp"
-                    app:stl_underlineColor="#4D000000"
-                    app:stl_underlineThickness="0dp" />
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewpager_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
             </LinearLayout>
 
             <com.arlib.floatingsearchview.FloatingSearchView
@@ -72,7 +89,7 @@
                 app:floatingSearch_menu="@menu/menu_main"
                 app:floatingSearch_searchBarMarginLeft="6dp"
                 app:floatingSearch_searchBarMarginRight="6dp"
-                app:floatingSearch_searchBarMarginTop="30dp"
+                app:floatingSearch_searchBarMarginTop="28dp"
                 app:floatingSearch_searchHint="Search..."
                 app:floatingSearch_showSearchKey="false"
                 app:floatingSearch_suggestionsListAnimDuration="250" />

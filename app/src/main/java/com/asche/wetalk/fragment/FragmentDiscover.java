@@ -37,7 +37,7 @@ public class FragmentDiscover extends Fragment {
                 getChildFragmentManager(), FragmentPagerItems.with(getActivity())
                 .add(R.string.tab_discover_happen, FragmentDiscoverHappen.class)
                 .add(R.string.tab_discover_topic, FragmentDiscoverTopic.class)
-                .add(R.string.tab_discover_live, FragmentDiscoverLive.class)
+                .add(R.string.tab_discover_course, FragmentDiscoverCourse.class)
                 .create());
 
         viewPagerDiscover.setAdapter(pagerItemAdapter);

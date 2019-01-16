@@ -329,7 +329,9 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
         transaction.add(R.id.frame_chat, fragmentEmoticon, "emoticon");
         transaction.commit();
 
-        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        View curView = this.getCurrentFocus();
+        if (curView != null)
+            inputMethodManager.hideSoftInputFromWindow(curView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         if (isPanelPressed){
             panelFalling();
             isPanelPressed = false;
@@ -358,7 +360,9 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
         }
         transaction.commit();
 
-        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        View curView = this.getCurrentFocus();
+        if (curView != null)
+            inputMethodManager.hideSoftInputFromWindow(curView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void panelFalling(){
