@@ -56,6 +56,12 @@
                 android:layout_weight="1"
                 android:text="回答:7869" />
 
+            <TextView
+                android:id="@+id/text_topic_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="2019-01-15 10:24" />
 
         </LinearLayout>
     </LinearLayout>

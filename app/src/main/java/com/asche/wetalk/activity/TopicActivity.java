@@ -107,7 +107,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
         toolbarTitle.setText("话题");
 
-        bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.topic_2));
+        bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.topic_1));
 //        bodyContentBeanList = BodyContentUtil.parseHtml(getResources().getString(R.string.topic_reply));
         layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         bodyContentRVAdapter = new BodyContentRVAdapter(bodyContentBeanList);

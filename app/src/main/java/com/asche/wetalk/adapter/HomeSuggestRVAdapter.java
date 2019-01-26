@@ -20,15 +20,16 @@ import android.widget.Toast;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ArticleActivity;
 import com.asche.wetalk.activity.TopicActivity;
+import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
+import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
-import com.google.android.material.animation.AnimationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     public static final int TYPE_IMAGE = 1;
     public static final int TYPE_VIDEO = 2;
 
-    private List<ItemBean> list;
+    private List<HomeItem> list;
     private Context context;
 
     // 是否开启背景圆角和悬浮效果
@@ -59,7 +60,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     // 此处用作comment的点击事件
     private OnItemClickListener onItemClickListener;
 
-    public HomeSuggestRVAdapter(List<ItemBean> list) {
+    public HomeSuggestRVAdapter(List<HomeItem> list) {
         this.list = list;
     }
 
@@ -140,7 +141,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     @Override
     public int getItemViewType(int position) {
-        ItemBean itemBean = list.get(position);
+        ItemBean itemBean = HomeItemAdapter.adapt(list.get(position));
         if (itemBean.getBodyType() == TYPE_TEXT) {
             return TYPE_TEXT;
         } else if (itemBean.getBodyType() == TYPE_IMAGE) {
@@ -176,7 +177,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         Log.e(TAG, "onBindViewHolder: " + (count ++) );
-        final ItemBean bean = list.get(position);
+        final ItemBean bean = HomeItemAdapter.adapt(list.get(position));
         if (bean.getBodyType() == TYPE_TEXT) {
             final TextHolder textHolder = (TextHolder) holder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && enableRadiusAndEle) {
@@ -221,6 +222,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         nextActivity(ArticleActivity.class, "OPEN_COMMENT");
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                    } else {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
                     }
                 }
             });
@@ -228,9 +231,17 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
-                        nextActivity(ArticleActivity.class);
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        context.startActivity(intent);
+//                        nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
+                    } else {
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        context.startActivity(intent);
+                        // nextActivity(ArticleActivity.class);
                     }
                 }
             });
@@ -291,6 +302,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         nextActivity(ArticleActivity.class, "OPEN_COMMENT");
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                    } else {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
                     }
                 }
             });
@@ -299,11 +312,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", DataUtils.getArticle());
+                        intent.putExtra("article", (ArticleBean)list.get(position));
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
+                    } else {
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        context.startActivity(intent);
+                        // nextActivity(ArticleActivity.class);
                     }
                 }
             });
@@ -368,15 +386,30 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
 //                    onItemClickListener.onItemClick(position);
+                    if (bean.getType() == HomeItem.TYPE_ARTICLE) {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                    } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
+                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                    } else {
+                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                    }
                 }
             });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
-                        nextActivity(ArticleActivity.class);
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        context.startActivity(intent);
+                        // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         nextActivity(TopicActivity.class);
+                    } else {
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        context.startActivity(intent);
+                        // nextActivity(ArticleActivity.class);
                     }
                 }
             });

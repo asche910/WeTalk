@@ -113,13 +113,14 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
     }
 
     public class HeaderHolder extends RecyclerView.ViewHolder{
-        TextView textTitle, textContent, textFollowerNum, textReplyNum;
+        TextView textTitle, textContent, textFollowerNum, textReplyNum, textTime;
         public HeaderHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.text_topic_title);
             textContent = itemView.findViewById(R.id.text_topic_content);
             textFollowerNum = itemView.findViewById(R.id.text_topic_followernum);
             textReplyNum = itemView.findViewById(R.id.text_topic_replynum);
+            textTime = itemView.findViewById(R.id.text_topic_time);
         }
     }
 
@@ -367,6 +368,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
 
             headerHolder.textFollowerNum.setText(textFollowerNum);
             headerHolder.textReplyNum.setText("回答:" + topicBean.getReplyNum());
+            headerHolder.textTime.setText(topicBean.getTime());
         }
     }
 

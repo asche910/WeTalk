@@ -1,0 +1,35 @@
+应用SIMSOLID软件测算搅拌桶体刚性强度
+
+
+<br>
+author: 追寻逝去的精彩
+<div class="uparse" atparse="" text="post.body" yk="yes" video="yes"><br>
+<p>首先介绍一下我所要研究的产品：130搅拌机。样式如下图</p>
+<div>
+ <p><img src="https://img.jishulink.com/upload/201901/f6400b74cdc24e2484fa7d177e75006a.png" title="微信图片_20190111144000.png"></p>
+ <p>这里想分析一下，搅拌桶在转动垂直状态下，物料负载重量140KG的情况下，搅拌桶的型变量。</p>
+ <p>为了针对性的研究，我去除了所有无关的零部件。</p>
+ <p><img src="https://img.jishulink.com/upload/201901/154f4f973768461992471faf02b5177a.png" title="微信图片_20190111144530.png"></p>
+ <p>上图显示为分离出来的，结构样式。下图我将说明需要如何分析。</p>
+ <div>
+  <img src="https://img.jishulink.com/upload/201901/dc4695bc894a4549b961cabd73386ca4.jpg" title="微信图片编辑_20190111145142.jpg">
+ </div>
+ <p>原模型使用Solidworks设计，可以通过插件直接导到Simsolid软件中，也可以使用Solidworks直接转变为第三种模型格式，然后在Simsolid软件中导入打开，这里我用的是后一种方式，先在Solidworks中将模型简化，把不需要的零部件删除，保存为STP格式，然后在Simsolid中打开。后发现还有部分零部件不需要，这里可以直接在Simsolid中进行处理（右键点击你选择要删除的零部件，选择删除即可）。</p>
+ <p>&nbsp; &nbsp;导入后的模型简单检查一下，尺寸，单位，材料。软件右侧是项目结构树。里面涉及的内容很直观易懂。选择各部件，添加好材料后再设定好各部件之间的连接关系。我所测算的模型，经过简化，去掉一些螺栓连接，直接以BONDED连接替代，焊接件连接以seam welds创建。以上设置顺序不分前后，可以交叉进行。关键的地方是我如何设置负载140KG物料作用在桶体内壁。这里，在结构树里有个结构功能条目，点击它会在右侧（结构树和图形区之间有个功能选项条），选择FORCE，施加力，在FORCE项目栏中，除了常见的点线面施加作用力外，还有一个Spot功能。通过Spot功能可以创建一个面区域，然后正交投影作用于物件上。通过这种方法。我设置直径400mmSpot面域作用于罐体。</p>
+ <div>
+  <img src="https://img.jishulink.com/upload/201901/d3f8bde687f042c0a94bef4383755afa.png" title="微信图片_20190111151937.png">
+ </div>
+ <p>上图红色区域，箭头向下就是假设作用于桶体140KG的物料。</p>
+ <p>通过上述的设定完成，便可以进行仿真计算。</p>
+</div>
+<p>在进行1-2分钟仿真计算，结果便可以出来，这里我选择查看应力图和应变图。在查看结果演示的时候，项目树下方会出现 Bookmark browser功能目表。通过点击类似相机的图标，实时保存当时查看的结果明细状态图。</p>
+<div>
+ <img src="https://img.jishulink.com/upload/201901/362f00adf125429b824ac5d6d59e325a.png" title="微信图片_20190111152257.png">
+</div>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif">上图显示的为应变图，图示中表明，最大应变为0.73mm。</p>
+<div>
+ <img src="https://img.jishulink.com/upload/201901/8cec91607c4d4662988b4da8d58b7d95.jpg" title="微信图片编辑_20190111153348.jpg">
+</div>
+<p>上图显示的为应力图，图示中表明，最大应力的位置，以及大小约在114MP.</p>
+<p>通过此软件的简单操作，便可以快捷的了解，自己设计的结构是否可靠或问题点出现的部位，方便日后针对性的去改进。</p>
+<p>通过上述的操作，给我最大的感受就是，操作方便，设置简单，通用性高。计算速度快。。。。。。</p></div>

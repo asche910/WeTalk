@@ -4,6 +4,9 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true"> upload-images.jianshu.io</domain>
         <domain includeSubdomains="true"> openapi.tuling123.com</domain>
+        <domain includeSubdomains="true">jishulink.com</domain>
+        <domain includeSubdomains="true">haier.com</domain>
+
         <domain includeSubdomains="true">p0.cdn.img9.top</domain>
         <domain includeSubdomains="true">img.mms.v1.cn</domain>
     </domain-config>

@@ -6,6 +6,7 @@ android {
         applicationId "com.asche.wetalk"
         minSdkVersion 16
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -53,6 +54,8 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'com.github.czy1121:loadinglayout:1.0.1'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import androidx.core.app.ActivityCompat;
+import androidx.multidex.MultiDex;
 
 public class MyApplication extends Application {
 
@@ -18,5 +19,11 @@ public class MyApplication extends Application {
 
     public static Context getContext() {
         return context;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

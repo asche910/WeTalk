@@ -7,13 +7,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.HomeItemAdapter;
+import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
+import com.asche.wetalk.bean.HomeItem;
+import com.asche.wetalk.bean.ItemBean;
+import com.asche.wetalk.util.DataUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 
@@ -23,8 +33,11 @@ public class FragmentHomeRequirement extends Fragment {
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
-    private StandardGSYVideoPlayer videoPlayer;
-    public static OrientationUtils orientationUtils;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private HomeSuggestRVAdapter adapter;
+    private List<HomeItem> itemBeanList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -38,35 +51,8 @@ public class FragmentHomeRequirement extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         swipeRefreshLayout = getView().findViewById(R.id.header_home_requirement);
-        videoPlayer = getView().findViewById(R.id.video_item_main);
+        recyclerView = getView().findViewById(R.id.recycle_home_requirement);
 
-
-        String videoSrc = "http://f10.v1.cn/site/15542573.mp4.f40.mp4";
-        String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-11-14/201811140932452264.jpg";
-
-        ImageView imageView = new ImageView(getActivity());
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-        Glide.with(getActivity())
-                .load(imgSrc)
-                .into(imageView);
-
-        orientationUtils = new OrientationUtils(getActivity(), videoPlayer);
-        orientationUtils.setEnable(true);
-
-        videoPlayer.setUp(videoSrc, false, "美女诈骗9男友200万 感谢被抓：收不住");
-        videoPlayer.setThumbImageView(imageView);
-        videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
-        videoPlayer.getBackButton().setVisibility(View.VISIBLE);
-        videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                videoPlayer.startWindowFullscreen(getContext(), false, true);
-            }
-        });
-
-        videoPlayer.setIsTouchWiget(true);
-//        videoPlayer.startPlayLogic();
 
         swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -85,6 +71,16 @@ public class FragmentHomeRequirement extends Fragment {
             }
         });
 
-    }
+        if (itemBeanList.isEmpty()) {
+            for (int i = 0; i < 4; i++)
+                itemBeanList.add(DataUtils.getRequirement(i));
+            for (int i = 0; i < 4; i++)
+                itemBeanList.add(DataUtils.getRequirement(i));
+        }
 
+        layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        adapter = new HomeSuggestRVAdapter(itemBeanList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
 }

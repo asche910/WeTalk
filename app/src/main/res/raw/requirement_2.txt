@@ -1,0 +1,47 @@
+
+<div class="article_content">
+    <p><strong>一、项目背景：</strong></p>
+
+<p>&nbsp; &nbsp; 寻找用于家电产品上的高性能超亲水涂层，之前对接的资源在硬度、耐盐雾实验、使用寿命上均达不到要求，希望寻找硬度、耐盐雾、寿命方面高性能超亲水涂层。</p>
+
+<p><strong>二、需求参数：</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;1、工作环境：家电产品内部温度-10℃至20℃，家电产品内部湿度接近90%，产品生产过程中需要耐受80℃；</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;2、基材：铝板；</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;3、参数要求：接触角≤10°，硬度&gt;5H，耐盐雾测试&gt;300h，固化后无异味，安全性达到食品级；</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;4、寿命：5-10年；</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;5、成本：详谈</p>
+
+<p><strong>三、考虑的方向：</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;高性能超亲水涂层</p>
+
+<p><strong>四、不感兴趣的方向</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;需要光催化的、硬度达不到的、亲水角达不到的、耐盐雾实验达不到的、寿命达不到的均不考虑</p>
+
+<p><strong>四、参与方式：</strong></p>
+
+<ul>
+	<li>
+	<p>请点击“提交线索”留言，需包含如下信息：</p>
+
+	<p>a、公司名称（如有官网请提供网址）：</p>
+
+	<p>b、公司联系人信息（包含：姓名、联系方式）：</p>
+
+	<p>c、简要说明该公司技术的工作原理和技术成熟度</p>
+	</li>
+</ul>
+
+<p><strong>截止日期：2019-1-31</strong></p>
+
+<p><strong style="color:red; font-size:1.2em">特别注意！</strong></p>
+
+<p><strong style="color:red; font-size:1.2em">本次线索征集目标：10条有效信息。我们会在确认10条有效信息后关闭该需求！</strong></p>
+
+  </div>

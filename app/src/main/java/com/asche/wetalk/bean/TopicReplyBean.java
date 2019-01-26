@@ -20,6 +20,18 @@ public class TopicReplyBean implements HomeItem, Serializable {
     private int likeNum;
     private int commentNum;
 
+    public TopicReplyBean(String id, String topicId, String authorId, String content, String time, String imgUrl, String videoUrl, int likeNum, int commentNum) {
+        this.id = id;
+        this.topicId = topicId;
+        this.authorId = authorId;
+        this.content = content;
+        this.time = time;
+        this.imgUrl = imgUrl;
+        this.videoUrl = videoUrl;
+        this.likeNum = likeNum;
+        this.commentNum = commentNum;
+    }
+
     public TopicReplyBean(String id, String topicId, String authorId, String content, String time, int likeNum, int commentNum) {
         this.id = id;
         this.topicId = topicId;

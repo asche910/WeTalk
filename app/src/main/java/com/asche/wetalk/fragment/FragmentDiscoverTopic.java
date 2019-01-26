@@ -11,11 +11,14 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.adapter.TopicChipRVAdapter;
 import com.asche.wetalk.adapter.TopicPageRVAdapter;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.bean.TopicPageBean;
+import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.helper.GlideImageLoader;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.util.StringUtils;
+import com.asche.wetalk.util.TimeUtils;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
 import com.youth.banner.Banner;
@@ -33,7 +36,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 import static com.asche.wetalk.fragment.FragmentHomeSuggest.imgSrc;
+import static com.asche.wetalk.fragment.FragmentHomeSuggest.imgSrc_;
 import static com.asche.wetalk.fragment.FragmentHomeSuggest.videoSrc;
+import static com.asche.wetalk.fragment.FragmentHomeSuggest.videoSrc_;
 import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class FragmentDiscoverTopic extends Fragment {
@@ -48,7 +53,7 @@ public class FragmentDiscoverTopic extends Fragment {
 
 
     List<String> tagList = new ArrayList<>();
-    List<ItemBean> itemBeanList = new ArrayList<>();
+    List<HomeItem> itemBeanList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -81,10 +86,15 @@ public class FragmentDiscoverTopic extends Fragment {
         }
 
 
-        itemBeanList.add(new ItemBean(2, 0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, null, null));
-        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
-        itemBeanList.add(new ItemBean(2, 2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, imgSrc, videoSrc));
-        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
+        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), null, null, 65, 44));
+        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), imgSrc, videoSrc, 65, 44));
+        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), R.drawable.img_avatar + "", null, 65, 44));
+        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), imgSrc_, videoSrc_, 65, 44));
+
+//        itemBeanList.add(new ItemBean(2, 0, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 666, 65, null, null));
+//        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
+//        itemBeanList.add(new ItemBean(2, 2, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 456, 64, imgSrc, videoSrc));
+//        itemBeanList.add(new ItemBean(2, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 789, 62, R.drawable.img_avatar + "", null));
 
 
         topicPageBeanList.add(new TopicPageBean(imgsList, titleList));

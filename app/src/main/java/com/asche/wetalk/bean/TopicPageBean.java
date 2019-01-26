@@ -13,7 +13,7 @@ public class TopicPageBean {
     private List<String> titleList; // banner标题或chips标签
 
     private String textTitle;
-    private List<ItemBean> itemBeanList;
+    private List<HomeItem> itemBeanList;
 
     public TopicPageBean(List<Integer> imgList, List<String> titleList) {
         type = TYPE_BANNER;
@@ -31,7 +31,7 @@ public class TopicPageBean {
         this.titleList = titleList;
     }
 
-    public TopicPageBean(int type, List<ItemBean> itemBeanList) {
+    public TopicPageBean(int type, List<HomeItem> itemBeanList) {
         this.type = TYPE_TOPIC_LIST;
         this.itemBeanList = itemBeanList;
     }
@@ -68,11 +68,11 @@ public class TopicPageBean {
         this.textTitle = textTitle;
     }
 
-    public List<ItemBean> getItemBeanList() {
+    public List<HomeItem> getItemBeanList() {
         return itemBeanList;
     }
 
-    public void setItemBeanList(List<ItemBean> itemBeanList) {
+    public void setItemBeanList(List<HomeItem> itemBeanList) {
         this.itemBeanList = itemBeanList;
     }
 }

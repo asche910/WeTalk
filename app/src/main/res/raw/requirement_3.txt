@@ -1,0 +1,40 @@
+<div class="article_content">
+    <p><strong>一、项目背景：</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;寻找可以应用在洗衣机上，杀死水中细菌的新技术，使洗衣机在洗涤过程中不仅能清除污垢，也能起到一定的杀菌效果，并效果可以呈现（用户能够感受到）</p>
+
+<p><strong>二、需求参数：</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;对杀菌模块：要求模块尺寸能够安装在洗衣机上，并且使用寿命大于10年。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;备注：模块尺寸视安装位置而定，可以在实际方案中沟通协商确定</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;对杀菌材料：要求材料不易脱落，加工工艺可行，并且使用寿命大于10年。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;备注：具体工艺要求，视方案类型，共同协商确定</p>
+
+<p><strong>三、不感兴趣的方向：</strong></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;臭氧、紫外、纳米银离子等方式，不在本需求考虑范围内</p>
+
+<p><strong>四、参与方式：</strong></p>
+
+<ul>
+	<li>
+	<p>请点击“提交线索”留言，需包含如下信息：</p>
+
+	<p>a、公司名称（如有官网请提供网址）：</p>
+
+	<p>b、公司联系人信息（包含：姓名、联系方式）：</p>
+
+	<p>c、简要说明该公司技术的工作原理和技术成熟度</p>
+	</li>
+</ul>
+
+<p><strong>截止日期：2019-2-28</strong></p>
+
+<p><strong style="color:red; font-size:1.2em">特别注意！</strong></p>
+
+<p><strong style="color:red; font-size:1.2em">本次线索征集目标：10条有效信息。我们会在确认10条有效信息后关闭该需求！</strong></p>
+
+  </div>

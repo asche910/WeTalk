@@ -20,6 +20,7 @@ import com.asche.wetalk.adapter.TopicChipRVAdapter;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
+import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.TechTags;
 import com.asche.wetalk.fragment.FragmentDialogComment;
@@ -48,6 +49,9 @@ import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_BOTTOM;
 import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
+/**
+ * ******   此类包含Article和Requirement两种类型，尽管类名存在干扰
+ */
 public class ArticleActivity extends BaseActivity implements View.OnClickListener {
 
     // <editor-fold desc="属性变量">
@@ -61,7 +65,11 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
     private RecyclerView recyclerTags;
 
-    private TextView textTitle, textAuthorName, textAuthorSignature, textAuthorFollowNum;
+    // 标题、时间
+    private TextView textTitle, textTime;
+
+    // 作者信息
+    private TextView textAuthorName, textAuthorSignature, textAuthorFollowNum;
     private ImageView imgAuthorAvatar, imgFollow;
     private boolean isFollow;
 
@@ -84,7 +92,10 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private ImageView imgLike;
     private TextView textLikeNum, textCommentNum;
 
+
     public ArticleBean articleBean;
+    public RequirementBean requirementBean;
+    public boolean isArticle; // 默认为Requirement
     public UserBean author;
 
     private final String TAG = "Article";
@@ -97,7 +108,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_article);
 
         String action = getIntent().getStringExtra("action");
-        if ("OPEN_COMMENT".equals(action)){
+        if ("OPEN_COMMENT".equals(action)) {
             openComment();
         }
 
@@ -133,6 +144,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         recyclerView = findViewById(R.id.recycler_article);
         recyclerComment = findViewById(R.id.recycler_article_comment);
         textTitle = findViewById(R.id.text_article_title);
+        textTime = findViewById(R.id.text_article_time);
         textAuthorName = findViewById(R.id.text_article_author_name);
         textAuthorSignature = findViewById(R.id.text_article_author_signature);
         imgAuthorAvatar = findViewById(R.id.img_article_author);
@@ -147,10 +159,15 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         textMoreComment = findViewById(R.id.text_article_morecomment);
 
         articleBean = (ArticleBean) getIntent().getSerializableExtra("article");
+        requirementBean = (RequirementBean) getIntent().getSerializableExtra("requirement");
 
         if (articleBean != null) {
+            /**  这里表明接收到Article类型       */
+            isArticle = true;
+
             author = DataUtils.getUser();
             textTitle.setText(articleBean.getTitle());
+            textTime.setText(articleBean.getTime());
             // TODO Author暂时使用测试数据
 //            textAuthorSignature.setText("粉丝 " + author.getFollowerNum());
             try {
@@ -163,10 +180,30 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                         .load(articleBean.getImgUrl())
                         .into(imgAuthorAvatar);
             }
+//            bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.requirement_1));
             bodyContentBeanList = BodyContentUtil.parseHtml(articleBean.getContent());
 
         } else {
-            bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getArticleStr());
+            /**  接收到为Requirement类型  */
+            isArticle = false;
+
+            author = DataUtils.getUser();
+            textTitle.setText(requirementBean.getTitle());
+            textTime.setText(requirementBean.getTime());
+            // TODO Author暂时使用测试数据
+            // textAuthorSignature.setText("粉丝 " + author.getFollowerNum());
+            try {
+                Glide.with(getApplicationContext())
+                        .load(Integer.parseInt(requirementBean.getImgUrl()))
+                        .into(imgAuthorAvatar);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Glide.with(getApplicationContext())
+                        .load(requirementBean.getImgUrl())
+                        .into(imgAuthorAvatar);
+            }
+            bodyContentBeanList = BodyContentUtil.parseHtml(requirementBean.getContent());
+
         }
 
         toolbarTitle.setText("文章");
@@ -257,7 +294,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                     Toast.makeText(this, "关注成功！", Toast.LENGTH_SHORT).show();
                     imgFollow.setImageResource(R.drawable.ic_follow_light);
                     isFollow = true;
-                }else {
+                } else {
                     new MaterialDialog.Builder(this)
                             .content("您确定不再关注此用户吗？")
                             .positiveText("确定")

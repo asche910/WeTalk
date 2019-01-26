@@ -1,223 +1,134 @@
-<div class="show-content-free">
-            <p>读大学前后对比照</p><p>言语已无法形容我此时的惊讶之情！</p><p>来感受下：</p><p>▼</p><div class="image-package">
-<div class="image-container" style="max-width: 531px; max-height: 1080px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 154.43%;"></div>
-<div class="image-view" data-width="531" data-height="820"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-3d546d6cf50ce2c0" data-original-width="531" data-original-height="820" data-original-format="image/jpeg" data-original-filesize="62651" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-3d546d6cf50ce2c0?imageMogr2/auto-orient/strip%7CimageView2/2/w/531/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div>
+基于simsolid和AnsysWorkbench齿轮夹臂机构静力学分析对比
 
-<video autoplay="autoplay" src="http://f10.v1.cn/site/15538790.mp4.f40.mp4" cover-src="http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg" width="100%" x-webkit-airplay="allow" />
-
-<p>只有经历了军训的黝黑</p><p>才能享受洗礼过后的美颜</p><div class="image-package">
-<div class="image-container" style="max-width: 586px; max-height: 1333px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 190.44%;"></div>
-<div class="image-view" data-width="586" data-height="1116"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-74d77dd0091f4dcb" data-original-width="586" data-original-height="1116" data-original-format="image/jpeg" data-original-filesize="97647" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-74d77dd0091f4dcb?imageMogr2/auto-orient/strip%7CimageView2/2/w/586/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 557px; max-height: 4305px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 615.08%;"></div>
-<div class="image-view" data-width="557" data-height="3426"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-8d0feec76760014e" data-original-width="557" data-original-height="3426" data-original-format="image/jpeg" data-original-filesize="327338" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-8d0feec76760014e?imageMogr2/auto-orient/strip%7CimageView2/2/w/557/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>我也来！14vs31岁</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 888px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 126.98%;"></div>
-<div class="image-view" data-width="960" data-height="1219"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-a57ecb839e24aece" data-original-width="960" data-original-height="1219" data-original-format="image/jpeg" data-original-filesize="170550" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-a57ecb839e24aece?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>打扰了，高二vs大二</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 628px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 89.79%;"></div>
-<div class="image-view" data-width="960" data-height="862"><img data-original-src="http://upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a" data-original-width="960" data-original-height="862" data-original-format="image/jpeg" data-original-filesize="72148" class="" style="cursor: zoom-in;" src="http://upload-images.jianshu.io/upload_images/10289013-247a818fa0c02c4a?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>图一图二是高二</p><p>图三图四是大二</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 655px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 93.65%;"></div>
-<div class="image-view" data-width="960" data-height="899"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-75155d935b219002" data-original-width="960" data-original-height="899" data-original-format="image/jpeg" data-original-filesize="102211" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-75155d935b219002?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>初三和研一</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 470px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 67.22%;"></div>
-<div class="image-view" data-width="1080" data-height="726"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-d561f24b09493f42" data-original-width="1080" data-original-height="726" data-original-format="image/jpeg" data-original-filesize="80748" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-d561f24b09493f42?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><div class="image-package">
-<div class="image-container" style="max-width: 600px; max-height: 327px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 54.50000000000001%;"></div>
-<div class="image-view" data-width="600" data-height="327"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-eb1768338286a9fd" data-original-width="600" data-original-height="327" data-original-format="image/jpeg" data-original-filesize="24297" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-eb1768338286a9fd?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 600px; max-height: 391px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 65.16999999999999%;"></div>
-<div class="image-view" data-width="600" data-height="391"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-f638ab6d78429552" data-original-width="600" data-original-height="391" data-original-format="image/jpeg" data-original-filesize="21229" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-f638ab6d78429552?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>青涩丫头到宅男女神的华丽蜕变</p><p>她用了四年时光</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 360px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 72.0%;"></div>
-<div class="image-view" data-width="500" data-height="360"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-dd035175433c243e" data-original-width="500" data-original-height="360" data-original-format="image/jpeg" data-original-filesize="42701" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-dd035175433c243e?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 619px; max-height: 947px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 135.38%;"></div>
-<div class="image-view" data-width="619" data-height="838"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-0284fe001af1930d" data-original-width="619" data-original-height="838" data-original-format="image/jpeg" data-original-filesize="99356" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-0284fe001af1930d?imageMogr2/auto-orient/strip%7CimageView2/2/w/619/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>萌妹子，还记得军训时的那个女汉纸咩？</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 560px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 112.00000000000001%;"></div>
-<div class="image-view" data-width="500" data-height="560"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-7be0d23f8e093640" data-original-width="500" data-original-height="560" data-original-format="image/jpeg" data-original-filesize="41269" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-7be0d23f8e093640?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 597px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 119.39999999999999%;"></div>
-<div class="image-view" data-width="500" data-height="597"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-97e7a09ac449e30d" data-original-width="500" data-original-height="597" data-original-format="image/jpeg" data-original-filesize="42024" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-97e7a09ac449e30d?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>特想知道</p><p>大学时光里</p><p>她身上到底发生了什么</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 340px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 68.0%;"></div>
-<div class="image-view" data-width="500" data-height="340"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-0fe04d5d3e689f3f" data-original-width="500" data-original-height="340" data-original-format="image/jpeg" data-original-filesize="20275" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-0fe04d5d3e689f3f?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 349px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 69.8%;"></div>
-<div class="image-view" data-width="500" data-height="349"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-cc3aafd05790b98c" data-original-width="500" data-original-height="349" data-original-format="image/jpeg" data-original-filesize="44150" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-cc3aafd05790b98c?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 591px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 118.19999999999999%;"></div>
-<div class="image-view" data-width="500" data-height="591"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-6c64024b3e691b76" data-original-width="500" data-original-height="591" data-original-format="image/jpeg" data-original-filesize="35038" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-6c64024b3e691b76?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>都说女大十八变</p><p>现在我终于信了</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 437px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 87.4%;"></div>
-<div class="image-view" data-width="500" data-height="437"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-3b40a056f1774e6e" data-original-width="500" data-original-height="437" data-original-format="image/jpeg" data-original-filesize="46995" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-3b40a056f1774e6e?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 476px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 95.19999999999999%;"></div>
-<div class="image-view" data-width="500" data-height="476"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-81d0a8fa800f4755" data-original-width="500" data-original-height="476" data-original-format="image/jpeg" data-original-filesize="57839" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-81d0a8fa800f4755?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>言语已无法形容我此时的惊讶之情</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 1007px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 144.0%;"></div>
-<div class="image-view" data-width="500" data-height="720"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-aaff77c16da3120a" data-original-width="500" data-original-height="720" data-original-format="image/jpeg" data-original-filesize="45452" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-aaff77c16da3120a?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 1111px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 158.8%;"></div>
-<div class="image-view" data-width="500" data-height="794"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-dba714eaf5d03a33" data-original-width="500" data-original-height="794" data-original-format="image/jpeg" data-original-filesize="34634" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-dba714eaf5d03a33?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>今天你对我爱答不理</p><p>明天我让你高攀不起</p><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 636px; background-color: transparent;">
-<div class="image-container-fill" style="padding-bottom: 127.2%;"></div>
-<div class="image-view" data-width="500" data-height="636"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-d9e5d5ce70156ecb" data-original-width="500" data-original-height="636" data-original-format="image/jpeg" data-original-filesize="44307" class="" style="cursor: zoom-in;" src="//upload-images.jianshu.io/upload_images/10289013-d9e5d5ce70156ecb?imageMogr2/auto-orient/strip%7CimageView2/2/w/500/format/webp"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 500px; max-height: 630px;">
-<div class="image-container-fill" style="padding-bottom: 126.0%;"></div>
-<div class="image-view" data-width="500" data-height="630"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-ddb985682551769d" data-original-width="500" data-original-height="630" data-original-format="image/jpeg" data-original-filesize="24342" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>大学里她完成了180度华丽转身</p><p>太漂亮了</p><div class="image-package">
-<div class="image-container" style="max-width: 502px; max-height: 557px;">
-<div class="image-container-fill" style="padding-bottom: 110.96%;"></div>
-<div class="image-view" data-width="502" data-height="557"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-1a5d466ceff357ae" data-original-width="502" data-original-height="557" data-original-format="image/jpeg" data-original-filesize="31634" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 997px;">
-<div class="image-container-fill" style="padding-bottom: 142.5%;"></div>
-<div class="image-view" data-width="640" data-height="912"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-1bc45979ffd800eb" data-original-width="640" data-original-height="912" data-original-format="image/jpeg" data-original-filesize="72042" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>胖的时候应该也很漂亮吧</p><p>毕竟五官摆在那了</p><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 430px;">
-<div class="image-container-fill" style="padding-bottom: 67.19000000000001%;"></div>
-<div class="image-view" data-width="640" data-height="430"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-8f57a2445fe831ec" data-original-width="640" data-original-height="430" data-original-format="image/jpeg" data-original-filesize="26791" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 836px;">
-<div class="image-container-fill" style="padding-bottom: 119.53%;"></div>
-<div class="image-view" data-width="640" data-height="765"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-c871cc584123b331" data-original-width="640" data-original-height="765" data-original-format="image/jpeg" data-original-filesize="49483" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>看看人家！</p><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 923px;">
-<div class="image-container-fill" style="padding-bottom: 131.88%;"></div>
-<div class="image-view" data-width="640" data-height="844"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-b454d5fe747147ca" data-original-width="640" data-original-height="844" data-original-format="image/jpeg" data-original-filesize="72287" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 584px;">
-<div class="image-container-fill" style="padding-bottom: 91.25%;"></div>
-<div class="image-view" data-width="640" data-height="584"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-54059a686440cf8b" data-original-width="640" data-original-height="584" data-original-format="image/jpeg" data-original-filesize="48846" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>论杀马特进化成女神的可能性</p><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 878px;">
-<div class="image-container-fill" style="padding-bottom: 125.47%;"></div>
-<div class="image-view" data-width="640" data-height="803"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-15598dcbf8b9cda0" data-original-width="640" data-original-height="803" data-original-format="image/jpeg" data-original-filesize="34601" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 825px;">
-<div class="image-container-fill" style="padding-bottom: 117.97%;"></div>
-<div class="image-view" data-width="640" data-height="755"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-211f95fc528b3819" data-original-width="640" data-original-height="755" data-original-format="image/jpeg" data-original-filesize="37950" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>看完后</p><p>我立马打车去拔了4颗智齿</p><div class="image-package">
-<div class="image-container" style="max-width: 600px; max-height: 884px;">
-<div class="image-container-fill" style="padding-bottom: 126.33000000000001%;"></div>
-<div class="image-view" data-width="600" data-height="758"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-d0c8763814bdfe1e" data-original-width="600" data-original-height="758" data-original-format="image/jpeg" data-original-filesize="57417" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 1004px;">
-<div class="image-container-fill" style="padding-bottom: 143.44%;"></div>
-<div class="image-view" data-width="640" data-height="918"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-3ea288d108f44c5c" data-original-width="640" data-original-height="918" data-original-format="image/jpeg" data-original-filesize="46602" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>从集万千老师宠爱的学习课代表</p><p>变成集万千宅男青睐的女神范</p><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 350px;">
-<div class="image-container-fill" style="padding-bottom: 54.690000000000005%;"></div>
-<div class="image-view" data-width="640" data-height="350"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-f6f1470a415d7d0a" data-original-width="640" data-original-height="350" data-original-format="image/jpeg" data-original-filesize="32779" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><div class="image-package">
-<div class="image-container" style="max-width: 640px; max-height: 598px;">
-<div class="image-container-fill" style="padding-bottom: 93.44%;"></div>
-<div class="image-view" data-width="640" data-height="598"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-43f7af913cf646f6" data-original-width="640" data-original-height="598" data-original-format="image/jpeg" data-original-filesize="24255" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>初一和大一</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 480px;">
-<div class="image-container-fill" style="padding-bottom: 68.61%;"></div>
-<div class="image-view" data-width="1080" data-height="741"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-d6cb4d402a6781d8" data-original-width="1080" data-original-height="741" data-original-format="image/jpeg" data-original-filesize="71804" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>▼</p><p>看我！！大一军训vs大四</p><div class="image-package">
-<div class="image-container" style="max-width: 700px; max-height: 475px;">
-<div class="image-container-fill" style="padding-bottom: 67.86999999999999%;"></div>
-<div class="image-view" data-width="1080" data-height="733"><img data-original-src="//upload-images.jianshu.io/upload_images/10289013-50e4be4220d7ed74" data-original-width="1080" data-original-height="733" data-original-format="image/jpeg" data-original-filesize="85649" class="image-loading" style="cursor: zoom-in;"></div>
-</div>
-<div class="image-caption"></div>
-</div><p>读大学对于一个人气质和颜值的改变</p><p>已经超过了美颜 p图 化妆</p><p>大学才是真正的整容机构啊</p><p>欢迎关注微信公众号：大学生学术墙。关注即可免费领取四六级资料、考证资料、课程试卷和各种软件安装包！</p>
-          </div>
+<br>
+author: 瑶琴zhr
+author: anfeilover
+<div class="uparse" atparse="" text="post.body" yk="yes" video="yes"><p>&nbsp; &nbsp; &nbsp; &nbsp; 某种AGV使用的夹臂机构，需求（1）不使用时，可收缩回结构内，使用时，可完全支撑汽车轮胎的重量（2）同时保证在AGV紧急制动时，轮胎不会冲出夹臂结构。鉴于上述功能及和空间布置要求，初步方案设计采用齿轮结构实现满足上述要求。其结构如图（1）、图（2）所示。&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p><img src="https://img.jishulink.com/upload/201901/030fad1e394c4bdab2610b436bd6d1a6.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"></p>
+<p>图1 不使用时收缩回结构内</p>
+<p><img src="https://img.jishulink.com/upload/201901/32ce8ce1fe06497997734367cb562d42.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"></p>
+<p>图2 使用时伸出支撑轮胎</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;本文分别采用Ansys Workbench和simsold，在边界条件相同状态下，对此机构进行静力学分析，分析夹臂机构伸出时，齿轮的表面接触应力和夹臂的弯曲应力；同时对比两个软件应力和形变数值，为后续结构设计过程中采用simsolid进行结构分析提供参考。</p>
+<p><strong>一、边界条件、材料等相关设定</strong></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 夹臂机构采用常用结构钢材料。下图为夹臂机构的约束、载荷、接触的设定。图3夹臂机构的约束条件、图4为夹臂机构的载荷施加、图5为各齿轮间接触设置，摩擦系数设置为0.1。</p>
+<p><img src="https://img.jishulink.com/upload/201901/cc993945ad294766b10d0187dc4a5107.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图3 夹臂机构边界条件</p>
+<p><img src="https://img.jishulink.com/upload/201901/a06b2d380c7d4e6f9b82c1a50512f933.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"></p>
+<p>图4 夹臂机构边界条件</p>
+<p><img src="https://img.jishulink.com/upload/201901/ab3837285bc64ecbb63fc2a3245f7d92.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图5 接触设置</p>
+<p><strong>二、两软件分析设置对比</strong></p>
+<p>2.1 AnsysWorkben软件设置</p>
+<p>（1）网格设置：设置网格单元尺寸为5mm。</p>
+<p>（2）接触设置：齿轮间采用摩擦副接触，摩擦系数设置为0.1，采用拉格朗日计算公式等如下图</p>
+<p><img src="https://img.jishulink.com/upload/201901/ad9b7727830047a2a8e2e68d3c017a9c.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"></p>
+<p>图6 摩擦副接触设置</p>
+<p><img src="https://img.jishulink.com/upload/201901/7905ade766204c0eba841c63a9fe5119.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"></p>
+<p>图7 摩擦副接触设置</p>
+<p>（3）齿轮的轴承约束设置</p>
+<p><img src="https://img.jishulink.com/upload/201901/914f5b03b5844535ac6340b6ef393dbf.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图8 轴承约束设置</p>
+<p>（4）载荷步设置</p>
+<p><img src="https://img.jishulink.com/upload/201901/a256dcba019b4154a3e3ab98ae1901a6.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图9载荷步设置</p>
+<p>2.2 Simsolid软件设置（分析类型设置为接触非线性）。</p>
+<p><img src="https://img.jishulink.com/upload/201901/9423a21d1ff441299b6dde59094d035b.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图10 simsolid设置</p>
+<p><strong>三、分析结果对比</strong></p>
+<p>3.1应力对比</p>
+<p><img src="https://img.jishulink.com/upload/201901/b18b49546bde4d83a260a76b021e9fd0.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif">&nbsp;<br></p>
+<p>图11 AnsysWorkbench应力分析结果</p>
+<p><img src="https://img.jishulink.com/upload/201901/00f1d03d9efd4bf9b2476142650ac8cd.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图12 simsolid应力分析结果</p>
+<p>3.2形变对比</p>
+<p><img src="https://img.jishulink.com/upload/201901/a95ba1ea152344bfb84112e8f631eaf0.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图13 AnsysWorkbench形变分析结果</p>
+<p><img src="https://img.jishulink.com/upload/201901/5e677b29f1a749d4b61419f6afafbfd6.png"></p>
+<p><img src="https://www.jishulink.com/platform/static/ueditor/themes/default/images/spacer.gif"><br></p>
+<p>图14&nbsp; simsolid形变分析结果</p>
+<p>3.3分析数据对比</p>
+<p>（1）应力对比</p>
+<p>表1 应力对比表</p>
+<table>
+ <tbody>
+  <tr>
+   <td><br></td>
+   <td><p>全局应力值（Mpa）</p></td>
+   <td><p>局部应力值（Mpa）</p></td>
+   <td><br></td>
+   <td><br></td>
+   <td><br></td>
+  </tr>
+  <tr>
+   <td><br></td>
+   <td><br></td>
+   <td><br></td>
+   <td><br></td>
+   <td><br></td>
+   <td><br></td>
+  </tr>
+  <tr>
+   <td><p>AnsysWorkbench</p></td>
+   <td><p>431.45</p></td>
+   <td><p>337.54</p></td>
+   <td><p>311.19</p></td>
+   <td><p>331.44</p></td>
+   <td><p>332.02</p></td>
+  </tr>
+  <tr>
+   <td><p>Simsolid</p></td>
+   <td><p>400</p></td>
+   <td><p>329.13</p></td>
+   <td><p>301.54</p></td>
+   <td><p>348.98</p></td>
+   <td><p>327.61</p></td>
+  </tr>
+  <tr>
+   <td><p>误差</p></td>
+   <td><p>-7%</p></td>
+   <td><p>-2.5%</p></td>
+   <td><p>-3.1%</p></td>
+   <td><p>-5%</p></td>
+   <td><p>-1.3%</p></td>
+  </tr>
+ </tbody>
+</table>
+<p>（2）形变对比</p>
+<p>表2 形变对比表</p>
+<table>
+ <tbody>
+  <tr>
+   <td><br></td>
+   <td><p>形变值（mm）</p></td>
+  </tr>
+  <tr>
+   <td><p>AnsysWorkbench</p></td>
+   <td><p>6.23</p></td>
+  </tr>
+  <tr>
+   <td><p>Simsolid</p></td>
+   <td><p>5.99</p></td>
+  </tr>
+  <tr>
+   <td><p>误差</p></td>
+   <td><p>-3.8%</p></td>
+  </tr>
+ </tbody>
+</table>
+<p>根据上图11~14，在相同的边界条件下，Simsolid软件的分析结果与AnsysWorkbench的基本一致，同时由表1、2可知simsolid的分析结果比AnsysWorkbench的结果相对较小。</p>
+<p><strong>四、分析结果对比</strong></p>
+<p>&nbsp;&nbsp; 根据上述两种软件对同一边界条件的分析计算结果，采用Simsolid设置步骤简单，计算结果与AnsysWorkbench相差不大，分析时间很短，能快速完成模型的分析计算，有助于提高设计师的设计质量和效率。但设计师在使用simsolid分析时，须放大一定的安全系数（增加0.07左右）以保证设计的质量及设计的可靠性。</p>
+<p><br></p></div>

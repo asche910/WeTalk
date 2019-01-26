@@ -34,7 +34,7 @@ public class TopicInfoActivity extends BaseActivity {
         recyclerView = findViewById(R.id.recycler_topic_info);
 
         if (topicReplyItemList.isEmpty()) {
-            TopicBean topicBean = new TopicBean("历史上有哪些如神一般存在的人物？", "历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？", "10-24", 472, 82);
+            TopicBean topicBean = new TopicBean("历史上有哪些如神一般存在的人物？", "历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？", "2019-01-09 10:24", 472, 82);
             topicReplyItemList.add(new TopicReplyItemBean(topicBean));
             for (int i = 0; i < 6; i++)
                 topicReplyItemList.add(DataUtils.getTopicReplyItem());

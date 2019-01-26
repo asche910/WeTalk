@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.bean.TopicPageBean;
 import com.asche.wetalk.helper.GlideImageLoader;
@@ -107,7 +108,7 @@ public class TopicPageRVAdapter extends RecyclerView.Adapter {
         } else if (type == TYPE_TOPIC_LIST) {
             TopicListHolder topicListHolder = (TopicListHolder)holder;
 
-            List<ItemBean> itemBeanList = bean.getItemBeanList();
+            List<HomeItem> itemBeanList = bean.getItemBeanList();
             HomeSuggestRVAdapter adapter = new HomeSuggestRVAdapter(itemBeanList);
             adapter.setEnableRadiusAndEle(true);
             topicListHolder.recyclerTopic.setAdapter(adapter);
