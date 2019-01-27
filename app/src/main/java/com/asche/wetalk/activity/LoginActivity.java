@@ -6,19 +6,34 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 
-import androidx.annotation.Nullable;
+import java.util.HashMap;
 
-public class LoginActivity extends BaseActivity {
+import androidx.annotation.Nullable;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.linkedin.LinkedIn;
+import cn.sharesdk.tencent.qq.QQ;
+
+public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener{
 
     private EditText editUsername, editPasswd;
     private boolean isPasswdVisible;
+
+    private Button btnLogin;
+    private ImageView imgQQ, imgWeChat, imgLinkedIn;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -27,6 +42,10 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         editPasswd = findViewById(R.id.edit_password);
+        btnLogin = findViewById(R.id.btn_login);
+        imgQQ = findViewById(R.id.img_login_qq);
+        imgWeChat =findViewById(R.id.img_login_wechat);
+        imgLinkedIn = findViewById(R.id.img_login_linkedin);
 
         editPasswd.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -63,21 +82,61 @@ public class LoginActivity extends BaseActivity {
                 return false;
             }
         });
+
+
+        btnLogin.setOnClickListener(this);
+        imgQQ.setOnClickListener(this);
+        imgWeChat.setOnClickListener(this);
+        imgLinkedIn.setOnClickListener(this);
     }
 
-    // 设置密码可见性
-    private void setPasswdVisible(EditText editText) {
-        if (EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD == editText.getInputType()) {
-            // 如果不可见就设置为可见
-            editText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
-            editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        } else {
-            // 如果可见就设置为不可见
-            editText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-            editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btn_login:
+                break;
+            case R.id.img_login_qq:
+                Platform platQQ = ShareSDK.getPlatform(QQ.NAME);
+                platQQ.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
+                platQQ.SSOSetting(false); // SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
+
+                platQQ.setPlatformActionListener(this);
+                platQQ.showUser(null);
+                break;
+            case R.id.img_login_wechat:
+                MaterialDialog inputDialog = new MaterialDialog.Builder(LoginActivity.this)
+                        .title("提示")
+                        .content("目前版本暂不支持该方式，后期将推出，还望理解！")
+                        .positiveText("确认")
+                        .show();
+                break;
+            case R.id.img_login_linkedin:
+                Platform platLinkedIn = ShareSDK.getPlatform(LinkedIn.NAME);
+                platLinkedIn.removeAccount(true); //移除授权状态和本地缓存，下次授权会重新授权
+                platLinkedIn.SSOSetting(false); // SSO授权，传false默认是客户端授权，没有客户端授权或者不支持客户端授权会跳web授权
+
+                platLinkedIn.setPlatformActionListener(this);
+                platLinkedIn.showUser(null);
+                break;
         }
-        // 执行上面的代码后光标会处于输入框的最前方,所以把光标位置挪到文字的最后面
-        editText.setSelection(editText.getText().toString().length());
     }
 
+    @Override
+    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+        Toast.makeText(LoginActivity.this, "授权成功！", Toast.LENGTH_SHORT).show();
+
+        Log.e("---", platform.getDb().exportData());
+    }
+
+    @Override
+    public void onError(Platform platform, int i, Throwable throwable) {
+        Toast.makeText(LoginActivity.this, "授权失败！", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onCancel(Platform platform, int i) {
+        Toast.makeText(LoginActivity.this, "授权取消！", Toast.LENGTH_SHORT).show();
+
+    }
 }

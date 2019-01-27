@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
@@ -44,7 +45,7 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
     implementation 'com.github.SherlockGougou:BigImageViewPager:v4_2.1.4'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
-    implementation 'com.android.support:design:28.1.0'
+    implementation 'com.android.support:design:27.1.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta3'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
@@ -59,8 +60,6 @@ dependencies {
 
 
 
-
-
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
@@ -68,3 +67,23 @@ dependencies {
     implementation project(':verification-view')
     implementation project(':waveswiperefreshlayout')
 }
+
+MobSDK {
+    appKey "29f14d6cde5fc"
+    appSecret "b41280c5286f1950885e3f2698318ec3"
+    ShareSDK {
+        devInfo {
+            LinkedIn {
+                appKey "81kj3lwvj5vzox"
+                appSecret "qi7vLFQoGwgo8rnS"
+                callbackUri "http://www.sharesdk.cn"
+            }
+            Email {}
+            QQ {
+                appId "101550042"
+                appKey "8b1e4946408255d0b348068118391396"
+            }
+        }
+    }
+}
+

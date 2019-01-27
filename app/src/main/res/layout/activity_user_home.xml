@@ -36,6 +36,7 @@
                     android:src="@drawable/img_avatar" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_user_home_avatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_centerHorizontal="true"
@@ -207,12 +208,13 @@ signature; tel; address; profession descriptio -->
                     android:layout_marginRight="10dp"
                     app:rv_rippleDuration="200">
 
+                    <!--  详细资料  -->
                     <Button
-                        android:id="@+id/btn_user_home_modify_tag"
+                        android:id="@+id/btn_user_home_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_btn_blue"
-                        android:text="修改标签"
+                        android:text="更多"
                         android:textColor="@color/white" />
                 </com.andexert.library.RippleView>
 
@@ -223,19 +225,18 @@ signature; tel; address; profession descriptio -->
                     app:rv_rippleDuration="200">
 
                     <Button
-                        android:id="@+id/btn_user_home_modify"
+                        android:id="@+id/btn_user_home_work"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="0dp"
                         android:background="@drawable/bg_btn_green"
-                        android:text="修改资料"
+                        android:text="作品"
                         android:textColor="@color/white" />
                 </com.andexert.library.RippleView>
 
 
             </LinearLayout>
-
 
             <com.flyco.roundview.RoundLinearLayout
                 android:layout_width="match_parent"

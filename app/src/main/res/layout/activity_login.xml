@@ -4,12 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/img_login_logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/text_login_welcome"
+            android:src="@drawable/ic_logo_large"/>
+
+        <TextView
+            android:id="@+id/text_login_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="欢迎使用WeTalk"
+            android:textColor="@color/greenDark"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,6 +71,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="20dp"
@@ -59,14 +80,89 @@
             android:text="登 录"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:background="@drawable/bg_btn_green"/>
+            android:background="@drawable/bg_btn_login"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:text="服务条款"
+                android:textColor="#444"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="20dp"
+                android:gravity="end"
+                android:text="还没有账号？"
+                android:textColor="#444"/>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="---第三方登陆---"
+            android:textColor="#666"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/img_login_qq"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/img_login_wechat"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/ic_qq"
+                android:background="?selectableItemBackgroundBorderless"/>
+
+            <ImageView
+                android:id="@+id/img_login_wechat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_wechat"
+                android:background="?selectableItemBackgroundBorderless"/>
+
+
+            <ImageView
+                android:id="@+id/img_login_linkedin"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@id/img_login_wechat"
+                android:layout_marginLeft="50dp"
+                android:src="@drawable/ic_linkedin"
+                android:background="?selectableItemBackgroundBorderless"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

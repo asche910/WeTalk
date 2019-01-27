@@ -69,11 +69,11 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Explode explode = new Explode();
             explode.setDuration(600);
             getActivity().getWindow().setExitTransition(explode);
-        }
+        }*/
 
         userInfoLayout = getView().findViewById(R.id.layout_user_info);
         imgAvatar = getView().findViewById(R.id.img_user_avatar);

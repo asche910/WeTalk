@@ -34,6 +34,7 @@ public class TopicChipRVAdapter extends RecyclerView.Adapter<TopicChipRVAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.textView.setText(list.get(position));
         holder.imgDelete.setVisibility(GONE);
+
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

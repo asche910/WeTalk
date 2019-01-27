@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+
+    <base-config cleartextTrafficPermitted="true" />
+
+
     <!--  for android-9.0  -->
-    <domain-config cleartextTrafficPermitted="true">
+<!--    <domain-config cleartextTrafficPermitted="true">
+
         <domain includeSubdomains="true"> upload-images.jianshu.io</domain>
         <domain includeSubdomains="true"> openapi.tuling123.com</domain>
         <domain includeSubdomains="true">jishulink.com</domain>
         <domain includeSubdomains="true">haier.com</domain>
+        <domain includeSubdomains="true">qq.com</domain>
 
         <domain includeSubdomains="true">p0.cdn.img9.top</domain>
         <domain includeSubdomains="true">img.mms.v1.cn</domain>
-    </domain-config>
+    </domain-config>-->
 </network-security-config>

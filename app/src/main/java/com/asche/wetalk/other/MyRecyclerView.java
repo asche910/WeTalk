@@ -65,5 +65,4 @@ public class MyRecyclerView extends RecyclerView {
         Log.e("----->", "onOverScrolled: " + scrollY + "---" + clampedY );
     }
 
-
 }
