@@ -18,14 +18,9 @@ import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.bean.UserBean;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
 import java.util.Random;
 
 import static com.asche.wetalk.MyApplication.getContext;
@@ -43,23 +38,10 @@ import static com.zhihu.matisse.internal.utils.PathUtils.isMediaDocument;
  */
 public class DataUtils {
 
-    private static Random random = new Random();
+    public static Random random = new Random();
 
-    private static String imgUrl_1 = "https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg";
-    private static String imgUrl_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg";
-
-    public static UserBean getUser() {
-        UserBean userBean = new UserBean();
-        int id = random.nextInt(999_999_999) + 100_000;
-        userBean.setId(id + "");
-        userBean.setUserName("User_" + id);
-
-        userBean.setImgAvatar(random.nextBoolean() ? imgUrl_1 : imgUrl_2);
-
-        userBean.setFollowerNum(6_000);
-        userBean.setFollowNum(6);
-        return userBean;
-    }
+    public static String imgAvatar_1 = "https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"; // 企鹅
+    public static String imgAvatar_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"; // 袋鼠
 
 
     public static String getArticleStr() {
@@ -89,7 +71,7 @@ public class DataUtils {
         return bean;
     }
 
-    public static ArticleBean getArticle() {
+/*    public static ArticleBean getArticle() {
         ArticleBean bean = new ArticleBean();
         int n = random.nextInt(2);
         switch (n) {
@@ -109,7 +91,7 @@ public class DataUtils {
         bean.setLikeNum(23);
         bean.setCommentNum(45);
         return bean;
-    }
+    }*/
 
 
     /**
@@ -186,6 +168,7 @@ public class DataUtils {
                     bean.setBrief(content_2);
                 else
                     bean.setBrief(content_2.substring(0, 1000));
+                bean.setImgUrl("https://img.jishulink.com/201901/imgs/03af6da5ff144e909815c65cf93b74f7");
                 bean.setContent(content_2);
                 break;
             case 1:
@@ -204,6 +187,7 @@ public class DataUtils {
                     bean.setBrief(content_0);
                 else
                     bean.setBrief(content_0.substring(0, 1000));
+                bean.setImgUrl("https://img.jishulink.com/upload/201901/030fad1e394c4bdab2610b436bd6d1a6.png");
                 bean.setContent(content_0);
                 break;
             default:
@@ -227,14 +211,14 @@ public class DataUtils {
         bean.setType(type);
         switch (random.nextInt(4)) {
             case 3:
-                bean.setAvatarUrl(imgUrl_1);
+                bean.setAvatarUrl(imgAvatar_1);
                 bean.setContent("退一万步讲，就算收费了，其实对我们影响也不大，反正在天朝，盗版是一种习惯。");
                 bean.setName("John Smith");
                 bean.setTime("12:24");
                 bean.setLikeNum(6);
                 break;
             case 2:
-                bean.setAvatarUrl(imgUrl_2);
+                bean.setAvatarUrl(imgAvatar_2);
                 bean.setContent("我们现在总归也开始用正版了嘛（严肃脸）～");
                 bean.setName("防弹纸尿裤");
                 bean.setTime("刚刚");

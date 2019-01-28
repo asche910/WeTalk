@@ -28,6 +28,7 @@ import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -261,16 +262,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             imgHolder.textLike.setText(bean.getLikeNum() + "");
             imgHolder.textComment.setText(bean.getCommentNum() + "");
 
-            try {
-                Glide.with(context)
-                        .load(Integer.parseInt(bean.getImgUrl()))
-                        .into(imgHolder.img);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getImgUrl())
-                        .into(imgHolder.img);
-            }
+
+            LoaderUtils.loadImage(bean.getImgUrl(), context, imgHolder.img);
 
             imgHolder.imgMore.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -14,6 +14,10 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
     private ImageView imgBack;
     private TextView textTitle;
 
+    private TextView textName, textGender, textSignature;
+    private TextView textCareer, textSchool, textLocation;
+    private TextView textEmail, textDescription;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +27,25 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
         imgBack = findViewById(R.id.img_toolbar_back);
         textTitle = findViewById(R.id.text_toolbar_title);
 
+        textName = findViewById(R.id.text_user_detail_name);
+        textGender = findViewById(R.id.text_user_detail_gender);
+        textSignature = findViewById(R.id.text_user_detail_signature);
+        textCareer = findViewById(R.id.text_user_detail_career);
+        textSchool = findViewById(R.id.text_user_detail_school);
+        textLocation = findViewById(R.id.text_user_detail_location);
+        textEmail = findViewById(R.id.text_user_detail_email);
+        textDescription = findViewById(R.id.text_user_detail_description);
+
         textTitle.setText("详细资料");
         imgBack.setOnClickListener(this);
+        textName.setOnClickListener(this);
+        textGender.setOnClickListener(this);
+        textSignature.setOnClickListener(this);
+        textCareer.setOnClickListener(this);
+        textSchool.setOnClickListener(this);
+        textLocation.setOnClickListener(this);
+        textEmail.setOnClickListener(this);
+        textDescription.setOnClickListener(this);
     }
 
     @Override

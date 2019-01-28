@@ -23,12 +23,14 @@ import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.TechTags;
+import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.fragment.FragmentDialogComment;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
@@ -69,7 +71,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private TextView textTitle, textTime;
 
     // 作者信息
-    private TextView textAuthorName, textAuthorSignature, textAuthorFollowNum;
+    private TextView textAuthorName, textAuthorSignature;
     private ImageView imgAuthorAvatar, imgFollow;
     private boolean isFollow;
 
@@ -88,6 +90,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
     private TextView textMoreComment;
 
+    // 底部功能栏
     private LinearLayout layoutLike, layoutComment, layoutForward;
     private ImageView imgLike;
     private TextView textLikeNum, textCommentNum;
@@ -134,12 +137,13 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         }).start();
 
 
+        //<editor-fold defaultstate="collapsed" desc="Id 初始化">
+
         imgBack = findViewById(R.id.img_toolbar_back);
         imgMore = findViewById(R.id.img_toolbar_more);
         toolbarTitle = findViewById(R.id.text_toolbar_title);
 
         recyclerTags = findViewById(R.id.recycler_article_tags);
-
         swipeRefreshLayout = findViewById(R.id.header_article);
         recyclerView = findViewById(R.id.recycler_article);
         recyclerComment = findViewById(R.id.recycler_article_comment);
@@ -158,6 +162,8 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         textCommentNum = findViewById(R.id.text_item_main_commentnum);
         textMoreComment = findViewById(R.id.text_article_morecomment);
 
+        //</editor-fold>
+
         articleBean = (ArticleBean) getIntent().getSerializableExtra("article");
         requirementBean = (RequirementBean) getIntent().getSerializableExtra("requirement");
 
@@ -165,11 +171,10 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             /**  这里表明接收到Article类型       */
             isArticle = true;
 
-            author = DataUtils.getUser();
+            author = UserUtils.getUser();
             textTitle.setText(articleBean.getTitle());
             textTime.setText(articleBean.getTime());
             // TODO Author暂时使用测试数据
-//            textAuthorSignature.setText("粉丝 " + author.getFollowerNum());
             try {
                 Glide.with(getApplicationContext())
                         .load(Integer.parseInt(articleBean.getImgUrl()))
@@ -187,28 +192,26 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             /**  接收到为Requirement类型  */
             isArticle = false;
 
-            author = DataUtils.getUser();
             textTitle.setText(requirementBean.getTitle());
             textTime.setText(requirementBean.getTime());
             // TODO Author暂时使用测试数据
-            // textAuthorSignature.setText("粉丝 " + author.getFollowerNum());
-            try {
-                Glide.with(getApplicationContext())
-                        .load(Integer.parseInt(requirementBean.getImgUrl()))
-                        .into(imgAuthorAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(getApplicationContext())
-                        .load(requirementBean.getImgUrl())
-                        .into(imgAuthorAvatar);
-            }
+
             bodyContentBeanList = BodyContentUtil.parseHtml(requirementBean.getContent());
 
         }
 
+        author = UserUtils.getUser();
+
+        textAuthorName.setText(author.getNickName());
+        textAuthorSignature.setText(author.getSignature());
+        LoaderUtils.loadImage(author.getImgAvatar(), getApplicationContext(), imgAuthorAvatar);
+
         toolbarTitle.setText("文章");
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
+        textAuthorName.setOnClickListener(this);
+        textAuthorSignature.setOnClickListener(this);
+        imgAuthorAvatar.setOnClickListener(this);
 
 
         ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(getApplicationContext())
@@ -289,6 +292,13 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.text_article_author_name:
+            case R.id.text_article_author_signature:
+            case R.id.img_article_author:
+                Intent intentDetail = new Intent(this, UserHomeActivity.class);
+                intentDetail.putExtra("user", author);
+                startActivity(intentDetail);
+                break;
             case R.id.img_follow:
                 if (!isFollow) {
                     Toast.makeText(this, "关注成功！", Toast.LENGTH_SHORT).show();

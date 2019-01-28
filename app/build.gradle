@@ -45,7 +45,7 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
     implementation 'com.github.SherlockGougou:BigImageViewPager:v4_2.1.4'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
-    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta3'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'

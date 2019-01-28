@@ -109,10 +109,18 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
             }
         });
 
+
         userBean = new UserBean();
         userBean.setNickName("Asche");
         userBean.setGender("Female");
         userBean.setImgAvatar("https://avatars1.githubusercontent.com/u/13347412?s=400&u=dff9d7b137708303a966cdd62ee4151d50b85b79&v=4");
+
+
+
+        UserBean user = (UserBean) getIntent().getSerializableExtra("user");
+        if (user != null){
+            userBean = user;
+        }
 
         Log.e("sa", "onCreate: " + userBean.toString() );
 

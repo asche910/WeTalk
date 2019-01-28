@@ -12,7 +12,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="8dp"
         android:orientation="vertical"
         android:background="@drawable/bg_item"
         android:elevation="2dp"
@@ -21,13 +25,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="昵称"
-                android:textColor="#444"
+                android:textColor="#666"
                 android:textSize="18sp" />
 
             <TextView
@@ -43,18 +48,20 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#45454545" />
+            android:layout_marginRight="8dp"
+            android:background="#22454545" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="性别"
-                android:textColor="#444"
+                android:textColor="#666"
                 android:textSize="18sp" />
 
             <TextView
@@ -70,18 +77,20 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#45454545" />
+            android:layout_marginRight="8dp"
+            android:background="#22454545" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:text="签名"
-                android:textColor="#444"
+                android:textColor="#666"
                 android:textSize="18sp" />
 
             <TextView
@@ -95,11 +104,172 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_item"
+        android:elevation="2dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="职业"
+                android:textColor="#666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_user_detail_career"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Software Engineer"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#45454545" />
+            android:layout_marginRight="8dp"
+            android:background="#22454545" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="学校"
+                android:textColor="#666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_user_detail_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WUST"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="8dp"
+            android:background="#22454545" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="住所"
+                android:textColor="#666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_user_detail_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="湖北省"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_item"
+        android:elevation="2dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="邮箱"
+                android:textColor="#666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_user_detail_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asche910@163.com"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="8dp"
+            android:background="#22454545" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="个人简介"
+                android:textColor="#666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/text_user_detail_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="15dp"
+                android:text="What cant't kill you makes you stronger!\nBlog: asche.top"
+                android:textColor="#333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

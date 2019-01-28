@@ -2,11 +2,12 @@ package com.asche.wetalk.bean;
 
 import com.asche.wetalk.util.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
-public class UserBean {
+public class UserBean implements Serializable {
     private String id;
     private String userName;
     private String password;

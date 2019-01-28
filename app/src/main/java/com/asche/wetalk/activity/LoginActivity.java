@@ -123,20 +123,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-        Toast.makeText(LoginActivity.this, "授权成功！", Toast.LENGTH_SHORT).show();
 
-        Log.e("---", platform.getDb().exportData());
+        // nickname, gender(1女2男), icon, userID(唯一识别码)
+        Log.e("-------", platform.getDb().exportData());
     }
 
     @Override
     public void onError(Platform platform, int i, Throwable throwable) {
-        Toast.makeText(LoginActivity.this, "授权失败！", Toast.LENGTH_SHORT).show();
 
+        Log.e("-------", "onError: ---------->" );
     }
 
     @Override
     public void onCancel(Platform platform, int i) {
-        Toast.makeText(LoginActivity.this, "授权取消！", Toast.LENGTH_SHORT).show();
 
+        Log.e("-------", "onCancel: ---------->" );
     }
 }
