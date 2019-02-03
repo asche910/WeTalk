@@ -1,5 +1,6 @@
 package com.asche.wetalk.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.TechTags;
 import com.asche.wetalk.helper.DropZoomScrollView;
+import com.asche.wetalk.util.LoaderUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -37,8 +40,9 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
+import cc.shinichi.library.glide.ImageLoader;
 
-public class UserHomeActivity extends BaseActivity implements View.OnClickListener{
+public class UserHomeActivity extends BaseActivity implements View.OnClickListener {
 
     private DropZoomScrollView dropZoomScrollView;
     private RelativeLayout toolbarLayout;
@@ -47,6 +51,8 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     private ImageView imgBack, imgTwocode;
 
     private ImageView imgBg, imgAvatar;
+    private TextView textNickName, textSignature, textFollowerNum, textFollowNum, textCareer, textLocation;
+
 
     private Button btnDetail, btnWork;
     private TagFlowLayout tagFlowLayout;
@@ -54,30 +60,40 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 
 
     private UserBean userBean;
+    private boolean isOtherUser; // 判断查看的是否是用户自己
 
     private static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     /* 头像名称 *///
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
-    private  File tempFile;
+    private File tempFile;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        init();
         setContentView(R.layout.activity_user_home);
 
+        //<editor-fold defaultstate="collapsed" desc="Id Initialization">
         toolbarLayout = findViewById(R.id.toolbar_user_home);
         textTitle = findViewById(R.id.text_user_home_title);
         imgBack = findViewById(R.id.img_toolbar_back);
         imgTwocode = findViewById(R.id.img_toolbar_twocode);
         imgBg = findViewById(R.id.img_user_home_bg);
         imgAvatar = findViewById(R.id.img_user_home_avatar);
+        textNickName = findViewById(R.id.text_user_home_nickname);
+        textSignature = findViewById(R.id.text_user_home_signature);
+        textFollowerNum = findViewById(R.id.text_user_home_follower);
+        textFollowNum = findViewById(R.id.text_user_home_follow);
+        textCareer = findViewById(R.id.text_user_home_career);
+        textLocation = findViewById(R.id.text_user_home_location);
         btnDetail = findViewById(R.id.btn_user_home_detail);
         btnWork = findViewById(R.id.btn_user_home_work);
         tagFlowLayout = findViewById(R.id.tagflow_user);
         dropZoomScrollView = findViewById(R.id.scroll_user_home);
+        //</editor-fold>
 
         dropZoomScrollView.setDropView(imgBg);
         dropZoomScrollView.setupTitleView(toolbarLayout);
@@ -89,16 +105,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         btnDetail.setOnClickListener(this);
         btnWork.setOnClickListener(this);
 
-        tagList.add("计算机");
-        tagList.add("医学");
-        tagList.add("冶金");
-        tagList.add("炼丹");
-        tagList.add("机械");
-        tagList.add("计算机");
-        tagList.add("医学");
-        tagList.add("冶金");
-        tagList.add("炼丹");
-        tagList.add("机械");
+        tagList.addAll(TechTags.getTagsList().subList(0, 5));
 
         tagFlowLayout.setAdapter(new TagAdapter<String>(tagList) {
             @Override
@@ -116,13 +123,28 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         userBean.setImgAvatar("https://avatars1.githubusercontent.com/u/13347412?s=400&u=dff9d7b137708303a966cdd62ee4151d50b85b79&v=4");
 
 
-
         UserBean user = (UserBean) getIntent().getSerializableExtra("user");
-        if (user != null){
+        if (user != null) {
             userBean = user;
+
+            LoaderUtils.loadImage(userBean.getImgAvatar(), getApplicationContext(), imgAvatar);
+            LoaderUtils.loadImage(userBean.getImgBg(), getApplicationContext(), imgBg);
+
+            textTitle.setText(userBean.getNickName() + "的主页");
+            textNickName.setText(userBean.getNickName());
+            textSignature.setText(userBean.getSignature());
+            textFollowerNum.setText("粉丝 " + userBean.getFollowerNum());
+            textFollowNum.setText("关注 " + userBean.getFollowNum());
+            textCareer.setText(userBean.getProfession());
+            textLocation.setText(userBean.getAddress());
+
+            if (!getCurUser().equals(userBean)){
+                isOtherUser = true;
+            }
         }
 
-        Log.e("sa", "onCreate: " + userBean.toString() );
+        Log.e("sa", "onCreate: " + userBean.toString());
+
 
 /*        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Explode explode = new Explode();
@@ -133,7 +155,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_user_home_work:
                 Intent intent = new Intent(this, UserModifyActivity.class);
                 startActivity(intent);
@@ -149,7 +171,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                             @Override
                             public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                                 Toast.makeText(UserHomeActivity.this, "You Clickd item " + which, Toast.LENGTH_SHORT).show();
-                                switch (which){
+                                switch (which) {
                                     case 0:
                                         ImageInfo imageInfo = new ImageInfo();
                                         imageInfo.setOriginUrl(userBean.getImgAvatar());
@@ -202,7 +224,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void init(){
+    private void init() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             TransitionSet transitionSet = new TransitionSet();
 
@@ -327,7 +349,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public static File bitmapToFile(Bitmap bitmap){
+    public static File bitmapToFile(Bitmap bitmap) {
         File file = new File(Environment.getExternalStorageDirectory(), ".temp");
         try {
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));

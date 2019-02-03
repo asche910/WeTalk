@@ -17,9 +17,11 @@ import android.widget.Toast;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.TopicBean;
+import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
+import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -33,7 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 
-public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMenu.OnMenuItemClickListener {
+public class TopicInfoRVAdapter extends RecyclerView.Adapter implements PopupMenu.OnMenuItemClickListener {
 
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
@@ -72,7 +74,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
     }
 
     public class ImageHolder extends RecyclerView.ViewHolder {
-        private TextView textName,textSignature, textContent;
+        private TextView textName, textSignature, textContent;
         public TextView textLike, textComment;
         public ImageView img, imgLike, imgMore, imgAvatar;
 
@@ -112,8 +114,9 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
         }
     }
 
-    public class HeaderHolder extends RecyclerView.ViewHolder{
+    public class HeaderHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textContent, textFollowerNum, textReplyNum, textTime;
+
         public HeaderHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.text_topic_title);
@@ -131,9 +134,9 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
             return TYPE_TEXT;
         } else if (itemBean.getBodyType() == TYPE_IMAGE) {
             return TYPE_IMAGE;
-        }else if(itemBean.getBodyType() == TYPE_VIDEO) {
+        } else if (itemBean.getBodyType() == TYPE_VIDEO) {
             return TYPE_VIDEO;
-        } else if (itemBean.getBodyType() == TYPE_HEADER){
+        } else if (itemBean.getBodyType() == TYPE_HEADER) {
             return TYPE_HEADER;
         }
         return super.getItemViewType(position);
@@ -142,7 +145,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.e(TAG, "onCreateViewHolder: " + (n++) );
+        Log.e(TAG, "onCreateViewHolder: " + (n++));
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view;
         if (context == null) {
@@ -157,7 +160,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
         } else if (viewType == TYPE_VIDEO) {
             view = inflater.inflate(R.layout.item_topic_reply_video, parent, false);
             return new VideoHolder(view);
-        } else if(viewType == TYPE_HEADER){
+        } else if (viewType == TYPE_HEADER) {
             view = inflater.inflate(R.layout.item_topic_reply_header, parent, false);
             return new HeaderHolder(view);
         }
@@ -215,7 +218,9 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
             textHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nextActivity(TopicActivity.class);
+                    Intent intentData = new Intent(context, TopicActivity.class);
+                    intentData.putExtra("topicReply", DataUtils.getTopicReply(bean.getId()));
+                    context.startActivity(intentData);
                 }
             });
 
@@ -279,7 +284,9 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
             imgHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nextActivity(TopicActivity.class);
+                    Intent intentData = new Intent(context, TopicActivity.class);
+                    intentData.putExtra("topicReply", DataUtils.getTopicReply(bean.getId()));
+                    context.startActivity(intentData);
                 }
             });
         } else if (bean.getBodyType() == TYPE_VIDEO) {
@@ -356,11 +363,13 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
             videoHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nextActivity(TopicActivity.class);
+                    Intent intentData = new Intent(context, TopicActivity.class);
+                    intentData.putExtra("topicReply", DataUtils.getTopicReply(bean.getId()));
+                    context.startActivity(intentData);
                 }
             });
-        } else if (bean.getBodyType() == TYPE_HEADER){
-            HeaderHolder headerHolder = (HeaderHolder)holder;
+        } else if (bean.getBodyType() == TYPE_HEADER) {
+            HeaderHolder headerHolder = (HeaderHolder) holder;
             TopicBean topicBean = bean.getTopicBean();
             headerHolder.textTitle.setText(topicBean.getName());
             headerHolder.textContent.setText(topicBean.getContent());
@@ -379,8 +388,8 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        Log.e(TAG, "onMenuItemClick: " + curPosition );
-        switch (item.getItemId()){
+        Log.e(TAG, "onMenuItemClick: " + curPosition);
+        switch (item.getItemId()) {
             case R.id.menu_suggest_2:
                 Toast.makeText(context, "举报", Toast.LENGTH_SHORT).show();
                 break;
@@ -398,7 +407,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
     @Override
     public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        Log.e(TAG, "onViewDetachedFromWindow: " );
+        Log.e(TAG, "onViewDetachedFromWindow: ");
         if (holder instanceof TopicInfoRVAdapter.VideoHolder) {
             TopicInfoRVAdapter.VideoHolder viewHolder = (TopicInfoRVAdapter.VideoHolder) holder;
             if (viewHolder.videoPlayer.isInPlayingState()) {
@@ -410,7 +419,7 @@ public class TopicInfoRVAdapter extends RecyclerView.Adapter implements  PopupMe
     @Override
     public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
-        Log.e(TAG, "onViewAttachedToWindow: " );
+        Log.e(TAG, "onViewAttachedToWindow: ");
         if (holder instanceof TopicInfoRVAdapter.VideoHolder) {
             TopicInfoRVAdapter.VideoHolder viewHolder = (TopicInfoRVAdapter.VideoHolder) holder;
 

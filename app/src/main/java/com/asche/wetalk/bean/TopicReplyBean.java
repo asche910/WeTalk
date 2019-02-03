@@ -111,7 +111,7 @@ public class TopicReplyBean implements HomeItem, Serializable {
     @Override
     public String getTitle() {
         // TODO implement getTitle();
-        return DataUtils.getTitle(getId());
+        return DataUtils.getTitle(getTopicId());
     }
 
     @Override

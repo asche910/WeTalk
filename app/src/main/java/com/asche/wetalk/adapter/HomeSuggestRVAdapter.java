@@ -24,6 +24,7 @@ import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.bean.RequirementBean;
+import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
@@ -192,6 +193,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             textHolder.textLike.setText(bean.getLikeNum() + "");
             textHolder.textComment.setText(bean.getCommentNum() + "");
 
+
             textHolder.imgMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -235,14 +237,14 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         Intent intent = new Intent(context, ArticleActivity.class);
                         intent.putExtra("article", (ArticleBean)list.get(position));
                         context.startActivity(intent);
-//                        nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class);
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
                         intent.putExtra("requirement", (RequirementBean)list.get(position));
                         context.startActivity(intent);
-                        // nextActivity(ArticleActivity.class);
                     }
                 }
             });
@@ -309,7 +311,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class);
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
                         intent.putExtra("requirement", (RequirementBean)list.get(position));
@@ -397,7 +401,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class);
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
                         intent.putExtra("requirement", (RequirementBean)list.get(position));

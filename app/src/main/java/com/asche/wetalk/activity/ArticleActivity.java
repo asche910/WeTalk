@@ -96,6 +96,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     private TextView textLikeNum, textCommentNum;
 
 
+    // 数据对象
     public ArticleBean articleBean;
     public RequirementBean requirementBean;
     public boolean isArticle; // 默认为Requirement

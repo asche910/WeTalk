@@ -14,9 +14,11 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.RequirementBean;
+import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.UserUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -44,26 +46,34 @@ public class DataUtils {
     public static String imgAvatar_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"; // 袋鼠
 
 
-    public static String getArticleStr() {
-        return getContent(R.raw.article_3);
-    }
-
-    public static TopicReplyBean getTopicReply() {
+    public static TopicReplyBean getTopicReply(String... ids) {
+        int n;
+        if (ids.length == 1) {
+            n = (int) ids[0].charAt(0) - 49;
+        } else {
+            n = random.nextInt(3);
+        }
         TopicReplyBean bean = new TopicReplyBean();
-        int n = random.nextInt(2);
         switch (n) {
+            case 2:
+                bean.setTopicId(333 + "");
+                bean.setContent(getContent(R.raw.topic_3));
+                bean.setImgUrl("https://pic4.zhimg.com/v2-2d9c0d41de839b90b41c5de52ef10323_b.jpg");
             case 1:
-                bean.setId(222 + "");
+                bean.setTopicId(222 + "");
                 bean.setContent(getContent(R.raw.topic_2));
                 bean.setImgUrl("https://pic1.zhimg.com/v2-d54e01339bc69e3c80c760479b941ebc_b.jpg");
                 break;
             case 0:
-                bean.setId(111 + "");
+                bean.setTopicId(111 + "");
                 bean.setContent(getContent(R.raw.topic_1));
                 bean.setImgUrl("https://pic1.zhimg.com/v2-91e5d2f6c85c151f235b09e4cf229509_b.jpg");
                 break;
+            default:
+                bean.setTopicId(111 + "");
+                bean.setContent(getContent(R.raw.topic_1));
+                bean.setImgUrl("https://pic1.zhimg.com/v2-91e5d2f6c85c151f235b09e4cf229509_b.jpg");
         }
-        bean.setTopicId(444 + "");
         bean.setAuthorId(4 + "");
         bean.setTime("2018-08-09");
         bean.setLikeNum(78);
@@ -71,27 +81,33 @@ public class DataUtils {
         return bean;
     }
 
-/*    public static ArticleBean getArticle() {
-        ArticleBean bean = new ArticleBean();
-        int n = random.nextInt(2);
+    public static TopicBean getTopic(String... ids) {
+        int n;
+        if (ids.length == 1) {
+            n = (int) ids[0].charAt(0) - 49;
+        } else {
+            n = random.nextInt();
+        }
+        TopicBean bean = new TopicBean();
         switch (n) {
+            case 2:
+                bean.setName("你很长时间都不能忘记的一部电影是什么？");
+                break;
             case 1:
-                bean.setTitle("读大学前后对比照");
-                bean.setBrief("言语已无法形容我此时的惊讶之情！来感受下：只有经历了军训的黝黑 才能享受洗礼过后的美颜  我也来！14vs31岁");
-                bean.setContent(getArticleStr());
-                bean.setImgUrl("http://upload-images.jianshu.io/upload_images/10289013-75155d935b219002");
+                bean.setName("什么能力很重要，但大多数人却没有？");
                 break;
             case 0:
-                bean.setTitle("爱是勇敢行四方");
-                bean.setBrief("小雪人一出生就在冰天雪地里，或者阳光永远也照射不到的地方。因为每一个制造雪人的人都很明白，雪人怕热，怕太阳，雪人得到温暖的时候，生命也就结束了。");
-                bean.setContent(getContent(R.raw.article_2));
-                bean.setImgUrl("http://upload-images.jianshu.io/upload_images/12118808-731cedddfc5f5a60.jpg");
+                bean.setName("如何评价丁香园售卖 1980 元一双的矫形鞋垫？");
                 break;
+            default:
+                bean.setName("你很长时间都不能忘记的一部电影是什么？");
         }
-        bean.setLikeNum(23);
-        bean.setCommentNum(45);
+        bean.setReplyNum(n * 10);
+        bean.setFollowerNum(n * 20);
+        bean.setTime(TimeUtils.getCurrentTime());
+        bean.setAuthorId(UserUtils.getUser().getId() + "");
         return bean;
-    }*/
+    }
 
 
     /**
@@ -244,41 +260,65 @@ public class DataUtils {
         return bean;
     }
 
-    public static TopicReplyItemBean getTopicReplyItem() {
+    public static TopicReplyItemBean getTopicReplyItem(int... index) {
         TopicReplyItemBean bean = new TopicReplyItemBean();
-        bean.setAuthorName("Asche");
-        bean.setAuthorSignature("It专业的一只菜鸟");
-        bean.setAuthorAvatar(R.drawable.img_avatar + "");
+        UserBean author = UserUtils.getUser();
 
-        bean.setContent(getContext().getResources().getString(R.string.topic_reply));
-        bean.setLikeNum(456);
-        bean.setCommentNum(82);
-        bean.setTime("10-24");
+        bean.setAuthorName(author.getNickName());
+        bean.setAuthorSignature(author.getSignature());
+        bean.setAuthorAvatar(author.getImgAvatar());
 
-        int n = random.nextInt(3);
+        int n;
+        if (index.length == 1) {
+            n = index[0];
+        } else {
+            n = random.nextInt(3);
+        }
         switch (n) {
             case 2:
-                bean.setBodyType(TYPE_VIDEO);
-                bean.setVideoUrl("http://f10.v1.cn/site/15538790.mp4.f40.mp4");
-                bean.setImgUrl("http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg");
+                bean.setId("333");
+                bean.setContent(getContent(R.raw.topic_3));
+                bean.setImgUrl("https://pic4.zhimg.com/v2-2d9c0d41de839b90b41c5de52ef10323_b.jpg");
+                bean.setBodyType(TYPE_IMAGE);
+                bean.setTopicBean(getTopic("333"));
                 break;
             case 1:
-                bean.setBodyType(TYPE_IMAGE);
-                bean.setImgUrl(R.drawable.img_avatar + "");
+                bean.setId("222");
+                bean.setContent(getContent(R.raw.topic_2));
+                bean.setVideoUrl(ZhihuUtils.getVideoSrc("https://www.zhihu.com/video/1057342788332605440"));
+                bean.setImgUrl("https://p0.cdn.img9.top/ipfs/QmZzufMWG8Shd2XGszhNnQz5ifsnLpmfaRYtCRxPaFJ52b?0.png");
+                bean.setBodyType(TYPE_VIDEO);
+                bean.setTopicBean(getTopic("222"));
+                break;
+            case 0:
+                bean.setId("111");
+                bean.setContent(getContent(R.raw.topic_1));
+                bean.setBodyType(TYPE_TEXT);
+                bean.setTopicBean(getTopic("111"));
                 break;
             default:
+                bean.setId("111");
+                bean.setContent(getContent(R.raw.topic_1));
                 bean.setBodyType(TYPE_TEXT);
+                bean.setTopicBean(getTopic("111"));
                 break;
         }
+
+        bean.setLikeNum(100 * n);
+        bean.setCommentNum(5 * n);
+        bean.setTime(TimeUtils.getCurrentTime());
+
         return bean;
     }
 
     public static String getTitle(String idStr) {
         switch (idStr) {
+            case "333":
+                return "你很长时间都不能忘记的一部电影是什么？";
             case "222":
-                return "最让程序猿自豪的事情是什么？";
+                return "什么能力很重要，但大多数人却没有？";
             case "111":
-                return "你在大学有过哪些「骚操作」？";
+                return "如何评价丁香园售卖 1980 元一双的矫形鞋垫？";
             default:
                 return "Hello, World!";
         }
@@ -306,7 +346,7 @@ public class DataUtils {
         return null;
     }
 
-    // 待测试
+    // 有待测试
     @SuppressLint("NewApi")
     public static String getPath(final Context context, final Uri uri) {
         Log.e(TAG, "getPath: " + uri.toString());

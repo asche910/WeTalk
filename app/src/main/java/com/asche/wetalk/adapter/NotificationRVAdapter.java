@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.NotificationItemBean;
+import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.util.LoaderUtils;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -61,20 +63,13 @@ public class NotificationRVAdapter extends RecyclerView.Adapter{
         if (bean.getType() == TYPE_FRIEND){
             FriendHolder friendHolder = (FriendHolder)holder;
 
-            friendHolder.textName.setText(bean.getName());
+            UserBean userBean = bean.getUserBean();
+
+            friendHolder.textName.setText(userBean.getNickName());
             friendHolder.textContent.setText(bean.getContent());
             friendHolder.textTime.setText(bean.getTime());
 
-            try {
-                Glide.with(context)
-                        .load(Integer.parseInt(bean.getImgUrl()))
-                        .into(friendHolder.imgAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getImgUrl())
-                        .into(friendHolder.imgAvatar);
-            }
+            LoaderUtils.loadImage(userBean.getImgAvatar(), context, friendHolder.imgAvatar);
 
             friendHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

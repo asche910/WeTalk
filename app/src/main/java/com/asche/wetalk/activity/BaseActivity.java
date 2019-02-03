@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.UserUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,15 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static UserBean curUser;
 
     static {
-        UserBean userBean = new UserBean();
-        userBean.setId(String.valueOf(100_000));
-        userBean.setUserName("Asche");
-
-        userBean.setImgAvatar(String.valueOf(R.drawable.img_avatar));
-        userBean.setFollowerNum(6_000);
-        userBean.setFollowNum(12);
-
-        curUser = userBean;
+        curUser = UserUtils.getUser(1);
     }
 
     @Override

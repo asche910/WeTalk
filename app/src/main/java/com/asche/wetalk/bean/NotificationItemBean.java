@@ -7,18 +7,31 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 
 public class NotificationItemBean {
-    private int type;
-    private String name;
+    public static final int TYPE_CHAT = 0;
+    public static final int TYPE_SYSTEM = 1;
+
+    private int type; // 0: 聊天消息  1: 系统消息
+    private UserBean userBean;
     private String time;
     private String content;
-    private String imgUrl;
 
-    public NotificationItemBean(int type, String name, String time, String content, String imgUrl) {
-        this.type = type;
-        this.name = name;
+    public NotificationItemBean(UserBean userBean, String time, String content) {
+        type = TYPE_CHAT;
+        this.userBean = userBean;
         this.time = time;
         this.content = content;
-        this.imgUrl = imgUrl;
+    }
+
+    public NotificationItemBean(int type) {
+        this.type = type;
+    }
+
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
     }
 
     public int getType() {
@@ -27,14 +40,6 @@ public class NotificationItemBean {
 
     public void setType(int type) {
         this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTime() {
@@ -51,14 +56,6 @@ public class NotificationItemBean {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     @NonNull

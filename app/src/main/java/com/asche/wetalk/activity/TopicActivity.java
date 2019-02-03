@@ -21,11 +21,16 @@ import com.asche.wetalk.adapter.CommentRVAdapter;
 import com.asche.wetalk.adapter.OnItemMoreClickListener;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
+import com.asche.wetalk.bean.TopicBean;
+import com.asche.wetalk.bean.TopicReplyBean;
+import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.fragment.FragmentDialogComment;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.BodyContentUtil;
 import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -53,10 +58,13 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
-    private TextView textTitle, textAllReply;
-    private ImageView imgFollow;
-    private boolean isFollow;
+    // 话题 --> 问题区
+    private TextView textTitle, textReply, textAllReply;
 
+    // 作者信息区
+    private TextView textAuthorName, textAuthorSignature;
+    private ImageView imgAuthorAvatar, imgFollow;
+    private boolean isFollow;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -72,28 +80,41 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
     private TextView textMoreComment;
 
+
+    // 底部功能栏
     private LinearLayout layoutLike, layoutComment, layoutForward;
     private ImageView imgLike;
     private TextView textLikeNum, textCommentNum;
 
+
+    // 数据对象
+    private TopicBean topicBean;
+    private TopicReplyBean topicReplyBean;
+    private UserBean author;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topic);
 
-        String action = getIntent().getStringExtra("action");
+        Intent intentData = getIntent();
+        String action = intentData.getStringExtra("action");
         if ("OPEN_COMMENT".equals(action)){
             openComment();
         }
+
 
         imgBack = findViewById(R.id.img_toolbar_back);
         imgMore = findViewById(R.id.img_toolbar_more);
         toolbarTitle = findViewById(R.id.text_toolbar_title);
         swipeRefreshLayout = findViewById(R.id.header_topic);
         textTitle = findViewById(R.id.text_topic_title);
+        textReply = findViewById(R.id.text_topic_reply);
         textAllReply = findViewById(R.id.text_topic_allreply);
+        imgAuthorAvatar = findViewById(R.id.img_topic_author_avatar);
         imgFollow = findViewById(R.id.img_follow);
+        textAuthorName = findViewById(R.id.text_topic_author_name);
+        textAuthorSignature = findViewById(R.id.text_topic_author_signature);
         recyclerView = findViewById(R.id.recycler_topic);
         recyclerComment = findViewById(R.id.recycler_topic_comment);
         textMoreComment = findViewById(R.id.text_topic_morecomment);
@@ -105,10 +126,24 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         textCommentNum = findViewById(R.id.text_item_main_commentnum);
 
 
+        topicReplyBean = (TopicReplyBean) intentData.getSerializableExtra("topicReply");
+        if (topicReplyBean != null){
+            topicBean = DataUtils.getTopic(topicReplyBean.getTopicId());
+            textTitle.setText(topicBean.getName());
+        }
+
+        // TODO get TopicBean and AuthorBean from ids
+
+        author = UserUtils.getUser();
+
+        LoaderUtils.loadImage(author.getImgAvatar(), getApplicationContext(), imgAuthorAvatar);
+        textAuthorName.setText(author.getNickName());
+        textAuthorSignature.setText(author.getSignature());
+
+
         toolbarTitle.setText("话题");
 
-        bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.topic_1));
-//        bodyContentBeanList = BodyContentUtil.parseHtml(getResources().getString(R.string.topic_reply));
+        bodyContentBeanList = BodyContentUtil.parseHtml(topicReplyBean.getContent());
         layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         bodyContentRVAdapter = new BodyContentRVAdapter(bodyContentBeanList);
         recyclerView.setLayoutManager(layoutManager);
@@ -137,13 +172,16 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
         textTitle.setOnClickListener(this);
+        textReply.setOnClickListener(this);
         textAllReply.setOnClickListener(this);
+        imgAuthorAvatar.setOnClickListener(this);
         imgFollow.setOnClickListener(this);
+        textAuthorName.setOnClickListener(this);
+        textAuthorSignature.setOnClickListener(this);
         textMoreComment.setOnClickListener(this);
         layoutLike.setOnClickListener(this);
         layoutComment.setOnClickListener(this);
         layoutForward.setOnClickListener(this);
-
 
 
         swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
@@ -181,6 +219,13 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_topic_author_avatar:
+            case R.id.text_topic_author_name:
+            case R.id.text_topic_author_signature:
+                Intent intentDetail = new Intent(this, UserHomeActivity.class);
+                intentDetail.putExtra("user", author);
+                startActivity(intentDetail);
+                break;
             case R.id.img_follow:
                 if (!isFollow) {
                     Toast.makeText(this, "关注成功！", Toast.LENGTH_SHORT).show();
@@ -201,9 +246,14 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
                             .show();
                 }
                 break;
+            case R.id.text_topic_reply:
+                // TODO reply the topic!
+                Toast.makeText(this, "Reply the topic!", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.text_topic_title:
             case R.id.text_topic_allreply:
                 Intent intent = new Intent(this, TopicInfoActivity.class);
+                intent.putExtra("topicInfo", topicBean);
                 startActivity(intent);
                 break;
             case R.id.layout_item_main_forward:

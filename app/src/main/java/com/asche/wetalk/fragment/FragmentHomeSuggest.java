@@ -62,17 +62,14 @@ public class FragmentHomeSuggest extends Fragment {
 
 
         itemBeanList.add(DataUtils.getTopicReply());
+        itemBeanList.add(DataUtils.getArticle());
+        itemBeanList.add(DataUtils.getTopicReply());
+        itemBeanList.add(DataUtils.getRequirement());
+        itemBeanList.add(DataUtils.getArticle());
         itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getArticle());
+        itemBeanList.add(DataUtils.getRequirement());
 
-//        itemBeanList.add(new ItemBean(HomeItem.TYPE_TOPIC, 1, "被当成外国人是怎样的体验？", getResources().getString(R.string.topic_reply), 126, 63, R.drawable.img_avatar + "", null));
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), null, null, 65, 44));
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), imgSrc, videoSrc, 65, 44));
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), R.drawable.img_avatar + "", null, 65, 44));
-
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), imgSrc_, videoSrc_, 65, 44));
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), R.drawable.img_avatar + "", null, 65, 44));
-        itemBeanList.add(new TopicReplyBean("0", "1", "2", getResources().getString(R.string.topic_reply), TimeUtils.getCurrentTime(), null, null, 65, 44));
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         adapter = new HomeSuggestRVAdapter(itemBeanList);

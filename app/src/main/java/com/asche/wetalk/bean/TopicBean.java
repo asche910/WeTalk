@@ -2,18 +2,19 @@ package com.asche.wetalk.bean;
 
 import com.asche.wetalk.util.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 
-public class TopicBean {
+public class TopicBean implements Serializable {
     private String id;
     private String name; //  问题
     private String content; // 问题描述
     private String time;
     private int followerNum;
     private int replyNum;
-    private int authorId;
+    private String authorId;
 
     public TopicBean(String name, String content, String time, int followerNum, int replyNum) {
         this.name = name;
@@ -23,7 +24,7 @@ public class TopicBean {
         this.replyNum = replyNum;
     }
 
-    public TopicBean(String id, String name, String content, String time, int followerNum, int replyNum, int authorId) {
+    public TopicBean(String id, String name, String content, String time, int followerNum, int replyNum, String authorId) {
         this.id = id;
         this.name = name;
         this.content = content;
@@ -84,11 +85,11 @@ public class TopicBean {
         this.replyNum = replyNum;
     }
 
-    public int getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
 

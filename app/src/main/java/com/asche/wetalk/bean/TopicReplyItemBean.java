@@ -11,7 +11,11 @@ import androidx.annotation.NonNull;
 
 import static com.asche.wetalk.adapter.TopicInfoRVAdapter.TYPE_HEADER;
 
+/**
+ * TopicInfo 下的item
+ */
 public class TopicReplyItemBean implements Serializable {
+    private String id; // TopicReplyBean的ID
     private int bodyType;
     private String authorAvatar;
     private String authorName;
@@ -25,6 +29,21 @@ public class TopicReplyItemBean implements Serializable {
     private int commentNum;
 
     public TopicReplyItemBean() {
+    }
+
+    public TopicReplyItemBean(String id, int bodyType, String authorAvatar, String authorName, String authorSignature, String content, String time, String imgUrl, String videoUrl, TopicBean topicBean, int likeNum, int commentNum) {
+        this.id = id;
+        this.bodyType = bodyType;
+        this.authorAvatar = authorAvatar;
+        this.authorName = authorName;
+        this.authorSignature = authorSignature;
+        this.content = content;
+        this.time = time;
+        this.imgUrl = imgUrl;
+        this.videoUrl = videoUrl;
+        this.topicBean = topicBean;
+        this.likeNum = likeNum;
+        this.commentNum = commentNum;
     }
 
     public TopicReplyItemBean(int bodyType, String authorAvatar, String authorName, String authorSignature, String content, String time, String imgUrl, String videoUrl, int likeNum, int commentNum) {
@@ -43,6 +62,14 @@ public class TopicReplyItemBean implements Serializable {
     public TopicReplyItemBean(TopicBean topicBean) {
         bodyType = TYPE_HEADER;
         this.topicBean = topicBean;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getBodyType() {

@@ -17,6 +17,8 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ChatActivity;
 import com.asche.wetalk.adapter.NotificationRVAdapter;
 import com.asche.wetalk.bean.NotificationItemBean;
+import com.asche.wetalk.data.UserUtils;
+import com.asche.wetalk.util.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +46,11 @@ public class FragmentNotification extends Fragment {
         swipeRefreshLayout = getView().findViewById(R.id.header_notification);
         recyclerView = getView().findViewById(R.id.recycler_notification);
 
-        notiBeanList.add(new NotificationItemBean(0, "Asche", "11.13 15:43", "Hello, World!", R.drawable.img_avatar + ""));
-        notiBeanList.add(new NotificationItemBean(0, "Donna裹love橙", "今天19：42", "我们看待这个世界的方式，决定了我们度过一生的方式。写的很好，很深刻", "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"));
-        notiBeanList.add(new NotificationItemBean(0, "米洛斯", "11.13 22:45", "Hello, World!", R.drawable.img_avatar_default + ""));
-        notiBeanList.add(new NotificationItemBean(0, "Judy妞", "昨天19：42", "很是深刻，思维方式决定了我们的人生和格局", "https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"));
+        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(0), TimeUtils.getCurrentTime(), "你好，我是小灵机器人！"));
+        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(1), "11.13 15:43", "Hello, World!"));
+        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(2), "今天19：42", "我们看待这个世界的方式，决定了我们度过一生的方式。写的很好，很深刻"));
+        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(4), "11.13 22:45", "Hello, World!"));
+        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(3), "昨天19：42", "很是深刻，思维方式决定了我们的人生和格局"));
 
         notificationRVAdapter = new NotificationRVAdapter(notiBeanList);
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);

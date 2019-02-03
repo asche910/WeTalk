@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class UserBean implements Serializable {
     private String id;
@@ -176,6 +177,16 @@ public class UserBean implements Serializable {
 
     public void setFollowerNum(int followerNum) {
         this.followerNum = followerNum;
+    }
+
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof UserBean){
+            UserBean temp = (UserBean) obj;
+            return id.equals(temp.getId()) || userName.equals(temp.getUserName());
+        }
+        return false;
     }
 
     @NonNull

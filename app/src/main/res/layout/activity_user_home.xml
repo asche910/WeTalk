@@ -70,12 +70,14 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_user_home_follower"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="粉丝 6k"
                             android:textColor="@color/grayLight" />
 
                         <TextView
+                            android:id="@+id/text_user_home_follow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="关注 6"
@@ -87,6 +89,7 @@
 
 
             <TextView
+                android:id="@+id/text_user_home_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -95,6 +98,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/text_user_home_signature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -123,6 +127,7 @@ signature; tel; address; profession descriptio -->
                         android:src="@drawable/ic_profession" />
 
                     <TextView
+                        android:id="@+id/text_user_home_career"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -150,6 +155,7 @@ signature; tel; address; profession descriptio -->
                         android:src="@drawable/ic_location" />
 
                     <TextView
+                        android:id="@+id/text_user_home_location"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
@@ -234,7 +240,6 @@ signature; tel; address; profession descriptio -->
                         android:text="作品"
                         android:textColor="@color/white" />
                 </com.andexert.library.RippleView>
-
 
             </LinearLayout>
 
