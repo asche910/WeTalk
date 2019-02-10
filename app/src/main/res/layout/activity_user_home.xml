@@ -243,34 +243,13 @@ signature; tel; address; profession descriptio -->
 
             </LinearLayout>
 
-            <com.flyco.roundview.RoundLinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical"
-                app:rv_cornerRadius="6dp"
-                app:rv_strokeColor="#cccccc"
-                app:rv_strokeWidth="1dp">
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#27292929" />
 
-                <com.andexert.library.RippleView
-                    rv_centered="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@color/greenLight"
-                        android:gravity="center"
-                        android:text="Hello, World!"
-                        android:textSize="15sp" />
-
-                </com.andexert.library.RippleView>
-
-            </com.flyco.roundview.RoundLinearLayout>
 
             <include layout="@layout/item_timeline" />
 
