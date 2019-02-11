@@ -24,8 +24,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/img_user_home_bg"
@@ -39,9 +38,9 @@
                     android:id="@+id/img_user_home_avatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_alignBottom="@id/img_user_home_bg"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="-50dp"
-                    android:layout_alignBottom="@id/img_user_home_bg"
                     android:background="@drawable/img_avatar_default"
                     android:src="@drawable/img_avatar"
                     android:transitionName="user_avatar"
@@ -207,27 +206,12 @@ signature; tel; address; profession descriptio -->
                 android:gravity="center"
                 android:orientation="horizontal">
 
+
                 <com.andexert.library.RippleView
                     rv_centered="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    app:rv_rippleDuration="200">
-
-                    <!--  详细资料  -->
-                    <Button
-                        android:id="@+id/btn_user_home_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_btn_blue"
-                        android:text="更多"
-                        android:textColor="@color/white" />
-                </com.andexert.library.RippleView>
-
-                <com.andexert.library.RippleView
-                    rv_centered="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     app:rv_rippleDuration="200">
 
                     <Button
@@ -238,6 +222,23 @@ signature; tel; address; profession descriptio -->
                         android:layout_marginTop="0dp"
                         android:background="@drawable/bg_btn_green"
                         android:text="作品"
+                        android:textColor="@color/white" />
+                </com.andexert.library.RippleView>
+
+                <com.andexert.library.RippleView
+                    rv_centered="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    app:rv_rippleDuration="200">
+
+                    <!--  详细资料  -->
+                    <Button
+                        android:id="@+id/btn_user_home_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_btn_blue"
+                        android:text="更多"
                         android:textColor="@color/white" />
                 </com.andexert.library.RippleView>
 

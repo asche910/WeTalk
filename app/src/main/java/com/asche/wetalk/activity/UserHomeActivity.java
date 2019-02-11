@@ -1,6 +1,7 @@
 package com.asche.wetalk.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -8,15 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,22 +25,23 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.TechTags;
+import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.helper.DropZoomScrollView;
 import com.asche.wetalk.util.LoaderUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
 import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
-import cc.shinichi.library.glide.ImageLoader;
+
+import static com.asche.wetalk.MyApplication.getContext;
 
 public class UserHomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -116,13 +117,6 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
             }
         });
 
-
-        userBean = new UserBean();
-        userBean.setNickName("Asche");
-        userBean.setGender("Female");
-        userBean.setImgAvatar("https://avatars1.githubusercontent.com/u/13347412?s=400&u=dff9d7b137708303a966cdd62ee4151d50b85b79&v=4");
-
-
         UserBean user = (UserBean) getIntent().getSerializableExtra("user");
         if (user != null) {
             userBean = user;
@@ -138,9 +132,14 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
             textCareer.setText(userBean.getProfession());
             textLocation.setText(userBean.getAddress());
 
-            if (!getCurUser().equals(userBean)){
+            if (!getCurUser().equals(userBean)) {
                 isOtherUser = true;
             }
+            Log.e("---", "onCreate: " + isOtherUser );
+
+            Log.e("---", "onCreate: " + (UserUtils.getUser(1)).equals(UserUtils.getUser(1)) );
+        }else {
+            userBean = UserUtils.getUser(1);
         }
 
         Log.e("sa", "onCreate: " + userBean.toString());
@@ -161,7 +160,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.btn_user_home_detail:
-                startActivity(new Intent(this, UserDetailActivity.class));
+                showMenu(getApplicationContext(), v);
                 break;
             case R.id.img_user_home_avatar:
                 new MaterialDialog.Builder(this)
@@ -224,47 +223,78 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    private void init() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            TransitionSet transitionSet = new TransitionSet();
+    private void showMenu(final Context context, View anchor) {
+        PopupMenu popupMenu = new PopupMenu(context, anchor);
+        popupMenu.inflate(R.menu.menu_user_home);
 
-            Slide slide = new Slide(Gravity.BOTTOM);
-
-//            slide.addTarget(R.id.view_3);
-            transitionSet.addTransition(slide);
-            getWindow().setEnterTransition(transitionSet);
-            transitionSet.addListener(new Transition.TransitionListener() {
-                @Override
-                public void onTransitionStart(Transition transition) {
-//                    view_2.setVisibility(View.GONE);
-                }
-
-                @Override
-                public void onTransitionEnd(Transition transition) {
-//                    view_2.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onTransitionCancel(Transition transition) {
-
-                }
-
-                @Override
-                public void onTransitionPause(Transition transition) {
-
-                }
-
-                @Override
-                public void onTransitionResume(Transition transition) {
-
-                }
-            });
+        if (isOtherUser){
+            // 其它用户
+            if (userBean.isExpert()){
+                popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
+            }else {
+                popupMenu.getMenu().findItem(R.id.menu_user_message_money).setVisible(false);
+            }
+        }else {
+            // 用户自己
+            popupMenu.getMenu().findItem(R.id.menu_user_follow).setVisible(false);
+            popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
+            popupMenu.getMenu().findItem(R.id.menu_user_message_money).setVisible(false);
         }
+
+        popupMenu.getMenu().findItem(R.id.menu_user_follow).setChecked(true);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_user_follow:
+                        if (item.isChecked()){
+                            item.setChecked(false);
+                        }else {
+                            item.setChecked(true);
+                        }
+                        break;
+                    case R.id.menu_user_message:
+                        Intent intent = new Intent(getContext(), ChatActivity.class);
+                        intent.putExtra("chatWith", userBean);
+                        startActivity(intent);
+                        break;
+                    case R.id.menu_user_message_money:
+                        break;
+                    case R.id.menu_user_detail:
+                        Intent intentDetail = new Intent(UserHomeActivity.this, UserDetailActivity.class);
+                        intentDetail.putExtra("userBean", userBean);
+                        startActivity(intentDetail);
+
+                        break;
+                    case R.id.menu_user_report:
+                        break;
+                    default:
+                }
+                Toast.makeText(context, "You clicked item " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        // setIconEnable(popupMenu.getMenu(), true);
+
+        popupMenu.show();
     }
 
 
+    private void setIconEnable(Menu menu, boolean enable) {
+        try {
+            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
+            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            m.setAccessible(true);
+            //传入参数
+            m.invoke(menu, enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private boolean hasSdcard() {
-        //判断ＳＤ卡手否是安装好的　　　media_mounted
+        //判断ＳＤ卡是否安装好　　　media_mounted
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return true;
         } else {
@@ -272,7 +302,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    /*
+    /**
      * 剪切图片
      */
     private void crop(Uri uri) {
@@ -349,17 +379,4 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public static File bitmapToFile(Bitmap bitmap) {
-        File file = new File(Environment.getExternalStorageDirectory(), ".temp");
-        try {
-            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
 }

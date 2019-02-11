@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_user_follow"
+            android:icon="@drawable/ic_nav_notification_pressed"
+            android:title="关注"
+            app:showAsAction="never" />
+    </group>
+
+    <item
+        android:id="@+id/menu_user_message"
+        android:icon="@drawable/ic_nav_notification_pressed"
+        android:title="私信"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_user_message_money"
+        android:icon="@drawable/ic_nav_notification_pressed"
+        android:title="付费咨询"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_user_detail"
+        android:icon="@drawable/ic_nav_notification_pressed"
+        android:title="详细资料"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/menu_user_report"
+        android:icon="@drawable/ic_delete_light"
+        android:title="举报"
+        app:showAsAction="never" />
 
 </menu>

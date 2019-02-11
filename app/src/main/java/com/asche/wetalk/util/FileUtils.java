@@ -1,13 +1,16 @@
 package com.asche.wetalk.util;
 
+import android.graphics.Bitmap;
 import android.os.Environment;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 
 public class FileUtils {
 
     /**
-     * 可多级创建
+     * 可多级创建目录
      * @param path
      * @return
      */
@@ -28,5 +31,20 @@ public class FileUtils {
             }
         }
         return filePath.toString();
+    }
+
+
+    public static File bitmapToFile(Bitmap bitmap) {
+        File file = new File(Environment.getExternalStorageDirectory(), ".temp");
+        try {
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 }

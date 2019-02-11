@@ -1,5 +1,7 @@
 package com.asche.wetalk.bean;
 
+import android.util.Log;
+
 import com.asche.wetalk.util.StringUtils;
 
 import java.io.Serializable;
@@ -7,6 +9,8 @@ import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class UserBean implements Serializable {
     private String id;
@@ -18,9 +22,12 @@ public class UserBean implements Serializable {
     private String imgBg; // 背景墙
     private String signature;
     private String tel;
+    private String email;
     private String address;
     private String profession; // 职业
+    private String school;
     private String description; // 个人描述
+    private boolean expert; // 是否是认证专家
     private int followNum; // 关注数量
     private int followerNum; // 粉丝数量
 
@@ -123,6 +130,14 @@ public class UserBean implements Serializable {
         this.tel = tel;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -137,6 +152,14 @@ public class UserBean implements Serializable {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     public String getDescription() {
@@ -161,6 +184,14 @@ public class UserBean implements Serializable {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public boolean isExpert() {
+        return expert;
+    }
+
+    public void setExpert(boolean expert) {
+        this.expert = expert;
     }
 
     public int getFollowNum() {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.fragment.FragmentWorkArticle;
 import com.asche.wetalk.fragment.FragmentWorkRequirement;
 import com.asche.wetalk.fragment.FragmentWorkTopic;
@@ -36,6 +37,10 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
 
     private FloatingActionButton fabRequirement, fabArticle, fabTopic;
 
+    //  为三个fragment提供数据
+    public static UserBean userBean;
+    public static boolean isOtherUser;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,10 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
         fabArticle = findViewById(R.id.fab_article);
         fabTopic = findViewById(R.id.fab_topic);
 
+        userBean = (UserBean)getIntent().getSerializableExtra("userBean");
+        if (!getCurUser().equals(userBean)){
+            isOtherUser = true;
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));

@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ChatItemBean;
+import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.util.EmoticonUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
     public static final int TYPE_CHAT_FRIEND = 1;
     private List<ChatItemBean> list;
     private Context context;
+    private UserBean userBean;
 
     class FriendViewHolder extends RecyclerView.ViewHolder {
         private TextView textContent;
@@ -51,6 +54,11 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
     public ChatRVAdapter(List<ChatItemBean> list) {
         this.list = list;
+    }
+
+    public ChatRVAdapter(List<ChatItemBean> list, UserBean userBean) {
+        this.list = list;
+        this.userBean = userBean;
     }
 
     @NonNull
@@ -111,16 +119,8 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 friendViewHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
             }
 
-            try {
-                Glide.with(context)
-                        .load(R.drawable.img_avatar_default)
-                        .into(friendViewHolder.imgAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getImgAvatar())
-                        .into(friendViewHolder.imgAvatar);
-            }
+            LoaderUtils.loadImage(userBean.getImgAvatar(), context, friendViewHolder.imgAvatar);
+
         }
     }
 

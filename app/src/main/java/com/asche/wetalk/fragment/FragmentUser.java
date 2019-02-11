@@ -91,7 +91,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_draft_color + "", "草稿"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_query_color + "", "咨询"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_answer_color + "", "作品"));
-        imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_comment_color + "", "评价管理"));
+        imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_comment_color + "", "会员中心"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_client_color + "", "客户"));
         imageTextBeansPanel.add(new ImageTextBean(R.drawable.ic_agendum_color + "", "待办事项"));
 

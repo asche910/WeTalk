@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.ChatRVAdapter;
 import com.asche.wetalk.bean.ChatItemBean;
+import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.fragment.FragmentChatPanel;
 import com.asche.wetalk.fragment.FragmentEmoticon;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
@@ -57,11 +59,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
     public static InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
     private LinearLayout layoutBottom;
 
+    private UserBean userBean;
+
     // 默认278dp，若可以则更新为系统输入法高度
     public static int keyboardHeight = 278;
     private boolean isEmoticonPressed;
     private boolean isPanelPressed;
     private boolean isInputMethodShow;
+
     private final String TAG = "ChatActivity";
 
     @Override
@@ -79,6 +84,14 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
         imgSend = findViewById(R.id.img_chat_send);
         imgInputMore = findViewById(R.id.img_chat_more);
         layoutBottom = findViewById(R.id.layout_chat_bottom);
+
+
+        userBean = (UserBean) getIntent().getSerializableExtra("chatWith");
+        if (userBean == null){
+            userBean = UserUtils.getUser(0);
+        }else {
+            textTitle.setText(userBean.getNickName());
+        }
 
         try {
             chatItemBeanList = ChatStorage.readChatRecord();
@@ -98,14 +111,13 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
             chatItemBeanList.add(new ChatItemBean(1, "I'm 18 years old!", R.drawable.img_avatar_default + ""));
         }
 
-        chatRVAdapter = new ChatRVAdapter(chatItemBeanList);
+        chatRVAdapter = new ChatRVAdapter(chatItemBeanList, userBean);
         layoutManager = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(chatRVAdapter);
         recyclerView.scrollToPosition(chatItemBeanList.size() - 1);
 
 
-        textTitle.setText("聊天");
         imgMore.setImageResource(R.drawable.ic_more_light);
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);

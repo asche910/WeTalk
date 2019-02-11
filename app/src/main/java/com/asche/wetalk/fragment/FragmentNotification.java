@@ -57,12 +57,14 @@ public class FragmentNotification extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(notificationRVAdapter);
 
-        notificationRVAdapter.setOnItemClickListener(new NotificationRVAdapter.OnItemClickListener() {
+/*        notificationRVAdapter.setOnItemClickListener(new NotificationRVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                startActivity(new Intent(getContext(), ChatActivity.class));
+                Intent intent = new Intent(getContext(), ChatActivity.class);
+                intent.putExtra("user", ...);
+                startActivity(intent);
             }
-        });
+        });*/
 
         swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override

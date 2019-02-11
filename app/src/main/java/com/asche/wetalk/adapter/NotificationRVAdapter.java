@@ -1,6 +1,7 @@
 package com.asche.wetalk.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,27 +9,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.ChatActivity;
 import com.asche.wetalk.bean.NotificationItemBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.util.LoaderUtils;
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NotificationRVAdapter extends RecyclerView.Adapter{
+public class NotificationRVAdapter extends RecyclerView.Adapter {
 
-    private final int TYPE_FRIEND = 0;
+    private final int TYPE_CHAT = 0;
     private List<NotificationItemBean> list;
     private Context context;
     private OnItemClickListener onItemClickListener;
 
-    class FriendHolder extends RecyclerView.ViewHolder{
+    class ChatHolder extends RecyclerView.ViewHolder {
         private ImageView imgAvatar, imgMore;
         private TextView textName, textContent, textTime;
-        public FriendHolder(@NonNull View itemView) {
+
+        public ChatHolder(@NonNull View itemView) {
             super(itemView);
             imgAvatar = itemView.findViewById(R.id.img_noti_avatar);
             imgMore = itemView.findViewById(R.id.img_noti_more);
@@ -45,14 +47,14 @@ public class NotificationRVAdapter extends RecyclerView.Adapter{
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (context == null){
+        if (context == null) {
             context = parent.getContext();
         }
         LayoutInflater inflater = LayoutInflater.from(context);
         View view;
-        if (viewType == TYPE_FRIEND){
+        if (viewType == TYPE_CHAT) {
             view = inflater.inflate(R.layout.item_noti_friend, parent, false);
-            return new FriendHolder(view);
+            return new ChatHolder(view);
         }
         return null;
     }
@@ -60,21 +62,23 @@ public class NotificationRVAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         NotificationItemBean bean = list.get(position);
-        if (bean.getType() == TYPE_FRIEND){
-            FriendHolder friendHolder = (FriendHolder)holder;
+        if (bean.getType() == TYPE_CHAT) {
+            ChatHolder chatHolder = (ChatHolder) holder;
 
             UserBean userBean = bean.getUserBean();
 
-            friendHolder.textName.setText(userBean.getNickName());
-            friendHolder.textContent.setText(bean.getContent());
-            friendHolder.textTime.setText(bean.getTime());
+            chatHolder.textName.setText(userBean.getNickName());
+            chatHolder.textContent.setText(bean.getContent());
+            chatHolder.textTime.setText(bean.getTime());
 
-            LoaderUtils.loadImage(userBean.getImgAvatar(), context, friendHolder.imgAvatar);
+            LoaderUtils.loadImage(userBean.getImgAvatar(), context, chatHolder.imgAvatar);
 
-            friendHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            chatHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(position);
+                    Intent intent = new Intent(context, ChatActivity.class);
+                    intent.putExtra("chatWith", list.get(position).getUserBean());
+                    context.startActivity(intent);
                 }
             });
 
@@ -89,8 +93,8 @@ public class NotificationRVAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position) {
         NotificationItemBean bean = list.get(position);
-        if (bean.getType() == TYPE_FRIEND){
-            return TYPE_FRIEND;
+        if (bean.getType() == TYPE_CHAT) {
+            return TYPE_CHAT;
         }
         return 0;
     }
