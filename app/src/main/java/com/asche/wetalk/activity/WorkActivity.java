@@ -1,5 +1,6 @@
 package com.asche.wetalk.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.asche.wetalk.fragment.FragmentWorkArticle;
 import com.asche.wetalk.fragment.FragmentWorkRequirement;
 import com.asche.wetalk.fragment.FragmentWorkTopic;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -35,12 +37,14 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
     private SmartTabLayout tabLayout;
     private ViewPager viewPager;
 
+    private FloatingActionsMenu floatingActionsMenu;
     private FloatingActionButton fabRequirement, fabArticle, fabTopic;
 
     //  为三个fragment提供数据
     public static UserBean userBean;
     public static boolean isOtherUser;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,7 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
         textTitle = findViewById(R.id.text_toolbar_title);
         tabLayout = findViewById(R.id.tab_work);
         viewPager = findViewById(R.id.viewpager_work);
+        floatingActionsMenu = findViewById(R.id.btn_work_publish);
         fabRequirement = findViewById(R.id.fab_requirement);
         fabArticle = findViewById(R.id.fab_article);
         fabTopic = findViewById(R.id.fab_topic);
@@ -59,13 +64,19 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
         userBean = (UserBean)getIntent().getSerializableExtra("userBean");
         if (!getCurUser().equals(userBean)){
             isOtherUser = true;
+            textTitle.setText(userBean.getNickName() + "的作品");
+            imgMore.setVisibility(View.GONE);
+            floatingActionsMenu.setVisibility(View.GONE);
+
+        }else {
+            textTitle.setText("我的作品");
+            imgMore.setImageResource(R.drawable.ic_draft);
+
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
         }
-        textTitle.setText("我的作品");
-        imgMore.setImageResource(R.drawable.ic_draft);
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
         fabRequirement.setOnClickListener(this);

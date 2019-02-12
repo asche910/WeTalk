@@ -16,6 +16,7 @@ import com.asche.wetalk.activity.AchievementActivity;
 import com.asche.wetalk.activity.AgendaActivity;
 import com.asche.wetalk.activity.ArticleActivity;
 import com.asche.wetalk.activity.ArticlePublishActivity;
+import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.activity.BookActivity;
 import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
@@ -23,6 +24,7 @@ import com.asche.wetalk.activity.CollectActivity;
 import com.asche.wetalk.activity.CommentActivity;
 import com.asche.wetalk.activity.DraftActivity;
 import com.asche.wetalk.activity.LoginActivity;
+import com.asche.wetalk.activity.MessageMoneyActivity;
 import com.asche.wetalk.activity.SettingActivity;
 import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.activity.WalletActivity;
@@ -151,10 +153,13 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "评价管理", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        nextActivity(WorkActivity.class);
+                        Intent intentWork = new Intent(getContext(), WorkActivity.class);
+                        intentWork.putExtra("userBean", BaseActivity.getCurUser());
+                        startActivity(intentWork);
                         Toast.makeText(getActivity(), "作品", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
+                        nextActivity(MessageMoneyActivity.class);
                         Toast.makeText(getActivity(), "咨询", Toast.LENGTH_SHORT).show();
                         break;
                     case 0:

@@ -310,7 +310,9 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
         transaction.add(R.id.frame_emoticon, fragmentEmoticon, "emoticon");
         transaction.commit();
 
-        inputMethodManager.hideSoftInputFromWindow(getDialog().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        View view = getDialog().getCurrentFocus();
+        if (view != null)
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void emoticonfalling() {

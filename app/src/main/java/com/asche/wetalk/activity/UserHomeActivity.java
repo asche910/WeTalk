@@ -156,8 +156,9 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_user_home_work:
-                Intent intent = new Intent(this, UserModifyActivity.class);
-                startActivity(intent);
+                Intent intentWork =  new Intent(this, WorkActivity.class);
+                intentWork.putExtra("userBean", userBean);
+                startActivity(intentWork);
                 break;
             case R.id.btn_user_home_detail:
                 showMenu(getApplicationContext(), v);

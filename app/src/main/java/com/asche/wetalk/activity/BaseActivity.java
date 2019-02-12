@@ -83,7 +83,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.INTERNET,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
             }, 0);
         }
     }
@@ -92,8 +93,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         boolean b1 = (PackageManager.PERMISSION_GRANTED ==ContextCompat.checkSelfPermission(getContext(), Manifest.permission.INTERNET));
         boolean b2 = (PackageManager.PERMISSION_GRANTED ==ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE));
         boolean b3 = (PackageManager.PERMISSION_GRANTED ==ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE));
-        // boolean b4 = (PackageManager.PERMISSION_GRANTED ==ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA));
-        return b1 && b2 && b3;
+         boolean b4 = (PackageManager.PERMISSION_GRANTED ==ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA));
+        return b1 && b2 && b3 && b4;
     }
 
     @Override

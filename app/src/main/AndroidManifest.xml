@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
 
     <application
@@ -62,6 +63,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.UserDetailActivity" />
+        <activity android:name=".activity.MessageMoneyActivity" />
+        <activity android:name=".activity.ScanResultActivity" />
     </application>
 
 </manifest>
