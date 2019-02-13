@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="61dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:focusable="true"
+        android:clickable="false"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_message_money_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/img_avatar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_message_money_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Asche"
+                    android:textColor="#333"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/text_message_money_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="你发起了付费咨询"
+                    android:textColor="#456"
+                    android:textSize="12sp"
+                    android:maxLength="20"
+                    android:maxLines="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_message_money_starttime"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:paddingTop="5dp"
+                    android:text="2018-12-03 19:12"
+                    android:textColor="#456"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text_message_money_counttime"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="剩余时间 19:25:02"
+                    android:textColor="#222"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#20454545" />
+
+</LinearLayout>

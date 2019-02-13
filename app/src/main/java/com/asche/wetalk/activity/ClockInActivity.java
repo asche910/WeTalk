@@ -45,7 +45,7 @@ public class ClockInActivity extends BaseActivity implements View.OnClickListene
         calendarView = findViewById(R.id.calendarView);
         show = findViewById(R.id.tv_calendar_show);
 
-        textTitle.setText("签到");
+        textTitle.setText("签到日历");
         imgBack.setOnClickListener(this);
         btnClockIn.setOnClickListener(this);
 

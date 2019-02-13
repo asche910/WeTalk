@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_messaged_money"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ed------------>"/>
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -21,13 +21,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.data.PaymentUtils;
 import com.asche.wetalk.data.TechTags;
 import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.helper.DropZoomScrollView;
 import com.asche.wetalk.util.LoaderUtils;
+import com.asche.wetalk.util.TimeUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -37,6 +40,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
@@ -76,6 +80,8 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
 //        init();
         setContentView(R.layout.activity_user_home);
+
+        Log.e("--->", "onCreate: " + TimeUtils.getCountTime("2019-02-13 10:12:15"));
 
         //<editor-fold defaultstate="collapsed" desc="Id Initialization">
         toolbarLayout = findViewById(R.id.toolbar_user_home);
@@ -231,7 +237,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         if (isOtherUser){
             // 其它用户
             if (userBean.isExpert()){
-                popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
+                // popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
             }else {
                 popupMenu.getMenu().findItem(R.id.menu_user_message_money).setVisible(false);
             }
@@ -260,6 +266,21 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                         startActivity(intent);
                         break;
                     case R.id.menu_user_message_money:
+                        String content = String.format("支付%d元即可与该专家畅谈，有效期24小时", PaymentUtils.MESSAGE_MONEY);
+                        new MaterialDialog.Builder(UserHomeActivity.this)
+                                .title("提示")
+                                .content(content)
+                                .positiveText("立即支付")
+                                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        Intent intent = new Intent(getContext(), ChatActivity.class);
+                                        intent.putExtra("chatWith", userBean);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .negativeText("取消")
+                                .show();
                         break;
                     case R.id.menu_user_detail:
                         Intent intentDetail = new Intent(UserHomeActivity.this, UserDetailActivity.class);

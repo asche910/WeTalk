@@ -222,11 +222,20 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     // onItemClickListener.onItemClick(position);
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     }
                 }
             });
@@ -294,11 +303,20 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 @Override
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     }
                 }
             });
@@ -384,11 +402,20 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
 //                    onItemClickListener.onItemClick(position);
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
-                        nextActivity(TopicActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, TopicActivity.class);
+                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     } else {
-                        nextActivity(ArticleActivity.class, "OPEN_COMMENT");
+                        Intent intent = new Intent(context, ArticleActivity.class);
+                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("action", "OPEN_COMMENT");
+                        context.startActivity(intent);
                     }
                 }
             });
