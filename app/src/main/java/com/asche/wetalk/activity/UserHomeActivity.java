@@ -24,11 +24,15 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.TimeLineRVAdapter;
+import com.asche.wetalk.bean.HappenItemBean;
+import com.asche.wetalk.bean.TimeLineBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.PaymentUtils;
 import com.asche.wetalk.data.TechTags;
 import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.helper.DropZoomScrollView;
+import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.TimeUtils;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -42,11 +46,15 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import cc.shinichi.library.ImagePreview;
 import cc.shinichi.library.bean.ImageInfo;
 
 import static com.asche.wetalk.MyApplication.getContext;
+import static com.asche.wetalk.fragment.FragmentDiscoverHappen.str_2;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class UserHomeActivity extends BaseActivity implements View.OnClickListener {
 
     private DropZoomScrollView dropZoomScrollView;
@@ -63,14 +71,18 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     private TagFlowLayout tagFlowLayout;
     private List<String> tagList = new ArrayList<>();
 
+    private RecyclerView recyclerTimeLine;
+    private TimeLineRVAdapter timeLineRVAdapter;
+    List<TimeLineBean> timeLineList = new ArrayList<>();
 
     private UserBean userBean;
     private boolean isOtherUser; // 判断查看的是否是用户自己
 
+
     private static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
-    /* 头像名称 *///
+    /** 头像名称 */
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
     private File tempFile;
 
@@ -81,7 +93,6 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 //        init();
         setContentView(R.layout.activity_user_home);
 
-        Log.e("--->", "onCreate: " + TimeUtils.getCountTime("2019-02-13 10:12:15"));
 
         //<editor-fold defaultstate="collapsed" desc="Id Initialization">
         toolbarLayout = findViewById(R.id.toolbar_user_home);
@@ -98,6 +109,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         textLocation = findViewById(R.id.text_user_home_location);
         btnDetail = findViewById(R.id.btn_user_home_detail);
         btnWork = findViewById(R.id.btn_user_home_work);
+        recyclerTimeLine = findViewById(R.id.recycler_user_home_timeline);
         tagFlowLayout = findViewById(R.id.tagflow_user);
         dropZoomScrollView = findViewById(R.id.scroll_user_home);
         //</editor-fold>
@@ -147,15 +159,22 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         }else {
             userBean = UserUtils.getUser(1);
         }
-
         Log.e("sa", "onCreate: " + userBean.toString());
 
+        if (timeLineList.isEmpty()){
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_LIKE, "asche" , false, DataUtils.getArticle(1), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche" , true, DataUtils.getRequirement(0), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COLLECT, "asche" , true, DataUtils.getArticle(2), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche" , true, DataUtils.getTopicReply(), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_HAPPEN, "asche", false, null,
+                    new HappenItemBean("https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg", "飞翔的企鹅", str_2, "10-25 10：24", null)));
+        }
 
-/*        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Explode explode = new Explode();
-            explode.setDuration(1000);
-            getWindow().setEnterTransition(explode);
-        }*/
+        timeLineRVAdapter = new TimeLineRVAdapter(timeLineList);
+        recyclerTimeLine.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));
+        recyclerTimeLine.setAdapter(timeLineRVAdapter);
+        recyclerTimeLine.setNestedScrollingEnabled(false);
+
     }
 
     @Override
@@ -171,6 +190,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.img_user_home_avatar:
                 new MaterialDialog.Builder(this)
+                        .title("更换头像")
                         .items(new String[]{"大图预览", "拍照上传", "相册选择上传"})
                         .contentColor(Color.parseColor("#333333"))
                         .itemsCallback(new MaterialDialog.ListCallback() {

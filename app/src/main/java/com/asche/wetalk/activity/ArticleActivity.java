@@ -171,6 +171,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         if (articleBean != null) {
             /**  这里表明接收到Article类型       */
             isArticle = true;
+            toolbarTitle.setText("文章");
 
             author = UserUtils.getUser();
             textTitle.setText(articleBean.getTitle());
@@ -192,6 +193,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         } else {
             /**  接收到为Requirement类型  */
             isArticle = false;
+            toolbarTitle.setText("需求");
 
             textTitle.setText(requirementBean.getTitle());
             textTime.setText(requirementBean.getTime());
@@ -207,7 +209,6 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         textAuthorSignature.setText(author.getSignature());
         LoaderUtils.loadImage(author.getImgAvatar(), getApplicationContext(), imgAuthorAvatar);
 
-        toolbarTitle.setText("文章");
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
         textAuthorName.setOnClickListener(this);

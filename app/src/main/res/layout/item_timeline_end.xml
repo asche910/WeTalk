@@ -17,19 +17,17 @@
     <com.flyco.roundview.RoundFrameLayout
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="7dp"
         app:rv_strokeColor="#cccccc"
         app:rv_strokeWidth="1dp"
-        app:rv_cornerRadius="30dp">
+        app:rv_cornerRadius="20dp">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_nav_home_pressed"
+            android:src="@drawable/ic_nav_home_default"
             />
-
     </com.flyco.roundview.RoundFrameLayout>
-
 
 </LinearLayout>

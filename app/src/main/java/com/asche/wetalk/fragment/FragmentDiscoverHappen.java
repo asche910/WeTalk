@@ -40,8 +40,8 @@ public class FragmentDiscoverHappen extends Fragment {
     // 判断是否使用者发表了新动态
     public static boolean isPublishNewOne;
 
-    String str_1 = "早起的鸟儿有虫吃， 首先做到23：50前躺下，6：30早起打卡！充满元气的一天！！！";
-    String str_2 = "2016年10月28日 - 这篇文章主要为大家详细介绍了Android RefreshLayout实现下拉刷新布局,具有一定的参考价值,感兴趣的小伙伴们可以参考一下项目中需要下拉刷新的功能,但...";
+    public static String str_1 = "早起的鸟儿有虫吃， 首先做到23：50前躺下，6：30早起打卡！充满元气的一天！！！";
+    public static String str_2 = "2016年10月28日 - 这篇文章主要为大家详细介绍了Android RefreshLayout实现下拉刷新布局,具有一定的参考价值,感兴趣的小伙伴们可以参考一下项目中需要下拉刷新的功能,但...";
 
 
     @Nullable

@@ -251,18 +251,21 @@ signature; tel; address; profession descriptio -->
                 android:layout_marginBottom="10dp"
                 android:background="#27292929" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <include layout="@layout/item_timeline" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_user_home_timeline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
 
-            <include layout="@layout/item_timeline" />
 
-            <include layout="@layout/item_timeline" />
-
-            <include layout="@layout/item_timeline" />
-
-            <include layout="@layout/item_timeline" />
+            <include layout="@layout/item_timeline_image" />
 
             <include layout="@layout/item_timeline_end" />
+
 
         </LinearLayout>
 

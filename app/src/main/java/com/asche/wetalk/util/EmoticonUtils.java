@@ -27,7 +27,7 @@ public class EmoticonUtils {
         Matcher matcher = Pattern.compile("\\[emoji-(\\d+)+\\]").matcher(text);
         while (matcher.find()){
             try {
-                Integer index =  Integer.parseInt(matcher.group(1));
+                int index =  Integer.parseInt(matcher.group(1));
                 int start = matcher.start();
                 int end = matcher.end();
                 Log.e(TAG, "parseEmoticon: " + index  + " --->  " + start + "-" + end );

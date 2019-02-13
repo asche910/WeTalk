@@ -11,7 +11,7 @@ public class HappenItemBean {
     private String content;
     private String time;
 
-    private List<String> urlList;
+    private List<String> urlList;   // 图片url列表
 
     public HappenItemBean(String userHead, String userName, String content, String time, List<String> urlList) {
         this.userAvatar = userHead;

@@ -20,7 +20,6 @@ public class LoaderUtils {
                     .into(imageView);
         }else {
             try {
-
                 Glide.with(context)
                         .load(Integer.parseInt(src))
                         .into(imageView);

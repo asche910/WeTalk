@@ -1,6 +1,7 @@
 package com.asche.wetalk.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.BaseActivity;
+import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.bean.ChatItemBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.util.EmoticonUtils;
@@ -106,6 +109,14 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                         .into(meViewHolder.imgAvatar);
             }
 
+            meViewHolder.imgAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserHomeActivity.class);
+                    intent.putExtra("user", BaseActivity.getCurUser());
+                    context.startActivity(intent);
+                }
+            });
         }else if (bean.getType() == TYPE_CHAT_FRIEND){
             FriendViewHolder friendViewHolder = (FriendViewHolder) holder;
 
@@ -121,6 +132,14 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
 
             LoaderUtils.loadImage(userBean.getImgAvatar(), context, friendViewHolder.imgAvatar);
 
+            friendViewHolder.imgAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserHomeActivity.class);
+                    intent.putExtra("user", userBean);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
