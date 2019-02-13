@@ -58,7 +58,10 @@
         android:orientation="vertical"
         app:rv_strokeColor="#cccccc"
         app:rv_strokeWidth="1dp"
-        app:rv_cornerRadius="6dp">
+        app:rv_cornerRadius="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/text_timeline_title"
