@@ -1,7 +1,5 @@
 package com.asche.wetalk.bean;
 
-import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
-import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 
 import java.io.Serializable;

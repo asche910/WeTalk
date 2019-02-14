@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.HomeItem;
-import com.asche.wetalk.bean.TopicReplyBean;
-import com.asche.wetalk.util.DataUtils;
-import com.asche.wetalk.util.TimeUtils;
+import com.asche.wetalk.data.DataUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.ArrayList;

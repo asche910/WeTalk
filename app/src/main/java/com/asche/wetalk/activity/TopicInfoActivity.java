@@ -10,7 +10,7 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.TopicInfoRVAdapter;
 import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
-import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.data.DataUtils;
 
 import java.util.ArrayList;
 import java.util.List;

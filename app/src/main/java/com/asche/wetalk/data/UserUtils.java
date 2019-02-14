@@ -2,11 +2,10 @@ package com.asche.wetalk.data;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
-import com.asche.wetalk.util.IDUtils;
 
-import static com.asche.wetalk.util.DataUtils.imgAvatar_1;
-import static com.asche.wetalk.util.DataUtils.imgAvatar_2;
-import static com.asche.wetalk.util.DataUtils.random;
+import static com.asche.wetalk.data.DataUtils.imgAvatar_1;
+import static com.asche.wetalk.data.DataUtils.imgAvatar_2;
+import static com.asche.wetalk.data.DataUtils.random;
 
 public class UserUtils {
 

@@ -11,6 +11,7 @@ public class TopicBean implements Serializable {
     private String id;
     private String name; //  问题
     private String content; // 问题描述
+    private String coverUrl;
     private String time;
     private int followerNum;
     private int replyNum;
@@ -28,6 +29,17 @@ public class TopicBean implements Serializable {
         this.id = id;
         this.name = name;
         this.content = content;
+        this.time = time;
+        this.followerNum = followerNum;
+        this.replyNum = replyNum;
+        this.authorId = authorId;
+    }
+
+    public TopicBean(String id, String name, String content, String coverUrl, String time, int followerNum, int replyNum, String authorId) {
+        this.id = id;
+        this.name = name;
+        this.content = content;
+        this.coverUrl = coverUrl;
         this.time = time;
         this.followerNum = followerNum;
         this.replyNum = replyNum;
@@ -59,6 +71,14 @@ public class TopicBean implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
     public String getTime() {

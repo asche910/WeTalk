@@ -1,8 +1,6 @@
 package com.asche.wetalk.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,7 +27,7 @@ import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.BodyContentUtil;
-import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;

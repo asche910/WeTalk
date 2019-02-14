@@ -26,7 +26,7 @@ import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
-import com.asche.wetalk.util.DataUtils;
+import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 
 import androidx.annotation.NonNull;

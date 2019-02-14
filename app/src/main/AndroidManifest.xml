@@ -46,7 +46,7 @@
         <activity android:name=".activity.AchievementActivity" />
         <activity android:name=".activity.CollectActivity" />
         <activity android:name=".activity.ClockInActivity" />
-        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.VIPCenterActivity" />
         <activity android:name=".activity.AgendaActivity" />
         <activity android:name=".activity.ClientActivity" />
         <activity android:name=".activity.ArticleActivity" />

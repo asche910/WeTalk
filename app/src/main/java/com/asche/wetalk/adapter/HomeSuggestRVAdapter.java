@@ -2,9 +2,7 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +26,6 @@ import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
-import com.asche.wetalk.util.DataUtils;
 import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;

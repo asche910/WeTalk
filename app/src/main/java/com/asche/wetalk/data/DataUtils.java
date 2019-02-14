@@ -1,4 +1,4 @@
-package com.asche.wetalk.util;
+package com.asche.wetalk.data;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
@@ -19,6 +19,8 @@ import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.UserUtils;
+import com.asche.wetalk.util.TimeUtils;
+import com.asche.wetalk.util.ZhihuUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -86,21 +88,25 @@ public class DataUtils {
         if (ids.length == 1) {
             n = (int) ids[0].charAt(0) - 49;
         } else {
-            n = random.nextInt();
+            n = random.nextInt(3);
         }
         TopicBean bean = new TopicBean();
         switch (n) {
             case 2:
                 bean.setName("你很长时间都不能忘记的一部电影是什么？");
+                bean.setCoverUrl("https://pic4.zhimg.com/v2-2d9c0d41de839b90b41c5de52ef10323_b.jpg");
                 break;
             case 1:
                 bean.setName("什么能力很重要，但大多数人却没有？");
+                bean.setCoverUrl("https://p0.cdn.img9.top/ipfs/QmZzufMWG8Shd2XGszhNnQz5ifsnLpmfaRYtCRxPaFJ52b?0.png");
                 break;
             case 0:
                 bean.setName("如何评价丁香园售卖 1980 元一双的矫形鞋垫？");
+                bean.setCoverUrl(R.drawable.img_avatar + "");
                 break;
             default:
                 bean.setName("你很长时间都不能忘记的一部电影是什么？");
+                bean.setCoverUrl("https://pic4.zhimg.com/v2-2d9c0d41de839b90b41c5de52ef10323_b.jpg");
         }
         bean.setReplyNum(n * 10);
         bean.setFollowerNum(n * 20);

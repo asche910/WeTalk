@@ -4,17 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.asche.wetalk.R;
-import com.asche.wetalk.adapter.HomeItemAdapter;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.HomeItem;
-import com.asche.wetalk.bean.ItemBean;
-import com.asche.wetalk.util.DataUtils;
-import com.bumptech.glide.Glide;
-import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
-import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+import com.asche.wetalk.data.DataUtils;
 
 import java.util.ArrayList;
 import java.util.List;

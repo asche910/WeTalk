@@ -3,7 +3,6 @@ package com.asche.wetalk.fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,11 @@ import android.widget.Toast;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.AchievementActivity;
 import com.asche.wetalk.activity.AgendaActivity;
-import com.asche.wetalk.activity.ArticleActivity;
-import com.asche.wetalk.activity.ArticlePublishActivity;
 import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.activity.BookActivity;
 import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
-import com.asche.wetalk.activity.CollectActivity;
-import com.asche.wetalk.activity.CommentActivity;
+import com.asche.wetalk.activity.VIPCenterActivity;
 import com.asche.wetalk.activity.DraftActivity;
 import com.asche.wetalk.activity.LoginActivity;
 import com.asche.wetalk.activity.MessageMoneyActivity;
@@ -39,7 +35,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -149,8 +144,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "客户", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        nextActivity(CommentActivity.class);
-                        Toast.makeText(getActivity(), "评价管理", Toast.LENGTH_SHORT).show();
+                        nextActivity(VIPCenterActivity.class);
+                        Toast.makeText(getActivity(), "会员中心", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         Intent intentWork = new Intent(getContext(), WorkActivity.class);
