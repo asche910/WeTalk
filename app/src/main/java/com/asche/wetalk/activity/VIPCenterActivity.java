@@ -17,7 +17,7 @@ public class VIPCenterActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.activity_vipcenter);
 
         imgBack = findViewById(R.id.img_toolbar_back);
         textTitle = findViewById(R.id.text_toolbar_title);
