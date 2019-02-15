@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.HomeItem;
+import com.asche.wetalk.bean.SuggestUserBean;
+import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.DataUtils;
+import com.asche.wetalk.data.UserUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.ArrayList;
@@ -59,14 +62,22 @@ public class FragmentHomeSuggest extends Fragment {
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
 
-        itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getArticle());
+        itemBeanList.add(DataUtils.getRequirement());
+        itemBeanList.add(DataUtils.getTopicReply());
+
+
+        List<UserBean> userBeanList = new ArrayList<>();
+        for (int i = 0; i < 6; i++){
+            userBeanList.add(UserUtils.getUser());
+        }
+        itemBeanList.add(new SuggestUserBean(userBeanList));
+
         itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getRequirement());
         itemBeanList.add(DataUtils.getArticle());
         itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getArticle());
-        itemBeanList.add(DataUtils.getRequirement());
 
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);

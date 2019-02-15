@@ -1,7 +1,5 @@
 package com.asche.wetalk.bean;
 
-import android.util.Log;
-
 import com.asche.wetalk.util.StringUtils;
 
 import java.io.Serializable;
@@ -9,8 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class UserBean implements Serializable {
     private String id;
@@ -27,7 +23,8 @@ public class UserBean implements Serializable {
     private String profession; // 职业
     private String school;
     private String description; // 个人描述
-    private boolean expert; // 是否是认证专家
+    private boolean isExpert; // 是否是认证专家
+    private boolean isVIP;
     private int followNum; // 关注数量
     private int followerNum; // 粉丝数量
 
@@ -187,11 +184,19 @@ public class UserBean implements Serializable {
     }
 
     public boolean isExpert() {
-        return expert;
+        return isExpert;
     }
 
     public void setExpert(boolean expert) {
-        this.expert = expert;
+        this.isExpert = expert;
+    }
+
+    public boolean isVIP() {
+        return isVIP;
+    }
+
+    public void setVIP(boolean VIP) {
+        isVIP = VIP;
     }
 
     public int getFollowNum() {

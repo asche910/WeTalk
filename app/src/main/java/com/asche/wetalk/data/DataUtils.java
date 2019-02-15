@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -55,7 +57,7 @@ public class DataUtils {
         } else {
             n = random.nextInt(3);
         }
-        TopicReplyBean bean = new TopicReplyBean();
+        final TopicReplyBean bean = new TopicReplyBean();
         switch (n) {
             case 2:
                 bean.setTopicId(333 + "");
@@ -64,7 +66,28 @@ public class DataUtils {
             case 1:
                 bean.setTopicId(222 + "");
                 bean.setContent(getContent(R.raw.topic_2));
-                bean.setImgUrl("https://pic1.zhimg.com/v2-d54e01339bc69e3c80c760479b941ebc_b.jpg");
+//                bean.setVideoUrl("https://vdn.vzuu.com/SD/39b9fd06-0055-11e9-b21e-0a580a4b9614.mp4?disable_local_cache=1&bu=com&expiration=1550229624&auth_key=1550229624-0-0-511cd4b9595c380632e6f6477aa8937a&f=mp4&v=ali");
+
+                final Handler handler = new Handler(new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(Message msg) {
+                        if (msg.what == 100){
+                            Log.e(TAG, "handleMessage: " + msg.obj.toString());
+                            bean.setVideoUrl(msg.obj.toString());
+                        }
+                        return false;
+                    }
+                });
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Message message = new Message();
+                        message.obj = ZhihuUtils.getVideoSrc("https://www.zhihu.com/video/1057342788332605440");
+                        message.what = 100;
+                        handler.sendMessage(message);
+                    }
+                }).start();
+                bean.setImgUrl("https://p0.cdn.img9.top/ipfs/QmZzufMWG8Shd2XGszhNnQz5ifsnLpmfaRYtCRxPaFJ52b?0.png");
                 break;
             case 0:
                 bean.setTopicId(111 + "");

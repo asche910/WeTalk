@@ -22,7 +22,9 @@ import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.bean.RequirementBean;
+import com.asche.wetalk.bean.SuggestUserBean;
 import com.asche.wetalk.bean.TopicReplyBean;
+import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
@@ -35,8 +37,10 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.asche.wetalk.MyApplication.getContext;
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 
@@ -45,6 +49,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
     public static final int TYPE_VIDEO = 2;
+    public static final int TYPE_USER = 3;
 
     private List<HomeItem> list;
     private Context context;
@@ -138,6 +143,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         }
     }
 
+    public class UserHolder extends RecyclerView.ViewHolder{
+        private RecyclerView recyclerView;
+        public UserHolder(@NonNull View itemView) {
+            super(itemView);
+            recyclerView = itemView.findViewById(R.id.recycler_suggest_user);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+            recyclerView.setLayoutManager(layoutManager);
+        }
+    }
+
     @Override
     public int getItemViewType(int position) {
         ItemBean itemBean = HomeItemAdapter.adapt(list.get(position));
@@ -149,7 +164,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         if (itemBean.getBodyType() == TYPE_VIDEO) {
             return TYPE_VIDEO;
         }
-        return super.getItemViewType(position);
+        return TYPE_USER;
     }
 
     @NonNull
@@ -169,6 +184,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         } else if (viewType == TYPE_VIDEO) {
             view = inflater.inflate(R.layout.item_main_video, parent, false);
             return new VideoHolder(view);
+        }else if(viewType == TYPE_USER){
+            view = inflater.inflate(R.layout.layout_suggest_user, parent, false);
+            return new UserHolder(view);
         }
         return null;
     }
@@ -436,6 +454,14 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     }
                 }
             });
+        }else if (bean.getBodyType() == TYPE_USER){
+            HomeItem homeItem = list.get(position);
+            SuggestUserBean suggestUserBean = (SuggestUserBean) homeItem;
+            List<UserBean> userBeanList = suggestUserBean.getUserBeanList();
+            SuggestUserRVAdapter suggestUserRVAdapter = new SuggestUserRVAdapter(userBeanList);
+
+            UserHolder userHolder = (UserHolder)holder;
+            userHolder.recyclerView.setAdapter(suggestUserRVAdapter);
         }
     }
 
