@@ -65,6 +65,7 @@
         <activity android:name=".activity.UserDetailActivity" />
         <activity android:name=".activity.MessageMoneyActivity" />
         <activity android:name=".activity.ScanResultActivity" />
+        <activity android:name=".activity.HappenActivity" />
     </application>
 
 </manifest>

@@ -3,6 +3,8 @@ package com.asche.wetalk.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import com.asche.wetalk.util.LoaderUtils;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationRVAdapter extends RecyclerView.Adapter {
@@ -60,8 +63,8 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        NotificationItemBean bean = list.get(position);
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        final NotificationItemBean bean = list.get(position);
         if (bean.getType() == TYPE_CHAT) {
             ChatHolder chatHolder = (ChatHolder) holder;
 
@@ -82,6 +85,37 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            chatHolder.imgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    MenuInflater menuInflater = popupMenu.getMenuInflater();
+                    menuInflater.inflate(R.menu.menu_item_notification, popupMenu.getMenu());
+                    popupMenu.show();
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()){
+                                case R.id.menu_item_noti_top:
+                                    int pos = holder.getPosition();
+                                    NotificationItemBean itemBean = list.get(pos);
+                                    list.remove(pos);
+                                    list.add(0, itemBean);
+                                    notifyItemMoved(pos, 0);
+                                    notifyItemRangeChanged(0, pos + 1);
+//                                    notifyDataSetChanged();
+                                    break;
+                                case R.id.menu_item_noti_delete:
+                                    list.remove(position);
+                                    notifyDataSetChanged();
+                                    notifyItemRemoved(position);
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
         }
     }
 

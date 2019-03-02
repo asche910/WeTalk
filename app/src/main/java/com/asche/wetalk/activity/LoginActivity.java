@@ -1,6 +1,7 @@
 package com.asche.wetalk.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -33,6 +35,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private boolean isPasswdVisible;
 
     private Button btnLogin;
+    private TextView textRegister;
+
     private ImageView imgQQ, imgWeChat, imgLinkedIn;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -43,6 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         editPasswd = findViewById(R.id.edit_password);
         btnLogin = findViewById(R.id.btn_login);
+        textRegister = findViewById(R.id.text_register);
         imgQQ = findViewById(R.id.img_login_qq);
         imgWeChat =findViewById(R.id.img_login_wechat);
         imgLinkedIn = findViewById(R.id.img_login_linkedin);
@@ -85,6 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
 
         btnLogin.setOnClickListener(this);
+        textRegister.setOnClickListener(this);
         imgQQ.setOnClickListener(this);
         imgWeChat.setOnClickListener(this);
         imgLinkedIn.setOnClickListener(this);
@@ -93,6 +99,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.text_register:
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btn_login:
                 break;
             case R.id.img_login_qq:

@@ -54,7 +54,7 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
         holder.textNickname.setText(userBean.getNickName());
         holder.textLastMessage.setText(bean.getLastMessage());
         holder.textStartTime.setText(bean.getTime());
-
+        holder.isAlive = true;
 
         if (!bean.isEnd()) {
             final Handler handler = new Handler(new Handler.Callback() {
@@ -76,7 +76,7 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (true) {
+                    while (holder.isAlive) {
                         try {
                             Thread.sleep(1000);
                             Message message = new Message();
@@ -110,6 +110,7 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgAvatar;
         TextView textNickname, textLastMessage, textStartTime, textCountTime;
+        boolean isAlive;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -120,4 +121,11 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
             textCountTime = itemView.findViewById(R.id.text_message_money_counttime);
         }
     }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.isAlive = false;
+    }
+
 }

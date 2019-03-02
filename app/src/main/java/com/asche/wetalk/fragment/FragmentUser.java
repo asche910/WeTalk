@@ -3,13 +3,18 @@ package com.asche.wetalk.fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.AchievementActivity;
 import com.asche.wetalk.activity.AgendaActivity;
@@ -27,6 +32,7 @@ import com.asche.wetalk.activity.WalletActivity;
 import com.asche.wetalk.activity.WorkActivity;
 import com.asche.wetalk.adapter.UserToolRVAdapter;
 import com.asche.wetalk.bean.ImageTextBean;
+import com.asche.wetalk.spider.JokeSpider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +60,14 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     private UserToolRVAdapter userToolRVAdapterPanel;
     private List<ImageTextBean> imageTextBeansPanel = new ArrayList<>();
 
+    // 每日推荐
+    private LinearLayout layoutArticle, layoutJoke;
+
+    // 笑话推荐显示View
+    private WebView webView;
+    private Handler handler = null;
+
+
     private final String TAG = "FragmentUser";
 
     @Nullable
@@ -77,6 +91,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         imgSetting = getView().findViewById(R.id.img_toolbar_setting);
         recyclerView = getView().findViewById(R.id.recycle_user_tool);
         recyclerViewPanel = getView().findViewById(R.id.recycle_user_panel);
+        layoutArticle = getView().findViewById(R.id.layout_user_daily_article);
+        layoutJoke = getView().findViewById(R.id.layout_user_daily_joke);
 
 
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_wallet + "", "钱包"));
@@ -164,11 +180,54 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                 }
             }
         });
+
+        layoutArticle.setOnClickListener(this);
+        layoutJoke.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.layout_user_daily_joke:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String content = JokeSpider.getJoke();
+                        Message message = new Message();
+                        message.what = 100;
+                        message.obj = content;
+                        handler.sendMessage(message);
+                    }
+                }).start();
+
+                MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                        .title("每日一笑")
+                        .customView(R.layout.layout_joke, false)
+                        .positiveText("确认")
+                        .show();
+                webView = (WebView) dialog.findViewById(R.id.web_joke);
+                WebSettings webSettings = webView.getSettings();
+                webSettings.setSupportZoom(true);
+                webSettings.setBuiltInZoomControls(true);
+                webSettings.setDisplayZoomControls(false);
+
+                handler = new Handler(new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(Message msg) {
+                        if (msg.what == 100){
+                            if (msg.obj != null ) {
+                                webView.loadData(msg.obj.toString(), "text/html", "utf-8");
+                            }else {
+                                Toast.makeText(getContext(), "连接失败，请重试！", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        return false;
+                    }
+                });
+
+                break;
+            case R.id.layout_user_daily_article:
+                break;
             case R.id.layout_user_info:
                 Intent intent = new Intent(getContext(), UserHomeActivity.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

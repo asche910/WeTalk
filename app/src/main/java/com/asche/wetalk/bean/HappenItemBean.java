@@ -1,10 +1,11 @@
 package com.asche.wetalk.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 
-public class HappenItemBean {
+public class HappenItemBean implements Serializable {
 
     private String userAvatar;
     private String userName;

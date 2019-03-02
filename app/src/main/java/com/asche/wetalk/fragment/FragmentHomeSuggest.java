@@ -62,23 +62,19 @@ public class FragmentHomeSuggest extends Fragment {
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
 
-        itemBeanList.add(DataUtils.getArticle());
-        itemBeanList.add(DataUtils.getRequirement());
-        itemBeanList.add(DataUtils.getTopicReply());
-
-
         List<UserBean> userBeanList = new ArrayList<>();
         for (int i = 0; i < 6; i++){
             userBeanList.add(UserUtils.getUser());
         }
+        itemBeanList.add(DataUtils.getArticle());
+        itemBeanList.add(DataUtils.getRequirement());
+        itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(new SuggestUserBean(userBeanList));
-
         itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getRequirement());
         itemBeanList.add(DataUtils.getArticle());
         itemBeanList.add(DataUtils.getTopicReply());
         itemBeanList.add(DataUtils.getArticle());
-
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         adapter = new HomeSuggestRVAdapter(itemBeanList);

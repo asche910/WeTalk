@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.spider.JokeSpider;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class AchievementActivity extends BaseActivity implements View.OnClickListener{
 
@@ -27,6 +27,7 @@ public class AchievementActivity extends BaseActivity implements View.OnClickLis
 
         textTitle.setText("成就");
         imgBack.setOnClickListener(this);
+
 
     }
 

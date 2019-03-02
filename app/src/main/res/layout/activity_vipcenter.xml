@@ -3,195 +3,244 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#eee">
 
     <include layout="@layout/toolbar_universe"/>
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <View
-            android:id="@+id/view_vipcenter_top"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg"
-            />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/bg_btn_blue"
-            android:elevation="2dp">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="100dp"
-            android:orientation="vertical"
-            android:layout_below="@id/view_vipcenter_top">
+            <View
+                android:id="@+id/view_vipcenter_top"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#724D36" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                >
+                android:layout_height="130dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_brown"
+                android:orientation="vertical"
+                android:elevation="2dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="特权1 "
-                    android:textSize="18sp"
-                    android:textColor="#D57F32"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="最优专家为你服务"
-                    android:textSize="20sp"
-                    android:textColor="#333"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="特权2 "
-                    android:textSize="18sp"
-                    android:textColor="#D57F32"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商品低价折扣"
-                    android:textSize="20sp"
-                    android:textColor="#333"/>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_toLeftOf="@id/text_vipcenter_discount"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/ic_discount_large" />
-
-                <TextView
-                    android:id="@+id/text_vipcenter_discount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:text="部分低至"
-                    android:textColor="#333"/>
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_toRightOf="@id/text_vipcenter_discount"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/ic_discount_50" />
-
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="特权3 "
-                    android:textSize="18sp"
-                    android:textColor="#D57F32"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="专属精品课程"
-                    android:textSize="20sp"
-                    android:textColor="#333"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="特权4 "
-                    android:textSize="18sp"
-                    android:textColor="#D57F32"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="签到双倍积分奖励"
-                    android:textSize="20sp"
-                    android:textColor="#333"/>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_toLeftOf="@id/text_vipcenter_clockin"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="30dp"
-                    android:src="@drawable/ic_coin_large" />
-
-                <TextView
-                    android:id="@+id/text_vipcenter_clockin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="->"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center_horizontal"
+                    android:text="小价钱创造大价值"
                     android:textSize="30sp"
-                    android:textColor="#0E5F9C"/>
+                    android:textColor="#815225" />
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_toRightOf="@id/text_vipcenter_clockin"
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="20元开通会员"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:background="@drawable/bg_btn_brown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="100dp"
+                android:orientation="vertical"
+                android:layout_below="@id/view_vipcenter_top">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_coin_large" />
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_item">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_toRightOf="@id/text_vipcenter_clockin"
-                    android:layout_marginLeft="60dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="特权1 "
+                        android:textSize="18sp"
+                        android:textColor="#D57F32" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="最优专家为你服务"
+                        android:textSize="20sp"
+                        android:textColor="#333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/ic_coin_large" />
-            </RelativeLayout>
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_item">
 
-        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
 
-    </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="特权2 "
+                            android:textSize="18sp"
+                            android:textColor="#D57F32" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="商品低价折扣"
+                            android:textSize="20sp"
+                            android:textColor="#333" />
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toLeftOf="@id/text_vipcenter_discount"
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/ic_discount_large" />
+
+                        <TextView
+                            android:id="@+id/text_vipcenter_discount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:text="部分低至"
+                            android:textColor="#333" />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/text_vipcenter_discount"
+                            android:layout_marginLeft="30dp"
+                            android:src="@drawable/ic_discount_50" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_item">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="特权3 "
+                        android:textSize="18sp"
+                        android:textColor="#D57F32" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="专属精品课程"
+                        android:textSize="20sp"
+                        android:textColor="#333" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_item"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="特权4 "
+                            android:textSize="18sp"
+                            android:textColor="#D57F32" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="签到双倍积分奖励"
+                            android:textSize="20sp"
+                            android:textColor="#333" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toLeftOf="@id/text_vipcenter_clockin"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/ic_coin_large" />
+
+                        <TextView
+                            android:id="@+id/text_vipcenter_clockin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="->"
+                            android:textSize="30sp"
+                            android:textColor="#0E5F9C" />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/text_vipcenter_clockin"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_coin_large" />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_toRightOf="@id/text_vipcenter_clockin"
+                            android:layout_marginLeft="60dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_coin_large" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

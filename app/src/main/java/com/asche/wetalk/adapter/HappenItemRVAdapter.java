@@ -1,6 +1,7 @@
 package com.asche.wetalk.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.HappenActivity;
 import com.asche.wetalk.bean.HappenItemBean;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideModule;
@@ -44,19 +47,10 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         HappenItemBean bean = list.get(position);
 
-        try {
-            Glide.with(context)
-                    .load(Integer.parseInt(bean.getUserAvatar()))
-                    .into(holder.imgAvatar);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            Glide.with(context)
-                    .load((bean.getUserAvatar()))
-                    .into(holder.imgAvatar);
-        }
+        LoaderUtils.loadImage(bean.getUserAvatar(), context, holder.imgAvatar);
 
         holder.userName.setText(bean.getUserName());
         holder.content.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
@@ -76,6 +70,15 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
                     VibrateUtils.vibrateLike();
                     AudioUtils.playLike();
                 }
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, HappenActivity.class);
+                intent.putExtra("happenBean", list.get(position));
+                context.startActivity(intent);
             }
         });
     }

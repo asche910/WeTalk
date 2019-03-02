@@ -11,6 +11,7 @@ import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
@@ -71,9 +72,11 @@ public class DataUtils {
                 final Handler handler = new Handler(new Handler.Callback() {
                     @Override
                     public boolean handleMessage(Message msg) {
-                        if (msg.what == 100){
+                        if (msg.what == 100 && msg.obj != null){
                             Log.e(TAG, "handleMessage: " + msg.obj.toString());
                             bean.setVideoUrl(msg.obj.toString());
+                        }else {
+                            Toast.makeText(getContext(), "请求失败！", Toast.LENGTH_SHORT).show();
                         }
                         return false;
                     }

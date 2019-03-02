@@ -48,7 +48,6 @@ public class ArticlePublishPreviewActivity extends BaseActivity {
                 finish();
             }
         });
-
     }
 
     private void initView() {
