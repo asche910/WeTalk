@@ -17,6 +17,7 @@ import com.asche.wetalk.fragment.FragmentDialogCommentDetail;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
+import com.asche.wetalk.util.LoaderUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -46,6 +47,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
     public static final int CLICK_DETAIL = 1; // 进入评论详情页
     public static final int CLICK_COMMENT = 2; // 处于详情页，回复此条评论
     public static final int CLICK_IMG_COMMENT = 3; // 设置imgComment的点击事件
+    public static final int CLICK_NULL = 4; // 不处理点击事件
     private int clickType;
 
 
@@ -95,16 +97,7 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
 
         if (bean.getType() == TYPE_NORMAL) {
             final NormalHolder normalHolder = (NormalHolder) holder;
-            try {
-                Glide.with(context)
-                        .load(Integer.parseInt(bean.getAvatarUrl()))
-                        .into(normalHolder.imgAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getAvatarUrl())
-                        .into(normalHolder.imgAvatar);
-            }
+            LoaderUtils.loadImage(bean.getAvatarUrl(), context, normalHolder.imgAvatar);
 
             normalHolder.textName.setText(bean.getName());
             normalHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
@@ -173,16 +166,8 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
             }
         } else if (bean.getType() == TYPE_SIMPLE) {
             SimpleHolder simpleHolder = (SimpleHolder) holder;
-            try {
-                Glide.with(context)
-                        .load(Integer.parseInt(bean.getAvatarUrl()))
-                        .into(simpleHolder.imgAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getAvatarUrl())
-                        .into(simpleHolder.imgAvatar);
-            }
+
+            LoaderUtils.loadImage(bean.getAvatarUrl(), context, simpleHolder.imgAvatar);
 
             simpleHolder.textName.setText(bean.getName());
 

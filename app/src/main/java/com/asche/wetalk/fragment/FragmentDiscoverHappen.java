@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.DiscoverHappenPublishActivity;
 import com.asche.wetalk.adapter.HappenItemRVAdapter;
+import com.asche.wetalk.bean.CommentItemBean;
 import com.asche.wetalk.bean.HappenItemBean;
+import com.asche.wetalk.data.DataUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
+import static com.asche.wetalk.activity.ArticleActivity.commentSimpleList;
+import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class FragmentDiscoverHappen extends Fragment {
@@ -75,6 +79,21 @@ public class FragmentDiscoverHappen extends Fragment {
             happenItemBeanList.add(new HappenItemBean("https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg", "飞翔的企鹅", str_2, "10-25 10：24", null));
             happenItemBeanList.add(new HappenItemBean(R.drawable.img_avatar+"", "Asche", str_1, "下午10：24", urlList));
         }
+
+        if (commentSimpleList.isEmpty()) {
+            commentSimpleList.add(DataUtils.getComment(1));
+            commentSimpleList.add(DataUtils.getComment(1));
+        }
+
+        if (commentNormalList.isEmpty()) {
+            for (int i = 0; i < 8; i++) {
+                CommentItemBean bean = DataUtils.getComment(0);
+                if (i == 4)
+                    bean.setSubList(commentSimpleList);
+                commentNormalList.add(bean);
+            }
+        }
+
 
         happenItemRVAdapter = new HappenItemRVAdapter(happenItemBeanList);
         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);

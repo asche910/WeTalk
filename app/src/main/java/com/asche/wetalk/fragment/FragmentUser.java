@@ -22,6 +22,7 @@ import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.activity.BookActivity;
 import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
+import com.asche.wetalk.activity.IdentifyActivity;
 import com.asche.wetalk.activity.VIPCenterActivity;
 import com.asche.wetalk.activity.DraftActivity;
 import com.asche.wetalk.activity.LoginActivity;
@@ -96,7 +97,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
 
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_wallet + "", "钱包"));
-        imageTextBeans.add(new ImageTextBean(R.drawable.ic_book + "", "书架"));
+        imageTextBeans.add(new ImageTextBean(R.drawable.ic_identify + "", "认证"));
+//        imageTextBeans.add(new ImageTextBean(R.drawable.ic_book + "", "书架"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_achievement + "", "成就"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_collect + "", "收藏"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_signin + "", "签到"));
@@ -137,8 +139,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "成就", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        nextActivity(BookActivity.class);
-                        Toast.makeText(getActivity(), "书架", Toast.LENGTH_SHORT).show();
+                        nextActivity(IdentifyActivity.class);
+                        Toast.makeText(getActivity(), "认证", Toast.LENGTH_SHORT).show();
                         break;
                     case 0:
                         nextActivity(WalletActivity.class);

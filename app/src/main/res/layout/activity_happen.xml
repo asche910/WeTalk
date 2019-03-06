@@ -111,10 +111,16 @@
                     android:layout_height="1dp"
                     android:background="#2596a397" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_happen_comment_detail"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_happen_comment_normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
 
                 <View
                     android:layout_width="match_parent"

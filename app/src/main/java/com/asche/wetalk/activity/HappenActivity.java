@@ -1,6 +1,5 @@
 package com.asche.wetalk.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.CommentRVAdapter;
 import com.asche.wetalk.adapter.GridImgRVAdapter;
 import com.asche.wetalk.bean.HappenItemBean;
 import com.asche.wetalk.service.AudioUtils;
@@ -17,8 +17,13 @@ import com.asche.wetalk.util.LoaderUtils;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
+
+import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_DETAIL;
+import static com.asche.wetalk.adapter.CommentRVAdapter.CLICK_NULL;
+import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 
 public class HappenActivity extends BaseActivity implements View.OnClickListener{
 
@@ -33,6 +38,10 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
     private RecyclerView recycView;
     private TextView time;
     private Button btnLike;
+
+    private RecyclerView recyclerComment;
+    private LinearLayoutManager layoutManagerComment;
+    private CommentRVAdapter commentRVAdapter;
 
     private HappenItemBean happenBean;
 
@@ -51,6 +60,7 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
         recycView = findViewById(R.id.recycler_happen);
         time = findViewById(R.id.text_item_happen_time);
         btnLike = findViewById(R.id.btn_item_happen_like);
+        recyclerComment = findViewById(R.id.recycler_happen_comment_normal);
 
         imgMore.setImageResource(R.drawable.ic_more_light);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -68,6 +78,13 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
                 recycView.setAdapter(new GridImgRVAdapter(happenBean.getUrlList()));
             }
         }
+
+        // TODO CLICK_NULL
+        commentRVAdapter = new CommentRVAdapter(commentNormalList, CLICK_NULL);
+        layoutManagerComment = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerComment.setLayoutManager(layoutManagerComment);
+        recyclerComment.setAdapter(commentRVAdapter);
+
 
         textTitle.setText("详情");
 

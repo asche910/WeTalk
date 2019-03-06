@@ -78,12 +78,12 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     private boolean isOtherUser; // 判断查看的是否是用户自己
 
 
-    private static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
-    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
-    private static final int PHOTO_REQUEST_CUT = 3;// 结果
+    public static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
+    public static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
+    public static final int PHOTO_REQUEST_CUT = 3;// 结果
     /** 头像名称 */
-    private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
-    private File tempFile;
+    public static final String PHOTO_FILE_NAME = "temp_photo.jpg";
+    public static File tempFile;
 
     @SuppressLint("SetTextI18n")
     @Override
