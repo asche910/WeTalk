@@ -25,9 +25,8 @@ public class AchievementActivity extends BaseActivity implements View.OnClickLis
         imgBack = findViewById(R.id.img_toolbar_back);
         textTitle = findViewById(R.id.text_toolbar_title);
 
-        textTitle.setText("成就");
+        textTitle.setText("成就系统");
         imgBack.setOnClickListener(this);
-
 
     }
 

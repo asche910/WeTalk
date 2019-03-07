@@ -57,7 +57,7 @@ public class IdentifyActivity extends BaseActivity implements View.OnClickListen
             case R.id.img_identify_img:
             case R.id.btn_identify_upload:
                 new MaterialDialog.Builder(this)
-                        .title("更换头像")
+                        .title("上传资质")
                         .items(new String[]{"拍照上传", "相册选择上传"})
                         .contentColor(Color.parseColor("#333333"))
                         .itemsCallback(new MaterialDialog.ListCallback() {
@@ -103,26 +103,6 @@ public class IdentifyActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    /**
-     * 剪切图片
-     */
-    private void crop(Uri uri) {
-        // 裁剪图片意图
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 250);
-        intent.putExtra("outputY", 250);
-        intent.putExtra("outputFormat", "JPEG");// 图片格式
-        intent.putExtra("noFaceDetection", true);// 取消人脸识别
-        intent.putExtra("return-data", true);
-        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
-        startActivityForResult(intent, PHOTO_REQUEST_CUT);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -131,12 +111,12 @@ public class IdentifyActivity extends BaseActivity implements View.OnClickListen
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                crop(uri);
+                // crop(uri);
             }
         } else if (requestCode == PHOTO_REQUEST_CAREMA) {
             // 从相机返回的数据
             if (hasSdcard()) {
-                crop(Uri.fromFile(tempFile));
+                // crop(Uri.fromFile(tempFile));
             } else {
                 Toast.makeText(IdentifyActivity.this, "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
             }

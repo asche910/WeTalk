@@ -335,7 +335,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     }
 
     private boolean hasSdcard() {
-        //判断ＳＤ卡是否安装好　　　media_mounted
+        //判断SD卡是否安装好　　　media_mounted
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             return true;
         } else {

@@ -2,6 +2,7 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
 import android.util.Log;
@@ -28,11 +29,14 @@ import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
+import com.asche.wetalk.util.FileUtils;
 import com.asche.wetalk.util.LoaderUtils;
+import com.asche.wetalk.util.ResourcesUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.bumptech.glide.Glide;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
+import java.io.File;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -60,6 +64,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     private int curPosition = -1;
 
     private int count;
+
+    // 用于分享时临时存放图片
+    private Uri uri;
 
     // 此处用作comment的点击事件
     private OnItemClickListener onItemClickListener;
@@ -254,6 +261,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     }
                 }
             });
+            textHolder.layoutForward.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentText = new Intent(Intent.ACTION_SEND);
+                    intentText.setType("text/plain");
+                    intentText.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
+                    intentText.putExtra(Intent.EXTRA_TEXT, bean.getContent());
+                    context.startActivity(intentText);
+                }
+            });
             textHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -335,6 +352,27 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     }
                 }
             });
+            imgHolder.layoutForward.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   /* new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            File file  = FileUtils.getFileFromURL(bean.getImgUrl());
+                            uri = Uri.fromFile(file);
+                        }
+                    }).start();
+*/
+                    Intent intentImage = new Intent(Intent.ACTION_SEND);
+                    intentImage.setType("text/plain");
+                    intentImage.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
+                    intentImage.putExtra(Intent.EXTRA_TEXT, bean.getContent());
+                    // intentImage.putExtra(Intent.EXTRA_STREAM, uri);
+                    context.startActivity(intentImage);
+                }
+            });
+
+
             imgHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -432,6 +470,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     }
+                }
+            });
+            videoHolder.layoutForward.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentVideo = new Intent(Intent.ACTION_SEND);
+                    intentVideo.setType("text/plain");
+                    intentVideo.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
+                    intentVideo.putExtra(Intent.EXTRA_TEXT, bean.getContent());
+                    context.startActivity(intentVideo);
                 }
             });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {

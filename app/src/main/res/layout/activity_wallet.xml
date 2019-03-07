@@ -1,58 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar_universe"/>
+    <include layout="@layout/toolbar_universe" />
 
-    <LinearLayout
+    <com.asche.wetalk.helper.MyScrollViewForElastic
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        >
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="100dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/img_wallet"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal"
-            android:text="我的余额"
-            android:textColor="#666"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_gravity="center_horizontal"
-            android:text="¥80.00"
-            android:textColor="#222"
-            android:textSize="18sp"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="100dp"
+                    android:src="@drawable/img_wallet" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="7dp"
-        android:text="充 值"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_green"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="我的余额"
+                    android:textColor="#666" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="7dp"
-        android:text="提 现"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_btn_blue"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:text="¥80.00"
+                    android:textColor="#222"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="7dp"
+                android:background="@drawable/bg_btn_green"
+                android:text="充 值"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="7dp"
+                android:background="@drawable/bg_btn_blue"
+                android:text="提 现"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </com.asche.wetalk.helper.MyScrollViewForElastic>
 
 </LinearLayout>

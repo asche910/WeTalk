@@ -13,6 +13,7 @@ import android.view.ViewConfiguration;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ScrollView;
 
+import com.asche.wetalk.MyApplication;
 import com.asche.wetalk.R;
 
 import static com.asche.wetalk.activity.UserHomeActivity.textTitle;
@@ -89,4 +90,10 @@ public class MyScrollView extends ScrollView {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
+
+    public static int dip2px( float dipValue) {
+        final float scale = MyApplication.getContext().getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
 }
