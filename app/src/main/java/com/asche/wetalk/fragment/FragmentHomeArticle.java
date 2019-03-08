@@ -1,6 +1,8 @@
 package com.asche.wetalk.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.HomeItem;
+import com.asche.wetalk.bean.LoadingBean;
 import com.asche.wetalk.data.DataUtils;
 
 import java.util.ArrayList;
@@ -29,6 +32,9 @@ public class FragmentHomeArticle extends Fragment {
     private HomeSuggestRVAdapter adapter;
     private List<HomeItem> itemBeanList = new ArrayList<>();
 
+    // 是否正在加载更多数据
+    private boolean isLoading;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class FragmentHomeArticle extends Fragment {
                 itemBeanList.add(DataUtils.getArticle(i));
             for (int i = 0; i < 4; i++)
                 itemBeanList.add(DataUtils.getArticle(i));
+            itemBeanList.add(new LoadingBean());
         }
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
@@ -72,5 +79,49 @@ public class FragmentHomeArticle extends Fragment {
                 }).start();
             }
         });
+
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                int pos = layoutManager.findLastVisibleItemPosition() + 1;
+                if (pos == itemBeanList.size() && !isLoading){
+                    loadMore();
+                    isLoading = true;
+                }
+            }
+        });
+    }
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == 10){
+                adapter.notifyItemRangeInserted(itemBeanList.size() - 4, 4);
+                isLoading = false;
+            }
+            return false;
+        }
+    });
+
+    private void loadMore(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < 4; i++)
+                    itemBeanList.add(itemBeanList.size() - 1, DataUtils.getArticle(i));
+
+                Message message = new Message();
+                message.what = 10;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 }

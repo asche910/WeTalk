@@ -2,6 +2,8 @@ package com.asche.wetalk.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.HomeSuggestRVAdapter;
 import com.asche.wetalk.bean.HomeItem;
+import com.asche.wetalk.bean.LoadingBean;
 import com.asche.wetalk.bean.SuggestUserBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.DataUtils;
@@ -42,6 +45,9 @@ public class FragmentHomeSuggest extends Fragment {
 
     public static StandardGSYVideoPlayer videoPlayer;
 
+    // 是否正在加载更多数据
+    private boolean isLoading;
+
     public static String videoSrc = "http://f10.v1.cn/site/15538790.mp4.f40.mp4";
     public static String videoSrc_ = "http://f04.v1.cn/transcode/14353624MOBILET2.mp4";
     public static String imgSrc = "http://img.mms.v1.cn/static/mms/images/2018-10-18/201810181131393298.jpg";
@@ -62,19 +68,20 @@ public class FragmentHomeSuggest extends Fragment {
         recyclerView = getView().findViewById(R.id.recycle_home_suggest);
 
 
-        List<UserBean> userBeanList = new ArrayList<>();
-        for (int i = 0; i < 6; i++){
-            userBeanList.add(UserUtils.getUser());
+        if (itemBeanList.isEmpty()) {
+            List<UserBean> userBeanList = new ArrayList<>();
+            for (int i = 0; i < 6; i++){
+                userBeanList.add(UserUtils.getUser());
+            }
+
+            itemBeanList.add(DataUtils.getArticle());
+            itemBeanList.add(DataUtils.getRequirement());
+            itemBeanList.add(DataUtils.getTopicReply());
+            itemBeanList.add(new SuggestUserBean(userBeanList));
+            itemBeanList.add(DataUtils.getTopicReply());
+            itemBeanList.add(DataUtils.getArticle());
+            itemBeanList.add(new LoadingBean());
         }
-        itemBeanList.add(DataUtils.getArticle());
-        itemBeanList.add(DataUtils.getRequirement());
-        itemBeanList.add(DataUtils.getTopicReply());
-        itemBeanList.add(new SuggestUserBean(userBeanList));
-        itemBeanList.add(DataUtils.getTopicReply());
-        itemBeanList.add(DataUtils.getRequirement());
-        itemBeanList.add(DataUtils.getArticle());
-        itemBeanList.add(DataUtils.getTopicReply());
-        itemBeanList.add(DataUtils.getArticle());
 
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         adapter = new HomeSuggestRVAdapter(itemBeanList);
@@ -105,6 +112,12 @@ public class FragmentHomeSuggest extends Fragment {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 firstView = layoutManager.findLastVisibleItemPosition() - 1;
+
+                // 滑动至底部
+                if (firstView + 2 == itemBeanList.size() && !isLoading){
+                    loadMore();
+                    isLoading = true;
+                }
 
                 if (firstView < 0) {
                     firstView = 0;
@@ -138,8 +151,37 @@ public class FragmentHomeSuggest extends Fragment {
                 }
             });
         }
+    }
 
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == 10){
+                adapter.notifyItemRangeInserted(itemBeanList.size() - 4, 3);
+                isLoading = false;
+            }
+            return false;
+        }
+    });
 
+    private void loadMore(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                itemBeanList.add(itemBeanList.size() - 1, DataUtils.getArticle());
+                itemBeanList.add(itemBeanList.size() - 1, DataUtils.getTopicReply());
+                itemBeanList.add(itemBeanList.size() - 1, DataUtils.getRequirement());
+
+                Message message = new Message();
+                message.what = 10;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
     @Override

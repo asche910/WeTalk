@@ -53,7 +53,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
     public static final int TYPE_VIDEO = 2;
-    public static final int TYPE_USER = 3;
+    public static final int TYPE_USER = 3; // 专家推荐
+    public static final int TYPE_LOADING = 4; // 加载更多
 
     private List<HomeItem> list;
     private Context context;
@@ -65,8 +66,6 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     private int count;
 
-    // 用于分享时临时存放图片
-    private Uri uri;
 
     // 此处用作comment的点击事件
     private OnItemClickListener onItemClickListener;
@@ -160,16 +159,24 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         }
     }
 
+    public class LoadingHolder extends RecyclerView.ViewHolder{
+        public LoadingHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
     @Override
     public int getItemViewType(int position) {
-        ItemBean itemBean = HomeItemAdapter.adapt(list.get(position));
-        if (itemBean.getBodyType() == TYPE_TEXT) {
+        HomeItem homeItem = list.get(position);
+        int type = homeItem.getItemBodyType();
+        if (type == TYPE_TEXT) {
             return TYPE_TEXT;
-        } else if (itemBean.getBodyType() == TYPE_IMAGE) {
+        } else if (type == TYPE_IMAGE) {
             return TYPE_IMAGE;
-        }
-        if (itemBean.getBodyType() == TYPE_VIDEO) {
+        }else if (type == TYPE_VIDEO) {
             return TYPE_VIDEO;
+        }else if (type == TYPE_LOADING){
+            return TYPE_LOADING;
         }
         return TYPE_USER;
     }
@@ -194,6 +201,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         }else if(viewType == TYPE_USER){
             view = inflater.inflate(R.layout.layout_suggest_user, parent, false);
             return new UserHolder(view);
+        }else if (viewType == TYPE_LOADING){
+            view = inflater.inflate(R.layout.layout_bottom_loading, parent, false);
+            return new LoadingHolder(view);
         }
         return null;
     }

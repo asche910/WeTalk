@@ -18,6 +18,7 @@ import com.asche.wetalk.activity.ChatActivity;
 import com.asche.wetalk.adapter.NotificationRVAdapter;
 import com.asche.wetalk.bean.NotificationItemBean;
 import com.asche.wetalk.data.UserUtils;
+import com.asche.wetalk.helper.FlexibleScrollView;
 import com.asche.wetalk.util.TimeUtils;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class FragmentNotification extends Fragment {
 
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
+    private FlexibleScrollView flexibleScrollView;
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -44,7 +46,10 @@ public class FragmentNotification extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         swipeRefreshLayout = getView().findViewById(R.id.header_notification);
+        flexibleScrollView = getView().findViewById(R.id.scroll_notification);
         recyclerView = getView().findViewById(R.id.recycler_notification);
+
+        flexibleScrollView.setEnablePullDown(false);
 
         notiBeanList.add(new NotificationItemBean(UserUtils.getUser(0), TimeUtils.getCurrentTime(), "你好，我是小灵机器人！"));
         notiBeanList.add(new NotificationItemBean(UserUtils.getUser(1), "11.13 15:43", "Hello, World!"));

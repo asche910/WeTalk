@@ -33,6 +33,7 @@ import com.asche.wetalk.activity.WalletActivity;
 import com.asche.wetalk.activity.WorkActivity;
 import com.asche.wetalk.adapter.UserToolRVAdapter;
 import com.asche.wetalk.bean.ImageTextBean;
+import com.asche.wetalk.helper.FlexibleScrollView;
 import com.asche.wetalk.spider.JokeSpider;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class FragmentUser extends Fragment implements View.OnClickListener {
+
+    private FlexibleScrollView flexibleScrollView;
 
     private LinearLayout userInfoLayout;
     private ImageView imgAvatar;
@@ -87,6 +90,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
             getActivity().getWindow().setExitTransition(explode);
         }*/
 
+        flexibleScrollView = getView().findViewById(R.id.scroll_user_frag);
         userInfoLayout = getView().findViewById(R.id.layout_user_info);
         imgAvatar = getView().findViewById(R.id.img_user_avatar);
         imgSetting = getView().findViewById(R.id.img_toolbar_setting);
@@ -95,6 +99,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         layoutArticle = getView().findViewById(R.id.layout_user_daily_article);
         layoutJoke = getView().findViewById(R.id.layout_user_daily_joke);
 
+        flexibleScrollView.setEnablePullDown(false);
 
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_wallet + "", "钱包"));
         imageTextBeans.add(new ImageTextBean(R.drawable.ic_identify + "", "认证"));
@@ -216,10 +221,10 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                 handler = new Handler(new Handler.Callback() {
                     @Override
                     public boolean handleMessage(Message msg) {
-                        if (msg.what == 100){
-                            if (msg.obj != null ) {
+                        if (msg.what == 100) {
+                            if (msg.obj != null) {
                                 webView.loadData(msg.obj.toString(), "text/html", "utf-8");
-                            }else {
+                            } else {
                                 Toast.makeText(getContext(), "连接失败，请重试！", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -244,7 +249,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void nextActivity(Class<?> cls){
+    private void nextActivity(Class<?> cls) {
         Intent intent = new Intent(getActivity(), cls);
         startActivity(intent);
     }

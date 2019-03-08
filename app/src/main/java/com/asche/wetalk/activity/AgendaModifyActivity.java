@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.AgendaItemBean;
+import com.asche.wetalk.util.StringUtils;
+import com.asche.wetalk.util.TimeUtils;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,8 @@ public class AgendaModifyActivity extends BaseActivity implements View.OnClickLi
 
     private AgendaItemBean agendaItemBean;
 
+    private boolean isNew;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,28 +39,40 @@ public class AgendaModifyActivity extends BaseActivity implements View.OnClickLi
         imgMore = findViewById(R.id.img_toolbar_more);
         editText = findViewById(R.id.edit_agenda);
 
-        int position = getIntent().getIntExtra("agenda", 0);
-        agendaItemBean = agendaList.get(position);
-
-        if (agendaItemBean != null){
+        int position = getIntent().getIntExtra("agenda", -1);
+        if (position == -1){
+            agendaItemBean = new AgendaItemBean();
+            textTitle.setText("新增事项");
+            isNew = true;
+        }else {
+            agendaItemBean = agendaList.get(position);
             editText.setText(agendaItemBean.getContent());
+            textTitle.setText("修改事项");
         }
 
-        textTitle.setText("修改");
-        imgMore.setBackgroundResource(R.drawable.ic_save);
+        imgMore.setImageResource(R.drawable.ic_save);
 
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.img_toolbar_more:
-                Toast.makeText(this, "保存成功！", Toast.LENGTH_SHORT).show();
                 String inputStr = editText.getText().toString();
+                if (StringUtils.isEmpty(inputStr)){
+                    Toast.makeText(this, "内容不能为空哦！", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 agendaItemBean.setContent(inputStr);
+
+                if (isNew){
+                    agendaItemBean.setTime(TimeUtils.getCurrentTime());
+                    agendaList.add(agendaItemBean);
+                }
+                Toast.makeText(this, "保存成功！", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
             case R.id.img_toolbar_back:
                 finish();

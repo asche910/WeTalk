@@ -6,10 +6,9 @@
 
     <include layout="@layout/toolbar_universe" />
 
-    <com.asche.wetalk.helper.MyScrollViewForElastic
+    <com.asche.wetalk.helper.FlexibleScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,6 +64,6 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
-    </com.asche.wetalk.helper.MyScrollViewForElastic>
+    </com.asche.wetalk.helper.FlexibleScrollView>
 
 </LinearLayout>

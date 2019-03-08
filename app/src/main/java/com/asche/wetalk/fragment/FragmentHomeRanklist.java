@@ -9,6 +9,7 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.RanklistRVAdapter;
 import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.data.DataUtils;
+import com.asche.wetalk.helper.FlexibleScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 
 public class FragmentHomeRanklist extends Fragment {
-
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
@@ -42,6 +42,7 @@ public class FragmentHomeRanklist extends Fragment {
 
         swipeRefreshLayout = getView().findViewById(R.id.header_home_ranklist);
         recyclerView = getView().findViewById(R.id.recycler_home_ranklist);
+
 
         swipeRefreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override

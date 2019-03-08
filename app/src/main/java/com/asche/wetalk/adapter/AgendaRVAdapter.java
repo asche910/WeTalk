@@ -16,14 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.ViewHolder> {
 
     private List<AgendaItemBean> list;
-    private OnItemClickListener onItemClickListener;
+    private OnLongClickListener onLongClickListener;
 
     public AgendaRVAdapter(List<AgendaItemBean> list) {
         this.list = list;
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public void setOnLongClickListener(OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
     }
 
     @NonNull
@@ -42,7 +42,15 @@ public class AgendaRVAdapter extends RecyclerView.Adapter<AgendaRVAdapter.ViewHo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(position);
+                onLongClickListener.onItemClick(position);
+
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onLongClickListener.onItemLongClick(position);
+                return true;
             }
         });
     }

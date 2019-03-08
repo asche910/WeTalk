@@ -6,30 +6,27 @@
 
     <include layout="@layout/toolbar_universe"/>
 
-    <TextView
+
+    <com.asche.wetalk.helper.FlexibleScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Setting"/>
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/btn_1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:clickable="true"
-        android:src="@drawable/ic_comment"
-        android:background="?selectableItemBackgroundBorderless"/>
 
-    <Button
-        android:id="@+id/btn_2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ic_comment"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
 
-    <ImageButton
-        android:id="@+id/btn_3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_comment"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="900dp"
+                    android:gravity="center"
+                    android:text="Setting" />
+            </LinearLayout>
+
+
+    </com.asche.wetalk.helper.FlexibleScrollView>
+
 
 </LinearLayout>
