@@ -80,7 +80,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/ic_item_comment" />
+                android:background="@drawable/ic_comment" />
 
             <Button
                 android:id="@+id/btn_item_happen_forward"
@@ -94,7 +94,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#2596a397"
+        android:background="#f2f2f2"
         />
 
 </LinearLayout>

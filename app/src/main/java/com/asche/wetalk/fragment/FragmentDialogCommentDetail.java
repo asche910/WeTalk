@@ -55,11 +55,12 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
 
     private ImageView imgBack;
 
-    private ImageView imgAvatar, imgLike, imgComment;
+    private ImageView imgAvatar, imgMore , imgLike, imgComment;
     private TextView textName, textContent, textTime, textLikeNum, textMore;
     private RecyclerView recyclerViewSub;
     private CommentRVAdapter subAdapter;
 
+    // 评论框
     private ImageView imgEmoticon, imgAt, imgSend;
     private EditText editText;
     private LinearLayout layoutBottom;
@@ -97,6 +98,7 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
 
         imgBack = getView().findViewById(R.id.img_fragment_comment_close);
         imgAvatar = getView().findViewById(R.id.img_item_comment_avatar);
+        imgMore = getView().findViewById(R.id.img_item_comment_more);
         imgLike = getView().findViewById(R.id.img_item_comment_like);
         imgComment = getView().findViewById(R.id.img_item_comment_comment);
         textContent = getView().findViewById(R.id.text_item_comment_content);
@@ -164,6 +166,7 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
 
         imgBack.setOnClickListener(this);
         imgAvatar.setOnClickListener(this);
+        imgMore.setOnClickListener(this);
         textName.setOnClickListener(this);
         textMore.setOnClickListener(this);
         imgLike.setOnClickListener(this);
@@ -259,6 +262,9 @@ public class FragmentDialogCommentDetail extends BaseDialogFragment implements V
                 imgLike.setImageResource(R.drawable.ic_like_pressed);
                 imgLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(getContext(), R.anim.anim_like));
                 textLikeNum.setText(StringUtils.addOne(textLikeNum.getText().toString()));
+                break;
+            case R.id.img_item_comment_more:
+                Toast.makeText(getContext(), "More clicked!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.text_item_comment_name:
             case R.id.img_item_comment_avatar:

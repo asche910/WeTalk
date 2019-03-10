@@ -47,7 +47,6 @@ public class CommentRVAdapter extends RecyclerView.Adapter {
     public static final int CLICK_DETAIL = 1; // 进入评论详情页
     public static final int CLICK_COMMENT = 2; // 处于详情页，回复此条评论
     public static final int CLICK_IMG_COMMENT = 3; // 设置imgComment的点击事件
-    public static final int CLICK_NULL = 4; // 不处理点击事件
     private int clickType;
 
 

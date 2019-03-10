@@ -11,22 +11,66 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.SettingRVAdapter;
+import com.asche.wetalk.bean.SettingItemBean;
+import com.asche.wetalk.helper.FlexibleScrollView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
 
+    private FlexibleScrollView flexibleScrollView;
     private ImageView imgBack;
     private TextView textTitle;
+
+    private RecyclerView recyclerView;
+    private SettingRVAdapter settingRVAdapter;
+    private List<SettingItemBean> itemBeanList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        flexibleScrollView = findViewById(R.id.scroll_setting);
         imgBack = findViewById(R.id.img_toolbar_back);
         textTitle = findViewById(R.id.text_toolbar_title);
+        recyclerView = findViewById(R.id.recycler_setting);
+
+
+        // TODO 神奇(～￣▽￣)～
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+
+
+        flexibleScrollView.setEnablePullDown(false);
+//            <!--  账号、通用、关于  -->
+//<!--  修改密码、注销登录 - 夜间模式、免打扰、省流模式、清除缓存 - 反馈、关于、检查更新  -->
+
+        if (itemBeanList.isEmpty()) {
+            itemBeanList.add(new SettingItemBean("账号"));
+            itemBeanList.add(new SettingItemBean("修改密码", "定期修改密码来保证账号的安全", false));
+            itemBeanList.add(new SettingItemBean("注销登录", "退出登录或更换账号登录", false));
+            itemBeanList.add(new SettingItemBean("通用"));
+            itemBeanList.add(new SettingItemBean("夜间模式", "光线较弱时可开启此模式", true));
+            itemBeanList.add(new SettingItemBean("免打扰", "应用不会通过状态栏发送通知", true));
+            itemBeanList.add(new SettingItemBean("省流模式", "仅在Wifi环境下自动加载图片或视频", true));
+            itemBeanList.add(new SettingItemBean("清除缓存", "清除缓存使手机运行更流畅", false));
+            itemBeanList.add(new SettingItemBean("关于"));
+            itemBeanList.add(new SettingItemBean("反馈", "反馈你遇到的问题或建议", false));
+            itemBeanList.add(new SettingItemBean("检查更新", "Version 1.0", false));
+            itemBeanList.add(new SettingItemBean("关于", "软件版权相关声明", false));
+        }
+
+        settingRVAdapter = new SettingRVAdapter(itemBeanList);
+        recyclerView.setAdapter(settingRVAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         textTitle.setText("设置");
         imgBack.setOnClickListener(this);

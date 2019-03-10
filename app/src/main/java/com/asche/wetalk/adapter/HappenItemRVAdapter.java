@@ -17,9 +17,6 @@ import com.asche.wetalk.service.AudioUtils;
 import com.asche.wetalk.service.VibrateUtils;
 import com.asche.wetalk.util.EmoticonUtils;
 import com.asche.wetalk.util.LoaderUtils;
-import com.asche.wetalk.util.StringUtils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.annotation.GlideModule;
 
 import java.util.List;
 
@@ -27,7 +24,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapter.ViewHolder> {
+public class HappenItemRVAdapter extends RecyclerView.Adapter {
+
+    public static final int TYPE_ITEM = 0;
+    public static final int TYPE_LOADING = 1;
 
     private List<HappenItemBean> list;
     private Context context;
@@ -38,54 +38,69 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (context == null){
             context = parent.getContext();
         }
-        View view = LayoutInflater.from(context).inflate(R.layout.item_happen, parent, false);
-        return new ViewHolder(view);
+        if (viewType == TYPE_ITEM) {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_happen, parent, false);
+            return new ViewHolder(view);
+        }else if (viewType == TYPE_LOADING){
+            View view = LayoutInflater.from(context).inflate(R.layout.layout_bottom_loading, parent, false);
+            return new LoadingHolder(view);
+        }
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         HappenItemBean bean = list.get(position);
 
-        LoaderUtils.loadImage(bean.getUserAvatar(), context, holder.imgAvatar);
+        if (bean.getType() == TYPE_ITEM) {
+            final ViewHolder itemHolder = (ViewHolder)holder;
+            LoaderUtils.loadImage(bean.getUserAvatar(), context, itemHolder.imgAvatar);
 
-        holder.userName.setText(bean.getUserName());
-        holder.content.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
-        holder.time.setText(bean.getTime());
+            itemHolder.userName.setText(bean.getUserName());
+            itemHolder.content.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
+            itemHolder.time.setText(bean.getTime());
 
-        if (bean.getUrlList() != null){
-            holder.recycView.setAdapter(new GridImgRVAdapter(bean.getUrlList()));
-        }
+            if (bean.getUrlList() != null){
+                itemHolder.recycView.setAdapter(new GridImgRVAdapter(bean.getUrlList()));
+            }
 
-        holder.btnLike.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    holder.btnLike.setBackground(context.getDrawable(R.drawable.ic_item_like_press));
-                    holder.btnLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
+            itemHolder.btnLike.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        itemHolder.btnLike.setBackground(context.getDrawable(R.drawable.ic_item_like_press));
+                        itemHolder.btnLike.startAnimation(android.view.animation.AnimationUtils.loadAnimation(context, R.anim.anim_like));
 
-                    VibrateUtils.vibrateLike();
-                    AudioUtils.playLike();
+                        VibrateUtils.vibrateLike();
+                        AudioUtils.playLike();
+                    }
                 }
-            }
-        });
+            });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, HappenActivity.class);
-                intent.putExtra("happenBean", list.get(position));
-                context.startActivity(intent);
-            }
-        });
+            itemHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HappenActivity.class);
+                    intent.putExtra("happenBean", list.get(position));
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        HappenItemBean bean = list.get(position);
+        return bean.getType();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -107,6 +122,12 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter<HappenItemRVAdapte
 
             GridLayoutManager layoutManager = new GridLayoutManager(itemView.getContext(), 3);
             recycView.setLayoutManager(layoutManager);
+        }
+    }
+
+    public class LoadingHolder extends RecyclerView.ViewHolder{
+        public LoadingHolder(@NonNull View itemView) {
+            super(itemView);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.asche.wetalk.fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.shuyu.gsyvideoplayer.GSYVideoADManager.TAG;
 
 public class FragmentEmoticon extends Fragment {
 
@@ -59,6 +62,7 @@ public class FragmentEmoticon extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        Log.e(TAG, "onActivityCreated: ------------>" );
         recyclerView = getView().findViewById(R.id.recycler_emoticon);
 
 

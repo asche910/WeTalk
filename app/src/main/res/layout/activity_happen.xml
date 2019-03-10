@@ -9,9 +9,11 @@
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:id="@+id/header_happen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <ScrollView
+        <com.asche.wetalk.helper.FlexibleScrollView
+            android:id="@+id/scroll_happen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -95,7 +97,7 @@
                             android:layout_height="30dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:background="@drawable/ic_item_comment" />
+                            android:background="@drawable/ic_comment" />
 
                         <Button
                             android:id="@+id/btn_item_happen_forward"
@@ -121,14 +123,26 @@
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#2596a397" />
             </LinearLayout>
-        </ScrollView>
-
+        </com.asche.wetalk.helper.FlexibleScrollView>
 
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/layout_comment_reply"
+            />
+        <FrameLayout
+            android:id="@+id/frame_emoticon_happen"
+            android:layout_width="match_parent"
+            android:layout_height="278dp"
+            android:visibility="gone"
+            >
+        </FrameLayout>
+    </LinearLayout>
 </LinearLayout>

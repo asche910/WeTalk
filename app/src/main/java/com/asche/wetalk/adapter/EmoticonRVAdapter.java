@@ -54,7 +54,7 @@ public class EmoticonRVAdapter extends RecyclerView.Adapter<EmoticonRVAdapter.Vi
                 .load(bitmap)
                 .into(holder.imgEmoticon);
 
-        holder.imgEmoticon.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SpannableString spannableString = EmoticonUtils.parseEmoticon("[emoji-" + position + "]");

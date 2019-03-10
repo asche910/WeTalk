@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
-
     <application
         android:name="com.asche.wetalk.MyApplication"
         android:allowBackup="true"
@@ -20,8 +19,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:name"
-        android:networkSecurityConfig="@xml/network_security_config"
-        >
+        android:networkSecurityConfig="@xml/network_security_config">
+
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -67,6 +66,7 @@
         <activity android:name=".activity.ScanResultActivity" />
         <activity android:name=".activity.HappenActivity" />
         <activity android:name=".activity.IdentifyActivity" />
+        <activity android:name=".activity.PasswordActivity" />
     </application>
 
 </manifest>

@@ -54,7 +54,7 @@ import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
  */
 public class ArticleActivity extends BaseActivity implements View.OnClickListener {
 
-    // <editor-fold desc="属性变量">
+    // <editor-fold defaultstate="collapsed" desc="属性变量">
 
     // toolbar
     private ImageView imgBack, imgMore;
@@ -101,6 +101,24 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
     public UserBean author;
 
     private final String TAG = "Article";
+
+
+    // 初始化评论数据
+    static {
+            commentSimpleList.add(DataUtils.getComment(1));
+            commentSimpleList.add(DataUtils.getComment(1));
+
+        if (commentNormalList == null) {
+            commentNormalList = new ArrayList<>();
+        }
+
+        for (int i = 0; i < 8; i++) {
+            CommentItemBean bean = DataUtils.getComment(0);
+            if (i == 4)
+                bean.setSubList(commentSimpleList);
+            commentNormalList.add(bean);
+        }
+    }
 
     // </editor-fold>
 
@@ -231,19 +249,7 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         recyclerView.setAdapter(bodyContentRVAdapter);
         recyclerView.setItemViewCacheSize(Integer.MAX_VALUE);
 
-        if (commentSimpleList.isEmpty()) {
-            commentSimpleList.add(DataUtils.getComment(1));
-            commentSimpleList.add(DataUtils.getComment(1));
-        }
 
-        if (commentNormalList.isEmpty()) {
-            for (int i = 0; i < 8; i++) {
-                CommentItemBean bean = DataUtils.getComment(0);
-                if (i == 4)
-                    bean.setSubList(commentSimpleList);
-                commentNormalList.add(bean);
-            }
-        }
 
         commentRVAdapter = new CommentRVAdapter(commentSimpleList, CLICK_BOTTOM);
         layoutManagerComment = new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false);

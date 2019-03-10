@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

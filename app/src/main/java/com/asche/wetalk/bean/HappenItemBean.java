@@ -1,5 +1,7 @@
 package com.asche.wetalk.bean;
 
+import com.asche.wetalk.adapter.HappenItemRVAdapter;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import androidx.annotation.NonNull;
 
 public class HappenItemBean implements Serializable {
 
+    private int type;
     private String userAvatar;
     private String userName;
     private String content;
@@ -15,11 +18,24 @@ public class HappenItemBean implements Serializable {
     private List<String> urlList;   // 图片url列表
 
     public HappenItemBean(String userHead, String userName, String content, String time, List<String> urlList) {
+        type = HappenItemRVAdapter.TYPE_ITEM;
         this.userAvatar = userHead;
         this.userName = userName;
         this.content = content;
         this.time = time;
         this.urlList = urlList;
+    }
+
+    public HappenItemBean(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String getUserAvatar() {

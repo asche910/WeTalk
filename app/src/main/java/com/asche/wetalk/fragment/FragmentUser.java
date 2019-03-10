@@ -12,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -69,6 +70,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
     // 笑话推荐显示View
     private WebView webView;
+    private ProgressBar progressBar;
     private Handler handler = null;
 
 
@@ -196,16 +198,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_user_daily_joke:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String content = JokeSpider.getJoke();
-                        Message message = new Message();
-                        message.what = 100;
-                        message.obj = content;
-                        handler.sendMessage(message);
-                    }
-                }).start();
+
 
                 MaterialDialog dialog = new MaterialDialog.Builder(getContext())
                         .title("每日一笑")
@@ -213,6 +206,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         .positiveText("确认")
                         .show();
                 webView = (WebView) dialog.findViewById(R.id.web_joke);
+                progressBar = (ProgressBar) dialog.findViewById(R.id.progress_joke);
                 WebSettings webSettings = webView.getSettings();
                 webSettings.setSupportZoom(true);
                 webSettings.setBuiltInZoomControls(true);
@@ -224,13 +218,25 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         if (msg.what == 100) {
                             if (msg.obj != null) {
                                 webView.loadData(msg.obj.toString(), "text/html", "utf-8");
+                                progressBar.setVisibility(View.GONE);
                             } else {
-                                Toast.makeText(getContext(), "连接失败，请重试！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "连接失败，请返回重试！", Toast.LENGTH_SHORT).show();
                             }
                         }
                         return false;
                     }
                 });
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String content = JokeSpider.getJoke();
+                        Message message = new Message();
+                        message.what = 100;
+                        message.obj = content;
+                        handler.sendMessage(message);
+                    }
+                }).start();
 
                 break;
             case R.id.layout_user_daily_article:

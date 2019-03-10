@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar_universe"/>
-
+    <include layout="@layout/toolbar_universe" />
+    <!--  账号、通用、关于  -->
+    <!--  修改密码、注销登录 - 夜间模式、免打扰、省流模式、清除缓存 - 反馈、关于、检查更新  -->
 
     <com.asche.wetalk.helper.FlexibleScrollView
+        android:id="@+id/scroll_setting"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_setting"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="900dp"
-                    android:gravity="center"
-                    android:text="Setting" />
-            </LinearLayout>
-
-
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </com.asche.wetalk.helper.FlexibleScrollView>
-
-
 </LinearLayout>

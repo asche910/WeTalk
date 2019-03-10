@@ -99,5 +99,4 @@ public class UserUtils {
         userBean.setId(id + "");
         return userBean;
     }
-
 }
