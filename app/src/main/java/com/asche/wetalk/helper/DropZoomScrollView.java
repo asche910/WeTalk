@@ -22,6 +22,8 @@ import static com.asche.wetalk.other.MyScrollView.dip2px;
 
 public class DropZoomScrollView extends ScrollView implements View.OnTouchListener {
 
+    public static String titleColor = "#1295ff"; // 默认blueLight
+
     // 记录首次按下位置
     private float mFirstPosition = 0;
     // 是否正在放大
@@ -69,6 +71,9 @@ public class DropZoomScrollView extends ScrollView implements View.OnTouchListen
         this.mTitleView = view;
     }
 
+    public static void setTitleColor(String titleColor) {
+        DropZoomScrollView.titleColor = titleColor;
+    }
 
     @Override
     protected void onFinishInflate() {
@@ -108,12 +113,18 @@ public class DropZoomScrollView extends ScrollView implements View.OnTouchListen
         }
 
         if (scrollY >= px) {
-            mTitleView.setBackgroundColor(getResources().getColor(R.color.blueLight));
+            // mTitleView.setBackgroundColor(getResources().getColor(R.color.blueLight));
+            mTitleView.setBackgroundColor(Color.parseColor(titleColor));
 
         } else if (scrollY >= 0) {
             float percent = scrollY * 1f / ((float) px);
+            int originColor = Color.parseColor(titleColor);
+            int r = Color.red(originColor);
+            int g = Color.green(originColor);
+            int b = Color.blue(originColor);
+
             int alpha = (int) (255 * percent);
-            int color = Color.argb(alpha, 18, 149, 255);
+            int color = Color.argb(alpha, r, g, b);
             mTitleView.setBackgroundColor(color);
         }
 

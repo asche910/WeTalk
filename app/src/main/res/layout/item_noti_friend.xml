@@ -39,7 +39,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Asche"
-                    android:textColor="#333"
+                    android:textColor="?attr/textNormal"
                     android:textSize="17sp" />
 
                 <TextView

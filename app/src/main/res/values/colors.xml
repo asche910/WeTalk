@@ -6,7 +6,7 @@
     <!--<color name="colorAccent">#D81B60</color>-->
 
     <color name="white">#fff</color>
-    <color name="whiteDarker">#f5f5f5</color>
+    <color name="whiteDark">#f5f5f5</color>
 
     <color name="grayLight">#ddd</color>
     <color name="grayDark">#aaa</color>
@@ -24,6 +24,21 @@
     <color name="darkGreenLight">#4cb050</color>
     <color name="darkGreenDark">#109d58</color>
 
+
+    <color name="colorNightBg">#1e1e2a</color>
+
+
+    <color name="black">#000</color>
+    <color name="blackDark">#111</color>
+    <color name="blackMiddle">#222</color>
+    <color name="blackLight">#333</color>
+
+
+    <color name="color555">#555</color>
+    <color name="color666">#666</color>
+    <color name="color777">#777</color>
+    <color name="color888">#888</color>
+    <color name="coloreee">#eee</color>
 
     <!--  测试  -->
     <color name="test">#3D3226</color>

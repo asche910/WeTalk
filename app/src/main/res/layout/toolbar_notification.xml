@@ -3,7 +3,9 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/blueLight">
+    android:background="?attr/blueNight"
+    android:elevation="2dp"
+    >
 
     <ImageView
         android:layout_width="30dp"

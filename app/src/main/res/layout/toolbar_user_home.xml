@@ -9,7 +9,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="24dp"
+        android:background="#00454545"
+        >
 
         <ImageView
             android:id="@+id/img_toolbar_back"
@@ -45,6 +47,5 @@
             />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

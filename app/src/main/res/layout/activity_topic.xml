@@ -33,7 +33,7 @@
                     android:paddingRight="10dp"
                     android:text="历史上有哪些如神一般存在的人物？"
                     android:textSize="20sp"
-                    android:textColor="#000"
+                    android:textColor="?attr/textNormal"
                     android:maxLines="2"
                     android:ellipsize="end" />
 
@@ -67,7 +67,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="#eee" />
+                    android:background="?attr/divideView" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:text="Asche"
-                            android:textColor="#222"
+                            android:textColor="?attr/textNormal"
                             android:textSize="16sp" />
 
                         <LinearLayout
@@ -144,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="#44cccccc" />
+                    android:background="?attr/divideView" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -192,7 +192,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@id/layout_article_bottom"
-        android:background="#44cccccc" />
+        android:background="?attr/divideView" />
 
 
     <LinearLayout
@@ -200,7 +200,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/whiteDarker"
+        android:background="@color/whiteDark"
         >
 
         <LinearLayout

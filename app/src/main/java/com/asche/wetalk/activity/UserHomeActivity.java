@@ -116,6 +116,13 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         dropZoomScrollView.setDropView(imgBg);
         dropZoomScrollView.setupTitleView(toolbarLayout);
 
+        if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+            toolbarLayout.setBackgroundColor(Color.parseColor("#00000000"));
+            DropZoomScrollView.setTitleColor("#1e1e2a");
+        }else {
+            DropZoomScrollView.setTitleColor("#1295ff");
+        }
+
         imgBack.setOnClickListener(this);
         imgTwocode.setOnClickListener(this);
         imgBg.setOnClickListener(this);

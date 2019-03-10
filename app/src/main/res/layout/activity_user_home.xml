@@ -7,10 +7,6 @@
     android:background="#efefef"
     android:orientation="vertical">
 
-    <!--    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout_user_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">-->
 
     <com.asche.wetalk.helper.DropZoomScrollView
         android:id="@+id/scroll_user_home"
@@ -60,7 +56,8 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_watch_light" />
+                        android:src="@drawable/ic_watch_light"
+                        android:background="#45454545"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -73,14 +70,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="粉丝 6k"
-                            android:textColor="@color/grayLight" />
+                            android:textColor="@color/grayLight"
+                            android:background="#45454545"/>
 
                         <TextView
                             android:id="@+id/text_user_home_follow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="关注 6"
-                            android:textColor="@color/grayLight" />
+                            android:textColor="@color/grayLight"
+                            android:background="#45454545"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -270,7 +269,6 @@ signature; tel; address; profession descriptio -->
         </LinearLayout>
 
     </com.asche.wetalk.helper.DropZoomScrollView>
-    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 
     <include layout="@layout/toolbar_user_home" />
 

@@ -24,6 +24,7 @@ import com.arlib.floatingsearchview.FloatingSearchView;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.MainActivity;
 import com.asche.wetalk.activity.ScanResultActivity;
+import com.asche.wetalk.activity.SettingActivity;
 import com.asche.wetalk.other.MyScrollViewHome;
 import com.asche.wetalk.other.OnScrollListener;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -33,6 +34,9 @@ import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.common.Constant;
 
 import static android.app.Activity.RESULT_OK;
+import static com.asche.wetalk.activity.SettingActivity.THEME_CURRENT;
+import static com.asche.wetalk.activity.SettingActivity.THEME_DARK;
+import static com.asche.wetalk.activity.SettingActivity.THEME_DEFAULT;
 import static com.asche.wetalk.fragment.FragmentHomeSuggest.videoPlayer;
 
 public class FragmentHome extends Fragment {
@@ -85,6 +89,7 @@ public class FragmentHome extends Fragment {
             }
         });
 
+
         floatingSearchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
             @Override
             public void onActionMenuItemSelected(MenuItem item) {
@@ -96,10 +101,25 @@ public class FragmentHome extends Fragment {
                     case R.id.menu_main_setting:
                         break;
                     case R.id.menu_main_night:
+
+                        if (THEME_CURRENT == THEME_DARK){
+                            item.setChecked(true);
+                        }else {
+                            item.setChecked(false);
+                        }
+
+                        THEME_CURRENT = THEME_CURRENT == THEME_DEFAULT ? THEME_DARK : THEME_DEFAULT;
+
+                        getActivity().finish();
+                        Intent intent = getActivity().getIntent();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(0, 0);
+
                         break;
                     case R.id.menu_main_scan:
-                        Intent intent = new Intent(getContext(), CaptureActivity.class);
-                        startActivityForResult(intent, 101);
+                        Intent intentScan = new Intent(getContext(), CaptureActivity.class);
+                        startActivityForResult(intentScan, 101);
                         break;
                 }
             }

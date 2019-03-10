@@ -1,5 +1,6 @@
 package com.asche.wetalk.activity;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.asche.wetalk.fragment.FragmentHomeArticle;
 import com.asche.wetalk.fragment.FragmentHomeRanklist;
 import com.asche.wetalk.fragment.FragmentHomeRequirement;
 import com.asche.wetalk.fragment.FragmentHomeSuggest;
+import com.asche.wetalk.helper.DropZoomScrollView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -43,7 +45,11 @@ public class DraftActivity extends BaseActivity implements View.OnClickListener{
         viewPager = findViewById(R.id.viewpager_draft);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
+            if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+                layoutToolbar.setBackgroundColor(Color.parseColor("#1e1e2a"));
+            }else {
+                layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
+            }
         }
         textTitle.setText("草稿");
         imgBack.setOnClickListener(this);

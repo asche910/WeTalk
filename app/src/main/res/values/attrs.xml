@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="divideView" format="reference" />
+    <attr name="divideViewDark" format="reference" />
+    <attr name="textNormal" format="reference"/>
+    <attr name="blueNight" format="reference"/>
+    <attr name="whiteNight" format="reference"/>
+    <attr name="dddNight" format="reference"/>
+    <attr name="eeeNight" format="reference"/>
+
+</resources>

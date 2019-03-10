@@ -2,6 +2,7 @@ package com.asche.wetalk.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -75,7 +76,11 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
+            if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+                layoutToolbar.setBackgroundColor(Color.parseColor("#1e1e2a"));
+            }else {
+                layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
+            }
         }
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);

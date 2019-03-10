@@ -21,7 +21,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="历史上有哪些如神一般存在的人物？"
-            android:textColor="#000"
+            android:textColor="?attr/textNormal"
             android:textSize="20sp" />
 
         <TextView
@@ -70,6 +70,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#eee" />
+        android:background="?attr/divideView" />
 
 </LinearLayout>

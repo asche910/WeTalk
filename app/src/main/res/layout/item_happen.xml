@@ -32,7 +32,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical"
                 android:text="会飞的企鹅"
-                android:textColor="#000000" />
+                android:textColor="?attr/textNormal" />
 
         </LinearLayout>
 
@@ -94,7 +94,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#f2f2f2"
+        android:background="?attr/divideView"
         />
 
 </LinearLayout>

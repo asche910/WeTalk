@@ -7,6 +7,14 @@
 
     <include layout="@layout/toolbar_universe" />
 
+    <FrameLayout
+        android:id="@+id/frame_chat"
+        android:layout_width="match_parent"
+        android:layout_height="278dp"
+        android:layout_alignParentBottom="true"
+        >
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,24 +28,15 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#ddd"/>
+            android:background="?attr/divideView"/>
 
         <include
             android:id="@+id/layout_chat_bottom"
             layout="@layout/layout_chat_reply"/>
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/frame_chat"
-        android:layout_width="match_parent"
-        android:layout_height="278dp"
-        android:layout_alignParentBottom="true"
-        >
-    </FrameLayout>
 
 </RelativeLayout>

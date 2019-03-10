@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:text="Asche"
-                    android:textColor="#000"
+                    android:textColor="?attr/textNormal"
                     android:textSize="16sp" />
 
                 <ImageView

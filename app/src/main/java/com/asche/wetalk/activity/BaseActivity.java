@@ -24,6 +24,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import static com.asche.wetalk.MyApplication.getContext;
+import static com.asche.wetalk.activity.SettingActivity.THEME_CURRENT;
+import static com.asche.wetalk.activity.SettingActivity.THEME_DARK;
+import static com.asche.wetalk.activity.SettingActivity.THEME_DEFAULT;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -49,6 +52,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         // 设置为竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // 设置主题
+        if (THEME_CURRENT == THEME_DEFAULT){
+            setTheme(R.style.AppTheme);
+        }else if (THEME_CURRENT == THEME_DARK){
+            setTheme(R.style.MyDarkTheme);
+        }
     }
 
     /**

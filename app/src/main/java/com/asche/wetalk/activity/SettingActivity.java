@@ -1,8 +1,10 @@
 package com.asche.wetalk.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.adapter.OnItemClickListener;
 import com.asche.wetalk.adapter.SettingRVAdapter;
 import com.asche.wetalk.bean.SettingItemBean;
 import com.asche.wetalk.helper.FlexibleScrollView;
@@ -20,6 +23,7 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.IntentCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +36,13 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private RecyclerView recyclerView;
     private SettingRVAdapter settingRVAdapter;
     private List<SettingItemBean> itemBeanList = new ArrayList<>();
+
+    // APP 皮肤主题 --> 白天黑夜
+    public static final int THEME_DEFAULT = 0;
+    public static final int THEME_DARK = 1;
+    public static int THEME_CURRENT = 0;
+
+    public static boolean isThemeChanged;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,14 +85,47 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
         textTitle.setText("设置");
         imgBack.setOnClickListener(this);
+
+        settingRVAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                THEME_CURRENT = THEME_CURRENT == THEME_DEFAULT ? THEME_DARK : THEME_DEFAULT;
+
+                finish();
+                Intent intent = getIntent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+
+                isThemeChanged = true;
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_toolbar_back:
-                finish();
+                if (isThemeChanged){
+                    finish();
+                    startActivity(new Intent(SettingActivity.this, MainActivity.class));
+                    isThemeChanged = false;
+                }else {
+                    finish();
+                }
                 break;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (isThemeChanged){
+            finish();
+            startActivity(new Intent(SettingActivity.this, MainActivity.class));
+            isThemeChanged = false;
+        }else {
+            finish();
         }
     }
 }

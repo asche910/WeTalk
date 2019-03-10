@@ -13,6 +13,7 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ClockInActivity;
 import com.asche.wetalk.activity.LoginActivity;
 import com.asche.wetalk.activity.PasswordActivity;
+import com.asche.wetalk.activity.SettingActivity;
 import com.asche.wetalk.bean.SettingItemBean;
 import com.suke.widget.SwitchButton;
 
@@ -30,9 +31,14 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
 
     private List<SettingItemBean> list;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
     public SettingRVAdapter(List<SettingItemBean> list) {
         this.list = list;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -63,9 +69,23 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
             itemHolder.textDesc.setText(bean.getDescription());
             if (bean.isHasSwitch()) {
                 itemHolder.switchButton.setVisibility(View.VISIBLE);
+                if (position == 4){
+                    if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+                        itemHolder.switchButton.setChecked(true);
+                    }else {
+                        itemHolder.switchButton.setChecked(false);
+                    }
+                }
             } else {
                 itemHolder.switchButton.setVisibility(View.GONE);
             }
+
+            itemHolder.switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                    onItemClickListener.onItemClick(position);
+                }
+            });
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +108,8 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                         break;
                     case 4:
                         // 夜间模式
+                        // onItemClickListener.onItemClick(position);
+                        ((ItemHolder)(holder)).switchButton.performClick();
                     case 5:
                         // 免打扰
                     case 6:

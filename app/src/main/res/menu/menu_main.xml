@@ -9,11 +9,10 @@
         android:icon="@drawable/ic_home_scan"
         app:showAsAction="always"/>
 
-    <group
-        android:id="@+id/menu_main_night"
-        android:checkableBehavior="single">
-        <item android:title="夜间模式"/>
-    </group>
+        <item
+            android:id="@+id/menu_main_night"
+            android:checkable="true"
+            android:title="夜间模式"/>
 
     <item
         android:id="@+id/menu_main_setting"

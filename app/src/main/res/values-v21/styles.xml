@@ -12,5 +12,13 @@
         <item name="android:windowSharedElementsUseOverlay">true</item>
         <item name="android:windowContentTransitions">true</item>
 
+        <item name="divideView">@color/coloreee</item>
+        <item name="divideViewDark">@color/coloreee</item>
+        <item name="textNormal">@color/blackMiddle</item>
+        <item name="blueNight">@color/blueLight</item>
+        <item name="whiteNight">@color/white</item>
+        <item name="dddNight">@color/grayLight</item>
+        <item name="eeeNight">@color/coloreee</item>
+
     </style>
 </resources>
