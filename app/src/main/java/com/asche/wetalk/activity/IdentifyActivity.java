@@ -103,6 +103,26 @@ public class IdentifyActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * 剪切图片
+     */
+    private void crop(Uri uri) {
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        // intent.putExtra("aspectX", 1);
+        // intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小(相机回调时不添加会出现点击确认无反应bug)
+         intent.putExtra("outputX", 300);
+         intent.putExtra("outputY", 250);
+        intent.putExtra("outputFormat", "JPEG");// 图片格式
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
+        startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -111,12 +131,15 @@ public class IdentifyActivity extends BaseActivity implements View.OnClickListen
             if (data != null) {
                 // 得到图片的全路径
                 Uri uri = data.getData();
-                // crop(uri);
+                 crop(uri);
+
+                // imgPhoto.setImageURI(uri);
             }
         } else if (requestCode == PHOTO_REQUEST_CAREMA) {
             // 从相机返回的数据
             if (hasSdcard()) {
-                // crop(Uri.fromFile(tempFile));
+                 crop(Uri.fromFile(tempFile));
+//                 imgPhoto.setImageURI(Uri.fromFile(tempFile));
             } else {
                 Toast.makeText(IdentifyActivity.this, "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
             }

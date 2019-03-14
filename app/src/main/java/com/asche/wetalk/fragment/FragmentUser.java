@@ -13,16 +13,19 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.AchievementActivity;
 import com.asche.wetalk.activity.AgendaActivity;
+import com.asche.wetalk.activity.ArticleActivity;
 import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.activity.BookActivity;
 import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
+import com.asche.wetalk.activity.CollectActivity;
 import com.asche.wetalk.activity.IdentifyActivity;
 import com.asche.wetalk.activity.VIPCenterActivity;
 import com.asche.wetalk.activity.DraftActivity;
@@ -33,8 +36,10 @@ import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.activity.WalletActivity;
 import com.asche.wetalk.activity.WorkActivity;
 import com.asche.wetalk.adapter.UserToolRVAdapter;
+import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.ImageTextBean;
 import com.asche.wetalk.helper.FlexibleScrollView;
+import com.asche.wetalk.spider.ArticleSpider;
 import com.asche.wetalk.spider.JokeSpider;
 
 import java.util.ArrayList;
@@ -67,6 +72,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
     // 每日推荐
     private LinearLayout layoutArticle, layoutJoke;
+    private TextView textDailyArticle;
 
     // 笑话推荐显示View
     private WebView webView;
@@ -100,6 +106,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         recyclerViewPanel = getView().findViewById(R.id.recycle_user_panel);
         layoutArticle = getView().findViewById(R.id.layout_user_daily_article);
         layoutJoke = getView().findViewById(R.id.layout_user_daily_joke);
+        textDailyArticle = getView().findViewById(R.id.text_user_daily_article);
 
         flexibleScrollView.setEnablePullDown(false);
 
@@ -126,6 +133,23 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         recyclerViewPanel.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPanel.setAdapter(userToolRVAdapterPanel);
 
+        if (ArticleSpider.isNull()){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ArticleSpider.start();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            textDailyArticle.setText(ArticleSpider.getArticleBean().getTitle());
+                        }
+                    });
+                }
+            }).start();
+        }else {
+            textDailyArticle.setText(ArticleSpider.getArticleBean().getTitle());
+        }
+
         imgSetting.setOnClickListener(this);
         userInfoLayout.setOnClickListener(this);
         userToolRVAdapter.setOnItemClickListener(new UserToolRVAdapter.OnItemClickListener() {
@@ -137,8 +161,8 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "签到", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
-                        nextActivity(LoginActivity.class);
-//                        nextActivity(CollectActivity.class);
+//                        nextActivity(LoginActivity.class);
+                        nextActivity(CollectActivity.class);
                         Toast.makeText(getActivity(), "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
@@ -198,8 +222,6 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_user_daily_joke:
-
-
                 MaterialDialog dialog = new MaterialDialog.Builder(getContext())
                         .title("每日一笑")
                         .customView(R.layout.layout_joke, false)
@@ -240,6 +262,10 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.layout_user_daily_article:
+                Intent intentArticle = new Intent(getContext(), ArticleActivity.class);
+                intentArticle.putExtra("article", ArticleSpider.getArticleBean());
+                startActivity(intentArticle);
+
                 break;
             case R.id.layout_user_info:
                 Intent intent = new Intent(getContext(), UserHomeActivity.class);

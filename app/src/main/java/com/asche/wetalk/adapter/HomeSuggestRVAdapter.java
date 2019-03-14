@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ArticleActivity;
+import com.asche.wetalk.activity.ReportActivity;
 import com.asche.wetalk.activity.TopicActivity;
+import com.asche.wetalk.activity.UserHomeActivity;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
@@ -278,7 +280,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     intentText.setType("text/plain");
                     intentText.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
                     intentText.putExtra(Intent.EXTRA_TEXT, bean.getContent());
-                    context.startActivity(intentText);
+                    context.startActivity(Intent.createChooser(intentText, "分享二维码"));
                 }
             });
             textHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +380,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     intentImage.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
                     intentImage.putExtra(Intent.EXTRA_TEXT, bean.getContent());
                     // intentImage.putExtra(Intent.EXTRA_STREAM, uri);
-                    context.startActivity(intentImage);
+                    context.startActivity(Intent.createChooser(intentImage, "分享二维码"));
                 }
             });
 
@@ -489,7 +491,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     intentVideo.setType("text/plain");
                     intentVideo.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
                     intentVideo.putExtra(Intent.EXTRA_TEXT, bean.getContent());
-                    context.startActivity(intentVideo);
+                    context.startActivity(Intent.createChooser(intentVideo, "分享二维码"));
                 }
             });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
@@ -533,7 +535,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         Log.e(TAG, "onMenuItemClick: " + curPosition );
         switch (item.getItemId()){
             case R.id.menu_suggest_2:
-                Toast.makeText(context, "举报", Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, ReportActivity.class));
                 break;
             case R.id.menu_suggest_0:
                 Toast.makeText(context, "不感兴趣此话题", Toast.LENGTH_SHORT).show();

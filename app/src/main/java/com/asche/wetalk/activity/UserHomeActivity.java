@@ -81,7 +81,9 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     public static final int PHOTO_REQUEST_CAREMA = 1;// 拍照
     public static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     public static final int PHOTO_REQUEST_CUT = 3;// 结果
-    /** 头像名称 */
+    /**
+     * 头像名称
+     */
     public static final String PHOTO_FILE_NAME = "temp_photo.jpg";
     public static File tempFile;
 
@@ -116,10 +118,10 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         dropZoomScrollView.setDropView(imgBg);
         dropZoomScrollView.setupTitleView(toolbarLayout);
 
-        if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+        if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK) {
             toolbarLayout.setBackgroundColor(Color.parseColor("#00000000"));
             DropZoomScrollView.setTitleColor("#1e1e2a");
-        }else {
+        } else {
             DropZoomScrollView.setTitleColor("#1295ff");
         }
 
@@ -158,20 +160,20 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 
             if (!getCurUser().equals(userBean)) {
                 isOtherUser = true;
+                imgTwocode.setVisibility(View.GONE);
             }
-            Log.e("---", "onCreate: " + isOtherUser );
+            Log.e("---", "onCreate: " + isOtherUser);
 
-            Log.e("---", "onCreate: " + (UserUtils.getUser(1)).equals(UserUtils.getUser(1)) );
-        }else {
+            Log.e("---", "onCreate: " + (UserUtils.getUser(1)).equals(UserUtils.getUser(1)));
+        } else {
             userBean = UserUtils.getUser(1);
         }
-        Log.e("sa", "onCreate: " + userBean.toString());
 
-        if (timeLineList.isEmpty()){
-            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_LIKE, "asche" , false, DataUtils.getArticle(1), null));
-            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche" , true, DataUtils.getRequirement(0), null));
-            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COLLECT, "asche" , true, DataUtils.getArticle(2), null));
-            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche" , true, DataUtils.getTopicReply(), null));
+        if (timeLineList.isEmpty()) {
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_LIKE, "asche", false, DataUtils.getArticle(1), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche", true, DataUtils.getRequirement(0), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COLLECT, "asche", true, DataUtils.getArticle(2), null));
+            timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_COMMENT, "asche", true, DataUtils.getTopicReply(), null));
             timeLineList.add(new TimeLineBean(TimeLineRVAdapter.ACTION_HAPPEN, "asche", false, null,
                     new HappenItemBean("https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg", "飞翔的企鹅", str_2, "10-25 10：24", null)));
         }
@@ -187,7 +189,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_user_home_work:
-                Intent intentWork =  new Intent(this, WorkActivity.class);
+                Intent intentWork = new Intent(this, WorkActivity.class);
                 intentWork.putExtra("userBean", userBean);
                 startActivity(intentWork);
                 break;
@@ -260,14 +262,14 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
         PopupMenu popupMenu = new PopupMenu(context, anchor);
         popupMenu.inflate(R.menu.menu_user_home);
 
-        if (isOtherUser){
+        if (isOtherUser) {
             // 其它用户
-            if (userBean.isExpert()){
+            if (userBean.isExpert()) {
                 // popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
-            }else {
+            } else {
                 popupMenu.getMenu().findItem(R.id.menu_user_message_money).setVisible(false);
             }
-        }else {
+        } else {
             // 用户自己
             popupMenu.getMenu().findItem(R.id.menu_user_follow).setVisible(false);
             popupMenu.getMenu().findItem(R.id.menu_user_message).setVisible(false);
@@ -280,9 +282,9 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_user_follow:
-                        if (item.isChecked()){
+                        if (item.isChecked()) {
                             item.setChecked(false);
-                        }else {
+                        } else {
                             item.setChecked(true);
                         }
                         break;
@@ -315,6 +317,21 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
 
                         break;
                     case R.id.menu_user_report:
+                        if (isOtherUser) {
+                            startActivity(new Intent(UserHomeActivity.this, ReportActivity.class));
+                        } else {
+                            new MaterialDialog.Builder(UserHomeActivity.this)
+                                    .title("你确定要举报自己吗？")
+                                    .positiveText("确定")
+                                    .negativeText("返回")
+                                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                        @Override
+                                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                            startActivity(new Intent(UserHomeActivity.this, ReportActivity.class));
+                                        }
+                                    })
+                                    .show();
+                        }
                         break;
                     default:
                 }

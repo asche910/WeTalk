@@ -1,11 +1,15 @@
 package com.asche.wetalk.data;
 
+import android.util.Log;
+
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.util.StringUtils;
 
 import static com.asche.wetalk.data.DataUtils.imgAvatar_1;
 import static com.asche.wetalk.data.DataUtils.imgAvatar_2;
 import static com.asche.wetalk.data.DataUtils.random;
+import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 public class UserUtils {
 
@@ -89,7 +93,6 @@ public class UserUtils {
                 userBean.setProfession("Software Engineer");
                 userBean.setAddress("美国-加利福尼亚州");
                 userBean.setExpert(true);
-
         }
 
         userBean.setFollowerNum(n * 10);
@@ -98,5 +101,36 @@ public class UserUtils {
         int id = random.nextInt(999_999_999) + 100_000;
         userBean.setId(id + "");
         return userBean;
+    }
+
+    public static UserBean findUser(String userName){
+        if (!StringUtils.isEmpty(userName)){
+            if (userName.equals("robot")){
+                return getUser(0);
+            }else if (userName.equals("asche")){
+                return getUser(1);
+            }else if (userName.equals("user_1")){
+                return getUser(2);
+            }else if (userName.equals("user_2")){
+                return getUser(3);
+            }else if (userName.equals("user_3")){
+                return getUser(4);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 优先查找该用户；查找为空则随机返回
+     * @param userName
+     * @return
+     */
+    public static UserBean findOrRandom(String userName){
+        UserBean userBean = findUser(userName);
+        if (userBean != null){
+            return userBean;
+        }else {
+            return getUser();
+        }
     }
 }

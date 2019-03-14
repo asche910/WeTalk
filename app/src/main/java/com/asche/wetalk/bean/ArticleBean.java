@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 public class ArticleBean implements HomeItem, Serializable {
     private String id;
-    private String authorId;
+    private String authorUserName;
     private String title;
     private String brief;
     private String content;
@@ -20,10 +20,10 @@ public class ArticleBean implements HomeItem, Serializable {
     private int likeNum;
     private int commentNum;
 
-    public ArticleBean(String id, String authorId, String title, String brief, String content, String time,
+    public ArticleBean(String id, String authorUserName, String title, String brief, String content, String time,
                        String imgUrl, String videoUrl, int likeNum, int commentNum) {
         this.id = id;
-        this.authorId = authorId;
+        this.authorUserName = authorUserName;
         this.title = title;
         this.brief = brief;
         this.content = content;
@@ -45,12 +45,12 @@ public class ArticleBean implements HomeItem, Serializable {
         this.id = id;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorUserName() {
+        return authorUserName;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorUserName(String authorUserName) {
+        this.authorUserName = authorUserName;
     }
 
     @Override

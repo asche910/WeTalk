@@ -2,6 +2,9 @@ package com.asche.wetalk.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +21,7 @@ import com.asche.wetalk.adapter.TopicChipRVAdapter;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.BodyContentBean;
 import com.asche.wetalk.bean.CommentItemBean;
+import com.asche.wetalk.bean.NotificationItemBean;
 import com.asche.wetalk.bean.RequirementBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.TechTags;
@@ -40,6 +44,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import ezy.ui.layout.LoadingLayout;
@@ -105,8 +110,8 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
 
     // 初始化评论数据
     static {
-            commentSimpleList.add(DataUtils.getComment(1));
-            commentSimpleList.add(DataUtils.getComment(1));
+        commentSimpleList.add(DataUtils.getComment(1));
+        commentSimpleList.add(DataUtils.getComment(1));
 
         if (commentNormalList == null) {
             commentNormalList = new ArrayList<>();
@@ -131,7 +136,6 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         if ("OPEN_COMMENT".equals(action)) {
             openComment();
         }
-
 
         final LoadingLayout loadingLayout = findViewById(R.id.loading_article);
         loadingLayout.showLoading();
@@ -189,20 +193,12 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             isArticle = true;
             toolbarTitle.setText("文章");
 
-            author = UserUtils.getUser();
+            author = UserUtils.findOrRandom(articleBean.getAuthorUserName());
+
             textTitle.setText(articleBean.getTitle());
             textTime.setText(articleBean.getTime());
             // TODO Author暂时使用测试数据
-            try {
-                Glide.with(getApplicationContext())
-                        .load(Integer.parseInt(articleBean.getImgUrl()))
-                        .into(imgAuthorAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(getApplicationContext())
-                        .load(articleBean.getImgUrl())
-                        .into(imgAuthorAvatar);
-            }
+            LoaderUtils.loadImage(author.getImgAvatar(), this, imgAuthorAvatar);
 //            bodyContentBeanList = BodyContentUtil.parseHtml(DataUtils.getContent(R.raw.requirement_1));
             bodyContentBeanList = BodyContentUtil.parseHtml(articleBean.getContent());
 
@@ -214,12 +210,12 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
             textTitle.setText(requirementBean.getTitle());
             textTime.setText(requirementBean.getTime());
             // TODO Author暂时使用测试数据
+            author = UserUtils.findOrRandom(requirementBean.getAuthorUserName());
+            LoaderUtils.loadImage(author.getImgAvatar(), this, imgAuthorAvatar);
 
             bodyContentBeanList = BodyContentUtil.parseHtml(requirementBean.getContent());
 
         }
-
-        author = UserUtils.getUser();
 
         textAuthorName.setText(author.getNickName());
         textAuthorSignature.setText(author.getSignature());
@@ -248,7 +244,6 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(bodyContentRVAdapter);
         recyclerView.setItemViewCacheSize(Integer.MAX_VALUE);
-
 
 
         commentRVAdapter = new CommentRVAdapter(commentSimpleList, CLICK_BOTTOM);
@@ -342,7 +337,27 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 AudioUtils.playLike();
                 break;
             case R.id.img_toolbar_more:
-                Toast.makeText(this, "More Clicked!", Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(this, v);
+                MenuInflater menuInflater = popupMenu.getMenuInflater();
+                menuInflater.inflate(R.menu.menu_article, popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_article_collect:
+                                Toast.makeText(ArticleActivity.this, "收藏成功！", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menu_article_dislike:
+                                Toast.makeText(ArticleActivity.this, "Dislike!", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menu_article_report:
+                                startActivity(new Intent(ArticleActivity.this, ReportActivity.class));
+                                break;
+                        }
+                        return false;
+                    }
+                });
                 break;
             case R.id.img_toolbar_back:
                 finish();

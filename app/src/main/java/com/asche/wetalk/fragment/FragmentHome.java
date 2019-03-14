@@ -3,6 +3,7 @@ package com.asche.wetalk.fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -53,7 +54,7 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_home, container, false);
-        Log.e(TAG, "onCreateView: ------->" );
+        Log.e(TAG, "onCreateView: ------->");
         return view;
     }
 
@@ -89,22 +90,22 @@ public class FragmentHome extends Fragment {
             }
         });
 
-
         floatingSearchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
             @Override
             public void onActionMenuItemSelected(MenuItem item) {
-                Log.e(TAG, "onActionMenuItemSelected: " + item.getTitle() );
+                Log.e(TAG, "onActionMenuItemSelected: " + item.getTitle());
                 // TODO group 分界效果
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.menu_main_about:
                         break;
                     case R.id.menu_main_setting:
+                        startActivity(new Intent(getContext(), SettingActivity.class));
                         break;
                     case R.id.menu_main_night:
 
-                        if (THEME_CURRENT == THEME_DARK){
+                        if (THEME_CURRENT == THEME_DARK) {
                             item.setChecked(true);
-                        }else {
+                        } else {
                             item.setChecked(false);
                         }
 
@@ -124,15 +125,14 @@ public class FragmentHome extends Fragment {
                 }
             }
         });
-
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden){
+        if (hidden) {
             if (videoPlayer != null && videoPlayer.isInPlayingState()) {
-                 videoPlayer.onVideoPause();
+                videoPlayer.onVideoPause();
             }
         }
     }
@@ -140,7 +140,7 @@ public class FragmentHome extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101 && resultCode == RESULT_OK){
+        if (requestCode == 101 && resultCode == RESULT_OK) {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
 //                Toast.makeText(getContext(), content, Toast.LENGTH_SHORT).show();

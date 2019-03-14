@@ -105,7 +105,7 @@
 
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="20dp"
@@ -115,7 +115,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:background="@drawable/bg_btn_login"/>
-
 
         <View
             android:layout_width="match_parent"

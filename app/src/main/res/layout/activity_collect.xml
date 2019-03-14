@@ -4,12 +4,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <include layout="@layout/toolbar_universe"/>
 
-    <TextView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Collect"/>
+        android:layout_height="match_parent"
+        tools:context="com.truly.mytoolbar.MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/tab_collect"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/darkGreenLight"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:stl_clickable="true"
+                app:stl_defaultTabBackground="?attr/selectableItemBackground"
+                app:stl_defaultTabTextAllCaps="true"
+                app:stl_defaultTabTextColor="#fcedecec"
+                app:stl_defaultTabTextHorizontalPadding="16dp"
+                app:stl_defaultTabTextMinWidth="0dp"
+                app:stl_defaultTabTextSize="15sp"
+                app:stl_distributeEvenly="true"
+                app:stl_dividerColor="#4D000000"
+                app:stl_dividerThickness="0dp"
+                app:stl_drawDecorationAfterTab="false"
+                app:stl_indicatorAlwaysInCenter="false"
+                app:stl_indicatorColor="#cccccc"
+                app:stl_indicatorCornerRadius="2dp"
+                app:stl_indicatorGravity="bottom"
+                app:stl_indicatorInFront="false"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="4dp"
+                app:stl_indicatorWidth="auto"
+                app:stl_indicatorWithoutPadding="false"
+                app:stl_titleOffset="24dp"
+                app:stl_underlineColor="#4D000000"
+                app:stl_underlineThickness="0dp" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_collect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </LinearLayout>

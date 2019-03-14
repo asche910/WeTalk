@@ -146,9 +146,10 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/text_user_daily_article"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="如何看待2019年支付宝的集五福活动？"
+                            android:text="每日精选优质文章"
                             android:textSize="20sp"
                             android:textColor="#333"
                             android:maxLines="2" />
@@ -187,7 +188,6 @@
                 </LinearLayout>
 
             </RelativeLayout>
-
 
     </com.asche.wetalk.helper.FlexibleScrollView>
 

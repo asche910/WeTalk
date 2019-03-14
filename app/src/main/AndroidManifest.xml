@@ -67,6 +67,8 @@
         <activity android:name=".activity.HappenActivity" />
         <activity android:name=".activity.IdentifyActivity" />
         <activity android:name=".activity.PasswordActivity" />
+        <activity android:name=".activity.ReportActivity" />
+        <activity android:name=".activity.FeedbackActivity" />
     </application>
 
 </manifest>

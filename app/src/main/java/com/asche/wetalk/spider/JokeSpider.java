@@ -11,6 +11,9 @@ import java.io.IOException;
 
 import static com.asche.wetalk.activity.DiscoverHappenPublishActivity.TAG;
 
+/**
+ * 每日一笑爬虫
+ */
 public class JokeSpider {
     private static final String JokeApi = "https://www.biedoul.com/late/";
 

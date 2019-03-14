@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ArticleActivity;
+import com.asche.wetalk.activity.HappenActivity;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.HappenItemBean;
@@ -63,7 +64,7 @@ public class TimeLineRVAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TimeLineBean bean = list.get(position);
+        final TimeLineBean bean = list.get(position);
         final int actionType = bean.getTypeAction();
 
         if (!bean.isImage()) {
@@ -140,7 +141,9 @@ public class TimeLineRVAdapter extends RecyclerView.Adapter {
                 textHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "You click happen!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, HappenActivity.class);
+                        intent.putExtra("happenBean", bean.getHappenItemBean());
+                        context.startActivity(intent);
                     }
                 });
             }
@@ -221,7 +224,9 @@ public class TimeLineRVAdapter extends RecyclerView.Adapter {
                 imageHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "You click happen!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, HappenActivity.class);
+                        intent.putExtra("happenBean", bean.getHappenItemBean());
+                        context.startActivity(intent);
                     }
                 });
             }

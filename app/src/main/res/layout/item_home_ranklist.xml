@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="?attr/whiteNight"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:text="如何看待吴京成为中国首个百亿影帝？国首个百亿影帝？"
                 android:textSize="18sp"
-                android:textColor="#333"
+                android:textColor="?attr/textNormal"
                 android:maxLines="3"
                 android:ellipsize="end"/>
 

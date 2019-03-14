@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ClockInActivity;
+import com.asche.wetalk.activity.FeedbackActivity;
 import com.asche.wetalk.activity.LoginActivity;
 import com.asche.wetalk.activity.PasswordActivity;
 import com.asche.wetalk.activity.SettingActivity;
@@ -69,10 +70,10 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
             itemHolder.textDesc.setText(bean.getDescription());
             if (bean.isHasSwitch()) {
                 itemHolder.switchButton.setVisibility(View.VISIBLE);
-                if (position == 4){
-                    if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
+                if (position == 4) {
+                    if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK) {
                         itemHolder.switchButton.setChecked(true);
-                    }else {
+                    } else {
                         itemHolder.switchButton.setChecked(false);
                     }
                 }
@@ -83,7 +84,8 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
             itemHolder.switchButton.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-                    onItemClickListener.onItemClick(position);
+                    if (position == 4)
+                        onItemClickListener.onItemClick(position);
                 }
             });
         }
@@ -91,7 +93,7 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "onClick: -------------> " + position );
+                Log.e(TAG, "onClick: -------------> " + position);
                 switch (position) {
                     case 0:
                         break;
@@ -109,7 +111,8 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                     case 4:
                         // 夜间模式
                         // onItemClickListener.onItemClick(position);
-                        ((ItemHolder)(holder)).switchButton.performClick();
+                        // ((ItemHolder) (holder)).switchButton.performClick();
+                        // break;
                     case 5:
                         // 免打扰
                     case 6:
@@ -128,6 +131,7 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                         break;
                     case 9:
                         // 反馈
+                        nextActivity(FeedbackActivity.class);
                         break;
                     case 10:
                         // 检查更新

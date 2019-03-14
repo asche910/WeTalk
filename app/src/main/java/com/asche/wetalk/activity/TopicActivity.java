@@ -2,6 +2,8 @@ package com.asche.wetalk.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +36,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
@@ -265,7 +268,27 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
                 AudioUtils.playLike();
                 break;
             case R.id.img_toolbar_more:
-                Toast.makeText(this, "More Clicked!", Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(this, v);
+                MenuInflater menuInflater = popupMenu.getMenuInflater();
+                menuInflater.inflate(R.menu.menu_article, popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_article_collect:
+                                Toast.makeText(TopicActivity.this, "收藏成功！", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menu_article_dislike:
+                                Toast.makeText(TopicActivity.this, "Dislike!", Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.menu_article_report:
+                                startActivity(new Intent(TopicActivity.this, ReportActivity.class));
+                                break;
+                        }
+                        return false;
+                    }
+                });
                 break;
             case R.id.img_toolbar_back:
                 finish();

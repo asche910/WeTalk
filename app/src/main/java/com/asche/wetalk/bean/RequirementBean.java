@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 public class RequirementBean implements HomeItem, Serializable {
     private String id;
     private int type; // 招技术or卖技术;
-    private String authorId;
+    private String authorUserName;
     private String title;
     private String brief;
     private String content;
@@ -22,10 +22,10 @@ public class RequirementBean implements HomeItem, Serializable {
     private int likeNum;
     private int commentNum;
 
-    public RequirementBean(String id, int type, String authorId, String title, String brief, String content, String time, int likeNum, int commentNum) {
+    public RequirementBean(String id, int type, String authorUserName, String title, String brief, String content, String time, int likeNum, int commentNum) {
         this.id = id;
         this.type = type;
-        this.authorId = authorId;
+        this.authorUserName = authorUserName;
         this.title = title;
         this.brief = brief;
         this.content = content;
@@ -53,12 +53,12 @@ public class RequirementBean implements HomeItem, Serializable {
         this.type = type;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorUserName() {
+        return authorUserName;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorUserName(String authorUserName) {
+        this.authorUserName = authorUserName;
     }
 
     @Override

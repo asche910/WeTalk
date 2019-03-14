@@ -8,6 +8,7 @@ import com.asche.wetalk.fragment.FragmentDiscover;
 import com.asche.wetalk.fragment.FragmentHome;
 import com.asche.wetalk.fragment.FragmentNotification;
 import com.asche.wetalk.fragment.FragmentUser;
+import com.asche.wetalk.spider.ArticleSpider;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -44,6 +45,13 @@ public class MainActivity extends BaseActivity {
             requestAllPermissions();
         }
 
+        // 耗时操作
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArticleSpider.start();
+            }
+        }).start();
 
         bottomNavigationBar = findViewById(R.id.nav_bottom_home);
 
