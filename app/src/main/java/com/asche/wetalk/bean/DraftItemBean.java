@@ -7,8 +7,27 @@ public class DraftItemBean implements Serializable {
     private String title;
     private String content;
     private String time;
+    private HomeItem homeItem;
 
     public DraftItemBean() {
+    }
+
+    public DraftItemBean(int type, HomeItem homeItem) {
+        this.type = type;
+        this.homeItem = homeItem;
+        title = homeItem.getTitle();
+        content = homeItem.getBrief();
+        switch (type){
+            case HomeItem.TYPE_TOPIC:
+                time = ((TopicReplyBean)homeItem).getTime();
+                break;
+            case HomeItem.TYPE_REQUIREMENT:
+                time = ((RequirementBean)homeItem).getTime();
+                break;
+            case HomeItem.TYPE_ARTICLE:
+                time = ((ArticleBean)homeItem).getTime();
+                break;
+        }
     }
 
     public DraftItemBean(int type, String title, String content, String time) {
@@ -48,5 +67,13 @@ public class DraftItemBean implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public HomeItem getHomeItem() {
+        return homeItem;
+    }
+
+    public void setHomeItem(HomeItem homeItem) {
+        this.homeItem = homeItem;
     }
 }

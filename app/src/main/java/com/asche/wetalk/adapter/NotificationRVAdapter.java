@@ -80,7 +80,7 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ChatActivity.class);
-                    intent.putExtra("chatWith", list.get(position).getUserBean());
+                    intent.putExtra("chatWith", list.get(holder.getLayoutPosition()).getUserBean());
                     context.startActivity(intent);
                 }
             });
@@ -93,11 +93,11 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
                     menuInflater.inflate(R.menu.menu_item_notification, popupMenu.getMenu());
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        int pos = holder.getLayoutPosition();
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()){
                                 case R.id.menu_item_noti_top:
-                                    int pos = holder.getPosition();
                                     NotificationItemBean itemBean = list.get(pos);
                                     list.remove(pos);
                                     list.add(0, itemBean);
@@ -106,9 +106,8 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
 //                                    notifyDataSetChanged();
                                     break;
                                 case R.id.menu_item_noti_delete:
-                                    list.remove(position);
-                                    notifyDataSetChanged();
-                                    notifyItemRemoved(position);
+                                    list.remove(pos);
+                                    notifyItemRemoved(pos);
                                     break;
                             }
                             return false;

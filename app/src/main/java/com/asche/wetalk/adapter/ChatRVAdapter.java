@@ -98,16 +98,8 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 meViewHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
             }
 
-            try {
-                Glide.with(context)
-                        .load(R.drawable.img_avatar)
-                        .into(meViewHolder.imgAvatar);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                Glide.with(context)
-                        .load(bean.getImgAvatar())
-                        .into(meViewHolder.imgAvatar);
-            }
+
+            LoaderUtils.loadImage(bean.getImgAvatar(), context, meViewHolder.imgAvatar);
 
             meViewHolder.imgAvatar.setOnClickListener(new View.OnClickListener() {
                 @Override

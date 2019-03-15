@@ -2,6 +2,7 @@ package com.asche.wetalk.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.asche.wetalk.R;
 import java.util.HashMap;
 
 import androidx.annotation.Nullable;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
@@ -37,6 +39,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button btnLogin;
     private TextView textRegister;
 
+    private TextView textUserAgreements;
+
     private ImageView imgQQ, imgWeChat, imgLinkedIn;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -48,6 +52,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         editPasswd = findViewById(R.id.edit_password);
         btnLogin = findViewById(R.id.btn_login);
         textRegister = findViewById(R.id.text_register);
+        textUserAgreements = findViewById(R.id.text_user_agreements);
         imgQQ = findViewById(R.id.img_login_qq);
         imgWeChat =findViewById(R.id.img_login_wechat);
         imgLinkedIn = findViewById(R.id.img_login_linkedin);
@@ -91,6 +96,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         btnLogin.setOnClickListener(this);
         textRegister.setOnClickListener(this);
+        textUserAgreements.setOnClickListener(this);
         imgQQ.setOnClickListener(this);
         imgWeChat.setOnClickListener(this);
         imgLinkedIn.setOnClickListener(this);
@@ -99,11 +105,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         switch(v.getId()){
+            case R.id.text_user_agreements:
+                startActivity(new Intent(this, UserAgreementsActivity.class));
+                break;
             case R.id.text_register:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_login:
+                SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("登录中...");
+                pDialog.setCancelable(true);
+                pDialog.show();
                 break;
             case R.id.img_login_qq:
                 Platform platQQ = ShareSDK.getPlatform(QQ.NAME);

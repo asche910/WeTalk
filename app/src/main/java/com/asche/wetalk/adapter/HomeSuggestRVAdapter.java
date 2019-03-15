@@ -380,7 +380,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     intentImage.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
                     intentImage.putExtra(Intent.EXTRA_TEXT, bean.getContent());
                     // intentImage.putExtra(Intent.EXTRA_STREAM, uri);
-                    context.startActivity(Intent.createChooser(intentImage, "分享二维码"));
+                    context.startActivity(Intent.createChooser(intentImage, "分享"));
                 }
             });
 

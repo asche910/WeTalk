@@ -321,8 +321,16 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                 }
                 break;
             case R.id.layout_item_main_forward:
-                Intent intent = new Intent(this, TopicInfoActivity.class);
-                startActivity(intent);
+                Intent intentText = new Intent(Intent.ACTION_SEND);
+                intentText.setType("text/plain");
+                if (isArticle){
+                    intentText.putExtra(Intent.EXTRA_SUBJECT, articleBean.getTitle());
+                    intentText.putExtra(Intent.EXTRA_TEXT, articleBean.getContent());
+                }else {
+                    intentText.putExtra(Intent.EXTRA_SUBJECT, requirementBean.getTitle());
+                    intentText.putExtra(Intent.EXTRA_TEXT, requirementBean.getContent());
+                }
+                startActivity(Intent.createChooser(intentText, "分享"));
                 break;
             case R.id.text_article_morecomment:
             case R.id.layout_item_main_comment:

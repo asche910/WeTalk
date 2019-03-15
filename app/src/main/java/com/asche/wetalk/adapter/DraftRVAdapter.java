@@ -3,8 +3,10 @@ package com.asche.wetalk.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +17,15 @@ import com.asche.wetalk.bean.DraftItemBean;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.asche.wetalk.bean.HomeItem.TYPE_TOPIC;
 
 public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHolder> {
 
     private List<DraftItemBean> list;
     private Context context;
-
-    public static final int TYPE_ARTICLE = 0;
-    public static final int TYPE_REQUIREMENT = 1;
-    public static final int TYPE_TOPIC = 2;
 
     public DraftRVAdapter(List<DraftItemBean> list) {
         this.list = list;
@@ -43,6 +44,7 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final DraftItemBean bean = list.get(position);
+        final int pos = holder.getLayoutPosition();
         final int type = bean.getType();
 
         holder.textTitle.setText(bean.getTitle());
@@ -75,6 +77,30 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
                 context.startActivity(intent);
             }
         });
+
+        holder.imgMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_draft, popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.menu_draft_publish:
+                                break;
+                            case R.id.menu_draft_delete:
+                                notifyItemRemoved(pos);
+                                list.remove(pos);
+                                Toast.makeText(context, "删除成功！", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -84,12 +110,13 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textTitle, textContent, textTime;
-
+        ImageView imgMore;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.text_item_draft_title);
             textContent = itemView.findViewById(R.id.text_item_draft_content);
             textTime = itemView.findViewById(R.id.text_item_draft_time);
+            imgMore = itemView.findViewById(R.id.img_item_draft_more);
         }
     }
 }

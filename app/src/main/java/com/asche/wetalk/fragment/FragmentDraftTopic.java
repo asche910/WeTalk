@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.DraftRVAdapter;
 import com.asche.wetalk.bean.DraftItemBean;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.util.StringUtils;
 import com.asche.wetalk.util.TimeUtils;
 
@@ -25,7 +26,7 @@ public class FragmentDraftTopic extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     DraftRVAdapter draftRVAdapter;
-    private static List<DraftItemBean> draftItemBeanList = new ArrayList<>();
+    private static List<DraftItemBean> draftTopicList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -39,14 +40,14 @@ public class FragmentDraftTopic extends Fragment {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_draft);
 
-        if (draftItemBeanList.isEmpty()) {
-            draftItemBeanList.add(new DraftItemBean(2, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(2, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(2, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(2, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
+        if (draftTopicList.isEmpty()) {
+            draftTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
+            draftTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
+            draftTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
+            draftTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, "Title Title Title Title ", StringUtils.expandLength(30, "Content"), TimeUtils.getCurrentTime()));
         }
 
-        draftRVAdapter = new DraftRVAdapter(draftItemBeanList);
+        draftRVAdapter = new DraftRVAdapter(draftTopicList);
         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(draftRVAdapter);

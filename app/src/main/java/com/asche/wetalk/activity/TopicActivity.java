@@ -47,7 +47,7 @@ import static com.asche.wetalk.fragment.FragmentDialogComment.commentNormalList;
 /**
  * 话题回复的答案页， 展示单个回复
  */
-public class TopicActivity extends BaseActivity implements View.OnClickListener{
+public class TopicActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView imgBack, imgMore;
     private TextView toolbarTitle;
@@ -95,7 +95,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
         Intent intentData = getIntent();
         String action = intentData.getStringExtra("action");
-        if ("OPEN_COMMENT".equals(action)){
+        if ("OPEN_COMMENT".equals(action)) {
             openComment();
         }
 
@@ -123,7 +123,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
 
 
         topicReplyBean = (TopicReplyBean) intentData.getSerializableExtra("topicReply");
-        if (topicReplyBean != null){
+        if (topicReplyBean != null) {
             topicBean = DataUtils.getTopic(topicReplyBean.getTopicId());
             textTitle.setText(topicBean.getName());
         }
@@ -227,7 +227,7 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
                     Toast.makeText(this, "关注成功！", Toast.LENGTH_SHORT).show();
                     imgFollow.setImageResource(R.drawable.ic_follow_light);
                     isFollow = true;
-                }else {
+                } else {
                     new MaterialDialog.Builder(this)
                             .content("您确定不再关注此用户吗？")
                             .positiveText("确定")
@@ -253,7 +253,11 @@ public class TopicActivity extends BaseActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.layout_item_main_forward:
-                Toast.makeText(this, "you forward this topic reply!", Toast.LENGTH_SHORT).show();
+                Intent intentText = new Intent(Intent.ACTION_SEND);
+                intentText.setType("text/plain");
+                intentText.putExtra(Intent.EXTRA_SUBJECT, topicReplyBean.getTitle());
+                intentText.putExtra(Intent.EXTRA_TEXT, topicReplyBean.getContent());
+                startActivity(Intent.createChooser(intentText, "分享"));
                 break;
             case R.id.text_topic_morecomment:
             case R.id.layout_item_main_comment:

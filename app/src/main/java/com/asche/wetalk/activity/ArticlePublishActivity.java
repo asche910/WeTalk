@@ -23,10 +23,10 @@ import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.DraftItemBean;
 import com.asche.wetalk.bean.RequirementBean;
+import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
-import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 
 import androidx.annotation.NonNull;
@@ -35,8 +35,9 @@ import jp.wasabeef.richeditor.RichEditor;
 
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
-import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_REQUIREMENT;
-import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_TOPIC;
+import static com.asche.wetalk.bean.HomeItem.TYPE_ARTICLE;
+import static com.asche.wetalk.bean.HomeItem.TYPE_REQUIREMENT;
+import static com.asche.wetalk.bean.HomeItem.TYPE_TOPIC;
 
 @SuppressWarnings("DanglingJavadoc")
 public class ArticlePublishActivity extends BaseActivity implements KeyboardHeightObserver {
@@ -48,20 +49,21 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
     private RichEditor mEditor;
     private HorizontalScrollView layoutBottom;
 
+    // 插入链接对话框的EditText
+    EditText editLink = null, editText = null;
 
 
+    // 数据对象
     private ArticleBean articleBean;
     private RequirementBean requirementBean;
     private DraftItemBean draftItemBean;
     private int type = 0; // 文章、需求、话题回复
-
-    // 插入链接对话框的EditText
-    EditText editLink = null, editText = null;
+    boolean isNew = true;
 
     String[] mPermissionList = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE};
-    public static final int REQUEST_PICK_IMAGE = 11101;
+    private static final int REQUEST_PICK_IMAGE = 11101;
 
     private KeyboardHeightProvider keyboardHeightProvider;
 
@@ -114,22 +116,24 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
 
 
         Intent intent = getIntent();
-        if (intent != null){
+        if (intent != null) {
             // 必传
             type = intent.getIntExtra("type", 0);
-            boolean isOld = intent.hasExtra("object");
+            isNew = !intent.hasExtra("object");
 
             if (type == TYPE_REQUIREMENT) {
                 textTitle.setText("编辑需求");
-            }else if (type == TYPE_TOPIC){
+            } else if (type == TYPE_TOPIC) {
                 textTitle.setText("话题回复");
+            } else if (type == TYPE_ARTICLE) {
+                textTitle.setText("编辑文章");
             }
 
-            if (isOld){
+            if (!isNew) {
                 draftItemBean = (DraftItemBean) intent.getSerializableExtra("object");
                 if (type != TYPE_TOPIC) {
                     editTitle.setText(draftItemBean.getTitle());
-                }else {
+                } else {
                     editTitle.setEnabled(false);
                     editTitle.setHint("回答：#" + draftItemBean.getTitle());
                 }
@@ -150,7 +154,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
     @Override
     protected void onResume() {
         super.onResume();
-
+        //<editor-fold defaultstate="collapsed" desc="Component init">
         /**
          * 撤销当前标签状态下所有内容
          */
@@ -464,7 +468,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
                                     return;
                                 }
                                 String textShow = editText.getText().toString();
-                                textShow = StringUtils.isEmpty(textShow)? textLink: textShow;
+                                textShow = StringUtils.isEmpty(textShow) ? textLink : textShow;
                                 mEditor.insertLink(textLink, textShow);
                                 dialog.dismiss();
                             }
@@ -497,7 +501,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
         findViewById(R.id.tv_showhtml).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (StringUtils.isEmpty(mEditor.getHtml())){
+                if (StringUtils.isEmpty(mEditor.getHtml())) {
                     Toast.makeText(ArticlePublishActivity.this, "再写点内容吧！", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -506,6 +510,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
                 startActivity(intent);
             }
         });
+        //</editor-fold>
     }
 
     @Override
@@ -544,7 +549,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
                 case REQUEST_PICK_IMAGE:
                     if (data != null) {
                         String realPathFromUri = DataUtils.getPath(this, data.getData());
-                        Log.e("", "onActivityResult: " + realPathFromUri );
+                        Log.e("", "onActivityResult: " + realPathFromUri);
 
                         // 设置alt属性时同时加上最大尺寸
                         mEditor.insertImage(realPathFromUri, realPathFromUri + "\" style=\"max-width:90%");
@@ -573,12 +578,12 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
         if (layoutBottom == null)
             return;
 
-        if (height > 0){
+        if (height > 0) {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) layoutBottom.getLayoutParams();
             params.bottomMargin = MyScrollView.dip2px(getContext(), keyboardHeight);
             layoutBottom.setLayoutParams(params);
 
-        }else {
+        } else {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) layoutBottom.getLayoutParams();
             params.bottomMargin = 0;
             layoutBottom.setLayoutParams(params);

@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
     implementation 'com.patrickpissurno:ripple-effect:1.3.1'
     implementation 'com.hyman:flowlayout-lib:1.1.2'
-    implementation ('com.github.bumptech.glide:glide:4.8.0')
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.shuyu:GSYVideoPlayer:6.0.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
     implementation 'com.github.SherlockGougou:BigImageViewPager:v4_2.1.4'
@@ -57,16 +57,12 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
-
-
-
-
-
+    implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+    implementation 'com.github.chinalwb:are:0.1.5'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    implementation project(':verification-view')
     implementation project(':waveswiperefreshlayout')
 }
 

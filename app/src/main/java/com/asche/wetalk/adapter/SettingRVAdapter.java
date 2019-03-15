@@ -15,6 +15,7 @@ import com.asche.wetalk.activity.FeedbackActivity;
 import com.asche.wetalk.activity.LoginActivity;
 import com.asche.wetalk.activity.PasswordActivity;
 import com.asche.wetalk.activity.SettingActivity;
+import com.asche.wetalk.activity.UserAgreementsActivity;
 import com.asche.wetalk.bean.SettingItemBean;
 import com.suke.widget.SwitchButton;
 
@@ -22,6 +23,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
@@ -126,6 +128,10 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                         break;
                     case 7:
                         // 清除缓存
+                        new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("完成")
+                                .setContentText("缓存清理成功！")
+                                .show();
                         break;
                     case 8:
                         break;
@@ -139,6 +145,7 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                         break;
                     case 11:
                         // 关于
+                        nextActivity(UserAgreementsActivity.class);
                         break;
                 }
             }

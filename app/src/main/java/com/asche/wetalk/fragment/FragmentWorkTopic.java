@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.WorkRVAdapter;
 import com.asche.wetalk.bean.DraftItemBean;
+import com.asche.wetalk.bean.HomeItem;
+import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.util.StringUtils;
 import com.asche.wetalk.util.TimeUtils;
 
@@ -25,7 +27,7 @@ public class FragmentWorkTopic extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     WorkRVAdapter workRVAdapter;
-    private static List<DraftItemBean> draftItemBeanList = new ArrayList<>();
+    private static List<DraftItemBean> workTopicList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -39,17 +41,14 @@ public class FragmentWorkTopic extends Fragment {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_work);
 
-        if (draftItemBeanList.isEmpty()) {
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本消息"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本消息"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftItemBeanList.add(new DraftItemBean(1, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
+        if (workTopicList.isEmpty()) {
+            workTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, DataUtils.getTopicReply()));
+            workTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, DataUtils.getTopicReply()));
+            workTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, DataUtils.getTopicReply()));
+            workTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, DataUtils.getTopicReply()));
         }
 
-        workRVAdapter = new WorkRVAdapter(draftItemBeanList);
+        workRVAdapter = new WorkRVAdapter(workTopicList);
         layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(workRVAdapter);

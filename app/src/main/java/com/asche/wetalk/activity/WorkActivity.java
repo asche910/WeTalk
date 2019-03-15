@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.fragment.FragmentWorkArticle;
 import com.asche.wetalk.fragment.FragmentWorkRequirement;
@@ -24,10 +24,6 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
-
-import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_ARTICLE;
-import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_REQUIREMENT;
-import static com.asche.wetalk.adapter.DraftRVAdapter.TYPE_TOPIC;
 
 public class WorkActivity extends BaseActivity implements View.OnClickListener{
 
@@ -104,13 +100,13 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.fab_topic:
-                nextActivity(TopicReplyActivity.class, TYPE_TOPIC);
+                nextActivity(TopicReplyActivity.class, HomeItem.TYPE_TOPIC);
                 break;
             case R.id.fab_article:
-                nextActivity(ArticlePublishActivity.class, TYPE_ARTICLE);
+                nextActivity(ArticlePublishActivity.class, HomeItem.TYPE_ARTICLE);
                 break;
             case R.id.fab_requirement:
-                nextActivity(ArticlePublishActivity.class, TYPE_REQUIREMENT);
+                nextActivity(ArticlePublishActivity.class, HomeItem.TYPE_REQUIREMENT);
                 break;
             case R.id.img_toolbar_more:
                 startActivity(new Intent(this, DraftActivity.class));

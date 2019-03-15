@@ -27,6 +27,7 @@ import com.asche.wetalk.activity.ClientActivity;
 import com.asche.wetalk.activity.ClockInActivity;
 import com.asche.wetalk.activity.CollectActivity;
 import com.asche.wetalk.activity.IdentifyActivity;
+import com.asche.wetalk.activity.TestActivity;
 import com.asche.wetalk.activity.VIPCenterActivity;
 import com.asche.wetalk.activity.DraftActivity;
 import com.asche.wetalk.activity.LoginActivity;
@@ -189,6 +190,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "待办事项", Toast.LENGTH_SHORT).show();
                         break;
                     case 4:
+//                        nextActivity(TestActivity.class);
                         nextActivity(ClientActivity.class);
                         Toast.makeText(getActivity(), "客户", Toast.LENGTH_SHORT).show();
                         break;

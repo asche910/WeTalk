@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:name"
+        tools:replace="android:icon"
         android:networkSecurityConfig="@xml/network_security_config">
 
         <activity
@@ -69,6 +69,8 @@
         <activity android:name=".activity.PasswordActivity" />
         <activity android:name=".activity.ReportActivity" />
         <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.UserAgreementsActivity" />
+        <activity android:name=".activity.TestActivity" />
     </application>
 
 </manifest>

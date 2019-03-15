@@ -1,7 +1,9 @@
 package com.asche.wetalk.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.fragment.FragmentDiscover;
@@ -33,8 +35,10 @@ public class MainActivity extends BaseActivity {
     private FragmentUser fragmentUser;
     private List<Fragment> fragmentList = new ArrayList<>();
 
-    private final String TAG = "MainActivity";
 
+    private boolean isReadyToExit;
+
+    private final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +128,21 @@ public class MainActivity extends BaseActivity {
         if (GSYVideoManager.backFromWindowFull(this)) {
             return;
         }
-        super.onBackPressed();
+
+        if (isReadyToExit){
+            super.onBackPressed();
+            return;
+        }
+
+        isReadyToExit = true;
+
+        Toast.makeText(this, "再次按返回键将退出应用！", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isReadyToExit = false;
+            }
+        }, 2000);
     }
 
     private void hideAllFragment(FragmentTransaction transaction) {
