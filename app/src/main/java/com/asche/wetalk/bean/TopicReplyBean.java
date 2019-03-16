@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 public class TopicReplyBean implements HomeItem, Serializable {
     private String id;
     private String topicId;
-    private String authorId;
+    private String authorUserName;
     private String content;
     private String time;
     private String imgUrl;
@@ -20,10 +20,10 @@ public class TopicReplyBean implements HomeItem, Serializable {
     private int likeNum;
     private int commentNum;
 
-    public TopicReplyBean(String id, String topicId, String authorId, String content, String time, String imgUrl, String videoUrl, int likeNum, int commentNum) {
+    public TopicReplyBean(String id, String topicId, String authorUserName, String content, String time, String imgUrl, String videoUrl, int likeNum, int commentNum) {
         this.id = id;
         this.topicId = topicId;
-        this.authorId = authorId;
+        this.authorUserName = authorUserName;
         this.content = content;
         this.time = time;
         this.imgUrl = imgUrl;
@@ -32,10 +32,10 @@ public class TopicReplyBean implements HomeItem, Serializable {
         this.commentNum = commentNum;
     }
 
-    public TopicReplyBean(String id, String topicId, String authorId, String content, String time, int likeNum, int commentNum) {
+    public TopicReplyBean(String id, String topicId, String authorUserName, String content, String time, int likeNum, int commentNum) {
         this.id = id;
         this.topicId = topicId;
-        this.authorId = authorId;
+        this.authorUserName = authorUserName;
         this.content = content;
         this.time = time;
         this.likeNum = likeNum;
@@ -61,12 +61,12 @@ public class TopicReplyBean implements HomeItem, Serializable {
         this.topicId = topicId;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorUserName() {
+        return authorUserName;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorUserName(String authorUserName) {
+        this.authorUserName = authorUserName;
     }
 
     public String getContent() {

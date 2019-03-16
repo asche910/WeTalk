@@ -54,7 +54,7 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-        HappenItemBean bean = list.get(position);
+        final HappenItemBean bean = list.get(position);
 
         if (bean.getType() == TYPE_ITEM) {
             final ViewHolder itemHolder = (ViewHolder)holder;
@@ -89,6 +89,34 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter {
                     context.startActivity(intent);
                 }
             });
+
+            itemHolder.content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HappenActivity.class);
+                    intent.putExtra("happenBean", list.get(position));
+                    context.startActivity(intent);
+                }
+            });
+
+            itemHolder.btnComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, HappenActivity.class);
+                    intent.putExtra("happenBean", list.get(position));
+                    context.startActivity(intent);
+                }
+            });
+
+            itemHolder.btnForward.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intentVideo = new Intent(Intent.ACTION_SEND);
+                    intentVideo.setType("text/plain");
+                    intentVideo.putExtra(Intent.EXTRA_TEXT, bean.getContent());
+                    context.startActivity(Intent.createChooser(intentVideo, "分享"));
+                }
+            });
         }
     }
 
@@ -109,7 +137,7 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter {
         private TextView content;
         private RecyclerView recycView;
         private TextView time;
-        private Button btnLike;
+        private Button btnLike, btnComment, btnForward;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -119,6 +147,8 @@ public class HappenItemRVAdapter extends RecyclerView.Adapter {
             recycView = itemView.findViewById(R.id.recycler_item_happen);
             time = itemView.findViewById(R.id.text_item_happen_time);
             btnLike = itemView.findViewById(R.id.btn_item_happen_like);
+            btnComment = itemView.findViewById(R.id.btn_item_happen_comment);
+            btnForward = itemView.findViewById(R.id.btn_item_happen_forward);
 
             GridLayoutManager layoutManager = new GridLayoutManager(itemView.getContext(), 3);
             recycView.setLayoutManager(layoutManager);

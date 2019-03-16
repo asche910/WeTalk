@@ -2,6 +2,7 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +21,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.asche.wetalk.bean.HomeItem.TYPE_ARTICLE;
+import static com.asche.wetalk.bean.HomeItem.TYPE_REQUIREMENT;
 import static com.asche.wetalk.bean.HomeItem.TYPE_TOPIC;
+import static com.asche.wetalk.fragment.FragmentWorkArticle.workArticleList;
+import static com.asche.wetalk.fragment.FragmentWorkRequirement.workRequirementList;
+import static com.asche.wetalk.fragment.FragmentWorkTopic.workTopicList;
 
 public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHolder> {
 
@@ -48,29 +54,14 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
         final int type = bean.getType();
 
         holder.textTitle.setText(bean.getTitle());
-        holder.textContent.setText(bean.getContent());
-        holder.textTime.setText(bean.getTime());
+        CharSequence sequence = Html.fromHtml(bean.getContent());
 
-        holder.textTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (type == TYPE_TOPIC) {
-                    Toast.makeText(context, "Go to topic page!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(context, ArticlePublishActivity.class);
-                    intent.putExtra("type", type);
-                    intent.putExtra("object", bean);
-                    context.startActivity(intent);
-                    Toast.makeText(context, "Go to edit page!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        holder.textContent.setText(sequence);
+        holder.textTime.setText(bean.getTime());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Go to edit page!", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(context, ArticlePublishActivity.class);
                 intent.putExtra("type", type);
                 intent.putExtra("object", bean);
@@ -89,10 +80,19 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.menu_draft_publish:
+                                if (type ==TYPE_ARTICLE){
+                                    workArticleList.add(bean);
+                                }else if (type == TYPE_REQUIREMENT){
+                                    workRequirementList.add(bean);
+                                }else if (type == TYPE_TOPIC){
+                                    workTopicList.add(bean);
+                                }
+                                Toast.makeText(context, "发表成功！", Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.menu_draft_delete:
                                 notifyItemRemoved(pos);
                                 list.remove(pos);
+
                                 Toast.makeText(context, "删除成功！", Toast.LENGTH_SHORT).show();
                                 break;
                         }

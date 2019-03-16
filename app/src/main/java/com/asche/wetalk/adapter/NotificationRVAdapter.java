@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.BaseActivity;
 import com.asche.wetalk.activity.ChatActivity;
 import com.asche.wetalk.bean.NotificationItemBean;
 import com.asche.wetalk.bean.UserBean;
@@ -22,12 +24,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.asche.wetalk.activity.ClientActivity.clientBeanList;
+
 public class NotificationRVAdapter extends RecyclerView.Adapter {
 
     private final int TYPE_CHAT = 0;
     private List<NotificationItemBean> list;
     private Context context;
     private OnItemClickListener onItemClickListener;
+
+    // 是否是ClientActivity的activity
+    private boolean isClient;
 
     class ChatHolder extends RecyclerView.ViewHolder {
         private ImageView imgAvatar, imgMore;
@@ -45,6 +52,11 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
 
     public NotificationRVAdapter(List<NotificationItemBean> list) {
         this.list = list;
+    }
+
+    public NotificationRVAdapter(List<NotificationItemBean> list, boolean isClient) {
+        this.list = list;
+        this.isClient = isClient;
     }
 
     @NonNull
@@ -91,12 +103,19 @@ public class NotificationRVAdapter extends RecyclerView.Adapter {
                     PopupMenu popupMenu = new PopupMenu(context, v);
                     MenuInflater menuInflater = popupMenu.getMenuInflater();
                     menuInflater.inflate(R.menu.menu_item_notification, popupMenu.getMenu());
+                    if (isClient){
+                        popupMenu.getMenu().findItem(R.id.menu_item_noti_client).setVisible(false);
+                    }
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         int pos = holder.getLayoutPosition();
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()){
+                                case R.id.menu_item_noti_client:
+                                    clientBeanList.add(bean);
+                                    Toast.makeText(context, "添加成功！", Toast.LENGTH_SHORT).show();
+                                    break;
                                 case R.id.menu_item_noti_top:
                                     NotificationItemBean itemBean = list.get(pos);
                                     list.remove(pos);

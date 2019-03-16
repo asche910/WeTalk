@@ -72,7 +72,7 @@ public class RequirementBean implements HomeItem, Serializable {
 
     @Override
     public String getBrief() {
-        return brief;
+        return content;
     }
 
     public void setBrief(String brief) {

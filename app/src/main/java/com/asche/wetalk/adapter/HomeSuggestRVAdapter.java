@@ -47,10 +47,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.asche.wetalk.MyApplication.getContext;
+import static com.asche.wetalk.fragment.FragmentCollectArticle.collectArticleList;
+import static com.asche.wetalk.fragment.FragmentCollectRequirement.collectRequirementList;
+import static com.asche.wetalk.fragment.FragmentCollectTopic.collectTopicList;
 import static com.shuyu.gsyvideoplayer.GSYVideoBaseManager.TAG;
 
 
-public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  PopupMenu.OnMenuItemClickListener {
+public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements PopupMenu.OnMenuItemClickListener {
 
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_IMAGE = 1;
@@ -60,6 +63,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     private List<HomeItem> list;
     private Context context;
+
+    // 是否用于收藏中的adapter
+    private boolean isCollect;
 
     // 是否开启背景圆角和悬浮效果
     private boolean enableRadiusAndEle;
@@ -74,6 +80,11 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     public HomeSuggestRVAdapter(List<HomeItem> list) {
         this.list = list;
+    }
+
+    public HomeSuggestRVAdapter(List<HomeItem> list, boolean isCollect) {
+        this.list = list;
+        this.isCollect = isCollect;
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -151,8 +162,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         }
     }
 
-    public class UserHolder extends RecyclerView.ViewHolder{
+    public class UserHolder extends RecyclerView.ViewHolder {
         private RecyclerView recyclerView;
+
         public UserHolder(@NonNull View itemView) {
             super(itemView);
             recyclerView = itemView.findViewById(R.id.recycler_suggest_user);
@@ -161,7 +173,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         }
     }
 
-    public class LoadingHolder extends RecyclerView.ViewHolder{
+    public class LoadingHolder extends RecyclerView.ViewHolder {
         public LoadingHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -175,9 +187,9 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             return TYPE_TEXT;
         } else if (type == TYPE_IMAGE) {
             return TYPE_IMAGE;
-        }else if (type == TYPE_VIDEO) {
+        } else if (type == TYPE_VIDEO) {
             return TYPE_VIDEO;
-        }else if (type == TYPE_LOADING){
+        } else if (type == TYPE_LOADING) {
             return TYPE_LOADING;
         }
         return TYPE_USER;
@@ -200,10 +212,10 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
         } else if (viewType == TYPE_VIDEO) {
             view = inflater.inflate(R.layout.item_main_video, parent, false);
             return new VideoHolder(view);
-        }else if(viewType == TYPE_USER){
+        } else if (viewType == TYPE_USER) {
             view = inflater.inflate(R.layout.layout_suggest_user, parent, false);
             return new UserHolder(view);
-        }else if (viewType == TYPE_LOADING){
+        } else if (viewType == TYPE_LOADING) {
             view = inflater.inflate(R.layout.layout_bottom_loading, parent, false);
             return new LoadingHolder(view);
         }
@@ -211,8 +223,8 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        Log.e(TAG, "onBindViewHolder: " + (count ++) );
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        Log.e(TAG, "onBindViewHolder: " + (count++));
         final ItemBean bean = HomeItemAdapter.adapt(list.get(position));
         if (bean.getBodyType() == TYPE_TEXT) {
             final TextHolder textHolder = (TextHolder) holder;
@@ -231,10 +243,13 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             textHolder.imgMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    curPosition = position;
+                    curPosition = holder.getLayoutPosition();
                     PopupMenu popupMenu = new PopupMenu(context, v);
                     MenuInflater menuInflater = popupMenu.getMenuInflater();
                     menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    if (isCollect) {
+                        popupMenu.getMenu().findItem(R.id.menu_suggest_0).setTitle("取消收藏");
+                    }
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
                 }
@@ -257,17 +272,17 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     // onItemClickListener.onItemClick(position);
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     }
@@ -288,15 +303,15 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         context.startActivity(intent);
                     }
                 }
@@ -323,10 +338,13 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             imgHolder.imgMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    curPosition = position;
+                    curPosition = holder.getLayoutPosition();
                     PopupMenu popupMenu = new PopupMenu(context, v);
                     MenuInflater menuInflater = popupMenu.getMenuInflater();
                     menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    if (isCollect) {
+                        popupMenu.getMenu().findItem(R.id.menu_suggest_0).setTitle("取消收藏");
+                    }
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
                 }
@@ -348,17 +366,17 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     }
@@ -390,16 +408,16 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     }
@@ -443,10 +461,13 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
             videoHolder.imgMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    curPosition = position;
+                    curPosition = holder.getLayoutPosition();
                     PopupMenu popupMenu = new PopupMenu(context, v);
                     MenuInflater menuInflater = popupMenu.getMenuInflater();
                     menuInflater.inflate(R.menu.menu_item_suggest, popupMenu.getMenu());
+                    if (isCollect) {
+                        popupMenu.getMenu().findItem(R.id.menu_suggest_0).setTitle("取消收藏");
+                    }
                     popupMenu.show();
                     popupMenu.setOnMenuItemClickListener(HomeSuggestRVAdapter.this);
                 }
@@ -468,17 +489,17 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 //                    onItemClickListener.onItemClick(position);
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         intent.putExtra("action", "OPEN_COMMENT");
                         context.startActivity(intent);
                     }
@@ -491,7 +512,7 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                     intentVideo.setType("text/plain");
                     intentVideo.putExtra(Intent.EXTRA_SUBJECT, bean.getTitle());
                     intentVideo.putExtra(Intent.EXTRA_TEXT, bean.getContent());
-                    context.startActivity(Intent.createChooser(intentVideo, "分享二维码"));
+                    context.startActivity(Intent.createChooser(intentVideo, "分享"));
                 }
             });
             videoHolder.layoutMain.setOnClickListener(new View.OnClickListener() {
@@ -499,28 +520,28 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
                 public void onClick(View v) {
                     if (bean.getType() == HomeItem.TYPE_ARTICLE) {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("article", (ArticleBean)list.get(position));
+                        intent.putExtra("article", (ArticleBean) list.get(position));
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     } else if (bean.getType() == HomeItem.TYPE_TOPIC) {
                         Intent intent = new Intent(context, TopicActivity.class);
-                        intent.putExtra("topicReply", (TopicReplyBean)list.get(position));
+                        intent.putExtra("topicReply", (TopicReplyBean) list.get(position));
                         context.startActivity(intent);
                     } else {
                         Intent intent = new Intent(context, ArticleActivity.class);
-                        intent.putExtra("requirement", (RequirementBean)list.get(position));
+                        intent.putExtra("requirement", (RequirementBean) list.get(position));
                         context.startActivity(intent);
                         // nextActivity(ArticleActivity.class);
                     }
                 }
             });
-        }else if (bean.getBodyType() == TYPE_USER){
+        } else if (bean.getBodyType() == TYPE_USER) {
             HomeItem homeItem = list.get(position);
             SuggestUserBean suggestUserBean = (SuggestUserBean) homeItem;
             List<UserBean> userBeanList = suggestUserBean.getUserBeanList();
             SuggestUserRVAdapter suggestUserRVAdapter = new SuggestUserRVAdapter(userBeanList);
 
-            UserHolder userHolder = (UserHolder)holder;
+            UserHolder userHolder = (UserHolder) holder;
             userHolder.recyclerView.setAdapter(suggestUserRVAdapter);
         }
     }
@@ -532,13 +553,32 @@ public class HomeSuggestRVAdapter extends RecyclerView.Adapter implements  Popup
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        Log.e(TAG, "onMenuItemClick: " + curPosition );
-        switch (item.getItemId()){
+        Log.e(TAG, "onMenuItemClick: " + curPosition);
+        switch (item.getItemId()) {
             case R.id.menu_suggest_2:
                 context.startActivity(new Intent(context, ReportActivity.class));
                 break;
             case R.id.menu_suggest_0:
-                Toast.makeText(context, "不感兴趣此话题", Toast.LENGTH_SHORT).show();
+                if (isCollect) {
+                    // 取消收藏
+                    // HomeItem homeItem = list.get(curPosition);
+                    list.remove(curPosition);
+                     notifyItemRemoved(curPosition);
+//                    notifyDataSetChanged();
+
+                    // list传进来为引用, 故无需删除外面list中数据
+                    /*int type = homeItem.getItemType();
+                    if (type == HomeItem.TYPE_ARTICLE) {
+                        collectArticleList.remove(curPosition);
+                    } else if (type == HomeItem.TYPE_REQUIREMENT) {
+                        collectRequirementList.remove(curPosition);
+                    } else if (type == HomeItem.TYPE_TOPIC) {
+                        collectTopicList.remove(curPosition);
+                    }*/
+                    Toast.makeText(context, "取消成功！", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "不感兴趣此话题!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.menu_suggest_share:
                 Toast.makeText(context, "分享成功！", Toast.LENGTH_SHORT).show();

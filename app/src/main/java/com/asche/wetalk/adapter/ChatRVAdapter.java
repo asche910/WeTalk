@@ -98,8 +98,7 @@ public class ChatRVAdapter extends RecyclerView.Adapter {
                 meViewHolder.textContent.setText(EmoticonUtils.parseEmoticon(bean.getContent()));
             }
 
-
-            LoaderUtils.loadImage(bean.getImgAvatar(), context, meViewHolder.imgAvatar);
+            LoaderUtils.loadImage(BaseActivity.getCurUser().getImgAvatar(), context, meViewHolder.imgAvatar);
 
             meViewHolder.imgAvatar.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_item_noti_client"
+        android:title="添加到客户"/>
+
+    <item
         android:id="@+id/menu_item_noti_top"
         android:title="置顶"/>
 

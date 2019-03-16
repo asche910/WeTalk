@@ -62,7 +62,7 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
     private TextView content;
     private RecyclerView recycView;
     private TextView time;
-    private Button btnLike;
+    private Button btnLike, btnComment, btnForward;
 
     // 主评论下的回复
     private RecyclerView recyclerComment;
@@ -99,6 +99,8 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
         recycView = findViewById(R.id.recycler_happen);
         time = findViewById(R.id.text_item_happen_time);
         btnLike = findViewById(R.id.btn_item_happen_like);
+        btnComment = findViewById(R.id.btn_item_happen_comment);
+        btnForward = findViewById(R.id.btn_item_happen_forward);
         recyclerComment = findViewById(R.id.recycler_happen_comment_normal);
         imgEmoticon = findViewById(R.id.img_comment_reply_emoticon);
         imgAt = findViewById(R.id.img_comment_reply_at);
@@ -134,12 +136,13 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
         recyclerComment.setHasFixedSize(true);
         recyclerComment.setNestedScrollingEnabled(false);
 
-
         textTitle.setText("详情");
 
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
         btnLike.setOnClickListener(this);
+        btnComment.setOnClickListener(this);
+        btnForward.setOnClickListener(this);
         imgEmoticon.setOnClickListener(this);
         imgAt.setOnClickListener(this);
         imgSend.setOnClickListener(this);
@@ -273,6 +276,16 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
                     VibrateUtils.vibrateLike();
                     AudioUtils.playLike();
                 }
+                break;
+            case R.id.btn_item_happen_comment:
+                editText.requestFocus();
+                inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+                break;
+            case R.id.btn_item_happen_forward:
+                Intent intentText = new Intent(Intent.ACTION_SEND);
+                intentText.setType("text/plain");
+                intentText.putExtra(Intent.EXTRA_TEXT, happenBean.getContent());
+                startActivity(Intent.createChooser(intentText, "分享"));
                 break;
             case R.id.img_toolbar_more:
                 break;

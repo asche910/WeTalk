@@ -64,7 +64,6 @@ public class UserTwoCodeActivity extends BaseActivity implements View.OnClickLis
                 intent.setType("image/jpeg");
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
                 startActivity(Intent.createChooser(intent, "分享二维码"));
-                Toast.makeText(this, "分享成功！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.img_toolbar_back:
                 finish();

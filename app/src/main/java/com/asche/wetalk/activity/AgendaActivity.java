@@ -54,8 +54,8 @@ public class AgendaActivity extends BaseActivity implements View.OnClickListener
 
         if (agendaList.isEmpty()) {
             agendaList.add(new AgendaItemBean("Hello, World!", "2018-10-24"));
-            agendaList.add(new AgendaItemBean("java实现类似跳一跳的外挂（2018年10月4日）", "2018-10-24"));
-            agendaList.add(new AgendaItemBean("java后台实现 聊天功能（2018.7.14）", "2018-10-24"));
+            agendaList.add(new AgendaItemBean("啃完计算机网络（2019年2月28日）", "2019-01-16"));
+            agendaList.add(new AgendaItemBean("linux从入门到精通（2019年2月28日）", "2019-10-24"));
         }
 
         agendaRVAdapter = new AgendaRVAdapter(agendaList);

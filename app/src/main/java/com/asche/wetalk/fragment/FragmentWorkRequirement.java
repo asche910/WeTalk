@@ -27,7 +27,7 @@ public class FragmentWorkRequirement extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     WorkRVAdapter workRVAdapter;
-    private static List<DraftItemBean> workRequirementList = new ArrayList<>();
+    public static List<DraftItemBean> workRequirementList = new ArrayList<>();
 
     @Nullable
     @Override

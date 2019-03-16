@@ -27,7 +27,7 @@ public class FragmentWorkTopic extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     WorkRVAdapter workRVAdapter;
-    private static List<DraftItemBean> workTopicList = new ArrayList<>();
+    public static List<DraftItemBean> workTopicList = new ArrayList<>();
 
     @Nullable
     @Override

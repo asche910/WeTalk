@@ -23,9 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FragmentDraftRequirement extends Fragment {
 
-    RecyclerView recyclerView;
-    LinearLayoutManager layoutManager;
-    DraftRVAdapter draftRVAdapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private DraftRVAdapter draftRVAdapter;
     private static List<DraftItemBean> draftRequirementList = new ArrayList<>();
 
     @Nullable
@@ -43,10 +43,7 @@ public class FragmentDraftRequirement extends Fragment {
         if (draftRequirementList.isEmpty()) {
             draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本消息"), TimeUtils.getCurrentTime()));
             draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
             draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本消息"), TimeUtils.getCurrentTime()));
-            draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
-            draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
             draftRequirementList.add(new DraftItemBean(HomeItem.TYPE_REQUIREMENT, "Title Title Title Title ", StringUtils.expandLength(30, "文本"), TimeUtils.getCurrentTime()));
         }
 

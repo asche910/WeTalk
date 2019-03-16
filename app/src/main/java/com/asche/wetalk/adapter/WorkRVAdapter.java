@@ -2,6 +2,7 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.activity.ArticleActivity;
+import com.asche.wetalk.activity.ArticlePublishActivity;
 import com.asche.wetalk.activity.TopicActivity;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.DraftItemBean;
@@ -51,7 +53,9 @@ public class WorkRVAdapter extends RecyclerView.Adapter<WorkRVAdapter.ViewHolder
         final HomeItem homeItem = bean.getHomeItem();
 
         holder.textTitle.setText(bean.getTitle());
-        holder.textContent.setText(bean.getContent());
+        CharSequence sequence = Html.fromHtml(bean.getContent());
+
+        holder.textContent.setText(sequence);
         holder.textTime.setText(bean.getTime());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +92,11 @@ public class WorkRVAdapter extends RecyclerView.Adapter<WorkRVAdapter.ViewHolder
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.menu_work_edit:
+                                Intent intent = new Intent(context, ArticlePublishActivity.class);
+                                intent.putExtra("type", bean.getType());
+                                intent.putExtra("object", bean);
+                                context.startActivity(intent);
+
                                 break;
                             case R.id.menu_work_delete:
                                 // position是最初的position

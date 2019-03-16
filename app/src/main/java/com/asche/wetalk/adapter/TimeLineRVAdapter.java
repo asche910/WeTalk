@@ -2,6 +2,7 @@ package com.asche.wetalk.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,7 +96,9 @@ public class TimeLineRVAdapter extends RecyclerView.Adapter {
                     case HomeItem.TYPE_TOPIC:
                         TopicReplyBean topicReplyBean = (TopicReplyBean) homeItem;
                         textHolder.textTitle.setText(topicReplyBean.getTitle());
-                        textHolder.textContent.setText(topicReplyBean.getBrief());
+                        CharSequence sequence = Html.fromHtml(topicReplyBean.getBrief());
+
+                        textHolder.textContent.setText(sequence);
                         textHolder.textTime.setText(topicReplyBean.getTime());
                         break;
                     case HomeItem.TYPE_REQUIREMENT:

@@ -23,10 +23,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FragmentDraftArticle extends Fragment {
 
-    RecyclerView recyclerView;
-    LinearLayoutManager layoutManager;
-    DraftRVAdapter draftRVAdapter;
-    private static List<DraftItemBean> draftArticleList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private DraftRVAdapter draftRVAdapter;
+    public static List<DraftItemBean> draftArticleList = new ArrayList<>();
 
     @Nullable
     @Override

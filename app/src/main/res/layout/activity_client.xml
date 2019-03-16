@@ -7,23 +7,30 @@
     <include layout="@layout/toolbar_universe" />
 
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
-        android:id="@+id/refreshLayout_user_home"
+        android:id="@+id/refreshLayout_client"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <LinearLayout
-            android:id="@+id/scroll_user_home"
+        <com.asche.wetalk.helper.FlexibleScrollView
+            android:id="@+id/scroll_client"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_client"
+            <LinearLayout
+                android:id="@+id/scroll_user_home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </com.asche.wetalk.helper.FlexibleScrollView>
+
     </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
 
 </LinearLayout>

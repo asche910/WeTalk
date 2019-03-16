@@ -49,7 +49,7 @@ public class FragmentDiscoverHappen extends Fragment {
     // 是否正在加载更多数据
     private boolean isLoading;
 
-    // 判断是否使用者发表了新动态
+    // 判断用户是否发表了新动态
     public static boolean isPublishNewOne;
 
     public static String str_1 = "早起的鸟儿有虫吃， 首先做到23：50前躺下，6：30早起打卡！充满元气的一天！！！";
@@ -192,11 +192,13 @@ public class FragmentDiscoverHappen extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (isPublishNewOne) {
+        Log.e(TAG, "onResume: -------->" );
+        happenItemRVAdapter.notifyDataSetChanged();
+    /*    if (isPublishNewOne) {
             happenItemRVAdapter.notifyItemInserted(0);
             recycHappen.scrollToPosition(0);
             isPublishNewOne = false;
-        }
+        }*/
     }
 
 }

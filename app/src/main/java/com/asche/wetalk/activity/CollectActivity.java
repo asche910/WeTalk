@@ -9,15 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.asche.wetalk.R;
-import com.asche.wetalk.fragment.FragmentDraftArticle;
-import com.asche.wetalk.fragment.FragmentDraftRequirement;
-import com.asche.wetalk.fragment.FragmentDraftTopic;
+import com.asche.wetalk.fragment.FragmentCollectArticle;
+import com.asche.wetalk.fragment.FragmentCollectRequirement;
+import com.asche.wetalk.fragment.FragmentCollectTopic;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 public class CollectActivity extends BaseActivity implements View.OnClickListener{
@@ -41,28 +40,19 @@ public class CollectActivity extends BaseActivity implements View.OnClickListene
         tabLayout = findViewById(R.id.tab_collect);
         viewPager = findViewById(R.id.viewpager_collect);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (SettingActivity.THEME_CURRENT == SettingActivity.THEME_DARK){
-                layoutToolbar.setBackgroundColor(Color.parseColor("#1e1e2a"));
-            }else {
-                layoutToolbar.setBackgroundColor(getColor(R.color.darkGreenLight));
-            }
-        }
 
         FragmentPagerItemAdapter fragmentPagerItemAdapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(getApplicationContext())
-                .add("需求", FragmentDraftRequirement.class)
-                .add("文章", FragmentDraftArticle.class)
-                .add("话题", FragmentDraftTopic.class)
+                .add("需求", FragmentCollectRequirement.class)
+                .add("文章", FragmentCollectArticle.class)
+                .add("话题", FragmentCollectTopic.class)
                 .create());
 
         viewPager.setAdapter(fragmentPagerItemAdapter);
         tabLayout.setViewPager(viewPager);
-        
 
         textTitle.setText("收藏");
         imgBack.setOnClickListener(this);
-
     }
 
     @Override

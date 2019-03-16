@@ -22,12 +22,15 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.ArticleBean;
 import com.asche.wetalk.bean.DraftItemBean;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.RequirementBean;
+import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.helper.KeyboardHeightObserver;
 import com.asche.wetalk.helper.KeyboardHeightProvider;
 import com.asche.wetalk.other.MyScrollView;
 import com.asche.wetalk.util.StringUtils;
+import com.asche.wetalk.util.TimeUtils;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -38,9 +41,12 @@ import static com.asche.wetalk.activity.ChatActivity.keyboardHeight;
 import static com.asche.wetalk.bean.HomeItem.TYPE_ARTICLE;
 import static com.asche.wetalk.bean.HomeItem.TYPE_REQUIREMENT;
 import static com.asche.wetalk.bean.HomeItem.TYPE_TOPIC;
+import static com.asche.wetalk.fragment.FragmentWorkArticle.workArticleList;
+import static com.asche.wetalk.fragment.FragmentWorkRequirement.workRequirementList;
+import static com.asche.wetalk.fragment.FragmentWorkTopic.workTopicList;
 
 @SuppressWarnings("DanglingJavadoc")
-public class ArticlePublishActivity extends BaseActivity implements KeyboardHeightObserver {
+public class ArticlePublishActivity extends BaseActivity implements KeyboardHeightObserver, View.OnClickListener {
 
     private ImageView imgBack, imgMore;
     private TextView textTitle;
@@ -56,6 +62,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
     // 数据对象
     private ArticleBean articleBean;
     private RequirementBean requirementBean;
+    private TopicReplyBean topicReplyBean;
     private DraftItemBean draftItemBean;
     private int type = 0; // 文章、需求、话题回复
     boolean isNew = true;
@@ -82,18 +89,8 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
 
         textTitle.setText("编辑文章");
         imgMore.setBackgroundResource(R.drawable.ic_send_color);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        imgMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        imgBack.setOnClickListener(this);
+        imgMore.setOnClickListener(this);
 
         //初始化编辑高度
         // mEditor.setEditorHeight(200);
@@ -117,7 +114,7 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
 
         Intent intent = getIntent();
         if (intent != null) {
-            // 必传
+            // type必传
             type = intent.getIntExtra("type", 0);
             isNew = !intent.hasExtra("object");
 
@@ -130,12 +127,13 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
             }
 
             if (!isNew) {
+                // 旧的
                 draftItemBean = (DraftItemBean) intent.getSerializableExtra("object");
                 if (type != TYPE_TOPIC) {
                     editTitle.setText(draftItemBean.getTitle());
                 } else {
                     editTitle.setEnabled(false);
-                    editTitle.setHint("回答：#" + draftItemBean.getTitle());
+                    editTitle.setText("回答：#" + draftItemBean.getTitle());
                 }
                 mEditor.setHtml(draftItemBean.getContent());
             }
@@ -149,6 +147,75 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
             }
         });
 
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.img_toolbar_more:
+                String title =editTitle.getText().toString();
+                String content = mEditor.getHtml();
+                if (StringUtils.isEmpty(content) || StringUtils.isEmpty(title)) {
+                    Toast.makeText(this, "内容不能为空！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (type == TYPE_ARTICLE) {
+                    if (articleBean == null) {
+                        articleBean = new ArticleBean();
+                    }
+                    articleBean.setTitle(title);
+                    articleBean.setContent(content);
+                    articleBean.setBrief(content);
+                    articleBean.setAuthorUserName(getCurUser().getUserName());
+                    articleBean.setTime(TimeUtils.getCurrentTime());
+
+                    workArticleList.add(new DraftItemBean(TYPE_ARTICLE, articleBean));
+
+                    finish();
+                    Intent intent = new Intent(this, ArticleActivity.class);
+                    intent.putExtra("article", articleBean);
+                    startActivity(intent);
+                } else if (type == TYPE_REQUIREMENT) {
+                    if (requirementBean == null) {
+                        requirementBean = new RequirementBean();
+                    }
+                    requirementBean.setTitle(title);
+                    requirementBean.setContent(content);
+                    requirementBean.setBrief(content);
+                    requirementBean.setAuthorUserName(getCurUser().getUserName());
+                    requirementBean.setTime(TimeUtils.getCurrentTime());
+
+                    workRequirementList.add(new DraftItemBean(TYPE_REQUIREMENT, requirementBean));
+
+                    finish();
+                    Intent intent = new Intent(this, ArticleActivity.class);
+                    intent.putExtra("requirement", requirementBean);
+                    startActivity(intent);
+                } else if (type == TYPE_TOPIC) {
+                    if (topicReplyBean == null) {
+                        topicReplyBean = new TopicReplyBean();
+                    }
+                    topicReplyBean.setContent(content);
+                    topicReplyBean.setAuthorUserName(getCurUser().getUserName());
+                    topicReplyBean.setTime(TimeUtils.getCurrentTime());
+                    topicReplyBean.setTopicId("444");
+
+                    workTopicList.add(new DraftItemBean(HomeItem.TYPE_TOPIC, topicReplyBean));
+
+                    finish();
+                    Intent intent = new Intent(this, TopicActivity.class);
+                    intent.putExtra("topicReply", topicReplyBean);
+                    startActivity(intent);
+                }
+
+                Toast.makeText(this, "发布成功！", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.img_toolbar_back:
+                finish();
+                break;
+        }
     }
 
     @Override
@@ -589,4 +656,5 @@ public class ArticlePublishActivity extends BaseActivity implements KeyboardHeig
             layoutBottom.setLayoutParams(params);
         }
     }
+
 }

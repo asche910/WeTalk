@@ -100,7 +100,9 @@ public class WorkActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.fab_topic:
-                nextActivity(TopicReplyActivity.class, HomeItem.TYPE_TOPIC);
+                Intent intent = new Intent(this, TopicInfoActivity.class);
+                // intent.putExtra("topicInfo", topicBean);
+                startActivity(intent);
                 break;
             case R.id.fab_article:
                 nextActivity(ArticlePublishActivity.class, HomeItem.TYPE_ARTICLE);

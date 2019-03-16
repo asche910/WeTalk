@@ -21,7 +21,6 @@ import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.bean.TopicReplyBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.bean.UserBean;
-import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.util.TimeUtils;
 import com.asche.wetalk.util.ZhihuUtils;
 
@@ -51,6 +50,11 @@ public class DataUtils {
     public static String imgAvatar_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"; // 袋鼠
 
 
+    /**
+     * 根据id获取相应话题回复，为空则随机返回
+     * @param ids
+     * @return
+     */
     public static TopicReplyBean getTopicReply(String... ids) {
         int n;
         if (ids.length == 1) {
@@ -102,7 +106,7 @@ public class DataUtils {
                 bean.setContent(getContent(R.raw.topic_1));
                 bean.setImgUrl("https://pic1.zhimg.com/v2-91e5d2f6c85c151f235b09e4cf229509_b.jpg");
         }
-        bean.setAuthorId(4 + "");
+        bean.setAuthorUserName(4 + "");
         bean.setTime("2018-08-09");
         bean.setLikeNum(78);
         bean.setCommentNum(89);
@@ -345,6 +349,8 @@ public class DataUtils {
 
     public static String getTitle(String idStr) {
         switch (idStr) {
+            case "444":
+                return "历史上有哪些如神一般存在的人物？";
             case "333":
                 return "你很长时间都不能忘记的一部电影是什么？";
             case "222":

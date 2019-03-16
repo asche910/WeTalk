@@ -26,7 +26,7 @@ public class FragmentDraftTopic extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     DraftRVAdapter draftRVAdapter;
-    private static List<DraftItemBean> draftTopicList = new ArrayList<>();
+    public static List<DraftItemBean> draftTopicList = new ArrayList<>();
 
     @Nullable
     @Override

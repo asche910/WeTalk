@@ -1,13 +1,17 @@
 package com.asche.wetalk.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.TopicInfoRVAdapter;
+import com.asche.wetalk.bean.DraftItemBean;
+import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.TopicBean;
 import com.asche.wetalk.bean.TopicReplyItemBean;
 import com.asche.wetalk.data.DataUtils;
@@ -32,6 +36,8 @@ public class TopicInfoActivity extends BaseActivity implements View.OnClickListe
     private TopicInfoRVAdapter topicInfoRVAdapter;
     private List<TopicReplyItemBean> topicReplyItemList = new ArrayList<>();
 
+    private Button btnReply;
+
     // 数据对象
     private TopicBean topicBean;
 
@@ -45,9 +51,12 @@ public class TopicInfoActivity extends BaseActivity implements View.OnClickListe
         textToolbarTitle = findViewById(R.id.text_toolbar_title);
         imgMore = findViewById(R.id.img_toolbar_more);
         recyclerView = findViewById(R.id.recycler_topic_info);
+        btnReply = findViewById(R.id.btn_topic_info_reply);
 
 
 //        topicBean = (TopicBean)getIntent().getSerializableExtra("topicInfo");
+
+        topicBean =  new TopicBean("历史上有哪些如神一般存在的人物？", "历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？", "2019-01-09 10:24", 472, 82);
 
         if (topicReplyItemList.isEmpty()) {
             TopicBean topicBean = new TopicBean("历史上有哪些如神一般存在的人物？", "历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？历史上有哪些如神一般存在的人物？", "2019-01-09 10:24", 472, 82);
@@ -67,6 +76,7 @@ public class TopicInfoActivity extends BaseActivity implements View.OnClickListe
 
         imgBack.setOnClickListener(this);
         imgMore.setOnClickListener(this);
+        btnReply.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +110,12 @@ public class TopicInfoActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.btn_topic_info_reply:
+                Intent intent = new Intent(this, ArticlePublishActivity.class);
+                intent.putExtra("type", HomeItem.TYPE_TOPIC);
+                intent.putExtra("object", new DraftItemBean(HomeItem.TYPE_TOPIC, topicBean.getName(), "", ""));
+                startActivity(intent);
+                break;
             case R.id.img_toolbar_more:
                 Toast.makeText(this, "More！", Toast.LENGTH_SHORT).show();
                 break;
