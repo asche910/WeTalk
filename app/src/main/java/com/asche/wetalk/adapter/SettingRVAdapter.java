@@ -17,6 +17,7 @@ import com.asche.wetalk.activity.PasswordActivity;
 import com.asche.wetalk.activity.SettingActivity;
 import com.asche.wetalk.activity.UserAgreementsActivity;
 import com.asche.wetalk.bean.SettingItemBean;
+import com.asche.wetalk.http.AsHttpUtils;
 import com.suke.widget.SwitchButton;
 
 import java.util.List;
@@ -105,7 +106,10 @@ public class SettingRVAdapter extends RecyclerView.Adapter {
                         break;
                     case 2:
                         // 注销登录
-                        nextActivity(LoginActivity.class);
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                        AsHttpUtils.logout();
                         Toast.makeText(context, "注销成功！", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:

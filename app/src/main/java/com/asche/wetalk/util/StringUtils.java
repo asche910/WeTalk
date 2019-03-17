@@ -72,7 +72,13 @@ public class StringUtils {
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
             String type = field.getGenericType().toString();
 
-            Method method = object.getClass().getMethod("get" + name);
+            Method method = null;
+            try {
+                method = object.getClass().getMethod("get" + name);
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
 
             if(type.contains("String")){
                 String value = (String)method.invoke(object);

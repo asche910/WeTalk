@@ -6,6 +6,7 @@
     <attr name="blueNight" format="reference"/>
     <attr name="whiteNight" format="reference"/>
     <attr name="dddNight" format="reference"/>
+    <attr name="deNight" format="reference"/>
     <attr name="eeeNight" format="reference"/>
 
 </resources>

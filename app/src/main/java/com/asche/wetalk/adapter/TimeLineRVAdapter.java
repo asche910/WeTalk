@@ -181,7 +181,8 @@ public class TimeLineRVAdapter extends RecyclerView.Adapter {
                         TopicReplyBean topicReplyBean = (TopicReplyBean) homeItem;
                         LoaderUtils.loadImage(topicReplyBean.getImgUrl(), context, imageHolder.imgCover);
 
-                        imageHolder.textContent.setText(topicReplyBean.getBrief());
+                        CharSequence sequence = Html.fromHtml(topicReplyBean.getBrief());
+                        imageHolder.textContent.setText(sequence);
                         imageHolder.textTime.setText(topicReplyBean.getTime());
                         break;
                     case HomeItem.TYPE_REQUIREMENT:

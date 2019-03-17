@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.MessageMoneyRVAdapter;
 import com.asche.wetalk.bean.MessageMoneyBean;
+import com.asche.wetalk.util.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class FragmentMessagingMoney extends Fragment {
 
     private RecyclerView recyclerView;
-    List<MessageMoneyBean> messageMoneyBeans = new ArrayList<>();
-    MessageMoneyRVAdapter messageMoneyRVAdapter;
-
+    private MessageMoneyRVAdapter messageMoneyRVAdapter;
+    public static List<MessageMoneyBean> messagingMoneyList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -37,14 +37,14 @@ public class FragmentMessagingMoney extends Fragment {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_messaging_money);
 
-        if (messageMoneyBeans.isEmpty()) {
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-02-13 10:12:15", false));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-02-12 18:22:50", false));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-02-11 10:12:14", false));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-02-12 10:18:15", false));
+        if (messagingMoneyList.isEmpty()) {
+            messagingMoneyList.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-03-15 10:15:15", false));
+            messagingMoneyList.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-03-17 18:22:50", false));
+            messagingMoneyList.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", "2019-03-16 10:12:14", false));
+            messagingMoneyList.add(new MessageMoneyBean("asche", "dst","你发起了付费咨询", TimeUtils.getCurrentTime(), false));
         }
 
-        messageMoneyRVAdapter = new MessageMoneyRVAdapter(messageMoneyBeans);
+        messageMoneyRVAdapter = new MessageMoneyRVAdapter(messagingMoneyList, true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(messageMoneyRVAdapter);
 

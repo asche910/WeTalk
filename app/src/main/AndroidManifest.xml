@@ -22,7 +22,7 @@
         android:networkSecurityConfig="@xml/network_security_config">
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LaunchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,6 +35,7 @@
         <meta-data android:name="com.asche.wetalk.other.CustomGlideModule"
             android:value="GlideModule"/>
 
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.UserHomeActivity"/>
         <activity android:name=".activity.UserModifyActivity"/>
         <activity android:name=".activity.UserTwoCodeActivity"/>

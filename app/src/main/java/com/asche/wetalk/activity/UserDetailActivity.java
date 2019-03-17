@@ -9,12 +9,13 @@ import android.widget.Toast;
 
 import com.asche.wetalk.R;
 import com.asche.wetalk.bean.UserBean;
+import com.asche.wetalk.http.AsHttpUtils;
 
 import androidx.annotation.Nullable;
 
 public class UserDetailActivity extends BaseActivity implements View.OnClickListener{
 
-    private ImageView imgBack, imgMore;
+    private ImageView imgBack, imgSave;
     private TextView textTitle;
 
     private EditText textUsername, textGender, textSignature;
@@ -31,7 +32,7 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
 
         imgBack = findViewById(R.id.img_toolbar_back);
-        imgMore = findViewById(R.id.img_toolbar_more);
+        imgSave = findViewById(R.id.img_toolbar_more);
         textTitle = findViewById(R.id.text_toolbar_title);
 
         textUsername = findViewById(R.id.edit_user_detail_username);
@@ -66,10 +67,10 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
                 textLocation.setEnabled(false);
                 textEmail.setEnabled(false);
                 textDescription.setEnabled(false);
-                imgMore.setVisibility(View.GONE);
+                imgSave.setVisibility(View.GONE);
 
             }else {
-                imgMore.setBackgroundResource(R.drawable.ic_save);
+                imgSave.setBackgroundResource(R.drawable.ic_save);
 
             }
         }
@@ -77,14 +78,36 @@ public class UserDetailActivity extends BaseActivity implements View.OnClickList
 
         textTitle.setText("详细资料");
         imgBack.setOnClickListener(this);
-        imgMore.setOnClickListener(this);
+        imgSave.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.img_toolbar_more:
-                Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+                String gender = textGender.getText().toString();
+                String sig = textSignature.getText().toString();
+                String profession = textCareer.getText().toString();
+                String address = textLocation.getText().toString();
+                String desc = textDescription.getText().toString();
+
+                UserBean userBean = getCurUser();
+                userBean.setGender(gender);
+                userBean.setSignature(sig);
+                userBean.setProfession(profession);
+                userBean.setAddress(address);
+                userBean.setDescription(desc);
+
+                setCurUser(userBean);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AsHttpUtils.updateUser();
+                    }
+                }).start();
+
+                Toast.makeText(this, "修改成功！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.img_toolbar_back:
                 finish();

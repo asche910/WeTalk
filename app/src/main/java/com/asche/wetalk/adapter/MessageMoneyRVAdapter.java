@@ -24,13 +24,22 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.asche.wetalk.fragment.FragmentMessagedMoney.messagedMoneyList;
+import static com.asche.wetalk.fragment.FragmentMessagingMoney.messagingMoneyList;
+
 public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAdapter.ViewHolder> {
 
     private List<MessageMoneyBean> list;
     private Context context;
+    private boolean isMessaging;
 
     public MessageMoneyRVAdapter(List<MessageMoneyBean> list) {
         this.list = list;
+    }
+
+    public MessageMoneyRVAdapter(List<MessageMoneyBean> list, boolean isMessaging) {
+        this.list = list;
+        this.isMessaging = isMessaging;
     }
 
     @NonNull
@@ -45,10 +54,11 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final MessageMoneyBean bean = list.get(position);
         // TODO get UserBean from username
         final UserBean userBean = UserUtils.getUser();
+        final int pos = holder.getLayoutPosition();
 
         LoaderUtils.loadImage(userBean.getImgAvatar(), context, holder.imgAvatar);
         holder.textNickname.setText(userBean.getNickName());
@@ -67,6 +77,15 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
                                 holder.textCountTime.setText("剩余时间 " + countTime);
                             } else {
                                 holder.textCountTime.setText("已结束");
+                                if (isMessaging){
+                                    try {
+                                        messagedMoneyList.add(bean);
+                                        messagingMoneyList.remove(position);
+                                        notifyItemRemoved(position);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
                             }
                             break;
                     }

@@ -36,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static UserBean curUser;
 
     static {
-        curUser = UserUtils.getUser(1);
+        // curUser = UserUtils.getUser(1);
     }
 
     @Override
@@ -73,8 +73,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         return curUser;
     }
 
-    public static void setCurUser(UserBean curUser) {
-        BaseActivity.curUser = curUser;
+    public static void setCurUser(UserBean user) {
+        curUser = user;
+        if (curUser == null){
+            return;
+        }
+        if (curUser.getImgAvatar() == null){
+            curUser.setImgAvatar("https://p2.cdn.img9.top/ipfs/QmYMhp28wYKWjQ5KgUe4Z1JuZfgThoq8hFCtJjdVxpSEpx?2.png");
+        }
+        if (curUser.getNickName() == null){
+            curUser.setNickName("用户" + user.getUserName());
+        }
     }
 
     /**

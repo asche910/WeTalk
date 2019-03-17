@@ -33,7 +33,7 @@ public class FragmentNotification extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private NotificationRVAdapter notificationRVAdapter;
-    private List<NotificationItemBean> notiBeanList = new ArrayList<>();
+    public static List<NotificationItemBean> notiBeanList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -51,11 +51,13 @@ public class FragmentNotification extends Fragment {
 
         flexibleScrollView.setEnablePullDown(false);
 
-        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(0), TimeUtils.getCurrentTime(), "你好，我是小灵机器人！"));
-        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(1), "11.13 15:43", "Hello, World!"));
-        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(2), "今天19：42", "我们看待这个世界的方式，决定了我们度过一生的方式。写的很好，很深刻"));
-        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(4), "11.13 22:45", "Hello, World!"));
-        notiBeanList.add(new NotificationItemBean(UserUtils.getUser(3), "昨天19：42", "很是深刻，思维方式决定了我们的人生和格局"));
+        if (notiBeanList.isEmpty()) {
+            notiBeanList.add(new NotificationItemBean(UserUtils.getUser(0), TimeUtils.getCurrentTime(), "你好，我是小灵机器人！"));
+            notiBeanList.add(new NotificationItemBean(UserUtils.getUser(1), "11.13 15:43", "Hello, World!"));
+            notiBeanList.add(new NotificationItemBean(UserUtils.getUser(2), "今天19：42", "我们看待这个世界的方式，决定了我们度过一生的方式。写的很好，很深刻"));
+            notiBeanList.add(new NotificationItemBean(UserUtils.getUser(4), "11.13 22:45", "Hello, World!"));
+            notiBeanList.add(new NotificationItemBean(UserUtils.getUser(3), "昨天19：42", "很是深刻，思维方式决定了我们的人生和格局"));
+        }
 
         notificationRVAdapter = new NotificationRVAdapter(notiBeanList);
         layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);

@@ -28,7 +28,8 @@
                     android:layout_height="200dp"
                     android:layout_marginBottom="50dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_avatar" />
+                    android:background="@drawable/bg_weather"
+                    />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_user_home_avatar"
@@ -56,20 +57,21 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="#45454545"
+                        android:background="#12454545"
                         android:src="@drawable/ic_watch_light" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:background="#12454545"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/text_user_home_follower"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="#45454545"
+                            android:background="#12454545"
                             android:text="粉丝 6k"
                             android:textColor="@color/grayLight" />
 
@@ -77,7 +79,7 @@
                             android:id="@+id/text_user_home_follow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="#45454545"
+                            android:background="#12454545"
                             android:text="关注 6"
                             android:textColor="@color/grayLight" />
                     </LinearLayout>

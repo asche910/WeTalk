@@ -220,7 +220,7 @@ public class UserBean implements Serializable {
     public boolean equals(@Nullable Object obj) {
         if (obj instanceof UserBean){
             UserBean temp = (UserBean) obj;
-            return id.equals(temp.getId()) || userName.equals(temp.getUserName());
+            return userName.equals(temp.getUserName());
         }
         return false;
     }

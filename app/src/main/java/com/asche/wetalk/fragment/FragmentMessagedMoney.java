@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class FragmentMessagedMoney extends Fragment {
 
     private RecyclerView recyclerView;
-    List<MessageMoneyBean> messageMoneyBeans = new ArrayList<>();
     private MessageMoneyRVAdapter messageMoneyRVAdapter;
+    public static List<MessageMoneyBean> messagedMoneyList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -36,14 +36,14 @@ public class FragmentMessagedMoney extends Fragment {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_messaged_money);
 
-        if (messageMoneyBeans.isEmpty()) {
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-13 10:12:15", true));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-12 18:22:50", true));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-11 10:12:14", true));
-            messageMoneyBeans.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-12 10:18:15", true));
+        if (messagedMoneyList.isEmpty()) {
+            messagedMoneyList.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-13 10:12:15", true));
+            messagedMoneyList.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-12 18:22:50", true));
+            messagedMoneyList.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-11 10:12:14", true));
+            messagedMoneyList.add(new MessageMoneyBean("asche", "dst","付费咨询已结束", "2019-02-12 10:18:15", true));
         }
 
-        messageMoneyRVAdapter = new MessageMoneyRVAdapter(messageMoneyBeans);
+        messageMoneyRVAdapter = new MessageMoneyRVAdapter(messagedMoneyList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(messageMoneyRVAdapter);
 

@@ -26,6 +26,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.asche.wetalk.R;
 import com.asche.wetalk.adapter.TimeLineRVAdapter;
 import com.asche.wetalk.bean.HappenItemBean;
+import com.asche.wetalk.bean.MessageMoneyBean;
 import com.asche.wetalk.bean.TimeLineBean;
 import com.asche.wetalk.bean.UserBean;
 import com.asche.wetalk.data.PaymentUtils;
@@ -34,6 +35,7 @@ import com.asche.wetalk.data.UserUtils;
 import com.asche.wetalk.helper.DropZoomScrollView;
 import com.asche.wetalk.data.DataUtils;
 import com.asche.wetalk.util.LoaderUtils;
+import com.asche.wetalk.util.TimeUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -52,6 +54,7 @@ import cc.shinichi.library.bean.ImageInfo;
 
 import static com.asche.wetalk.MyApplication.getContext;
 import static com.asche.wetalk.fragment.FragmentDiscoverHappen.str_2;
+import static com.asche.wetalk.fragment.FragmentMessagingMoney.messagingMoneyList;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class UserHomeActivity extends BaseActivity implements View.OnClickListener {
@@ -162,7 +165,7 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                 isOtherUser = true;
                 imgTwocode.setVisibility(View.GONE);
             }
-            Log.e("---", "onCreate: " + isOtherUser);
+            Log.e("---", "onCreate: isOtherUser" + isOtherUser);
 
             Log.e("---", "onCreate: " + (UserUtils.getUser(1)).equals(UserUtils.getUser(1)));
         } else {
@@ -305,6 +308,8 @@ public class UserHomeActivity extends BaseActivity implements View.OnClickListen
                                         Intent intent = new Intent(getContext(), ChatActivity.class);
                                         intent.putExtra("chatWith", userBean);
                                         startActivity(intent);
+
+                                        messagingMoneyList.add(new MessageMoneyBean("asche","dst", "你发起了付费咨询", TimeUtils.getCurrentTime(), false));
                                     }
                                 })
                                 .negativeText("取消")

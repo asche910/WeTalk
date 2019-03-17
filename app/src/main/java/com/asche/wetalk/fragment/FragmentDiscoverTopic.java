@@ -45,7 +45,6 @@ public class FragmentDiscoverTopic extends Fragment {
 
     private WaveSwipeRefreshLayout swipeRefreshLayout;
 
-
     private RecyclerView recyclerView;
     private List<TopicPageBean> topicPageBeanList = new ArrayList<>();
     private TopicPageRVAdapter topicPageRVAdapter;
@@ -71,14 +70,14 @@ public class FragmentDiscoverTopic extends Fragment {
         List<Integer> imgsList = new ArrayList<>();
         imgsList.add(R.drawable.img_avatar);
         imgsList.add(R.drawable.img_avatar_default);
-        imgsList.add(R.drawable.img_wallet);
-        imgsList.add(R.drawable.img_camera);
+        imgsList.add(R.drawable.bg_weather);
+        imgsList.add(R.drawable.bg);
 
         List<String> titleList = new ArrayList<>();
-        titleList.add("Title_1");
-        titleList.add("Title_2");
-        titleList.add("Title_3");
-        titleList.add("Title_4");
+        titleList.add("历史上有哪些如神一般存在的人物？");
+        titleList.add("你很长时间都不能忘记的一部电影是什么？");
+        titleList.add("被当成外国人是怎样的体验？");
+        titleList.add("如何评价丁香园售卖 1980 元一双的矫形鞋垫？");
 
 
         for (int i = 0; i < 10; i++) {

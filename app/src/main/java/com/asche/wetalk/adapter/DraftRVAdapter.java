@@ -87,6 +87,7 @@ public class DraftRVAdapter extends RecyclerView.Adapter<DraftRVAdapter.ViewHold
                                 }else if (type == TYPE_TOPIC){
                                     workTopicList.add(bean);
                                 }
+                                list.remove(pos);
                                 Toast.makeText(context, "发表成功！", Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.menu_draft_delete:

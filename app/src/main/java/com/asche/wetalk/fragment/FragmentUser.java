@@ -42,6 +42,7 @@ import com.asche.wetalk.bean.ImageTextBean;
 import com.asche.wetalk.helper.FlexibleScrollView;
 import com.asche.wetalk.spider.ArticleSpider;
 import com.asche.wetalk.spider.JokeSpider;
+import com.asche.wetalk.util.LoaderUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,13 +54,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import static com.asche.wetalk.activity.BaseActivity.getCurUser;
+
 @SuppressWarnings("FieldCanBeLocal")
 public class FragmentUser extends Fragment implements View.OnClickListener {
 
     private FlexibleScrollView flexibleScrollView;
 
+    // 用户信息区
     private LinearLayout userInfoLayout;
     private ImageView imgAvatar;
+    private TextView textNickname;
 
     private ImageView imgSetting;
 
@@ -102,6 +107,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         flexibleScrollView = getView().findViewById(R.id.scroll_user_frag);
         userInfoLayout = getView().findViewById(R.id.layout_user_info);
         imgAvatar = getView().findViewById(R.id.img_user_avatar);
+        textNickname = getView().findViewById(R.id.text_user_nickname);
         imgSetting = getView().findViewById(R.id.img_toolbar_setting);
         recyclerView = getView().findViewById(R.id.recycle_user_tool);
         recyclerViewPanel = getView().findViewById(R.id.recycle_user_panel);
@@ -134,7 +140,11 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
         recyclerViewPanel.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPanel.setAdapter(userToolRVAdapterPanel);
 
-        if (ArticleSpider.isNull()){
+
+        LoaderUtils.loadImage(getCurUser().getImgAvatar(), getContext(), imgAvatar);
+        textNickname.setText(getCurUser().getNickName());
+
+        if (ArticleSpider.isNull()) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -147,7 +157,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                     });
                 }
             }).start();
-        }else {
+        } else {
             textDailyArticle.setText(ArticleSpider.getArticleBean().getTitle());
         }
 
@@ -200,7 +210,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                         break;
                     case 2:
                         Intent intentWork = new Intent(getContext(), WorkActivity.class);
-                        intentWork.putExtra("userBean", BaseActivity.getCurUser());
+                        intentWork.putExtra("userBean", getCurUser());
                         startActivity(intentWork);
                         Toast.makeText(getActivity(), "作品", Toast.LENGTH_SHORT).show();
                         break;
@@ -271,6 +281,7 @@ public class FragmentUser extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layout_user_info:
                 Intent intent = new Intent(getContext(), UserHomeActivity.class);
+                intent.putExtra("user", getCurUser());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), imgAvatar, "user_avatar");
                     startActivity(intent, compat.toBundle());

@@ -14,8 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.http.AsHttpUtils;
+import com.asche.wetalk.util.StringUtils;
 
 import androidx.annotation.Nullable;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -36,6 +39,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_register);
 
         imgBack = findViewById(R.id.img_register_back);
+        editUsername = findViewById(R.id.edit_username);
         editPasswd = findViewById(R.id.edit_password);
         btnRegister = findViewById(R.id.btn_register);
         textUserAgreements = findViewById(R.id.text_user_agreements);
@@ -85,10 +89,49 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_register:
-                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("注册失败")
-                        .setContentText("用户名已存在！")
-                        .show();
+                final String userName = editUsername.getText().toString();
+                final String password = editPasswd.getText().toString();
+                if (StringUtils.isEmpty(userName) || StringUtils.isEmpty(password)){
+                    Toast.makeText(this, "内容不能为空哦！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (userName.length() < 4){
+                    Toast.makeText(this, "用户名长度至少为4", Toast.LENGTH_SHORT).show();
+                }
+                if (password.length() < 6){
+                    Toast.makeText(this, "密码长度至少为6", Toast.LENGTH_SHORT).show();
+                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final boolean succeed = AsHttpUtils.register(userName, password);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (succeed){
+                                    new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("注册成功")
+                                            .setContentText("恭喜你注册成功！")
+                                            .setConfirmText("确定")
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    finish();
+                                                }
+                                            })
+                                            .show();
+                                }else {
+                                    new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("注册失败")
+                                            .setContentText("用户名已存在！")
+                                            .show();
+                                }
+                            }
+                        });
+
+                    }
+                }).start();
                 break;
             case R.id.text_user_agreements:
                 startActivity(new Intent(this, UserAgreementsActivity.class));

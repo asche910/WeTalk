@@ -1,6 +1,7 @@
 package com.asche.wetalk.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.activity.TopicInfoActivity;
 import com.asche.wetalk.bean.HomeItem;
 import com.asche.wetalk.bean.ItemBean;
 import com.asche.wetalk.bean.TopicPageBean;
@@ -82,7 +84,7 @@ public class TopicPageRVAdapter extends RecyclerView.Adapter {
             bannerHolder.banner.setOnBannerListener(new OnBannerListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    Toast.makeText(getContext(), "You clicked " + position, Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, TopicInfoActivity.class));
                 }
             });
         } else if (type == TYPE_TEXT) {
