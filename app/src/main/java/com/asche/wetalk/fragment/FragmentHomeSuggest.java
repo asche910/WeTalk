@@ -99,7 +99,12 @@ public class FragmentHomeSuggest extends Fragment {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        swipeRefreshLayout.setRefreshing(false);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 }).start();
             }

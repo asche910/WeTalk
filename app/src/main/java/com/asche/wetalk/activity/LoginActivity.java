@@ -149,7 +149,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         if (succeed) {
                             finish();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            pDialog.cancel();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    pDialog.cancel();
+                                }
+                            });
                         } else {
                             runOnUiThread(new Runnable() {
                                 @Override

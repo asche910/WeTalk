@@ -91,11 +91,6 @@ public class ClockInActivity extends BaseActivity implements View.OnClickListene
         });
 
         HashMap<String, Boolean> sign = new HashMap<>();
-        sign.put("2018-07-12", true);
-        sign.put("2018-07-23", true);
-        sign.put("2018-07-24", false);
-        sign.put("2018-07-25", true);
-        sign.put("2018-08-12", false);
         sign.put("2018-08-13", true);
         sign.put("2018-08-14", true);
         sign.put("2018-08-15", false);
@@ -103,14 +98,17 @@ public class ClockInActivity extends BaseActivity implements View.OnClickListene
         sign.put("2018-08-31", true);
         sign.put("2018-09-05", true);
         sign.put("2018-09-07", false);
-        sign.put("2018-09-08", false);
-        sign.put("2018-09-09", true);
-        sign.put("2018-12-03", true);
-        sign.put("2018-12-08", true);
-        sign.put("2018-12-09", true);
-        sign.put("2018-12-10", true);
-        sign.put("2018-12-11", true);
-        sign.put("2018-12-12", true);
+        sign.put("2019-03-03", true);
+        sign.put("2019-03-05", true);
+        sign.put("2019-03-06", true);
+        sign.put("2019-03-07", true);
+        sign.put("2019-03-12", true);
+        sign.put("2019-03-13", true);
+        sign.put("2019-03-15", false);
+        sign.put("2019-03-16", true);
+        sign.put("2019-03-17", true);
+        sign.put("2019-03-18", true);
+        sign.put("2019-03-19", true);
         calendarView.setSignRecords(sign);
 
     }
@@ -123,6 +121,7 @@ public class ClockInActivity extends BaseActivity implements View.OnClickListene
                 textMoneyVirtual.setText(StringUtils.addInteger(virtualMoney, 7));
                 textDayConti.setText(StringUtils.addOne(textDayConti.getText().toString()));
                 textDayTotal.setText(StringUtils.addOne(textDayTotal.getText().toString()));
+                btnClockIn.setText("签到成功！");
                 Toast.makeText(this, "签到成功！积分+7", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.img_toolbar_back:

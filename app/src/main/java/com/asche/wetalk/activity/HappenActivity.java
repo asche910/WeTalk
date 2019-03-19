@@ -159,7 +159,12 @@ public class HappenActivity extends BaseActivity implements View.OnClickListener
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        swipeRefreshLayout.setRefreshing(false);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 }).start();
             }

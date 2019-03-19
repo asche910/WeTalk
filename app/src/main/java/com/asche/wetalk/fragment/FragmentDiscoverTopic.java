@@ -123,7 +123,12 @@ public class FragmentDiscoverTopic extends Fragment {
                             e.printStackTrace();
                         }
 
-                        swipeRefreshLayout.setRefreshing(false);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 }).start();
             }

@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.asche.wetalk.R;
+import com.asche.wetalk.data.DataUtils;
+import com.asche.wetalk.util.ZhihuUtils;
 
 import androidx.annotation.Nullable;
 
@@ -22,5 +24,12 @@ public class LaunchActivity extends BaseActivity{
                 startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
             }
         }, 2000);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DataUtils.videoSrc = ZhihuUtils.getVideoSrc("https://www.zhihu.com/video/1057342788332605440");
+            }
+        }).start();
     }
 }

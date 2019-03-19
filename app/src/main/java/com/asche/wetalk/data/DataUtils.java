@@ -49,6 +49,7 @@ public class DataUtils {
     public static String imgAvatar_1 = "https://cdn2.jianshu.io/assets/default_avatar/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"; // 企鹅
     public static String imgAvatar_2 = "https://cdn2.jianshu.io/assets/default_avatar/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"; // 袋鼠
 
+    public static String videoSrc;
 
     /**
      * 根据id获取相应话题回复，为空则随机返回
@@ -73,7 +74,12 @@ public class DataUtils {
                 bean.setContent(getContent(R.raw.topic_2));
 //                bean.setVideoUrl("https://vdn.vzuu.com/SD/39b9fd06-0055-11e9-b21e-0a580a4b9614.mp4?disable_local_cache=1&bu=com&expiration=1550229624&auth_key=1550229624-0-0-511cd4b9595c380632e6f6477aa8937a&f=mp4&v=ali");
 
-                final Handler handler = new Handler(new Handler.Callback() {
+                if (videoSrc != null){
+                    bean.setVideoUrl(videoSrc);
+                }
+
+                // TODO  副线程内不能创建Handler
+           /*     final Handler handler = new Handler(new Handler.Callback() {
                     @Override
                     public boolean handleMessage(Message msg) {
                         if (msg.what == 100 && msg.obj != null){
@@ -93,7 +99,7 @@ public class DataUtils {
                         message.what = 100;
                         handler.sendMessage(message);
                     }
-                }).start();
+                }).start();*/
                 bean.setImgUrl("https://p0.cdn.img9.top/ipfs/QmZzufMWG8Shd2XGszhNnQz5ifsnLpmfaRYtCRxPaFJ52b?0.png");
                 break;
             case 0:

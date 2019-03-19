@@ -269,7 +269,12 @@ public class ArticleActivity extends BaseActivity implements View.OnClickListene
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        swipeRefreshLayout.setRefreshing(false);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                swipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
                     }
                 }).start();
             }

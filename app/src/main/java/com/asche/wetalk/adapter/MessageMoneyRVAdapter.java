@@ -77,8 +77,9 @@ public class MessageMoneyRVAdapter extends RecyclerView.Adapter<MessageMoneyRVAd
                                 holder.textCountTime.setText("剩余时间 " + countTime);
                             } else {
                                 holder.textCountTime.setText("已结束");
-                                if (isMessaging){
+                                if (isMessaging && holder.isAlive){
                                     try {
+                                        holder.isAlive = false;
                                         messagedMoneyList.add(bean);
                                         messagingMoneyList.remove(position);
                                         notifyItemRemoved(position);
