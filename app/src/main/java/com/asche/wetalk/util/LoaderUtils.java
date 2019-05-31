@@ -14,6 +14,8 @@ public class LoaderUtils {
      * @param imageView
      */
     public static void loadImage(String src, Context context, ImageView imageView){
+        if (src == null)
+            return;
         if (src.charAt(0) == 'h'){
             Glide.with(context)
                     .load(src)

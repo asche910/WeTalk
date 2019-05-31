@@ -218,7 +218,7 @@ public class UserBean implements Serializable {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if (obj instanceof UserBean){
+        if (obj instanceof UserBean && userName != null){
             UserBean temp = (UserBean) obj;
             return userName.equals(temp.getUserName());
         }

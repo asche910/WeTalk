@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:3.3.2'
 
         // 注册MobSDK
         classpath "com.mob.sdk:MobSDK:2018.0319.1724"

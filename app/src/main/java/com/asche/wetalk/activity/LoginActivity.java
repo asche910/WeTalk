@@ -35,6 +35,8 @@ import cn.sharesdk.tencent.qq.QQ;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener {
 
+    private ImageView imgAlert;
+
     private EditText editUsername, editPasswd;
     private boolean isPasswdVisible;
 
@@ -53,6 +55,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        imgAlert = findViewById(R.id.img_login_alert);
         editUsername = findViewById(R.id.edit_username);
         editPasswd = findViewById(R.id.edit_password);
         btnLogin = findViewById(R.id.btn_login);
@@ -62,10 +65,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         imgWeChat = findViewById(R.id.img_login_wechat);
         imgLinkedIn = findViewById(R.id.img_login_linkedin);
 
-        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+/*        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("登录中...");
-        pDialog.setCancelable(true);
+        pDialog.setCancelable(true);*/
 
         editPasswd.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -103,6 +106,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }
         });
 
+        imgAlert.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         textRegister.setOnClickListener(this);
         textUserAgreements.setOnClickListener(this);
@@ -118,9 +122,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }).start();*/
     }
 
+    private void showDialog(){
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("登录中...");
+        pDialog.setCancelable(true);
+        pDialog.show();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_login_alert:
+                new MaterialDialog.Builder(LoginActivity.this)
+                        .title("提示")
+                        .content("由于该项目并未做上线打算，故服务端此时也不在状态，当前主要用于学习与Demo展示作用！\n默认用户名密码皆为root")
+                        .positiveText("确认")
+                        .show();
+                break;
             case R.id.text_user_agreements:
                 startActivity(new Intent(this, UserAgreementsActivity.class));
                 break;
@@ -135,7 +154,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     Toast.makeText(this, "内容不能为空哦！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                pDialog.show();
+
+                showDialog();
 
                 new Thread(new Runnable() {
                     @Override
@@ -178,7 +198,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 platQQ.setPlatformActionListener(this);
                 platQQ.showUser(null);
 
-                pDialog.show();
+                showDialog();
                 break;
             case R.id.img_login_wechat:
                 new MaterialDialog.Builder(LoginActivity.this)
@@ -195,7 +215,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 platLinkedIn.setPlatformActionListener(this);
                 platLinkedIn.showUser(null);
 
-                pDialog.show();
+                showDialog();
                 break;
         }
     }
@@ -220,11 +240,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onError(Platform platform, int i, Throwable throwable) {
 
         Log.e("-------", "onError: ---------->");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pDialog.cancel();
+            }
+        });
     }
 
     @Override
     public void onCancel(Platform platform, int i) {
 
         Log.e("-------", "onCancel: ---------->");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pDialog.cancel();
+            }
+        });
     }
 }
